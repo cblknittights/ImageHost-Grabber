@@ -1,39 +1,4 @@
-/* ***** BEGIN LICENSE BLOCK *****
- * Version: MPL 1.1/GPL 2.0/LGPL 2.1
- *
- * The contents of this file are subject to the Mozilla Public License Version
- * 1.1 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- * http://www.mozilla.org/MPL/
- *
- * Software distributed under the License is distributed on an "AS IS" basis,
- * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
- * for the specific language governing rights and limitations under the
- * License.
- *
- * The Original Code is Google Code Wiki Viewer.
- *
- * The Initial Developer of the Original Code is Atte Kemppilä.
- * Portions created by the Initial Developer are Copyright (C) 2011
- * the Initial Developer. All Rights Reserved.
- *
- * Contributor(s):
- * Atte Kemppilä <atte.kemppila@iki.fi>
- *
- * Alternatively, the contents of this file may be used under the terms of
- * either the GNU General Public License Version 2 or later (the "GPL"), or
- * the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
- * in which case the provisions of the GPL or the LGPL are applicable instead
- * of those above. If you wish to allow use of your version of this file only
- * under the terms of either the GPL or the LGPL, and not to allow others to
- * use your version of this file under the terms of the MPL, indicate your
- * decision by devaring the provisions above and replace them with the notice
- * and other provisions required by the GPL or the LGPL. If you do not devare
- * the provisions above, a recipient may use your version of this file under
- * the terms of any one of the MPL, the GPL or the LGPL.
- *
- * ***** END LICENSE BLOCK ***** */
-
+// https://developer.mozilla.org/en/XPCOMUtils.jsm
 
 /*
  * This is JavaScript port of nsFileView.
@@ -49,27 +14,19 @@ const EXPORTED_SYMBOLS =
     "FileView",
 ];
 
-const Cc = Components.classes;
-const Ci = Components.interfaces;
-const Cu = Components.utils;
+Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
-Cu.import("resource://gre/modules/XPCOMUtils.jsm");
-
-const atomSvc = Cc["@mozilla.org/atom-service;1"].getService(Ci.nsIAtomService);
-    
+const atomSvc = Components.classes["@mozilla.org/atom-service;1"].getService(Components.interfaces.nsIAtomService);
 const ATOM_DIR = atomSvc.getAtom("directory");
-
-const nsILocalFile = Ci.nsILocalFile;
-const NS_LOCAL_FILE = "@mozilla.org/file/local;1";
-
+const nsILocalFile = Components.interfaces.nsILocalFile;
 const ROOT_ELEMENT = "\\\\.";
 
-function DirElement(directory) {
+function DirTree(directory) {
 	this._childDirs = [];
 	this._directory = null;
 	
-	DirElement._top = null;
-	DirElement._rows = [];
+	DirTree._top = null;
+	DirTree._rows = [];
 	
 	this.directory = directory;
 	
@@ -86,7 +43,7 @@ function DirElement(directory) {
 	}
 	
 	while (dirEntries.hasMoreElements()) {
-		var next = dirEntries.getNext().QueryInterface(Ci.nsIFile);
+		var next = dirEntries.getNext().QueryInterface(Components.interfaces.nsIFile);
 		
 		// Some windows files do not play nice with nsIFile, i.e. the pagefile
 		// But we don't care about those; we just want the directories
@@ -99,89 +56,131 @@ function DirElement(directory) {
 	}
 }
 
-DirElement.prototype = {
+DirTree.prototype = {
+    QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsITreeView]),
+
+	/* properties for internal processing */
+	dirLevel: -1,
+	isExpanded: false,
+	rowIdx: -1,
+
+	get hasParentDir() { return this.parentDir != null; },
+	get parentDir() { return this._directory.parent; },
+	get hasChildren() { return this._childDirs.length > 0; },
+	get rowCount() { this.rows.length; },
+	get parentRowIdx() { return this.parent.rowIdx; },
+
+	/* properties for external processing */
+    wrappedJSObject: this,
+    treeBox: null,
+    setTree: function(treeBoxObject) { this.treeBox = treeBoxObject; },    
+	get selectedDirectory() { 
+		var row = this.selection.currentIndex;
+		if (row < this.rowCount) return this.rows[row].directory;
+	},
+	
 	/* properties for the current directory */
 	get directory() { return this._directory; },
 	set directory(path) { 
 		if (path instanceof nsILocalFile) this._directory = path;
 		else if (typeof(path) == "string" || path instanceof String) {
-			this._directory = Cc[NS_LOCAL_FILE].createInstance(nsILocalFile);
+			this._directory = Components.classes["@mozilla.org/file/local;1"].createInstance(nsILocalFile);
 			this._directory.initWithPath(path);
 		}
-		else throw("ImageHost Grabber: new DirElement needs either a string path or an nsILocalFile type passed at object creation");
+		else throw("ImageHost Grabber: new DirTree needs either a string path or an nsILocalFile type passed at object creation");
 	},
 	get path() { return this._directory.path; },
 	get leafName() { return this._directory.leafName; },
-	
-	/* properties for internal processing */
-	get hasParentDir() { return this.parentDir != null; },
-	get parentDir() { return this._directory.parent; },
-	get hasChildren() { return this._childDirs.length > 0; },
 
+	/* permission properties */
+	readable: true,
+	writable: true,
+	
+	/* error messages */
+	errors: [],
+	
 	/* properties for object linking */
-	get top() { return DirElement._top; },
-	set top(value) { return DirElement._top = value; },
-	get rows() { return DirElement._rows; },
-	set rows(value) { return DirElement._rows = value; },
+	get top() { return DirTree._top; },
+	set top(value) { return DirTree._top = value; },
+	get rows() { return DirTree._rows; },
+	set rows(value) { return DirTree._rows = value; },
 
 	get siblings() { return this.parent.children; },
 	get prevSibling { return this.parent.prevChild; },
 	get nextSibling { return this.parent.nextChild; },
 	get firstSibling { return this.parent.firstChild; },
 	get lastSibling { return this.parent.lastChild; },
+	get isLastSibling() { return !(this == this.lastSibling); },
 	
-	children : null,
-	prevChild : null,
-	nextChild : null,
-	firstChild : null,
-	lastChild : null,
+	children: null,
+	prevChild: null,
+	nextChild: null,
+	firstChild: null,
+	lastChild: null,
 	
 	get firstRow() { return this.top.firstSibling; },
 	get nextRow() {
 		var objRef = null;
 		
 		if (this.isExpanded == false) {
-			if (this.hasNextSibling == true) objRef = this.nextSibling;
+			if (this.isLastSibling == true) objRef = this.nextSibling;
 			else objRef = this.parent.nextSibling;
 		}
 		else objRef = this.firstChild;
 	},
-	
-	/* properties for nsITreeView */
-	rowIdx : -1,
-	get parentRowIdx() { return this.parent.rowIdx; },
-	dirLevel : -1,
-	isExpanded : false,
-	get hasNextSibling() { return !(this == this.lastSibling); },
-		
-	/* permission properties */
-	// get hidden() { return this._directory.isHidden(); },
-	// get special() { return this._directory.isSpecial(); },
-	// get readable() { return this._directory.isReadable(); },
-	// get writable() { return this._directory.isWritable(); },
-	readable : true,
-	writable : true,
-	
-	/* error messages */
-	errors : [],
 
+	/* properties for nsITreeView */
+	getRowProperties: function(row, props) {},
+	getColumnProperties: function(row, props) {},
+	getCellProperties: function(row, col, props) { props.AppendElement(ATOM_DIR); },
+
+	hasNextSibling: function(row, after) { return this.rows[row].isLastSibling; },
+
+	isContainer: function(row) { return this.rows[row].hasChildren; },
+	isContainerOpen: function(row) { return this.rows[row].isExpanded; },  
+	isContainerEmpty: function(row) { return false; },  
+	isSeparator: function(row) { return false; },
+
+	isSorted: function() {},
+	getImageSrc: function(row,col) { return null; },
+
+	isEditable: function(row, column)  { return false; },
+
+	getParentIndex: function(row) { return this.rows[row].parentRowIdx; },
+	getLevel: function(row) { return this.rows[row].dirLevel; },
+	getCellText: function(row, col) { return this.rows[row].leafName; },
+	
+    toggleOpenState: function(row) {
+		var item = this.rows[row];
+		if (!item.hasChildren) return;
+
+		if (item.isExpanded) {  
+			item.isExpanded = false;
+			var start = item.firstChild.rowIdx;
+			var len = item.children.length;
+			item.setIndices(item);
+			item.treeBox.rowCountChanged(start, -len);
+		}  
+        else {  
+			item.isExpanded = true;  
+			item.getChildDirs();
+			item.setIndices(item);
+			var start = item.firstChild.rowIdx;
+			var len = item.children.length;
+			this.treeBox.rowCountChanged(start, len);
+		}  
+
+        this.treeBox.invalidateRow(row);  
+      },  	  
+    
 	/* methods */
-	init : function() {
+	init: function() {
 		this.top = this;
 		this.getChildDirs();
 		this.setIndices();
 	},
 	
-	expand : function() {
-		this.isExpanded = true;
-		this.getChildDirs();
-		this.setIndices(this);
-	},
-	unexpand : function() {
-		this.isExpanded = false;
-		this.setIndices(this);
-	},
-	setIndices : function(startRow) {
+	setIndices: function(startRow) {
 		var maxIter = 10000, i = 0;
 		
 		if (startRow != null) {
@@ -201,14 +200,14 @@ DirElement.prototype = {
 		}
 	},
 	
-	getChildDirs : function() {
+	getChildDirs: function() {
 		if (!this.hasChildren) return null;
 		if (this.children != null) return this.children;
 		
 		var childs = [];
 		
 		for (var i = 0; i < this._childDirs.length; i++) {
-			var dElem = new DirElement(this._childDirs[i]);
+			var dElem = new DirTree(this._childDirs[i]);
 			dElem.parent = this;
 			dElem.dirLevel = this.dirLevel + 1;
 			childs.push(dElem);
@@ -225,57 +224,26 @@ DirElement.prototype = {
 	}
 }
 	
-
+/*
 function FileView()
 {
     this.sortType = -1;
     this.totalRows = 0;
     this.reverseSort = false;
 	
-	var dirElem = new DirElement("\\\\.");
-	var childs = dirElem.getChildDirs();
-	
-	this.addRows(childs, 0);
+	var dirElem = new DirTree("\\\\.");
 }
-
-// constants
-FileView.sortName = 0;
-FileView.sortSize = 1;
-FileView.sortDate = 2;
 
 FileView.prototype =
 {
-    QueryInterface: XPCOMUtils.generateQI([Ci.nsITreeView]),
-    
-	dirList: [],
+    QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsITreeView]),
+    wrappedJSObject: this,
+	
+	dirTree: new DirTree(ROOT_ELEMENT),
 	
     treeBox: null,
-	
-	updateRowIndices: function() {
-		for (var i = 0; i < this.dirList.length; i++) this.dirList[i].rowIdx = i;
-	},
-	
-	addRows: function(rows, idx) {
-		for (var i = 0; i < rows.length; i++) this.dirList.splice(idx + i, 0, rows[i]);
-		this.updateRowIndices();
-	},
-	
-	delRows: function(start, len) {
-		for (var i = 0; i < this.dirList.length; i++) {
-			dump("Before\nleafName: " + this.dirList[i].leafName + ", rowIdx: " + this.dirList[i].rowIdx +
-			     ", parentRowIdx: " + this.dirList[i].parentRowIdx + ", dirLevel: " + this.dirList[i].dirLevel +
-				 ", hasNextSibling: " + this.dirList[i].hasNextSibling + "\n");
-		}
-		this.dirList.splice(start, len);
-		this.updateRowIndices();
-		for (var i = 0; i < this.dirList.length; i++) {
-			dump("After\nleafName: " + this.dirList[i].leafName + ", rowIdx: " + this.dirList[i].rowIdx +
-			     ", parentRowIdx: " + this.dirList[i].parentRowIdx + ", dirLevel: " + this.dirList[i].dirLevel +
-				 ", hasNextSibling: " + this.dirList[i].hasNextSibling + "\n");
-		}
-	},
-	
-    get rowCount() { return this.dirList.length; },
+		
+    get rowCount() { return this.dirTree.rowCount; },
     
 	get selectedDirectory() { 
 		var row = this.selection.currentIndex;
@@ -301,7 +269,7 @@ FileView.prototype =
 	
 	getLevel: function(row) { return this.dirList[row].dirLevel; },
 	
-    hasNextSibling: function(row, after) { return this.dirList[row].hasNextSibling; },
+    hasNextSibling: function(row, after) { return this.dirList[row].isLastSibling; },
 	
     toggleOpenState: function(row) {
 		var item = this.dirList[row];
@@ -343,7 +311,9 @@ FileView.prototype =
 	getCellText: function(row, col) {
 		//dump("row: " + row + "\n");
 		try { return this.dirList[row].leafName; }
-		catch(e) { /*dump("error on row: " + row + "\n\n");*/ }
+		catch(e) { 
+			//dump("error on row: " + row + "\n\n");
+			}
 	},
     
     setTree: function(treeBoxObject) { this.treeBox = treeBoxObject; }    
@@ -356,3 +326,4 @@ function wildCardMatch(s, glob)
     var re = new RegExp(pattern);
     return re.test(s);
 }
+*/
