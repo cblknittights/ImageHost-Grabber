@@ -62,10 +62,15 @@ const ATOM_DIR = atomSvc.getAtom("directory");
 const nsILocalFile = Ci.nsILocalFile;
 const NS_LOCAL_FILE = "@mozilla.org/file/local;1";
 
+const ROOT_ELEMENT = "\\\\.";
+
 function DirElement(directory) {
 	this._childDirs = [];
 	this._directory = null;
-
+	
+	DirElement._top = null;
+	DirElement._rows = [];
+	
 	this.directory = directory;
 	
 	// nsIFile does not tell if the directory is readble with "isReadable" method
@@ -109,22 +114,45 @@ DirElement.prototype = {
 	get leafName() { return this._directory.leafName; },
 	
 	/* properties for internal processing */
-	get hasParent() { return this.parentDir != null; },
+	get hasParentDir() { return this.parentDir != null; },
 	get parentDir() { return this._directory.parent; },
 	get hasChildren() { return this._childDirs.length > 0; },
-	parentObj : null,
-	childrenObjs : null,
+
+	/* properties for object linking */
+	get top() { return DirElement._top; },
+	set top(value) { return DirElement._top = value; },
+	get rows() { return DirElement._rows; },
+	set rows(value) { return DirElement._rows = value; },
+
+	get siblings() { return this.parent.children; },
+	get prevSibling { return this.parent.prevChild; },
+	get nextSibling { return this.parent.nextChild; },
+	get firstSibling { return this.parent.firstChild; },
+	get lastSibling { return this.parent.lastChild; },
+	
+	children : null,
+	prevChild : null,
+	nextChild : null,
+	firstChild : null,
+	lastChild : null,
+	
+	get firstRow() { return this.top.firstSibling; },
+	get nextRow() {
+		var objRef = null;
+		
+		if (this.isExpanded == false) {
+			if (this.hasNextSibling == true) objRef = this.nextSibling;
+			else objRef = this.parent.nextSibling;
+		}
+		else objRef = this.firstChild;
+	},
 	
 	/* properties for nsITreeView */
-	// parentIdx : -1,
-	get parentIdx() {
-		if (this.parentObj == null) return -1;
-		else return this.parentObj.rowIdx;
-	},
 	rowIdx : -1,
+	get parentRowIdx() { return this.parent.rowIdx; },
 	dirLevel : -1,
 	isExpanded : false,
-	hasNextSibling : true,
+	get hasNextSibling() { return !(this == this.lastSibling); },
 		
 	/* permission properties */
 	// get hidden() { return this._directory.isHidden(); },
@@ -136,48 +164,64 @@ DirElement.prototype = {
 	
 	/* error messages */
 	errors : [],
-	
-	getDirLevel : function() {
-		if (this.hasParent == null) this.getParentDir();
-		
-		if (this.hasParent == false) {
-			this.dirLevel = -1;
-			return;
-		}
-		
-		if (this._directory.path.match(/.\:$/)) {
-			this.dirLevel = 0;
-			return
-		}
-		
-		var pDir = this.parentDir;
-		var dirLev = 0;
-		
-		while (pDir != null) {
-			dirLev++;
-			pDir = pDir.parent;
-		}
-		
-		this.dirLevel = dirLev;
+
+	/* methods */
+	init : function() {
+		this.top = this;
+		this.getChildDirs();
+		this.setIndices();
 	},
+	
+	expand : function() {
+		this.isExpanded = true;
+		this.getChildDirs();
+		this.setIndices(this);
+	},
+	unexpand : function() {
+		this.isExpanded = false;
+		this.setIndices(this);
+	},
+	setIndices : function(startRow) {
+		var maxIter = 10000, i = 0;
 		
+		if (startRow != null) {
+			var row = startRow;
+			var rows = this.rows.slice(0, startRow.rowIdx);
+		}
+		else {
+			var row = this.firstRow;
+			var rows = [];
+		}
+
+		while ( (i < maxIter) && (row != null) ) {
+			i++;
+			var rowIdx = rows.push(row) - 1;
+			row.rowIdx = rowIdx;
+			row = row.nextRow;
+		}
+	},
+	
 	getChildDirs : function() {
 		if (!this.hasChildren) return null;
-		if (this.childrenObjs != null) return this.childrenObjs;
+		if (this.children != null) return this.children;
 		
 		var childs = [];
 		
 		for (var i = 0; i < this._childDirs.length; i++) {
 			var dElem = new DirElement(this._childDirs[i]);
-			dElem.parentObj = this;
+			dElem.parent = this;
 			dElem.dirLevel = this.dirLevel + 1;
 			childs.push(dElem);
 		}
-		
-		childs[childs.length-1].hasNextSibling = false;
-		
-		return this.childrenObjs = childs;
-		//return childs;
+
+		for (var i = 0; i < childs.length; i++) {
+			childs[i].firstChild = childs[0];
+			childs[i].lastChild = childs[childs.length-1];
+			childs[i].prevChild = (i > 0)?childs[i-1]:null;
+			childs[i].nextChild = (i < (childs.length-1))?childs[i+1]:null;
+		}
+
+		return this.children = childs;
 	}
 }
 	
@@ -219,14 +263,14 @@ FileView.prototype =
 	delRows: function(start, len) {
 		for (var i = 0; i < this.dirList.length; i++) {
 			dump("Before\nleafName: " + this.dirList[i].leafName + ", rowIdx: " + this.dirList[i].rowIdx +
-			     ", parentIdx: " + this.dirList[i].parentIdx + ", dirLevel: " + this.dirList[i].dirLevel +
+			     ", parentRowIdx: " + this.dirList[i].parentRowIdx + ", dirLevel: " + this.dirList[i].dirLevel +
 				 ", hasNextSibling: " + this.dirList[i].hasNextSibling + "\n");
 		}
 		this.dirList.splice(start, len);
 		this.updateRowIndices();
 		for (var i = 0; i < this.dirList.length; i++) {
 			dump("After\nleafName: " + this.dirList[i].leafName + ", rowIdx: " + this.dirList[i].rowIdx +
-			     ", parentIdx: " + this.dirList[i].parentIdx + ", dirLevel: " + this.dirList[i].dirLevel +
+			     ", parentRowIdx: " + this.dirList[i].parentRowIdx + ", dirLevel: " + this.dirList[i].dirLevel +
 				 ", hasNextSibling: " + this.dirList[i].hasNextSibling + "\n");
 		}
 	},
@@ -253,7 +297,7 @@ FileView.prototype =
 
     isEditable: function(row, column)  { return false; },
 	
-	getParentIndex: function(row) { return this.dirList[row].parentIdx; },
+	getParentIndex: function(row) { return this.dirList[row].parentRowIdx; },
 	
 	getLevel: function(row) { return this.dirList[row].dirLevel; },
 	
