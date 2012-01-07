@@ -159,7 +159,12 @@ return;
 ihg_Functions.getLinksAndImages = function getLinksAndImages(content, docLinks, thumbLinks) {
 	for (var q = 0; q < content.document.links.length; q++) {
 		var someNode = content.document.links[q];
-		docLinks[ihg_Globals.firstPage].push(someNode.href);
+		
+		// Possibly add some code here to handle other javascript type links
+		var jsWrappedUrl = someNode.href.match(/javascript.+(\'|\")(http.+?)\1/);
+		if (jsWrappedUrl) docLinks[ihg_Globals.firstPage].push(jsWrappedUrl[2]);
+		else docLinks[ihg_Globals.firstPage].push(someNode.href);
+		
 		var thumbnail = null;
 		for (var a = 0; a < someNode.childNodes.length; a++) {
  			var someTagName = someNode.childNodes[a].tagName;

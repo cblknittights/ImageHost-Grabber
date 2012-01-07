@@ -212,25 +212,24 @@ ihg_Functions.generateFName = function generateFName(reqObj, URLFile) {
 		// I really should get a life...
 
 		var reqUrl = reqObj.reqURL;
-		if (reqUrl.match(/imagevenue/) || reqUrl.match(/fapomatic/)) {
+		if (reqUrl.search(/imagevenue\.com\//) >= 0 || reqUrl.search(/fapomatic\.com\//) >= 0) {
 			var indxVal = displayName.indexOf("_");
 			if (indxVal != -1) displayName = displayName.substr(indxVal+1);
 			
-			if (reqUrl.match(/imagevenue/)) displayName = displayName.replace(/(.+)_12[23]_\d+lo(\..{3,4})$/, "$1$2");
+			if (reqUrl.search(/imagevenue\.com\//) >= 0) displayName = displayName.replace(/(.+)_12[23]_\d+lo(\..{3,4})$/, "$1$2");
 			
+			ihg_Functions.LOG("In " + myself + ", displayName is equal to: " + displayName + "\n");
+			}
+		else if (reqUrl.search(/imagehaven\.net\//) >= 0) {
+			displayName = displayName.replace(/^[A-Z0-9]{10}_/, "");
+
 			ihg_Functions.LOG("In " + myself + ", displayName is equal to: " + displayName + "\n");
 			}
 		}
 
 	if (ihg_Globals.prefix_fileNames) displayName = ihg_Functions.prefixFName(reqObj, displayName);		
-
-	// the regex splits the full file name into the main file name and the extension
-	var tempVar = displayName.match(/(.+)\.(jpg|jpeg|swf|bmp|gif|png|flv|ico)$/i);
-
-	// if the main file name is longer than 89 chars, then shorten it
-	if(tempVar[1].length > 89)
-		displayName = tempVar[1].substring(0, 85) + Math.random().toString().substring(2,6) + "." + tempVar[2];
-
+	displayName = ihg_Functions.cutFName(displayName);
+	
 	return displayName;
 }
 
@@ -340,6 +339,7 @@ ihg_Functions.getFNameFromHeader = function getFNameFromHeader(reqObj, request) 
 		ihg_Functions.LOG("Filename(Response-Header): " + displayName + "\n");
 
 		if (ihg_Globals.prefix_fileNames) displayName = ihg_Functions.prefixFName(reqObj, displayName);
+		displayName = ihg_Functions.cutFName(displayName);
 		}
 	catch (e) {
 		ihg_Functions.LOG("Error: " + e + "\n");
@@ -359,6 +359,21 @@ ihg_Functions.prefixFName = function prefixFName(reqObj, fname) {
 	formatted += reqObj.curLinkNum;
 	result = reqObj.uniqFN_prefix + "_" + formatted + "_" + result;
 	
+	return result;
+}
+
+
+ihg_Functions.cutFName = function cutFName(fname) {
+	var maxLength = 240;
+	var result = fname;
+
+	// the regex splits the full file name into the main file name and the extension
+	var tempVar = result.match(/(.+)\.(jpg|jpeg|swf|bmp|gif|png|flv|ico)$/i);
+
+	// if the main file name is longer than maxLength chars, then shorten it
+	if(tempVar[1].length > maxLength)
+		result = tempVar[1].substring(0, maxLength-4) + Math.random().toString().substring(2,6) + "." + tempVar[2];
+
 	return result;
 }
 
