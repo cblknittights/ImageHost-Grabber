@@ -131,6 +131,10 @@ ihg_Functions.getRDun = function getRDun() {
 	// add the ref_url to the end of the array so it can be used later
 	tempLinks[tempLinks.length] = ref_url;
 	for (var i=0; i < tempLinks.length; i++) {
+		// Possibly add some code here to handle other javascript type links
+		var jsWrappedUrl = tempLinks[i].match(/javascript.+(\'|\")(http.+?)\1/);
+		if (jsWrappedUrl) tempLinks[i] = jsWrappedUrl[2];
+
 		var isEmbedded = false;
 		if (tempLinks[i].match(/^\[embeddedImg\]/)) {
 			isEmbedded = true;
