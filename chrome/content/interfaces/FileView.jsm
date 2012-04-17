@@ -11,7 +11,7 @@
 
 const EXPORTED_SYMBOLS =
 [
-    "FileView",
+    "DirTreeView",
 ];
 
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -21,12 +21,12 @@ const ATOM_DIR = atomSvc.getAtom("directory");
 const nsILocalFile = Components.interfaces.nsILocalFile;
 const ROOT_ELEMENT = "\\\\.";
 
-function DirTree(directory) {
+function DirTreeView(directory) {
 	this._childDirs = [];
 	this._directory = null;
 	
-	DirTree._top = null;
-	DirTree._rows = [];
+	DirTreeView._top = null;
+	DirTreeView._rows = [];
 	
 	this.directory = directory;
 	
@@ -56,7 +56,7 @@ function DirTree(directory) {
 	}
 }
 
-DirTree.prototype = {
+DirTreeView.prototype = {
     QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsITreeView]),
 
 	/* properties for internal processing */
@@ -86,8 +86,9 @@ DirTree.prototype = {
 		else if (typeof(path) == "string" || path instanceof String) {
 			this._directory = Components.classes["@mozilla.org/file/local;1"].createInstance(nsILocalFile);
 			this._directory.initWithPath(path);
+			if (path == ROOT_ELEMENT) this.init();
 		}
-		else throw("ImageHost Grabber: new DirTree needs either a string path or an nsILocalFile type passed at object creation");
+		else throw("ImageHost Grabber: new DirTreeView needs either a string path or an nsILocalFile type passed at object creation");
 	},
 	get path() { return this._directory.path; },
 	get leafName() { return this._directory.leafName; },
@@ -100,17 +101,19 @@ DirTree.prototype = {
 	errors: [],
 	
 	/* properties for object linking */
-	get top() { return DirTree._top; },
-	set top(value) { return DirTree._top = value; },
-	get rows() { return DirTree._rows; },
-	set rows(value) { return DirTree._rows = value; },
+	get top() { return DirTreeView._top; },
+	set top(value) { return DirTreeView._top = value; },
+	get rows() { return DirTreeView._rows; },
+	set rows(value) { return DirTreeView._rows = value; },
 
 	get siblings() { return this.parent.children; },
-	get prevSibling { return this.parent.prevChild; },
-	get nextSibling { return this.parent.nextChild; },
-	get firstSibling { return this.parent.firstChild; },
-	get lastSibling { return this.parent.lastChild; },
+	get prevSibling() { return this.parent.prevChild; },
+	get nextSibling() { return this.parent.nextChild; },
+	get firstSibling() { return this.parent.firstChild; },
+	get lastSibling() { return this.parent.lastChild; },
 	get isLastSibling() { return !(this == this.lastSibling); },
+	
+	parent: null,
 	
 	children: null,
 	prevChild: null,
@@ -118,7 +121,7 @@ DirTree.prototype = {
 	firstChild: null,
 	lastChild: null,
 	
-	get firstRow() { return this.top.firstSibling; },
+	get firstRow() { return this.top.firstChild; },
 	get nextRow() {
 		var objRef = null;
 		
@@ -207,7 +210,7 @@ DirTree.prototype = {
 		var childs = [];
 		
 		for (var i = 0; i < this._childDirs.length; i++) {
-			var dElem = new DirTree(this._childDirs[i]);
+			var dElem = new DirTreeView(this._childDirs[i]);
 			dElem.parent = this;
 			dElem.dirLevel = this.dirLevel + 1;
 			childs.push(dElem);
@@ -231,7 +234,7 @@ function FileView()
     this.totalRows = 0;
     this.reverseSort = false;
 	
-	var dirElem = new DirTree("\\\\.");
+	var dirElem = new DirTreeView("\\\\.");
 }
 
 FileView.prototype =
@@ -239,7 +242,7 @@ FileView.prototype =
     QueryInterface: XPCOMUtils.generateQI([Components.interfaces.nsITreeView]),
     wrappedJSObject: this,
 	
-	dirTree: new DirTree(ROOT_ELEMENT),
+	dirTree: new DirTreeView(ROOT_ELEMENT),
 	
     treeBox: null,
 		
