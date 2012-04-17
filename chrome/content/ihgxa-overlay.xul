@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://imagegrabber/locale/overlay.dtd">
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://imagegrabber/skin/overlay.css" type="text/css"?>
+<overlay id="ImageGrabber-IHGXA-Overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<stringbundleset id="stringbundleset">
+	<stringbundle id="imagegrabber-strings" src="chrome://imagegrabber/locale/imagegrabber.properties" />
+</stringbundleset>
+
+<script type="application/x-javascript" src="chrome://imagegrabber/content/overlay.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/globals.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/ccallwrapper.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/dlwin_funcs.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/dom_funcs.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/file_services.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/host_funcs.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/imagegrabber.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/progress_listener.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/request_class.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/threadsucker.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/utils.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/update.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/host_modules/myspace.js" />
+
+<script>
+	var ihg_prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
+	ihg_Globals.debugOut = ihg_prefManager.getBoolPref("extensions.imagegrabber.enabledebug");
+	ihg_Globals.conLogOut = ihg_prefManager.getBoolPref("extensions.imagegrabber.enableconlog");
+</script>
+
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/debug.js" />
+
+<script>
+	ihg_Functions.getConMsgs();
+</script>
+
+
+<keyset>
+	<key id="ihg-getAll_cmd" keycode="VK_PAGE_DOWN" modifiers="accel shift" oncommand="ihg_Functions.hostGrabber(null, false);"/>
+	<key id="ihg-getSelected_cmd" keycode="VK_PAGE_UP" modifiers="accel shift" oncommand="ihg_Functions.hostGrabber(null, true);"/>
+</keyset>
+
+<popupset>
+	<tooltip class="ihgtooltip" id="ihg-toolbarbutton-tip">
+		<ihglabelgroup buttonlabel="&left_click.value;" description="&get_all_pics_page.label;" />
+		<ihglabelgroup id="suckCurThreadLabel" buttonlabel="&middle_click.value;" description="&suck_the_current_thread.label;" />
+	</tooltip>
+
+	<tooltip id="suck_the_current_thread-tip">
+		<label value="&suck_the_current_thread.tooltiptext;" class="tooltip-label"/>
+		<label value="&suck_the_current_thread.hint;" style="font-style: italic;"/>
+	</tooltip>
+</popupset>
+
+<toolbar id="MoreTools">
+	<toolbarbutton id="imagehostgrabber-toolbarbutton" label="ImageHost Grabber"
+		tooltip="ihg-toolbarbutton-tip" type="menu-button"
+		oncommand="ihg_toolbarButtonCommand(event);" onclick="ihg_toolbarButtonClick(event);"
+		class="toolbarbutton-1 chromeclass-toolbar-additional">
+		<menupopup class="ihgmenuset"/>
+	</toolbarbutton>
+</toolbar>
+
+</overlay>
