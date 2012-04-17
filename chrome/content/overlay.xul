@@ -51,8 +51,8 @@
 	</tooltip>
 
 	<tooltip id="suck_the_current_thread-tip">
-		<label value="&suck_the_current_thread.tooltiptext;"/>
-		<label value="&suck_the_current_thread.hint;" style="font-style: italic;" class="indent"/>
+		<label value="&suck_the_current_thread.tooltiptext;" class="tooltip-label"/>
+		<label value="&suck_the_current_thread.hint;" style="font-style: italic;"/>
 	</tooltip>
 </popupset>
 

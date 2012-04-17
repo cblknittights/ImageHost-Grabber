@@ -23,12 +23,12 @@
 
 <popupset>
 	<tooltip id="host_max_threads-tip">
-		<label value="&host_max_threads.tooltiptext;"/>
-		<label value="&host_max_threads.hint;" style="font-style: italic;" class="indent"/>
+		<label value="&host_max_threads.tooltiptext;" class="tooltip-label"/>
+		<label value="&host_max_threads.hint;" style="font-style: italic;"/>
 	</tooltip>
 	<tooltip id="timeout-tip">
-		<label value="&timeout.tooltiptext;"/>
-		<label value="&timeout.hint;" style="font-style: italic;" class="indent"/>
+		<label value="&timeout.tooltiptext;" class="tooltip-label"/>
+		<label value="&timeout.hint;" style="font-style: italic;"/>
 	</tooltip>
 </popupset>
 

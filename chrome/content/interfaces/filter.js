@@ -213,13 +213,13 @@ function applyFilter() {
 	if (type.value == "simple") {
 		var tmp = value.value;
 		
+		// Stuff we need to escape before building the regex
+		tmp = tmp.replace(/\//g,"\\\/");
+		tmp = tmp.replace(/\./g,"\\.");
+		
 		// Wildcards: * ?
 		tmp = tmp.replace(/\*/g,".*");
 		tmp = tmp.replace(/\?/g,".");
-		
-		// Stuff we need to escape before building the regex
-		tmp = tmp.replace(/\//g,"\/");
-		tmp = tmp.replace(/\./g,"\.");
 		
 		filter = new RegExp(tmp, "i");
 		}

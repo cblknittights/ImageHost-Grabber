@@ -7,7 +7,7 @@
 <!ENTITY  suck_the_current_thread.label "Konudaki Sayfalari Tara/Indir">
 <!ENTITY  suck_the_current_thread.accesskey "K">
 <!ENTITY  suck_the_current_thread.tooltiptext "This option is available only to recognized thread/gallery URLs.">
-<!ENTITY  suck_the_current_thread.hint "See help file for more information."> 
+<!ENTITY  suck_the_current_thread.hint "See help file for more information.">
 
 <!ENTITY  suck_selected_thread_link.label "Send link to thread sucker">
 <!ENTITY  suck_selected_thread_link.accesskey "L">

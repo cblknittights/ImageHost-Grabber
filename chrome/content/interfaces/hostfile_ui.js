@@ -180,15 +180,14 @@ function initWindow2() {
 	 ['RegExp','"\\"...\\""'],
 	 ['Replace','"\\"REPLACE: \'" + uPat + "\', \'...\'\\""'],
 //	 ['Redirect','"\\"REDIRECT: \'" + uPat + "\', \'...\'\\""'],
-	 ['Link2Img','"function(pageData, pageUrl) {" + maxThreads_LineCode + "\\n\\tvar retVal = new Object();" + \
-					"\\n\\t\\n\\tretVal.imgUrl = pageUrl;\\n\\tretVal.status = \\"OK\\";\\n\\t\\n\\treturn retVal;\\n\\t}"'],
-	 ['function','"function(pageData, pageUrl) {" + maxThreads_LineCode + "\\n\\tvar retVal = new Object();" + \
+	 ['Link2Img','"function(pageData, pageUrl) {" + maxThreads_LineCode + "\\n\\treturn {imgUrl: pageUrl, status: \\"OK\\"};\\n\\t}"'],
+	 ['function','"function(pageData, pageUrl) {" + maxThreads_LineCode + "\\n\\tvar retVal = {};" + \
 					"\\n\\t\\n\\t\\/\\/ Insert your code hereunder to build the target URL\\n\\t\\/\\/ Acceptable values for retVal.status are: \\"OK\\", \\"ABORT\\", \\"RETRY\\" or \\"REQUEUE\\"" + \
 					"\\n\\t\\n\\tvar iUrl = ...;\\n\\t\\n\\tif (!iUrl) {\\n\\t\\tretVal.imgUrl = null;\\n\\t\\tretVal.status = \\"ABORT\\";" + \
 					"\\n\\t\\t}\\n\\telse {\\n\\t\\tretVal.imgUrl = iUrl;\\n\\t\\tretVal.status = \\"OK\\";\\n\\t\\t}\\n\\t\\n\\treturn retVal;\\n\\t}"']]
 	 .forEach(function(sType) {
 		var newElem = searchType.appendItem(sType[0]);
-		var thecommand = "var maxthreads = document.getElementById(\"tb_hostMaxThreads\").value; \
+		var thecommand = "var maxthreads = (document.getElementById(\"cb_hostMaxThreads\").checked ? document.getElementById(\"tb_hostMaxThreads\").value : 0); \
 							var uPat = document.getElementById(\"tb_urlPattern\").value; \
 							var maxThreads_LineCode = (maxthreads == 0 ? '' : '\\n\\tif (ihg_Globals.appName == \"ImageHost Grabber\") ihg_Globals.maxThreads = ' + maxthreads + ';\\n\\t'); \
 							if (!uPat) uPat = '...'; \

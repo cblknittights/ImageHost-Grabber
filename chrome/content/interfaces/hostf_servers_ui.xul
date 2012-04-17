@@ -2,7 +2,7 @@
 <!DOCTYPE window SYSTEM "chrome://imagegrabber/locale/hostf_servers_ui.dtd">
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <window id="hostF_serversUI" title="&host_file_servers;" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
-onload="loadHostFile();">
+onload="loadHostFServersFile();">
 
 <stringbundleset id="stringbundleset">
     <stringbundle id="imagegrabber-strings" src="chrome://imagegrabber/locale/imagegrabber.properties" />
@@ -17,14 +17,14 @@ onload="loadHostFile();">
 
 <keyset>
 	<key id="escape_cmd" keycode="VK_ESCAPE" oncommand="window.close();"/>
-	<key id="update_cmd" keycode="VK_RETURN" oncommand="updateHFile();"/>
+	<key id="update_cmd" keycode="VK_RETURN" oncommand="updateHostFServer();"/>
 	<key id="delete_cmd" keycode="VK_DELETE" oncommand="delHostFServer();"/>
 </keyset>
 
 <vbox flex="1">
 	<hbox>
-		<listbox id="tb_searchPattern" ondblclick="updateHFile();" rows="10" flex="1"/>
-		<vbox hidden="true">
+		<listbox id="tb_searchPattern" ondblclick="updateHostFServer();" rows="10" flex="1"/>
+		<vbox>
 		  <spacer flex="1"/>
 		  <button label="▲" style="min-width: 0em;" oncommand="moveHostFServer(-1);"/>
 		  <button label="▼" style="min-width: 0em;" oncommand="moveHostFServer(+1);"/>
@@ -39,7 +39,7 @@ onload="loadHostFile();">
 	<button onclick="addHostFServer();" label="&add_host_file_server;"/>
 	<button onclick="delHostFServer();" label="&delete_host_file_server;"/>
 	<separator flex="1"/>
-	<button onclick="updateHostFile();" label="&update_file;"/>
+	<button onclick="updateHostFServersFile();" label="&update_file;"/>
 </hbox>
 
 </window>
