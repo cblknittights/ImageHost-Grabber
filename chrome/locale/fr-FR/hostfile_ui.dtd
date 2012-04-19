@@ -5,8 +5,10 @@
 <!ENTITY  host_label "Etiquette d'hôte">
 <!ENTITY  host_max_threads "Nb. Max. requêtes">
 <!ENTITY  host_max_threads.tooltiptext "Nombre Max. de requêtes HTTP simultanées pour cet hébergeur.">
-<!ENTITY  host_max_threads.hint "Zéro désactive cette limite.">
+<!ENTITY  host_max_threads.hint "Si activé, supplantera le paramètre global.">
+<!ENTITY  timeout "D/L Time Delay">
 <!ENTITY  timeout.tooltiptext "Temporisation entre les téléchargements pour cet hébergeur.">
+<!ENTITY  timeout.hint "Si activé, supplantera le paramètre global.">
 <!ENTITY  timeout.disabled "Désactivé">
 
 <!ENTITY  url_pattern "Format d'URL">
@@ -15,6 +17,7 @@
 <!ENTITY  select_func "Modèles...">
 
 <!ENTITY  update_file "MàJ du Fichier">
+<!ENTITY  reset_form "Effacer le Formulaire">
 <!ENTITY  add_host "Ajouter l'hôte">
 <!ENTITY  delete_host "Supprimer l'hôte">
 <!ENTITY  modify_hostf_servers "Modifier les serveurs hôtes">

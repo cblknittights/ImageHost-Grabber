@@ -7,6 +7,6 @@ locale imagegrabber es-ES chrome/locale/es-ES/
 locale imagegrabber tr-TR chrome/locale/tr-TR/
 locale imagegrabber fr-FR chrome/locale/fr-FR/
 
-overlay chrome://browser/content/browser.xul chrome://imagegrabber/content/overlay.xul
+overlay chrome://browser/content/browser.xul chrome://imagegrabber/content/ff-overlay.xul
 style   chrome://browser/content/browser.xul chrome://imagegrabber/skin/overlay.css
 style   chrome://global/content/customizeToolbar.xul chrome://imagegrabber/skin/overlay.css

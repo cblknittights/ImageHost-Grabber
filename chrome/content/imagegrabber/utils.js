@@ -170,7 +170,7 @@ ihg_Functions.generateFName = function generateFName(reqObj, URLFile) {
 	catch(e) {
 		ihg_Functions.LOG("In " + myself + ", an invalid URL was given: " + URLFile + "\n");
 		return null;
-		}	
+		}
 
 	// if a desired filename is given, use it
 	if (desiredFName) var displayName = desiredFName;
@@ -185,7 +185,7 @@ ihg_Functions.generateFName = function generateFName(reqObj, URLFile) {
 		// If the picture URL is actually a script with some extra stuff at
 		// the end (that stuff should uniquely identify the image, hopefully)
 		// then we'll use the extra stuff as identifying data for the filename.
-		if (pic_url.fileName.match(/(?:jpg|jpeg|swf|bmp|gif|png|flv|ico)$/i)) var displayName = pic_url.fileName;
+		if (pic_url.fileName.match(/(?:jpg|jpeg|swf|bmp|gif|png|flv|ico|mp4|m4v)$/i)) var displayName = pic_url.fileName;
 		// nsIURL.param was removed in Gecko 9.0
 		//else if (pic_url.param) var displayName = pic_url.fileName + pic_url.param;
 		else if (pic_url.query) var displayName = pic_url.fileName + pic_url.query;
@@ -194,7 +194,7 @@ ihg_Functions.generateFName = function generateFName(reqObj, URLFile) {
 		}
 
 	if (displayName) {
-		if (!displayName.match(/(?:jpg|jpeg|swf|bmp|gif|png|flv|ico)$/i))
+		if (!displayName.match(/(?:jpg|jpeg|swf|bmp|gif|png|flv|ico|mp4|m4v)$/i))
 			displayName += ".jpg";
 		}
 
@@ -242,7 +242,7 @@ ihg_Functions.getOutputFile = function getOutputFile(reqObj, URLFile) {
 	if (reqObj.retried && reqObj.fileName) displayName = reqObj.fileName;
 	else {
 		var contType = reqObj.xmlhttp.getResponseHeader("Content-type");
-		if (contType.match(/image\/.+/)) {
+		if (contType && contType.match(/image\/.+/)) {
 			var contDisp = reqObj.xmlhttp.getResponseHeader("Content-disposition");
 			if (contDisp) {
 				var mhp = Components.classes["@mozilla.org/network/mime-hdrparam;1"]
@@ -368,7 +368,7 @@ ihg_Functions.cutFName = function cutFName(fname) {
 	var result = fname;
 
 	// the regex splits the full file name into the main file name and the extension
-	var tempVar = result.match(/(.+)\.(jpg|jpeg|swf|bmp|gif|png|flv|ico)$/i);
+	var tempVar = result.match(/(.+)\.(jpg|jpeg|swf|bmp|gif|png|flv|ico|mp4|m4v)$/i);
 
 	// if the main file name is longer than maxLength chars, then shorten it
 	if(tempVar[1].length > maxLength)
@@ -447,7 +447,7 @@ ihg_Functions.doStartDownload = function doStartDownload(reqObj, URLFile) {
 	}
 
 
-ihg_Functions.removeDuplicates = function removeDuplicates(docLinks, thumbLinks){
+ihg_Functions.removeDuplicates = function removeDuplicates(docLinks, thumbLinks) {
 	var cleanDocLinks = new Array();
 	var cleanThumbLinks = new Array();
 
@@ -483,4 +483,34 @@ ihg_Functions.removeDuplicates = function removeDuplicates(docLinks, thumbLinks)
 ihg_Functions.restartFF = function restartFF() {
 	var nsIAppStartup = Components.interfaces.nsIAppStartup;
     Components.classes["@mozilla.org/toolkit/app-startup;1"].getService(nsIAppStartup).quit(nsIAppStartup.eForceQuit | nsIAppStartup.eRestart);
+}
+
+ihg_Functions.AlertPopup = function AlertPopup(title, message, listener, clickable) {
+	var logo = "chrome://imagegrabber/skin/images/imagegrabber.png";
+	try {
+		Components.classes['@mozilla.org/alerts-service;1']
+			.getService(Components.interfaces.nsIAlertsService)
+			.showAlertNotification(logo, title, message, clickable, 'cookie', listener, '');
+		}
+	catch(e) {
+		// prevents runtime error on platforms that don't implement nsIAlertsService, use alert.xul window instead
+		var win = Components.classes['@mozilla.org/embedcomp/window-watcher;1']
+			.getService(Components.interfaces.nsIWindowWatcher)
+			.openWindow(null, 'chrome://global/content/alerts/alert.xul', '_alert_', 'chrome,titlebar=no,popup=yes', null);  
+		win.arguments = [logo, title, message, clickable, 'cookie', null, listener];
+		}
+
+	/************************************************************************************************************************************************
+	* EVENT_NEW_MAIL_RECEIVED 		0 	The system receives email. Requires Gecko 1.9.2
+	* EVENT_ALERT_DIALOG_OPEN 		1 	An alert dialog is opened. Requires Gecko 1.9.2
+	* EVENT_CONFIRM_DIALOG_OPEN 	2 	A confirm dialog is opened. Requires Gecko 1.9.2
+	* EVENT_PROMPT_DIALOG_OPEN 		3 	A prompt dialog (one that allows the user to enter data, such as an authentication dialog) is opened. Requires Gecko 1.9.2
+	* EVENT_SELECT_DIALOG_OPEN 		4 	A select dialog (one that contains a list box) is opened. Requires Gecko 1.9.2
+	* EVENT_MENU_EXECUTE 			5 	A menu item is executed. Requires Gecko 1.9.2
+	* EVENT_MENU_POPUP 				6 	A popup menu is shown. Requires Gecko 1.9.2
+	* EVENT_EDITOR_MAX_LEN 			7 	More characters than the maximum allowed are typed into a text field. Requires Gecko 9.0
+	************************************************************************************************************************************************/
+
+	Components.classes["@mozilla.org/sound;1"].createInstance(Components.interfaces.nsISound)
+		.playEventSound(0);
 }

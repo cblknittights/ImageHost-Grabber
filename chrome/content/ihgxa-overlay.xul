@@ -2,7 +2,7 @@
 <!DOCTYPE overlay SYSTEM "chrome://imagegrabber/locale/overlay.dtd">
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://imagegrabber/skin/overlay.css" type="text/css"?>
-<overlay id="ImageGrabber-Overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<overlay id="ImageGrabber-IHGXA-Overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 <stringbundleset id="stringbundleset">
 	<stringbundle id="imagegrabber-strings" src="chrome://imagegrabber/locale/imagegrabber.properties" />
@@ -33,9 +33,6 @@
 
 <script>
 	ihg_Functions.getConMsgs();
-
-	window.addEventListener("load", ihg_initOverlay, false);
-	if (ihg_Globals.conLogOut) window.addEventListener("unload", ihg_Functions.unregisterConsoleListener, false);
 </script>
 
 
@@ -51,41 +48,18 @@
 	</tooltip>
 
 	<tooltip id="suck_the_current_thread-tip">
-		<label value="&suck_the_current_thread.tooltiptext;"/>
-		<label value="&suck_the_current_thread.hint;" style="font-style: italic;" class="indent"/>
+		<label value="&suck_the_current_thread.tooltiptext;" class="tooltip-label"/>
+		<label value="&suck_the_current_thread.hint;" style="font-style: italic;"/>
 	</tooltip>
 </popupset>
 
-<toolbarpalette id="BrowserToolbarPalette">
+<toolbar id="MoreTools">
 	<toolbarbutton id="imagehostgrabber-toolbarbutton" label="ImageHost Grabber"
 		tooltip="ihg-toolbarbutton-tip" type="menu-button"
 		oncommand="ihg_toolbarButtonCommand(event);" onclick="ihg_toolbarButtonClick(event);"
 		class="toolbarbutton-1 chromeclass-toolbar-additional">
 		<menupopup class="ihgmenuset"/>
 	</toolbarbutton>
-</toolbarpalette>
-
-
-<menubar id="main-menubar">
-	<menu id="menu_IGmain" label="ImageHost Grabber" accesskey="I" insertafter="helpMenu">
-		<menupopup class="ihgmenuset"/>
-	</menu>
-</menubar>
-
-<menupopup id="menu_ToolsPopup">
-	<menuseparator id="igSep" insertbefore="prefSep"/>
-	<menu id="menu_IGtools" label="ImageHost Grabber" class="menu-iconic ihgmenu" accesskey="I" insertafter="igSep">
-		<menupopup class="ihgmenuset"/>
-	</menu>
-</menupopup>
-
-<popup id="contentAreaContextMenu" insertafter="helpMenu">
-	<menuseparator/>
-	<menu id="menu_IGContext" label="ImageHost Grabber" class="menu-iconic ihgmenu" accesskey="I" insertafter="helpMenu">
-		<menupopup class="ihgmenuset"/>
-	</menu>
-	<menuitem id="suck_sel_thread" insertafter="menu_IGContext" label="&suck_selected_thread_link.label;" accesskey="&suck_selected_thread_link.accesskey;" oncommand="ihg_Functions.leechThread(content.document.activeElement);"/>
-</popup>
-
+</toolbar>
 
 </overlay>

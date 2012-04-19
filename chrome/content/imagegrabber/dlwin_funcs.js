@@ -39,17 +39,17 @@ ihg_Functions.clearFromWin =  function clearFromWin(reqID, ignoreAutoClear) {
 
 	if (!autoClear && !ignoreAutoClear) return;
 
-	var outBox = doc.getElementById("outBox");
+	// var outBox = doc.getElementById("outBox");
 	var treeItem = doc.getElementById(reqID);
+	var parentItem = treeItem.parentNode;
 
-	outBox.removeChild(treeItem);
+	parentItem.removeChild(treeItem);
 
 	var reqs = ig_dl_win.req_objs;
 
 	try {
-		for (var i = 0; i < reqs.length; i++)
-			if (reqs[i].uniqID == reqID) reqs.splice(i, 1);
-
+		var index = reqs[reqID].index;
+		reqs.splice(index, 1);
 		delete reqs[reqID];
 
 		ig_dl_win.req_objs = ihg_Functions.setUpLinkedList(reqs);

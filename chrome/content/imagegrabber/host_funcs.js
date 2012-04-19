@@ -114,20 +114,21 @@ ihg_Functions.genericHostFunc = function genericHostFunc() {
 
 		if (retVal.status == "REQUEUE") {
 			var newPageUrl = retVal.imgUrl;
-			var newHostToUse = ihg_Functions.getHostToUse(newPageUrl);
-			if (!newHostToUse) {
-				//ihg_Functions.updateDownloadStatus(ihg_Globals.strings.cant_find_new_host);
-				//throw "IHG error: can't find new host function for requeue in genericHostFunc";
-				req.abort(ihg_Globals.strings.cant_find_new_host);
-				return;
-			}
+			// var newHostToUse = ihg_Functions.getHostToUse(newPageUrl);
+			// if (!newHostToUse) {
+				// ihg_Functions.updateDownloadStatus(ihg_Globals.strings.cant_find_new_host);
+				// throw "IHG error: can't find new host function for requeue in genericHostFunc";
+				// req.abort(ihg_Globals.strings.cant_find_new_host);
+				// return;
+			// }
 
-			req.regexp = newHostToUse.hostFunc;
+			// req.regexp = newHostToUse.hostFunc;
 
-			req.reqURL = newPageUrl;
-			req.retryNum++;
+			// req.reqURL = newPageUrl;
+			// req.retryNum++;
 
-			req.retry();
+			// req.retry();
+			req.requeue(newPageUrl);
 			return;
 		}
 	}
@@ -147,6 +148,11 @@ ihg_Functions.genericHostFunc = function genericHostFunc() {
 		else if (req.regexp.match(/REPLACE: .+/)) {
 			var tempMatch = req.regexp.match(/REPLACE: ('|")(.*)\1.*,.*('|")(.*)\3/);
 			var the_url = req.reqURL.replace( new RegExp(tempMatch[2]), tempMatch[4] );
+		}
+		else if (req.regexp.match(/^REDIRECT$/)) {
+			var newPageUrl = this.channel.URI.spec;
+			req.requeue(newPageUrl);
+			return;
 		}
 		else var the_url = ihg_Functions.getPicByRegExp(req);
 

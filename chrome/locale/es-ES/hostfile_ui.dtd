@@ -5,8 +5,10 @@
 <!ENTITY  host_label "Etiqueta">
 <!ENTITY  host_max_threads "Peticiones simultáneas">
 <!ENTITY  host_max_threads.tooltiptext "Número máximo de peticiones HTTP simultáneas para este servidor.">
-<!ENTITY  host_max_threads.hint "Use cero para deshabilitar este límite.">
-<!ENTITY  timeout.tooltiptext "Timeout between downloads for this host.">
+<!ENTITY  host_max_threads.hint "If enabled, will override global setting.">
+<!ENTITY  timeout "D/L Time Delay">
+<!ENTITY  timeout.tooltiptext "Time to wait between each download for this host.">
+<!ENTITY  timeout.hint "If enabled, will override global setting.">
 <!ENTITY  timeout.disabled "Disabled">
 
 <!ENTITY  url_pattern "Patrón de URL">
@@ -15,6 +17,7 @@
 <!ENTITY  select_func "Select...">
 
 <!ENTITY  update_file "Actualizar el archivo">
+<!ENTITY  reset_form "Reset Form">
 <!ENTITY  add_host "Agregar servidor">
 <!ENTITY  delete_host "Borrar servidor">
 <!ENTITY  modify_hostf_servers "Modificar las fuentes del hostf.xml">

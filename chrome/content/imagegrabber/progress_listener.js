@@ -83,6 +83,8 @@ ihg_Functions.ihg_ProgressListener.prototype = {
 			else if (shitty.search(/^\x00\x00\x01\x00/) >= 0) this.fileGood = "yes";
 			// For swf's, the first three bytes are 435753 (CWS) or 465753 (FWS)
 			else if (shitty.search(/^(?:\x43|\x46)\x57\x53/) >= 0) this.fileGood = "yes";
+			// Support for MP4 files
+			else if (shitty.search(/^\x00{3}\x1c\x66\x74\x79\x70(?:\x6D\x70\x34\x32|\x33\x67\x70\x35|\x69\x73\x6F\x6D|\x46\x41\x43\x45)/) >= 0) this.fileGood = "yes";
 			
 			else this.fileGood = "no";
 		}
