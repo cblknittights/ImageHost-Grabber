@@ -38,50 +38,7 @@
  * Returns nothing.
  *
  */
-function tittyTwist() {
-	var aW = window.screen.availWidth, aH = window.screen.availHeight;
-	var errW = aW/2, errH = 565;	//565 is the y position of the dump console
-	var errX = window.screen.availLeft, errY = window.screen.availTop;
-	
-	var nsWW = Components.classes["@mozilla.org/embedcomp/window-watcher;1"].getService(Components.interfaces.nsIWindowWatcher);
-	var winList = nsWW.getWindowEnumerator();
-	var myWin = null;
-	while (winList.hasMoreElements()) {
-		var nextWin = winList.getNext().QueryInterface(Components.interfaces.nsIDOMWindow);
-		if (nextWin.location == "chrome://global/content/console.xul") {
-			myWin = nextWin;
-			break;
-		}
-	}
-	if (myWin != null) myWin.focus();
-	else nsWW.openWindow(null, "chrome://global/content/console.xul", "", "outerWidth="+errW+",outerHeight="+errH+",screenX="+errX+",screenY="+errY, null);
-	
-	window.content.screenX = errX + errW + 1;
-	window.content.screenY = errY;
-}
-
 ihg_Functions.hostGrabber = function hostGrabber(docLinks, filterImages) {
-	// var ig_dl_win_obj = Components.classes["@mozilla.org/embedcomp/window-watcher;1"].getService(Components.interfaces.nsIWindowWatcher);
-	// ig_dl_win = ig_dl_win_obj.openWindow(null, "chrome://imagegrabber/content/interfaces/bbb.xul", "ig-dl_win", "resizable,scrollbars=yes", opts);
-// return;	
-	var opts = {
-		retvals : {
-			filterIndex : null,
-			fileURL : null,
-			files : null,
-			file : null,
-			buttonStatus : null,
-			directory : null
-		},
-		title : "ttt",
-		displayDirectory : ihg_Globals.addonPath,
-		allowURLs : true
-	}
-	opts.wrappedJSObject = opts;
-	
-	var ig_dl_win_obj = Components.classes["@mozilla.org/embedcomp/window-watcher;1"].getService(Components.interfaces.nsIWindowWatcher);
-	ig_dl_win = ig_dl_win_obj.openWindow(null, "chrome://imagegrabber/content/interfaces/filepicker.xul", "ig-dl_win", "resizable,scrollbars=yes", opts);
-return;
 	ihg_Functions.LOG("Entering function hostGrabber.\n");
 	if(!docLinks) {
 		ihg_Globals.strbundle = document.getElementById("imagegrabber-strings");
