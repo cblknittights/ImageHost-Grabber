@@ -1,6 +1,6 @@
 <?xml version="1.0"?> <!-- -*- Mode: HTML -*- -->
 
-<?xml-stylesheet href="chrome://imagegrabber/content/interfaces/filepicker.css" type="text/css"?>
+<?xml-stylesheet href="chrome://imagegrabber/content/interfaces/filepicker/filepicker.css" type="text/css"?>
 
 <!DOCTYPE dialog SYSTEM "chrome://global/locale/filepicker.dtd" >
 
@@ -15,7 +15,7 @@
   persist="screenX screenY width height">
 
 <stringbundle id="bundle_filepicker" src="chrome://global/locale/filepicker.properties"/>
-<script type="application/javascript" src="chrome://imagegrabber/content/interfaces/filepicker.js"/>
+<script type="application/javascript" src="chrome://imagegrabber/content/interfaces/filepicker/filepicker.js"/>
 
 <hbox align="center">
   <button id="homeButton" class="home-button" tooltiptext="&folderHome.tooltiptext;" oncommand="goHome();"/>
