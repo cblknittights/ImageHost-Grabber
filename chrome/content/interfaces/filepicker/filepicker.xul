@@ -1,6 +1,6 @@
 <?xml version="1.0"?> <!-- -*- Mode: HTML -*- -->
 
-<?xml-stylesheet href="chrome://imagegrabber/content/interfaces/filepicker/filepicker.css" type="text/css"?>
+<?xml-stylesheet href="chrome://imagegrabber/skin/filepicker.css" type="text/css"?>
 
 <!DOCTYPE dialog SYSTEM "chrome://global/locale/filepicker.dtd" >
 
@@ -8,54 +8,66 @@
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:nc="http://home.netscape.com/NC-rdf#"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  onload="filepickerLoad();"
+  onload="fp.filepickerLoad();"
   width="426" height="300"
-  ondialogaccept="return selectOnOK();"
-  ondialogcancel="return onCancel();"
+  ondialogaccept="return fp.selectOnOK();"
+  ondialogcancel="return fp.onCancel();"
   persist="screenX screenY width height">
 
 <stringbundle id="bundle_filepicker" src="chrome://global/locale/filepicker.properties"/>
 <script type="application/javascript" src="chrome://imagegrabber/content/interfaces/filepicker/filepicker.js"/>
 
+<script>
+	var fp = new FilePicker();
+</script>
+
+<keyset>
+	<key id="ihgxa-ctrl-nkey" key="N" modifiers="control" oncommand="fp.newDir();"/>
+	<key id="ihgxa-f2key" keycode="VK_F2" oncommand="fp.editCell();"/>
+	<key id="ihgxa-delkey" keycode="VK_DELETE" oncommand="fp.delDir();"/>
+</keyset>
+
+<menupopup id="fp_menu">
+	<menuitem label="New Directory" onclick="fp.newDir();" key="ihgxa-ctrl-nkey"/>
+	<menuseparator />
+	<menuitem id="miRename" label="Rename" onclick="fp.editCell();" key="ihgxa-f2key"/>
+	<menuitem id="miDelete" label="Delete" onclick="fp.delDir();" key="ihgxa-delkey"/>
+</menupopup>
+
 <hbox align="center">
-  <button id="homeButton" class="home-button" tooltiptext="&folderHome.tooltiptext;" oncommand="goHome();"/>
-  <button id="newDirButton" class="new-dir-button" tooltiptext="&folderNew.tooltiptext;" oncommand="newDir();"/>
+	<button id="homeButton" class="home-button" tooltiptext="&folderHome.tooltiptext;" oncommand="fp.goHome();"/>
+	<!--<button id="newDirButton" class="new-dir-button" tooltiptext="&folderNew.tooltiptext;" oncommand="fp.newDir();"/>-->
 </hbox>
 
 <hbox flex="1">
-  <deck id="errorShower" flex="1">
-<!--     <tree id="directoryTree" flex="1" class="focusring" seltype="single"
-              onkeypress="onKeypress(event);"
-              onfocus="onTreeFocus(event);"
-              onselect="onSelect(event);">
- -->    
-	<tree id="directoryTree" flex="1" seltype="single">
-      <treecols>
-        <treecol id="FilenameColumn" primary="true" flex="1"/>
-      </treecols>
-      <treechildren/>
-    </tree>
-    <label>&noPermissionError.label;</label>
-  </deck>
+	<deck id="errorShower" flex="1">
+		<tree id="directoryTree" flex="1" class="focusring" seltype="single"
+			onselect="fp.onSelect(event);">
+			<treecols>
+					<treecol id="FilenameColumn" primary="true" flex="1"/>
+			</treecols>
+			<treechildren id="FilenameChildren" context="fp_menu"/>
+		</tree>
+		<label>&noPermissionError.label;</label>
+	</deck>
 </hbox>
 
 <grid style="margin-top: 5px">
-  <columns>
-    <column/>
-    <column flex="1"/>
-  </columns>
+	<columns>
+		<column/>
+		<column flex="1"/>
+	</columns>
 
-  <rows>
-    <row align="center">
-      <label value="&textInput.label;" id="textInputLabel" control="textInput" accesskey="&textInput.accesskey;"/>
-      <textbox id="textInput" flex="1" oninput="" 
-               type="autocomplete" autocompletesearch="file"
-               onfocus="onTextFieldFocus();"/>
-    </row>
-  </rows>
+	<rows>
+		<row align="center">
+			<label value="&textInput.label;" id="textInputLabel" control="textInput" accesskey="&textInput.accesskey;"/>
+			<textbox id="textInput" flex="1" oninput="" 
+				type="autocomplete" autocompletesearch="file"/>
+		</row>
+	</rows>
 </grid>
 <hbox class="dialog-button-box" align="center">
-  <button dlgtype="cancel" icon="cancel" class="dialog-button"/>
-  <button dlgtype="accept" icon="open" class="dialog-button"/>
+	<button dlgtype="cancel" icon="cancel" class="dialog-button"/>
+	<button dlgtype="accept" icon="open" class="dialog-button"/>
 </hbox>
 </dialog>

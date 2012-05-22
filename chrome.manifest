@@ -1,6 +1,8 @@
 content imagegrabber chrome/content/
 skin    imagegrabber default chrome/skin/
 
+resource imagegrabber resources/
+
 locale imagegrabber en-US chrome/locale/en-US/
 locale imagegrabber de-DE chrome/locale/de-DE/
 locale imagegrabber es-ES chrome/locale/es-ES/
