@@ -2,7 +2,7 @@
 
 <root>
 <host id=".">
-<urlpattern>http:\/\/imagehostgrabber\.com\/IHG\/hostf\/hostf.xml</urlpattern>
+<urlpattern>https:\/\/imagehostgrabber\.com\/IHG\/hostf\/hostf.xml</urlpattern>
 <searchpattern>"Fri, 31 March 2017 04:55:00 GMT"</searchpattern>
 </host>
 
