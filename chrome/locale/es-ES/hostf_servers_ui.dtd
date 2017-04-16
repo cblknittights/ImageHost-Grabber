@@ -1,0 +1,5 @@
+<!ENTITY  host_file_servers "Fuentes del archivo de servidores">
+
+<!ENTITY  add_host_file_server "Agregar fuente">
+<!ENTITY  delete_host_file_server "Borrar fuente">
+<!ENTITY  update_file "Actualizar el archivo">

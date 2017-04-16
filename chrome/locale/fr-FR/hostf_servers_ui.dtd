@@ -1,0 +1,5 @@
+<!ENTITY  host_file_servers "Serveurs de fichiers hôte">
+
+<!ENTITY  add_host_file_server "Ajouter un serveur de fichier hôte">
+<!ENTITY  delete_host_file_server "Supprimer le serveur de fichier hôte">
+<!ENTITY  update_file "Mise à jour de fichiers">

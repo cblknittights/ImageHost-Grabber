@@ -1,0 +1,29 @@
+<!ENTITY  host_file_editor "Editor del archivo de servidores">
+
+<!ENTITY  select_host "Escoja un servidor...">
+
+<!ENTITY  host_ID.label "Etiqueta">
+<!ENTITY  host_ID.placeholder "Unique identifying label for the entry">
+<!ENTITY  host_max_threads "Peticiones simultáneas">
+<!ENTITY  host_max_threads.tooltiptext "Número máximo de peticiones HTTP simultáneas para este servidor.">
+<!ENTITY  host_max_threads.hint "If enabled, will override global setting.">
+<!ENTITY  timeout "D/L Time Delay">
+<!ENTITY  timeout.tooltiptext "Time to wait between each download for this host.">
+<!ENTITY  timeout.hint "If enabled, will override global setting.">
+<!ENTITY  timeout.disabled "Disabled">
+
+<!ENTITY  url_pattern "Patrón de URL">
+
+<!ENTITY  search_pattern "Patrón de búsqueda">
+<!ENTITY  select_func "Select...">
+
+<!ENTITY  update_file "Actualizar el archivo">
+<!ENTITY  reset_form "Reset Form">
+<!ENTITY  add_host "Agregar servidor">
+<!ENTITY  delete_host "Borrar servidor">
+<!ENTITY  modify_hostf_servers "Modificar las fuentes del hostf.xml">
+
+<!ENTITY  pick_host_file "Elegir archivo de servidores">
+<!ENTITY  reset_to_default_host_file "Restaurar al archivo predeterminado">
+<!ENTITY  merge_host_file "Consolidar archivo">
+<!ENTITY  update_from_online_host_file "Actualizar desde el archivo online">

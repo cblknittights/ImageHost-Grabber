@@ -1,0 +1,15 @@
+<!ENTITY  imagehost_grabber_request_details "ImageHost Grabber Indirme Ayrintilari">
+
+<!ENTITY  unique_id "Essiz Kimlik">
+<!ENTITY  page_number "Sayfa Sayisi">
+<!ENTITY  total_number_of_links "Toplam Baglanti Sayisi">
+<!ENTITY  current_link_number "Geçerli Baglanti Sayisi">
+
+<!ENTITY  request_url "Istenen URL">
+<!ENTITY  source_url "Source URL">
+<!ENTITY  regular_expression "Düzenli Ifade">
+<!ENTITY  target_directory "Hedef Dizin">
+
+<!ENTITY  http_ready_state "HTTP Hazirlik Vaziyeti">
+<!ENTITY  http_status "HTTP Durumu">
+<!ENTITY  response_text "Yanit Metni">

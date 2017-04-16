@@ -1,0 +1,842 @@
+<html>
+
+<head>
+	<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../skin/help.css"/>
+	<title>ImageHost Grabber Help File</title>
+</head>
+
+<body lang=es-ES link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+
+<p class=MsoTocHeading>Contenido</p>
+
+</div>
+
+<p class=MsoToc1><a href="#_Toc271680790">Acerca de</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680791">Servidores de imágenes soportados</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680792">Funciones principales</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680793">Descargar las imágenes</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680794">Procesar el hilo actual</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680795">Editor del archivo de servidores</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680796">Restaurar la sesión en caché</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680797">botón de la barra de herramientas</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680798">Opciones</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680799">Opciones de almacenamiento</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680800">Agregar un prefijo a los nombres de archivo para reflejar el orden de la página</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680801">¿Qué hacer si el archivo ya existe?</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680802">Renombrar automáticamente los archivos de imagevenue y fapomatic</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680803">Crear un subdirectorio con el título del documento en el directorio de destino</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680804">Agregar un prefijo a los directorios para identificarlos unequívoca y cronológicamente</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680805">Crear directorios individuales para cada página al usar el procesados de hilos</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680806">General</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680807">Mostrar el selector del directorio de descarga</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680808">Mostrar ImageHost Grabber en el menú de herramientas</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680809">Borrar los enlaces duplicados, incluso procedentes de páginas distintas</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680810">CERRAR VENTANA AL DESCARGAR todas las descargas son TERMINADO</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680811">Imágenes integradas</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680812">Descargar imágenes incrustadas</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680813">Archivo de host</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680814">ACTUALIZACIÓN AUTOMÁTICA DE HABILITACIÓN</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680815">Opciones de descarga</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680816">Máximo de descargas simultáneas</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680817">Máximo de reintentos por cada enlace</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680818">Tiempo máximo antes de reintentar (en segundos)</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680819">Depuración</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680820">Habilitar el registro de la consola</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680821">Habilitar el registro de depuración</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680822">Borrar el registro</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680823">Copiar el registro a un directorio local</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680824">Ventana de progreso de la descarga</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680825">Funciones generales</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680826">Borrar finalizadas automáticamente</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680827">Suprimir Ventana emergente</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680828">Borrar las descargas finalizadas</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680829">Detener todo</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680830">Reiniciar todo lo detenido</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680831">Guardar la sesión en caché</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680832">Acciones sobre los elementos seleccionados</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680833">Borrar de la lista</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680834">Cancelar la descarga</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680835">Reintentar la descarga</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680836">Reiniciar la descarga</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680837">Reiniciar el contador de reintentos en cero</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680838">Ver detalles de la descarga</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680839">DOSSIER</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680840">Abrir carpeta contenedora</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680841">EXPORTACIÓN DE LISTA HTML</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680842">MAX. PIDE Y MAX. Reintentos</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680843">Editor del archivo de servidores</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680844">Etiqueta del servidor</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680845">Patrón de URL</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680846">Patrón de búsqueda</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680847">Actualizar el archivo</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680848">Agregar servidor</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680849">Borrar servidor</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680850">Modificar las fuentes del hostf.xml</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680851">Elegir archivo de servidores</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680852">Restaurar al archivo predeterminado</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680853">Consolidar archivo de servidores</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680854">Actualizar desde el archivo online</a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+<br clear=all style='page-break-before:always'>
+
+<div class=WordSection2>
+
+<p class=MsoTitle>ImageHost Grabber</p>
+
+<a name="_Toc271680790"><h1>Acerca de</h1></a>
+
+<p class=MsoNormal>Muchos foros y blogs no tienen capacidad para
+almacenar imágenes en sus propios servidores. Por este motivo sus usuarios se
+ven obligados a usar servidores de terceros (third-party servers) para
+compartir imágenes. Existen muchos servidores destinados a compartir imágenes,
+como imagevenue, imagebam e imageshack. Sin embargo, estos servidores no
+proporcionan enlaces directos a las imágenes almacenadas. En su lugar
+proporcionan enlaces a páginas html que encapsulan las imágenes. Si quiere
+descargar una galería completa de imágenes alojadas en estos servidores de
+imágenes, herramientas simples como “wget” y “downthemall” no serán suficiente
+(al menos sin un trabajo serio de scripting).</p>
+
+<p class=MsoNormal>ImageHost Grabber (IHG) es una poderosa
+herramienta que convierte la tarea de descargar estas galerías en un sencillo
+trabajo. En resumen, IHG hace todo el trabajo de &quot;abrir el enlace, hacer
+click con el botón derecho, guardar como&quot;. Pero la funcionalidad de IHG no
+termina ahí.</p>
+
+<p class=MsoNormal>IHG puede crear los directorios
+automáticamente para usted, e incluso añadir prefijos a los nombres de los
+archivos y directorios para que las imágenes que usted descarga se puedan
+ordenar cronológicamente y por el orden original que presentaban en la página
+donde se encontraba la galería. Años de investigación de recuperación de
+descargas fallidas han sido implementados en IHG para asegurarse de que todas
+las imágenes disponibles se descarguen correctamente. Por si esto no fuese
+suficiente, IHG puede guardar una sesión para continuar la descarga más tarde.
+También incluye una funcionalidad especial para foros que le permitirá
+descargar todas las imágenes de un hilo. Y por último, pero no por ello menos
+importante, IHG usa múltiples descargas simultáneas para incrementar la
+velocidad de descarga de las galerías.</p>
+
+<p class=MsoNormal>IHG incluye un editor para el archivo de servidores
+para que pueda implementar un nuevo servidor de imágenes que todavía no esté
+incluido. Puede encontrar información acerca de este proceso en el Manual del
+Archivo de Servidores (“Host File Manual”), disponible en la página web de IHG.</p>
+
+<p class=MsoNormal>Este programa no descarga archivos adjuntos,
+imágenes o enlaces a imágenes, sólo descarga imágenes que estén alojadas en los
+servidores de imágenes gratuitos.</p>
+
+<p class=MsoNormal>En lo que resta de este documento se empleará
+la palabra “imágenes” para referirse a las imágenes alojadas en los servidores
+anteriormente comentados.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680791"><h1>Servidores de imágenes soportados</h1></a>
+
+<p class=MsoNormal>Puede encontrar una lista con todos los servidores soportados en la página web:
+&nbsp;<a href="http://hot-honeys.com/" target="_blank">http://hot-honeys.com/</a></p>
+
+<br clear=all style='page-break-before:always'>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680792"><h1>Funciones principales</h1></a>
+
+<div class='indent'>
+
+<a name="_Toc271680793"><h2>Descargar las imágenes</h2></a>
+
+<p class=MsoNormal>Esta función descarga todas las imágenes de la página que esté viendo.</p>
+
+<h5>CÓMO FUNCIONA:</h5>
+
+<p class=MsoNormal>Vaya a la página en la que se encuentran las imágenes que desea descargar.
+Haga click en “Descargar las imágenes” y seleccione el directorio de destino.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680794"><h2>Procesar el hilo actual</h2></a>
+
+<p class=MsoNormal>Esta función descarga
+imágenes de múltiples páginas en un hilo o galería; esto es lo que llamo “procesar
+el hilo”. El formato del foro o galería debe estar soportado por IHG. Los
+siguientes tipos de foros y galerías están soportados: vBulletin, Studio31, Imagebeaver,
+Facebook, Campusbug, Myspace, UBB Threads, PornBB, Simple Machines Forum,
+ProBoards, Coppermine, e-hentai, Gelbooru, and Twitpic.</p>
+
+<h5>CÓMO FUNCIONA:</h5>
+
+<p class=MsoNormal>Vaya a cualquier página del hilo que desea “procesar”,
+haga click en “Procesar hilo actual” (en el menú), introduzca el número de la página en la que quiere comenzar,
+el número de la página en la que quiere terminar, y seleccione el directorio base
+para la descarga.</p>
+
+<p class=MsoNormal>Para descargar
+álbumes de imágenes (que no estén en un foro), vaya al álbum que quiere descargar.
+Después use la función “Procesar hilo actual” como si estuviese en un foro. Por
+último, escoja el rango de páginas a descargar del álbum que quiera.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680795"><h2>Editor del archivo de servidores</h2></a>
+
+<p class=MsoNormal>Le permite modificar
+el fichero de servidores que usa IHG. Puede actualizar el fichero, seleccionar
+un fichero nuevo o modificar las entradas actuales del fichero.</p>
+
+<h5>CÓMO FUNCIONA:</h5>
+
+<p class=MsoNormal>Consulte la sección “Editor del archivo de dominios” para obtener
+más detalles acerca de su funcionamiento.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680796"><h2>Restaurar la sesión en caché</h2></a>
+
+<p class=MsoNormal>Permite continuar una sesión que haya sido guardada
+anteriormente en la ventana de progreso de la descarga.</p>
+
+<h5>CÓMO FUNCIONA:</h5>
+
+<p class=MsoNormal>Consulte la sección “Ventana de progreso de la descarga”
+para obtener más información.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680797"><h2>botón de la barra de herramientas</h2></a>
+
+<p class=MsoNormal>Puede poner el icono de ImageHost Grabber en la barra de herramientas
+principal de Firefox para acceder más fácilmente. Pinchando en él accederá a la función
+“Descargar las imágenes”.</p>
+
+<h5>CÓMO FUNCIONA:</h5>
+
+<p class=MsoNormal>Seleccione
+“Personalizar…” en el menú “Ver→Barras de herramientas”, busque el icono de
+ImageHost Grabber y arrástrelo sobre la barra de herramientas en el lugar que
+desee. Si necesita ayuda respecto a este tema, consulte la ayuda de Firefox o
+mándeme un e-mail.</p>
+
+</div>
+
+<br clear=all style='page-break-before:always'>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680798"><h1>Opciones</h1></a>
+
+<div class='indent'>
+
+<a name="_Toc271680799"><h2>Opciones de almacenamiento</h2></a>
+
+<div class='indent'>
+
+<a name="_Toc271680800"><h3>Agregar un prefijo a los nombres de archivo para reflejar el orden de la página</h3></a>
+
+<p class=MsoNormal>Esta opción añade un
+prefijo a los nombres de archivo para que los ficheros se puedan ordenar de la
+misma manera que se muestran en la página. La primera parte del prefijo es una
+cadena de longitud ocho, formada por caracteres alfanuméricos que identifican
+la sesión. Cada sesión tendrá un prefijo diferente, incluso aunque se ejecuten
+varias sesiones al mismo tiempo. Además, al usar el procesador de hilos, cada
+página tendrá un prefijo único. La segunda parte del prefijo es un número que
+se corresponde con la posición de la imagen en la página. El número se rellena
+con ceros a la izquierda para que los algoritmos de ordenamiento no-lógicos
+puedan ordenar los ficheros correctamente (como los sistemas operativos pre-WinXP
+y los basados en UNIX).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680801"><h3>¿Qué hacer si el archivo ya existe?</h3></a>
+
+<p class=MsoNormal>Hay tres opciones:
+Cambiar nombre de archivo, Archivo de Skip, y sobreescritura de archivo. Al
+cambiar el nombre del archivo (s) de forma automática, la extensión agrega un
+numero incrementado hasta el final del nombre de archivo.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680802"><h3>Renombrar automáticamente los archivos de imagevenue y fapomatic</h3></a>
+
+<p class=MsoNormal>Esta funcionalidad
+era originalmente parte de la función “Auto-renombrar” de versiones anteriores.
+Sirve para modificar el nombre del fichero de manera que se eliminan los
+dígitos del principio añadidos por estos dos servidores. Otros servidores podrían
+usar esta función en futuras versiones.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680803"><h3>Crear un subdirectorio con el título del documento en el directorio de destino</h3></a>
+
+<p class=MsoNormal>Esta opción usará el
+título del documento (página actual) como el nombre del nuevo subdirectorio en
+el que guardar las imágenes. El título del documento es lo que usted puede ver
+en la parte superior de la ventana de Firefox (llamada “Barra de aplicación” en
+Windows). La mayor parte de las veces este título debería ser una manera clara
+de identificar los hilos sin tener que escribir el título usted mismo. A veces
+esto puede producir nombres de directorio excesivamente largos y no
+necesariamente únicos.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680804"><h3>Agregar un prefijo a los directorios para identificarlos unequívoca y cronológicamente</h3></a>
+
+<p class=MsoNormal>Esta opción agregará
+un prefijo basado en la fecha al nombre del directorio si marca la opción
+anterior. Esto permite que los directorios se ordenen cronológicamente sin
+necesidad de hacerlo usted mismo. El ordenado simple basado en nombre, que es
+el usado por defecto generalmente, funcionará. </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680805"><h3>Crear directorios individuales para cada página al usar el procesados de hilos</h3></a>
+
+<p class=MsoNormal>Al usar el
+procesador de hilos, esta opción creará un directorio para cada página del hilo
+o galería. El nombre del directorio se corresponderá con el número de página.
+Si no está marcada esta opción, todas las imágenes se guardarán en el mismo
+directorio base (o directorio automáticamente creado). </p>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680806"><h2>General</h2></a>
+
+<div class='indent'>
+
+<a name="_Toc271680807"><h3>Mostrar el selector del directorio de descarga</h3></a>
+
+<p class=MsoNormal>Esta opción le
+permite suprimir el diálogo que le permite seleccionar el directorio de destino.
+Si desmarca esta opción, las imágenes se guardarán en el último directorio
+usado.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680808"><h3>Mostrar ImageHost Grabber en el menú de herramientas</h3></a>
+
+<p class=MsoNormal>Esta opción le
+permite escoger el lugar en el que mostrar el menú de ImageHost Grabber: en el
+menú “Herramientas” o en la barra de menú principal.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680809"><h3>Borrar los enlaces duplicados, incluso procedentes de páginas distintas</h3></a>
+
+<p class=MsoNormal>Esta opción le
+permite borrar los enlaces duplicados de la página. Se encuentran
+frecuentemente cuando un usuario comenta una galería y cita las imágenes de
+nuevo, produciendo enlaces duplicados. Si está usando el procesador de hilos,
+ImageHost Grabber buscará enlaces duplicados entre todas las páginas que esté
+descargando.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680810"><h3>CERRAR VENTANA AL DESCARGAR todas las descargas son TERMINADO</h3></a>
+
+<p class=MsoNormal>Esta opción permite
+cerrar la ventana de descarga después de todas las descargas se han terminado
+(después de un retraso de 5 segundos). Si hay elementos que no terminaron con
+éxito, la ventana no se cerrará.</p>
+
+</div>
+
+<a name="_Toc271680811"><h2>Imágenes integradas</h2></a>
+
+<div class='indent'>
+
+<a name="_Toc271680812"><h3>Descargar imágenes incrustadas</h3></a>
+
+<p class=MsoNormal>Esta opción le
+permitirá descargar las imágenes que están &quot;incrustados&quot; en la
+página. Cuando se utiliza &quot;obtener todas las fotos en la página&quot;,
+ImageHost Grabber sólo descargará las imágenes incrustadas que sus dimensiones
+son mayores o iguales a las dimensiones especificadas establecidas por el Ancho
+&quot;y&quot; Altura &quot;cajas de control. Cuando se utiliza el hilo de
+bombeo, ImageHost Grabber sólo descargará las imágenes incrustadas cuyo tamaño
+de los archivos es mayor o igual que el tamaño del archivo especificado en el
+&quot;tamaño del archivo&quot; caja de control.</p>
+
+</div>
+
+<a name="_Toc271680813"><h2>Archivo de host</h2></a>
+
+<div class='indent'>
+
+<a name="_Toc271680814"><h3>ACTUALIZACIÓN AUTOMÁTICA DE HABILITACIÓN</h3></a>
+
+<p class=MsoNormal>Esta opción se
+conectará con el archivo de host en línea, para verificar si hay nuevos
+huéspedes, cada vez ImageHost Grabber es ejecutado. Usted puede optar por suprimir
+el diálogo de confirmación, así como cambiar la combinación de comportamiento.</p>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680815"><h2>Opciones de descarga</h2></a>
+
+<div class='indent'>
+
+<a name="_Toc271680816"><h3>Máximo de descargas simultáneas</h3></a>
+
+<p class=MsoNormal>Es el número de
+conexiones a un servidor de imágenes que la extensión hará al mismo tiempo.
+Antes no había control sobre el número de descargas de un servidor; sólo había
+control sobre el número de peticiones HTTP. Ahora esta opción restringe tanto
+las peticiones HTTP como las descargas. Hace una petición de la página,
+encuentra la imagen y después la descarga. Si pone este valor a 1, el programa
+descargará una imagen en cada momento (perfecto para usuarios con conexiones
+lentas). Incrementar este número puede mejorar el rendimiento de la descarga;
+sin embargo, un número muy elevado (más de 10) puede provocar fallos en las
+descargas (debido a los límites de tiempo o timeouts).Aunque esta extensión
+incluye una función automática para cancelar/reintentar la descarga en
+conexiones que tardan mucho, esto puede decrementar el rendimiento global del
+programa si se tienen que hacer reintentos sobre muchas conexiones. Basándome
+en mi experiencia personal, puedo decir que 5 es el número perfecto para la
+mayoría de conexiones de alta velocidad a internet. El número también se puede
+limitar dependiendo del servidor de imágenes y de la hora del día.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680817"><h3>Máximo de reintentos por cada enlace</h3></a>
+
+<p class=MsoNormal>Esta opción le
+permite especificar cuántas veces se reintentará una descarga antes de pasar al
+siguiente enlace. Las siguientes condiciones harán que se reintente una
+descarga:</p>
+
+<ul>
+	<li class=MsoListParagraphCxSpFirst>petición incompleta (pero Firefox piensa que sí fue completa)</li>
+	<li class=MsoListParagraphCxSpMiddle>la petición está tardando demasiado (probablemente porque el servidor ha abandonado la petición pero Firefox no)</li>
+	<li class=MsoListParagraphCxSpMiddle>la petición ha sido cancelada por el servidor o por Firefox </li>
+	<li class=MsoListParagraphCxSpMiddle>ha habido algún error en la petición</li>
+	<li class=MsoListParagraphCxSpLast>el servidor le ha mandado un fichero, pero no es una imagen</li>
+</ul>
+
+<p class=MsoNormal>Nótese que hay otros
+casos en los que la petición se reintenta, pero no porque algo haya salido mal,
+sino porque se ha encontrado una URL alternativa. Estos otros casos no afectan
+al contador de reintentos.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680818"><h3>Tiempo máximo antes de reintentar (en segundos)</h3></a>
+
+<p class=MsoNormal>Esta opción le
+permite especificar cuánto tiempo se intentará una petición antes de mandarla a
+la función de reintento.</p>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680819"><h2>Depuración</h2></a>
+
+<div class='indent'>
+
+<a name="_Toc271680820"><h3>Habilitar el registro de la consola</h3></a>
+
+<p class=MsoNormal>Esta opción
+habilita el registro de la consola. Úsela si la extensión o alguna de sus
+funciones no funcionan. Utilizarla hará que los errores registrados en la
+consola de errores se guarden en un fichero de registro (log) que podrá enviar
+al desarrollador de la extensión. Habilitar esta función disminuirá ligeramente
+el rendimiento del sistema. No le ayudará si la extensión está funcionando pero
+no está haciendo lo que usted esperaba (esto se llama un error lógico, y es más
+difícil de depurar). Una situación en la que usted podría habilitar esta
+función sería si al hacer click en “Descargar las imágenes” el programa no hace
+nada.</p>
+
+<p class=MsoNormal>Nota: debe reiniciar Firefox tras habilitar esta opción.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680821"><h3>Habilitar el registro de depuración</h3></a>
+
+<p class=MsoNormal>Esta opción
+habilita el registro de depuración. Use esta opción si la extensión está
+funcionando pero haciendo algo diferente de lo que usted esperaba. Por ejemplo,
+si al hacer click en “Descargar las imágenes” se descargan todas las imágenes,
+pero estas imágenes no eran las que usted esperaba. Esto es lo que se llama un
+error lógico. Es un error más difícil de depurar que un error sintáctico (como
+ya se comentó anteriormente). Como es más difícil de depurar, se realiza una
+salida muy detallada de la ejecución del programa. Como resultado, el
+rendimiento del sistema bajará notablemente. Debe ser cuidadoso al usar esta
+función. Intente utilizar una página con una cantidad pequeña de imágenes (es
+decir, 20 o menos). Y cuando acabe, copie el fichero de registro a una carpeta local
+(para acceder más cómodamente) y borre el fichero de registro original. El
+fichero de registro puede crecer en una única ejecución hasta alcanzar un
+tamaño de varios cientos de kilobytes.</p>
+
+<p class=MsoNormal>Nota: debe reiniciar Firefox tras habilitar esta opción.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680822"><h3>Borrar el registro</h3></a>
+
+<p class=MsoNormal>Use esta opción
+para borrar el fichero de registro (log). Es una buena idea hacerlo tras una
+ejecución. El fichero de registro crecerá realmente rápido. Es preferible que
+espere a copiar el fichero de registro a una carpeta local antes de usar esta
+función.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680823"><h3>Copiar el registro a un directorio local</h3></a>
+
+<p class=MsoNormal>Use esta función
+para copiar el fichero de registro a una carpeta localizada en alguna parte de
+su disco duro (o cualquier otro dispositivo de almacenamiento). No puede escoger
+el nombre del fichero; será “log.txt”. Una vez copiado, puede leerlo o mandarlo
+por e-mail al autor de la extensión.</p>
+
+</div>
+
+</div>
+
+<br clear=all style='page-break-before:always'>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680824"><h1>Ventana de progreso de la descarga</h1></a>
+
+<p class=MsoNormal>La ventana de progreso de la descarga
+contiene funciones que no están disponibles en ninguna otra parte de ImageHost
+Grabber. En general, puede añadir múltiples sesiones, abrir un fichero tras
+finalizar su descarga, reiniciar y reintentar descargas, etc.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div class='indent'>
+
+<a name="_Toc271680825"><h2>Funciones generales</h2></a>
+
+<ul>
+	<li class=MsoListParagraphCxSpFirst>Puede abrir el fichero tras finalizar su descarga haciendo doble click sobre el elemento en la lista</li>
+	<li class=MsoListParagraphCxSpMiddle>Puede seleccionar varios elementos consecutivos haciendo click en el primer elemento, pulsando la tecla Shift (Mayúsculas), y haciendo click en el último elemento de la secuencia</li>
+	<li class=MsoListParagraphCxSpMiddle>Puede seleccionar múltiples elementos (no consecutivos) haciendo click en el primer elemento, manteniendo pulsada la tecla Control mientras hace click en los demás elementos</li>
+	<li class=MsoListParagraphCxSpLast>Puede realizar varias acciones sobre un elemento (o un conjunto de ellos) haciendo click con el botón derecho del ratón sobre dicho elemento (o sobre cualquier elemento del conjunto)</li>
+</ul>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680826"><h2>Borrar finalizadas automáticamente</h2></a>
+
+<p class=MsoNormal>Borra automáticamente las descargas de la ventana a medida que van terminando.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680827"><h2>Suprimir Ventana emergente</h2></a>
+
+<p class=MsoNormal>Esta opción suprime
+el comportamiento emergente de la ventana de progreso de la descarga al añadir
+más descargas a la ventana. La ventana debe estar ya abierta para que esto
+funcione.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680828"><h2>Borrar las descargas finalizadas</h2></a>
+
+<p class=MsoNormal>Le permite borrar todas las descargas finalizadas de la ventana.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680829"><h2>Detener todo</h2></a>
+
+<p class=MsoNormal>Esta función le
+permite parar todas las descargas en proceso. Hace que las descargas se aborten,
+independientemente de la sesión a la que pertenezcan.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680830"><h2>Reiniciar todo lo detenido</h2></a>
+
+<p class=MsoNormal>Esta opción le
+permitirá reiniciar sesiones detenidas anteriormente. Cada sesión empezará con
+las descargas previamente detenidas (las que se quedaron a medias), reintentándolas,
+y luego continúa con el resto de la sesión.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680831"><h2>Guardar la sesión en caché</h2></a>
+
+<p class=MsoNormal>Le permite guardar
+todos los elementos de la ventana en caché, para poder descargarlos después
+usando la función “Restaurar la sesión en caché” del menú principal de
+ImageHost Grabber. Esto es útil si, por ejemplo, está teniendo problemas con la
+conexión y no quiere perder todo el tiempo que empleó creando la lista de
+descargas.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680832"><h2>Acciones sobre los elementos seleccionados</h2></a>
+
+<p class=MsoNormal>Todas las acciones
+sobre elementos seleccionados se realizan haciendo click con el botón derecho
+sobre el elemento (o elementos) y seleccionando la acción a realizar.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div class='indent'>
+
+<a name="_Toc271680833"><h3>Borrar de la lista</h3></a>
+
+<p class=MsoNormal>Le permite borrar uno o más elementos de la lista.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680834"><h3>Cancelar la descarga</h3></a>
+
+<p class=MsoNormal>Le permite cancelar
+una o más descargas. Podría ser una opción a considerar si la descarga está
+tardando demasiado y quiere reintentarla más tarde.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680835"><h3>Reintentar la descarga</h3></a>
+
+<p class=MsoNormal>Le permite
+reintentar una o más descargas que hayan sido canceladas, completadas con éxito
+o que estén siendo procesadas. Reintentará la descarga a partir del progreso
+actual (aprovecha la parte que ya haya sido descargada). </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680836"><h3>Reiniciar la descarga</h3></a>
+
+<p class=MsoNormal>Le permite reiniciar
+la(s) descarga(s) completamente, sin tener en cuenta el progreso realizado
+hasta el momento. Comienza una descarga nueva, sin partir del progreso
+anterior.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680837"><h3>Reiniciar el contador de reintentos en cero</h3></a>
+
+<p class=MsoNormal>Le permite resetear
+el contador de reintentos del elemento seleccionado (o conjunto de elementos).
+Es útil si hubo problemas en la conexión que incrementaron el contador de reintentos
+y quiere probar de nuevo.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680838"><h3>Ver detalles de la descarga</h3></a>
+
+<p class=MsoNormal>Le permite ver
+detalles de la descarga, como dónde va a ser guardado el fichero, la URL de la
+miniatura (thumbnail), y el código HTML asociado a la página de la miniatura.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680839"><h3>DOSSIER</h3></a>
+
+<p class=MsoNormal>Esta acción abrirá
+sólo el elemento que tiene el foco. Por ejemplo, si haces click derecho en el
+tercer elemento de una lista de selección, sólo el tercer elemento se le
+abrirá. El &quot;Abrir archivo&quot; acción pasa el control sobre el sistema
+operativo para abrir el archivo en el programa por defecto que controla el tipo
+de archivo.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680840"><h3>Abrir carpeta contenedora</h3></a>
+
+<p class=MsoNormal>Esta acción abrirá
+la carpeta que contiene el elemento que tiene el foco.</p>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680841"><h2>EXPORTACIÓN DE LISTA HTML</h2></a>
+
+<p class=MsoNormal>Este botón le permite
+guardar la lista de descarga como un archivo html. El archivo HTML se puede
+abrir en la ventana principal del navegador y volver a procesarse mediante la
+ejecución de &quot;obtener todas las fotos en la página&quot;.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680842"><h2>MAX. PIDE Y MAX. Reintentos</h2></a>
+
+<p class=MsoNormal>Estos dos controles
+le permiten controlar de forma instantánea el número máximo de solicitudes y
+reintentos para el proceso de descarga. Los cambios toman efecto
+inmediatamente.</p>
+
+</div>
+
+<br clear=all style='page-break-before:always'>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680843"><h1>Editor del archivo de servidores</h1></a>
+
+<p class=MsoNormal>Esta sección solo cubrirá lo fundamental de la
+interfaz para las operaciones básicas. Puede encontrar un tutorial que explica
+en profundidad cómo añadir sus propios servidores en el sitio web, o
+descargando el siguiente fichero:<a href="http://hot-honeys.com/HostFileEditor.pdf" target="_blank">http://hot-honeys.com/HostFileEditor.pdf</a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div class='indent'>
+
+<a name="_Toc271680844"><h2>Etiqueta del servidor</h2></a>
+
+<p class=MsoNormal>Es el identificador único para cada entrada del fichero de servidores.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680845"><h2>Patrón de URL</h2></a>
+
+<p class=MsoNormal>Ésta es la expresión regular que corresponde al patrón de URLs usadas por los servidores de imágenes.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680846"><h2>Patrón de búsqueda</h2></a>
+
+<p class=MsoNormal>Ésta es la parte que
+encuentra la imagen en la página resultante (al visitar el enlace de la
+miniatura). Consulte la sección “Editor del archivo de servidores” para obtener
+más información sobre el patrón de búsqueda.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680847"><h2>Actualizar el archivo</h2></a>
+
+<p class=MsoNormal>Actualiza el archivo de dominios con los cambios que haya hecho a una entrada existente.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680848"><h2>Agregar servidor</h2></a>
+
+<p class=MsoNormal>Añade una nueva entrada
+al fichero de servidores a partir de la información introducida en los tres
+primeros campos.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680849"><h2>Borrar servidor</h2></a>
+
+<p class=MsoNormal>Elimina la entrada del servidor de dominios.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680850"><h2>Modificar las fuentes del hostf.xml</h2></a>
+
+<p class=MsoNormal>Aquí puede agregar
+nuevas fuentes de actualización del fichero de servidores. Simplemente inserte
+la URL de la nueva localización del archivo de dominios.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680851"><h2>Elegir archivo de servidores</h2></a>
+
+<p class=MsoNormal>Le permite
+seleccionar un fichero de servidores diferente del que reside en la carpeta de
+la extensión ImageHost Grabber.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680852"><h2>Restaurar al archivo predeterminado</h2></a>
+
+<p class=MsoNormal>Usa el archivo de dominios que reside en la carpeta de ImageHost Grabber.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680853"><h2>Consolidar archivo de servidores</h2></a>
+
+<p class=MsoNormal>Le permite consolidar
+o mezclar las entradas de un fichero de servidores (diferente al que está
+usando) con el fichero que está usando actualmente.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680854"><h2>Actualizar desde el archivo online</h2></a>
+
+<p class=MsoNormal>Le permite recibir
+las entradas actualizadas de los archivos de servidores online. Las URLs de los
+ficheros de servidores online pueden modificarse pulsando el botón “Modificar las
+fuentes del hostf.xml”.</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

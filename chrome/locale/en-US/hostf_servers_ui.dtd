@@ -1,0 +1,5 @@
+<!ENTITY  host_file_servers "Host File Servers">
+
+<!ENTITY  add_host_file_server "Add Host File Server">
+<!ENTITY  delete_host_file_server "Delete Host File Server">
+<!ENTITY  update_file "Update File">
