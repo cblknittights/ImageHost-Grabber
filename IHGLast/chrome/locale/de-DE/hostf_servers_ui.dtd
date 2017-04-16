@@ -1,5 +1,0 @@
-<!ENTITY  host_file_servers "Hostdateiserver">
-
-<!ENTITY  add_host_file_server "Hostdateiserver hinzufügen">
-<!ENTITY  delete_host_file_server "Hostdateiserver löschen">
-<!ENTITY  update_file "Datei aktualisieren">
