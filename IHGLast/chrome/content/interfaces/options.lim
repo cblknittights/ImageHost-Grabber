@@ -1,0 +1,6 @@
+<!ENTITY  maxThreads_LowLimit "1">
+<!ENTITY  maxThreads_HighLimit "10">
+<!ENTITY  numRetries_LowLimit "1">
+<!ENTITY  numRetries_HighLimit "99">
+<!ENTITY  reqTimeout_LowLimit "15">
+<!ENTITY  reqTimeout_HighLimit "90">

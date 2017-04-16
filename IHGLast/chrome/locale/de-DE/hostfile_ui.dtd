@@ -1,0 +1,29 @@
+<!ENTITY  host_file_editor "Hostdateieditor">
+
+<!ENTITY  select_host "Host auswählen...">
+
+<!ENTITY  host_ID.label "Hostbezeichnung">
+<!ENTITY  host_ID.placeholder "Unique identifying label for the entry">
+<!ENTITY  host_max_threads "Treads maximal">
+<!ENTITY  host_max_threads.tooltiptext "Maximal gleichzeitige HTTP-Anfragen für diesen Host.">
+<!ENTITY  host_max_threads.hint "Wenn aktiviert, wird globale Einstellung überschrieben..">
+<!ENTITY  timeout "D/L Zeitverzögerung">
+<!ENTITY  timeout.tooltiptext "Wartezeit zwischen jedem Download für diesen Host.">
+<!ENTITY  timeout.hint "Wenn aktiviert, überschreibt es die Globale Einstellung.">
+<!ENTITY  timeout.disabled "Deaktiviert">
+
+<!ENTITY  url_pattern "URL-Muster">
+
+<!ENTITY  search_pattern "Suchmuster">
+<!ENTITY  select_func "Auswählen...">
+
+<!ENTITY  update_file "Datei aktualisieren">
+<!ENTITY  reset_form "Formular zurücksetzen">
+<!ENTITY  add_host "Host hinzufügen">
+<!ENTITY  delete_host "Host löschen">
+<!ENTITY  modify_hostf_servers "Hostdateiserver modifizieren">
+
+<!ENTITY  pick_host_file "Hostdatei auswählen">
+<!ENTITY  reset_to_default_host_file "Auf Standardhostdatei rücksetzen">
+<!ENTITY  merge_host_file "Hostdatei zusammenfassen">
+<!ENTITY  update_from_online_host_file "Von Online-Hostdatei aktualisieren">
