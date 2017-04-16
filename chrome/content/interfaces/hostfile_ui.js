@@ -1,23 +1,23 @@
 /****************************** Start of GPL Block ****************************
- *   ImageHost Grabber - Imagegrabber is a firefox extension designed to 
- *   download pictures from image hosts such as imagevenue, imagebeaver, and 
- *   others (see help file for a full list of supported hosts).
+ *	ImageHost Grabber - Imagegrabber is a firefox extension designed to
+ *	download pictures from image hosts such as imagevenue, imagebeaver, and
+ *	others (see help file for a full list of supported hosts).
  *
- *   Copyright (C) 2007   Matthew McMullen.
- * 
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
+ *	Copyright (C) 2007   Matthew McMullen.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ *	This program is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation; either version 2 of the License, or
+ *	(at your option) any later version.
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program; if not, write to the Free Software
+ *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  ***************************  End of GPL Block *******************************/
 
@@ -25,49 +25,36 @@
 
 var hostfile_Globals = new Object();
 
-hostfile_Globals.ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-hostfile_Globals.prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 hostfile_Globals.hosts = null;
 hostfile_Globals.hFile = null;
 hostfile_Globals.hostFileObj = null;
-hostfile_Globals.hostFileLoc = "";
-hostfile_Globals.addonPath = "";
 
-ihg_Globals.strbundle = document.getElementById("imagegrabber-strings");
-ihg_Functions.read_locale_strings();
+promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
+
+
+var theSortedList = [];
 
 function HostFileService() {
-	var id = "{E4091D66-127C-11DB-903A-DE80D2EFDFE8}"; // imagegrabber's ID
+	var addonPath = document.getElementById("addonPath").value;
+
 	var hostFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 	var hostf_servers = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 
-	if(hostfile_Globals.hostFileLoc != "") {
-		hostFile.initWithPath(hostfile_Globals.hostFileLoc);
-		var fuckwhore = hostFile.exists();
-		if (!fuckwhore) hostfile_Globals.hostFileLoc = "";
+	var hostFileLoc = document.getElementById("hostfileloc");
+	if (hostFileLoc.value != "") {
+		hostFile.initWithPath(hostFileLoc.value);
+		if (!hostFile.exists()) hostFileLoc.value = "";
+		}
+	if (hostFileLoc.value == "") {
+		hostFile.initWithPath(addonPath);
+		hostFile.append("hostf.xml");
 		}
 
-	// This should work for Firefox v1.5+  It returns a file object initialized
-	// with the path where the extension is located
-	try {
-		hostf_servers = Components.classes["@mozilla.org/extensions/manager;1"]
-      		    .getService(Components.interfaces.nsIExtensionManager).getInstallLocation(id).getItemLocation(id); 
-		if(hostfile_Globals.hostFileLoc == "") hostFile.initWithPath(hostf_servers.path);
-		}
-	// For those who are still using the antiquated Firefox versions
-	catch(e) {
-		hostf_servers = Components.classes["@mozilla.org/file/directory_service;1"]
-			    .getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile);
-		hostf_servers.append("extensions");
-		hostf_servers.append(id);
-		if(hostfile_Globals.hostFileLoc == "") hostFile.initWithPath(hostf_servers.path);
-		}
-
-	if(hostfile_Globals.hostFileLoc == "") hostFile.append("hostf.xml");
+	hostf_servers.initWithPath(addonPath);
 	hostf_servers.append("hostf_servers.xml");
 
-	this.hostf_servers = hostf_servers;
 	this.hostFile = hostFile;
+	this.hostf_servers = hostf_servers;
 	}
 
 
@@ -78,10 +65,10 @@ HostFileService.prototype = {
 
 		for (var i = 0; i < hostfile_Globals.hosts.length; i++) newHosts[i] = hostfile_Globals.hosts[i].cloneNode(true);
 
-		for (var i = 0; i < newHosts.length; i++) { 
-			newRoot.appendChild(hostfile_Globals.hFile.createTextNode("\n")); 
-			newRoot.appendChild(newHosts[i]); 
-			newRoot.appendChild(hostfile_Globals.hFile.createTextNode("\n")); 
+		for (var i = 0; i < newHosts.length; i++) {
+			newRoot.appendChild(hostfile_Globals.hFile.createTextNode("\n"));
+			newRoot.appendChild(newHosts[i]);
+			newRoot.appendChild(hostfile_Globals.hFile.createTextNode("\n"));
 			}
 		hostfile_Globals.hFile.removeChild(hostfile_Globals.hFile.firstChild);
 		hostfile_Globals.hFile.appendChild(newRoot);
@@ -89,89 +76,49 @@ HostFileService.prototype = {
 		var persist = Components.classes["@mozilla.org/embedding/browser/nsWebBrowserPersist;1"].createInstance(Components.interfaces.nsIWebBrowserPersist);
 		persist.persistFlags = persist.PERSIST_FLAGS_NO_CONVERSION | persist.PERSIST_FLAGS_REPLACE_EXISTING_FILES | persist.PERSIST_FLAGS_BYPASS_CACHE;
 		persist.saveDocument(hostfile_Globals.hFile, this.hostFile, null, null, null, null);
-	},
+		},
 
 	getHosts : function host_getHosts() {
-		if( !this.hostFile.exists() ) return null;
+		if ( !this.hostFile.exists() ) return null;
 
-		var fileURI = hostfile_Globals.ioService.newFileURI(this.hostFile);
+		var fileURI = ihg_Globals.ioService.newFileURI(this.hostFile);
 
 		var req = new XMLHttpRequest();
 		req.open("GET", fileURI.spec, false);
 		req.send(null);
-		
+
 		return req.responseXML;
 		},
 
 	getHostf_servers : function() {
-		if( !this.hostf_servers.exists() ) return null;
+		if ( !this.hostf_servers.exists() ) return null;
 
-		var fileURI = hostfile_Globals.ioService.newFileURI(this.hostf_servers);
+		var fileURI = ihg_Globals.ioService.newFileURI(this.hostf_servers);
 
 		var req = new XMLHttpRequest();
 		req.open("GET", fileURI.spec, false);
 		req.send(null);
-		
+
 		return req.responseXML;
 		}
-
 	}
 
 function sortHosts() {
-	var tmpList = new Array();
+	theSortedList = Array.map(hostfile_Globals.hosts, function(host) {return host.getAttribute("id")}).sort();
 
-	for (var i = 0; i < hostfile_Globals.hosts.length; i++)
-		tmpList[i] = hostfile_Globals.hosts[i].getAttribute("id");
-
-	tmpList = tmpList.sort();
-
-	for (var i = 0; i < tmpList.length; i++) {
+	for (var i = 0; i < theSortedList.length; i++) {
 		for (var j = 0; j < hostfile_Globals.hosts.length; j++) {
-			if (tmpList[i] == hostfile_Globals.hosts[j].getAttribute("id")) {
-				tmpList[i] = hostfile_Globals.hosts[j].cloneNode(true);
+			if (theSortedList[i] == hostfile_Globals.hosts[j].getAttribute("id")) {
+				hostfile_Globals.hFile.firstChild.appendChild(hostfile_Globals.hosts[j]);
 				break;
 				}
 			}
 		}
-
-	for (var i = 0; i < tmpList.length; i++) {
-		hostfile_Globals.hFile.firstChild.replaceChild(tmpList[i], hostfile_Globals.hosts[i]);
-		}
 	}
+
 
 function initWindow() {
-	var id = "{E4091D66-127C-11DB-903A-DE80D2EFDFE8}"; // imagegrabber's ID
-	var nsLocFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
-
-	// This should work for Firefox v1.5 to v3.6  It returns a file object initialized
-	// with the path where the extension is located	
-	try {
-		nsLocFile = Components.classes["@mozilla.org/extensions/manager;1"].getService(Components.interfaces.nsIExtensionManager).getInstallLocation(id).getItemLocation(id); 
-		hostfile_Globals.addonPath = nsLocFile.path;
-		initWindow2();
-	}
-
-	// For 4.0+ series
-	catch (e) {
-		Components.utils.import("resource://gre/modules/AddonManager.jsm"); 
-		var tempFunc = function(addon) {
-			hostfile_Globals.addonPath = addon.getResourceURI("").QueryInterface(Components.interfaces.nsIFileURL).file.path;
-			initWindow2();
-		}
-		AddonManager.getAddonByID(id, tempFunc);
-	}	
-}
-
-function initWindow2() {
-	//var tb_searchPattern = document.getElementById("tb_searchPattern");
-	//tb_searchPattern.addEventListener("keydown", handleKeyDown, false);
-	//document.onkeydown = handleKeyDown;
-
-	//window.addEventListener("resize", resizeResponseTextBox, false);
-	//resizeResponseTextBox();
-
 	loadHostFile();
-	// document.getElementById("theList").setAttribute("label", ihg_Globals.strings.select_host);
 
 	var searchType = document.getElementById("searchType");
 	searchType.removeAllItems();
@@ -180,28 +127,21 @@ function initWindow2() {
 	 ['RegExp','"\\"...\\""'],
 	 ['Replace','"\\"REPLACE: \'" + uPat + "\', \'...\'\\""'],
 //	 ['Redirect','"\\"REDIRECT: \'" + uPat + "\', \'...\'\\""'],
-	 ['Link2Img','"function(pageData, pageUrl) {" + maxThreads_LineCode + "\\n\\treturn {imgUrl: pageUrl, status: \\"OK\\"};\\n\\t}"'],
-	 ['function','"function(pageData, pageUrl) {" + maxThreads_LineCode + "\\n\\tvar retVal = {};" + \
-					"\\n\\t\\n\\t\\/\\/ Insert your code hereunder to build the target URL\\n\\t\\/\\/ Acceptable values for retVal.status are: \\"OK\\", \\"ABORT\\", \\"RETRY\\" or \\"REQUEUE\\"" + \
-					"\\n\\t\\n\\tvar iUrl = ...;\\n\\t\\n\\tif (!iUrl) {\\n\\t\\tretVal.imgUrl = null;\\n\\t\\tretVal.status = \\"ABORT\\";" + \
-					"\\n\\t\\t}\\n\\telse {\\n\\t\\tretVal.imgUrl = iUrl;\\n\\t\\tretVal.status = \\"OK\\";\\n\\t\\t}\\n\\t\\n\\treturn retVal;\\n\\t}"']]
-	 .forEach(function(sType) {
-		var newElem = searchType.appendItem(sType[0]);
-		var thecommand = "var maxthreads = (document.getElementById(\"cb_hostMaxThreads\").checked ? document.getElementById(\"tb_hostMaxThreads\").value : 0); \
-							var uPat = document.getElementById(\"tb_urlPattern\").value; \
-							var maxThreads_LineCode = (maxthreads == 0 ? '' : '\\n\\tif (ihg_Globals.appName == \"ImageHost Grabber\") ihg_Globals.maxThreads = ' + maxthreads + ';\\n\\t'); \
-							if (!uPat) uPat = '...'; \
-							document.getElementById(\"tb_searchPattern\").value = " + sType[1] + ";";
+	 ['Link2Img','"function(pageData, pageUrl) {\\n\\treturn {imgUrl: pageUrl, status: \\"OK\\"};\\n\\t}"'],
+	 ['function','"function(pageData, pageUrl) {\\n\\t\\/\\/ Default returned value when no image or link URL found\\n\\tvar retVal = {imgUrl: null, status: \\"ABORT\\"};' +
+				 '\\n\\t\\n\\t\\/\\/ Insert your code hereunder to build the target URL\\n\\t\\/\\/ Acceptable values for retVal.status are: \\"OK\\", \\"ABORT\\", \\"RETRY\\", \\"REQUEUE\\" or \\"REDIRECT\\"' +
+				 '\\n\\t\\n\\tvar iUrl = ...;\\n\\t\\n\\tif (iUrl) {\\n\\t\\tretVal.imgUrl = iUrl;\\n\\t\\tretVal.status = \\"OK\\";\\n\\t\\t}\\n\\t\\n\\treturn retVal;\\n\\t}"']]
+	 .forEach(function([label, searchPat]) {
+		var newElem = searchType.appendItem(label);
+		var thecommand = "var uPat = document.getElementById(\"tb_urlPattern\").value || '...'; \
+							document.getElementById(\"tb_searchPattern\").value = " + searchPat + ";";
 		newElem.setAttribute("oncommand", thecommand);
 		});
-
-	// document.getElementById("searchType").setAttribute("label", "Select...");
-	resetTextBoxes();
 	}
 
 function handleKeyDown(event) {
 	// Keycode for Tab
-	if (event.keyCode == 9) {
+	if (event.keyCode == KeyEvent.DOM_VK_TAB) {
 		var pp = event.target;
 		var val = pp.value;
 		var selIdx = pp.selectionStart;
@@ -215,7 +155,7 @@ function handleKeyDown(event) {
 		return false;
 		}
 	// Keycode for Return
-	if (event.keyCode == 13) {
+	if (event.keyCode == KeyEvent.DOM_VK_RETURN) {
 		var pp = event.target;
 		// var val = pp.value;
 		var val = pp.value.slice(0, pp.selectionStart) + pp.value.slice(pp.selectionEnd);
@@ -228,7 +168,7 @@ function handleKeyDown(event) {
 			indices[i].start = indices[i-1].end + 1;
 			indices[i].end = indices[i].start + lines[i].length;
 			}
-		
+
 		for (var i = 0; i < indices.length; i++) {
 			if (indices[i].start <= selIdx && indices[i].end >= selIdx) {
 				var spacing = lines[i].match(/^(\s+)?/)[0];
@@ -246,16 +186,31 @@ function handleKeyDown(event) {
 
 		event.preventDefault();
 		event.stopPropagation();
-		
+
 		return false;
 		}
-	
+
 	return event.keyCode;
 	}
 
 function handleKeyUp(event) {
 	return event.keyCode;
-}
+	}
+
+function validate(inputItem) {
+	var valid_Host = true;
+
+	if (['hostLabel','urlPattern','searchPattern'].some(inputTB => (document.getElementById('tb_'+inputTB).value == ""))) valid_Host = false;
+
+	if (valid_Host) {
+		document.getElementById("but_updateFile").disabled = !(document.getElementById('theList').selectedItem);
+		document.getElementById("but_addHost").disabled = (document.getElementById('tb_hostLabel').value == document.getElementById('theList').label);
+		}
+	else {
+		document.getElementById("but_updateFile").disabled = true;
+		document.getElementById("but_addHost").disabled = true;
+		}
+	}
 /* 
 function resizeResponseTextBox() {
 	var rBoxThing = document.getElementById("tb_searchPattern");
@@ -263,7 +218,7 @@ function resizeResponseTextBox() {
 	}
  */
 function loadHostFile() {
-	hostfile_Globals.hostFileLoc = hostfile_Globals.prefManager.getCharPref("extensions.imagegrabber.hostfileloc");
+	window.setCursor('wait');
 
 	hostfile_Globals.hostFileObj = new HostFileService();
 	hostfile_Globals.hFile = hostfile_Globals.hostFileObj.getHosts();
@@ -277,10 +232,10 @@ function loadHostFile() {
 	menu_popup.removeAllItems();
 
 	for (var i = 0; i < hostfile_Globals.hosts.length; i++) {
-		var newElem = menu_popup.appendItem(hostfile_Globals.hosts[i].getAttribute("id"), i);
-		//newElem.setAttribute("onclick", "fillTBs(this.value);");
-		newElem.setAttribute("oncommand", "fillTBs(this.value);");
+		menu_popup.appendItem(hostfile_Globals.hosts[i].getAttribute("id"), i);
 		}
+
+	window.setCursor('auto');
 	}
 
 function fillTBs(idx) {
@@ -294,11 +249,11 @@ function fillTBs(idx) {
 
 	var mt_tbout = document.getElementById("tb_hostMaxThreads");
 	var maxThreads = hostfile_Globals.hosts[idx].getAttribute("maxThreads");
-	
+
 	var cbMaxThreads = document.getElementById("cb_hostMaxThreads");
 	cbMaxThreads.checked = (maxThreads != null)?true:false;
 	mt_tbout.disabled = !cbMaxThreads.checked;
-	mt_tbout.value = (maxThreads != null)?maxThreads:1;
+	mt_tbout.value = maxThreads || 1;
 
 	var timer_tbout = document.getElementById("tb_downloadTimeout");
 	var timeout = hostfile_Globals.hosts[idx].getAttribute("Timeout");
@@ -306,53 +261,125 @@ function fillTBs(idx) {
 	var cbDLTimeout = document.getElementById("cb_downloadTimeout");
 	cbDLTimeout.checked = (timeout != null)?true:false;
 	timer_tbout.disabled = !cbDLTimeout.checked;
-	timer_tbout.value = (timeout != null)?timeout:1;
-	
+	timer_tbout.value = timeout || 1;
+
 	var up_tbout = document.getElementById("tb_urlPattern");
 	up_tbout.value = uPat;
 
 	var sp_tbout = document.getElementById("tb_searchPattern");
-	if(!sPat.match(/function/)) sp_tbout.value = sPat.replace("\\\\", "\\", "g");
+	if(!sPat.match(/^function\b/)) sp_tbout.value = sPat.replace(/\\\\/g, "\\");
 	else sp_tbout.value = sPat;
 
-	document.getElementById("but_updateFile").disabled = false;
+	document.getElementById("but_updateFile").disabled = true;
 	document.getElementById("but_addHost").disabled = true;
 	document.getElementById("but_delHost").disabled = false;
 
 	// document.getElementById("searchType").setAttribute("label", "Select...");
-	with (document.getElementById("searchType")) setAttribute("label", getAttribute("_label"));
+	with (document.getElementById("searchType")) {
+		selectedIndex = -1;
+		setAttribute("label", getAttribute("_label"));
+		}
 	}
 
-function updateHostFile() {
-	var urlPattern = document.getElementById("tb_urlPattern").value;
-	var searchPattern = document.getElementById("tb_searchPattern").value;
-	if (!searchPattern.match(/function/)) searchPattern = searchPattern.replace(/\\(?!\")/g, "\\\\");
+function updateHostFile(newHost) {
 	var label = document.getElementById("tb_hostLabel").value;
+
+	if (theSortedList.indexOf(label) >= 0) {
+		if (newHost || (document.getElementById('theList').label != label)) {
+			promptService.alert(this, null, ihg_Globals.strings.hostID_already_exists);
+			return;
+			}
+		}
+
+	var urlPattern = document.getElementById("tb_urlPattern").value;
+	try {
+		new RegExp(urlPattern);
+		var SchemeName_Patt = /^\^?http(?:s\??)?:\\\/\\\//i;
+		if (SchemeName_Patt.test(urlPattern)) {
+			var wo_scheme_name = urlPattern.replace(SchemeName_Patt, "");
+			var authority_SP = wo_scheme_name.match(/^(?:\[[^\[\]]+\]|[^\[\]])+?(?=\\?\/|\$?$)/);
+			if (authority_SP) {
+				try {
+					new RegExp(authority_SP[0]);
+					}
+				catch(E) {
+					promptService.alert(this, null, ihg_Globals.strings.URL_Domain_search_not_RegExp + "\n" + authority_SP + "\n" + E);
+					return;
+					}
+				}
+			else {
+				promptService.alert(this, null, ihg_Globals.strings.URL_Domain_search_not_found);
+				return;
+				}
+			}
+		else {
+			var buttonflag = promptService.BUTTON_TITLE_SAVE		 * promptService.BUTTON_POS_0 +
+							 promptService.BUTTON_TITLE_REVERT		 * promptService.BUTTON_POS_2 +
+							 promptService.BUTTON_TITLE_DONT_SAVE	 * promptService.BUTTON_POS_1 +
+							 promptService.BUTTON_POS_1_DEFAULT;												// DONT_SAVE by default
+
+			var ConfirmSave = promptService.confirmEx(
+				this,
+				null,
+				ihg_Globals.strings.URL_Pattern_wo_SchemeName,
+				buttonflag,
+				null, null, null,																				// default button labels
+				null,																							// Checkbox label
+				{value:false});																					// Checkbox value; DONT_SAVE=return(1)
+
+			switch (ConfirmSave) {
+				case 0: break;
+				case 2: fillTBs(document.getElementById("theList").selectedIndex);
+				case 1:
+				default:return;
+				}
+			}
+		}
+	catch(e) {
+		promptService.alert(this, null, ihg_Globals.strings.URL_Pattern_not_RegExp + "\n" + urlPattern + "\n" + e);
+		return;
+		}
+
+	var searchPattern = document.getElementById("tb_searchPattern").value;
+	if (!searchPattern.match(/^function\b/)) searchPattern = searchPattern.replace(/\\(?!\")/g, "\\\\");
 	var maxThreads = document.getElementById("tb_hostMaxThreads").value;
 	var timeout = document.getElementById("tb_downloadTimeout").value;
 	var cb_maxThreads = document.getElementById("cb_hostMaxThreads").checked;
 	var cb_timeout = document.getElementById("cb_downloadTimeout").checked;
+
 	var menupopup = document.getElementById("theList");
-	var idx = menupopup.value;
 
-	hostfile_Globals.hosts[idx].setAttribute("id", label);
-	
-	if (cb_maxThreads == false)	hostfile_Globals.hosts[idx].removeAttribute("maxThreads");
-	else hostfile_Globals.hosts[idx].setAttribute("maxThreads", maxThreads);
-	
-	if (cb_timeout == false) hostfile_Globals.hosts[idx].removeAttribute("Timeout");
-	else hostfile_Globals.hosts[idx].setAttribute("Timeout", timeout);
+	var currentHost = newHost ? hostfile_Globals.hFile.createElement("host") : hostfile_Globals.hosts[menupopup.value];
+	var uPatNode = newHost ? hostfile_Globals.hFile.createElement("urlpattern") : currentHost.getElementsByTagName("urlpattern")[0];
+	var sPatNode = newHost ? hostfile_Globals.hFile.createElement("searchpattern") : currentHost.getElementsByTagName("searchpattern")[0];
 
-	var uPatNode = hostfile_Globals.hosts[idx].getElementsByTagName("urlpattern")[0];
+	currentHost.setAttribute("id", label);
+
+	if (cb_maxThreads == false)	currentHost.removeAttribute("maxThreads");
+	else currentHost.setAttribute("maxThreads", maxThreads);
+
+	if (cb_timeout == false) currentHost.removeAttribute("Timeout");
+	else currentHost.setAttribute("Timeout", timeout);
+
 	uPatNode.textContent = urlPattern;
 
-	var sPatNode = hostfile_Globals.hosts[idx].getElementsByTagName("searchpattern")[0];
-	if (searchPattern.match(/function/)) {
+	if (searchPattern.match(/^function\b/)) {
 		var cData = hostfile_Globals.hFile.createCDATASection(searchPattern);
-		sPatNode.removeChild(sPatNode.firstChild);
+		if (!newHost) sPatNode.removeChild(sPatNode.firstChild);
 		sPatNode.appendChild(cData);
 		}
 	else sPatNode.textContent = searchPattern;
+
+	if (newHost) {
+		currentHost.appendChild(hostfile_Globals.hFile.createTextNode("\n"));
+		currentHost.appendChild(uPatNode);
+		currentHost.appendChild(hostfile_Globals.hFile.createTextNode("\n"));
+		currentHost.appendChild(sPatNode);
+		currentHost.appendChild(hostfile_Globals.hFile.createTextNode("\n"));
+
+		hostfile_Globals.hFile.firstChild.appendChild(currentHost);
+		hostfile_Globals.hFile.firstChild.appendChild(hostfile_Globals.hFile.createTextNode("\n\n"));
+	}
 
 	sortHosts();
 
@@ -372,10 +399,16 @@ function updateHostFile() {
 	}
 
 function addHost() {
+	var label = document.getElementById("tb_hostLabel").value;
+
+	if (theSortedList.indexOf(label) >= 0) {
+		promptService.alert(this, null, ihg_Globals.strings.hostID_already_exists);
+		return;
+	}
+
 	var urlPattern = document.getElementById("tb_urlPattern").value;
 	var searchPattern = document.getElementById("tb_searchPattern").value;
 	if (!searchPattern.match(/function/)) searchPattern = searchPattern.replace(/\\(?!\")/g, "\\\\");
-	var label = document.getElementById("tb_hostLabel").value;
 	var maxThreads = document.getElementById("tb_hostMaxThreads").value;
 	var timeout = document.getElementById("tb_downloadTimeout").value;
 	var cb_maxThreads = document.getElementById("cb_hostMaxThreads").checked;
@@ -385,10 +418,10 @@ function addHost() {
 
 	var newHost = hostfile_Globals.hFile.createElement("host");
 	newHost.setAttribute("id", label);
-	
+
 	if (cb_maxThreads == false)	newHost.removeAttribute("maxThreads");
 	else newHost.setAttribute("maxThreads", maxThreads);
-	
+
 	if (cb_timeout == false) newHost.removeAttribute("Timeout");
 	else newHost.setAttribute("Timeout", timeout);
 
@@ -430,7 +463,7 @@ function addHost() {
 
 function deleteHost() {
 	var idx = document.getElementById("theList").value;
-	
+
 	// It was reported that the first host could not be deleted in the
 	// host file editor.  Upon inspection, I can not see why we should
 	// prevent index 0 from being removed.
@@ -447,22 +480,21 @@ function deleteHost() {
 
 
 function changeHostFile() {
-	var nsIFilePicker = Components.interfaces.nsIFilePicker;
+	const nsIFilePicker = Components.interfaces.nsIFilePicker;
 	var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 
-
 	var FpTitle=ihg_Globals.strings.pick_host_file;
-		
+
 	fp.init(top.window, FpTitle, nsIFilePicker.modeOpen);
 	var res = fp.show();
 
 	if (res == nsIFilePicker.returnOK) {
- 		if (fp.file && (fp.file.path.length > 0)) {
-			hostfile_Globals.prefManager.setCharPref("extensions.imagegrabber.hostfileloc", fp.file.path);
+		if (fp.file && (fp.file.path.length > 0)) {
+			document.getElementById("hostfileloc").value = fp.file.path;
 			loadHostFile();
 			resetTextBoxes();
 			}
- 		}
+		}
 	}
 
 function onlineHostF() {
@@ -483,13 +515,14 @@ function onlineHostF() {
 
 
 function mergeHostFile(onlineXML) {
+	window.setCursor('wait');
+
 	if (!onlineXML) {
-		var nsIFilePicker = Components.interfaces.nsIFilePicker;
+		const nsIFilePicker = Components.interfaces.nsIFilePicker;
 		var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 
-
 		var FpTitle=ihg_Globals.strings.pick_host_file;
-		
+
 		fp.init(top.window, FpTitle, nsIFilePicker.modeOpen);
 		var res = fp.show();
 
@@ -497,7 +530,7 @@ function mergeHostFile(onlineXML) {
 		if (!fp.file) return false;
 		if (!(fp.file.path.length > 0)) return false;
 
-		var fileURI = hostfile_Globals.ioService.newFileURI(fp.file);
+		var fileURI = ihg_Globals.ioService.newFileURI(fp.file);
 		var req = new XMLHttpRequest();
 		req.open("GET", fileURI.spec, false);
 		req.send(null);
@@ -508,27 +541,23 @@ function mergeHostFile(onlineXML) {
 
 	var mergHosts = mergFile.getElementsByTagName("host");
 
-	var tmpList = new Array();
-
-	for (var i=0; i < mergHosts.length; i++)
-		tmpList[i] = mergHosts[i].getAttribute("id");
-
-	tmpList = tmpList.sort();
+	var tmpList = Array.map(mergHosts, function(host) {return host.getAttribute("id")}).sort();
 
 	for (var i = 0; i < tmpList.length; i++) {
 		for (var j = 0; j < mergHosts.length; j++) {
 			if (tmpList[i] == mergHosts[j].getAttribute("id")) {
-				tmpList[i] = mergHosts[j].cloneNode(true);
+				mergFile.firstChild.appendChild(mergHosts[j]);
 				break;
 				}
 			}
 		}
 
-	for (var i = 0; i < tmpList.length; i++)
-		mergFile.firstChild.replaceChild(tmpList[i], mergHosts[i]);
+	window.setCursor('auto');
 
-	var overWriteMode = confirm(ihg_Globals.strings.overwrite_mode);
-			
+	var overWriteMode = promptService.confirm(null, null, ihg_Globals.strings.overwrite_mode);
+
+	window.setCursor('wait');
+
 	for (var i=0; i < mergHosts.length; i++) {
 		for (var j=0; j < hostfile_Globals.hosts.length; j++) {
 			if (mergHosts[i].getAttribute("id") == hostfile_Globals.hosts[j].getAttribute("id")) {
@@ -538,7 +567,6 @@ function mergeHostFile(onlineXML) {
 				}
 			}
 		}
-
 
 	for (var i=0; i < mergHosts.length; i++) {
 		// This rule is not strictly enforced.
@@ -553,34 +581,42 @@ function mergeHostFile(onlineXML) {
 	loadHostFile();
 	resetTextBoxes();
 
+	window.setCursor('auto');
+
 	return true;
 	}
 
 
 function resetHostFileLoc() {
-	hostfile_Globals.prefManager.setCharPref("extensions.imagegrabber.hostfileloc", "");
+	document.getElementById("hostfileloc").value = "";
 	loadHostFile();
-}
+	resetTextBoxes();
+	}
 
 
 function resetTextBoxes() {
-	// document.getElementById("theList").setAttribute("label", ihg_Globals.strings.select_host);
-	with (document.getElementById("theList")) setAttribute("label", getAttribute("_label"));
+	with (document.getElementById("theList")) {
+		selectedIndex = -1;
+		setAttribute("label", getAttribute("_label"));
+		}
+
 	document.getElementById("tb_hostLabel").value = "";
 	document.getElementById("cb_hostMaxThreads").checked = false;
 	document.getElementById("tb_hostMaxThreads").disabled = true;
-	document.getElementById("tb_hostMaxThreads").value = "1";
+	document.getElementById("tb_hostMaxThreads").reset();
 	document.getElementById("cb_downloadTimeout").checked = false;
 	document.getElementById("tb_downloadTimeout").disabled = true;
-	document.getElementById("tb_downloadTimeout").value = "1";
-	
+	document.getElementById("tb_downloadTimeout").reset();
+
 	document.getElementById("tb_urlPattern").value = "";
 	document.getElementById("tb_searchPattern").value = "";
-	
+
 	document.getElementById("but_updateFile").disabled = true;
-	document.getElementById("but_addHost").disabled = false;
+	document.getElementById("but_addHost").disabled = true;
 	document.getElementById("but_delHost").disabled = true;
-	
-	// document.getElementById("searchType").setAttribute("label", "Select...");
-	with (document.getElementById("searchType")) setAttribute("label", getAttribute("_label"));
+
+	with (document.getElementById("searchType")) {
+		selectedIndex = -1;
+		setAttribute("label", getAttribute("_label"));
+		}
 	}

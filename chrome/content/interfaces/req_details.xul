@@ -2,8 +2,9 @@
 <!DOCTYPE window SYSTEM "chrome://imagegrabber/locale/req_details.dtd">
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <window title="&imagehost_grabber_request_details;" id="igRequestDetails"
-width="910" height="480" persist="sizemode height width screenX screenY"
-xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	width="910" height="480" persist="sizemode height width screenX screenY"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	onload="rightOn()">
 
 <script>
 const gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
@@ -12,6 +13,8 @@ const gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper
 <keyset>
 	<key id="close_cmd" keycode="VK_ESCAPE" oncommand="window.close();"/>
 </keyset>
+
+<script type="application/x-javascript" src="chrome://imagegrabber/content/interfaces/req_details.js" />
 
 <hbox align="center">
 	<label value="&unique_id;"/><textbox id="uniqID" readonly="true"/>
@@ -33,6 +36,7 @@ const gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper
 	</columns>
 	<rows>
 		<row align="center"><label value="&request_url;"/><textbox id="reqURL" readonly="true"/></row>
+		<row align="center"><label value="&source_url;"/><textbox id="originatingPage" readonly="true"/></row>
 		<row align="center"><label value="&regular_expression;"/><textbox id="regexp" readonly="true"/></row>
 		<row align="center"><label value="&target_directory;"/><textbox id="dirSave" readonly="true"/></row>
 	</rows>

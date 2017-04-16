@@ -15,6 +15,9 @@
 <!ENTITY  host_file_editor.label "Sunucu Dosyasi Düzenleyici">
 <!ENTITY  host_file_editor.accesskey "D">
 
+<!ENTITY  blacklist_editor.label "Blacklist Editor">
+<!ENTITY  blacklist_editor.accesskey "B">
+
 <!ENTITY  show_dl_window.label "Show the download window">
 <!ENTITY  show_dl_window.accesskey "D">
 

@@ -1,480 +1,12 @@
 <html>
 
 <head>
-<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
-<title>ImageHost Grabber Help File</title>
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-h1
-	{mso-style-link:"Heading 1 Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	background:#4F81BD;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:white;
-	text-transform:uppercase;
-	letter-spacing:.75pt;}
-h2
-	{mso-style-link:"Heading 2 Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	background:#DBE5F1;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	font-weight:normal;}
-h3
-	{mso-style-link:"Heading 3 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	font-weight:normal;}
-h4
-	{mso-style-link:"Heading 4 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:normal;}
-h5
-	{mso-style-link:"Heading 5 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:normal;}
-h6
-	{mso-style-link:"Heading 6 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:normal;}
-p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
-	{mso-style-link:"Heading 7 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
-	{mso-style-link:"Heading 8 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:9.0pt;
-	font-family:"Calibri","sans-serif";
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
-	{mso-style-link:"Heading 9 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:9.0pt;
-	font-family:"Calibri","sans-serif";
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-style:italic;}
-p.MsoToc1, li.MsoToc1, div.MsoToc1
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:5.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoToc2, li.MsoToc2, div.MsoToc2
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:5.0pt;
-	margin-left:10.0pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoToc3, li.MsoToc3, div.MsoToc3
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:5.0pt;
-	margin-left:20.0pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoHeader, li.MsoHeader, div.MsoHeader
-	{mso-style-link:"Header Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoFooter, li.MsoFooter, div.MsoFooter
-	{mso-style-link:"Footer Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoCaption, li.MsoCaption, div.MsoCaption
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:8.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	font-weight:bold;}
-p.MsoTitle, li.MsoTitle, div.MsoTitle
-	{mso-style-link:"Title Char";
-	margin-top:.5in;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:26.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#4F81BD;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
-	{mso-style-link:"Subtitle Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:50.0pt;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#595959;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-a:link, span.MsoHyperlink
-	{color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{color:purple;
-	text-decoration:underline;}
-em
-	{color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.25pt;
-	font-style:normal;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-link:"Balloon Text Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
-	{mso-style-link:"No Spacing Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoQuote, li.MsoQuote, div.MsoQuote
-	{mso-style-link:"Quote Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";
-	font-style:italic;}
-p.MsoIntenseQuote, li.MsoIntenseQuote, div.MsoIntenseQuote
-	{mso-style-link:"Intense Quote Char";
-	margin-top:10.0pt;
-	margin-right:.8in;
-	margin-bottom:0in;
-	margin-left:.9in;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#4F81BD;
-	font-style:italic;}
-span.MsoSubtleEmphasis
-	{color:#243F60;
-	font-style:italic;}
-span.MsoIntenseEmphasis
-	{color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:bold;}
-span.MsoSubtleReference
-	{color:#4F81BD;
-	font-weight:bold;}
-span.MsoIntenseReference
-	{color:#4F81BD;
-	text-transform:uppercase;
-	font-weight:bold;
-	font-style:italic;}
-span.MsoBookTitle
-	{letter-spacing:.45pt;
-	font-weight:bold;
-	font-style:italic;}
-p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	background:#4F81BD;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:white;
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	font-weight:bold;}
-span.TitleChar
-	{mso-style-name:"Title Char";
-	mso-style-link:Title;
-	color:#4F81BD;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading1Char
-	{mso-style-name:"Heading 1 Char";
-	mso-style-link:"Heading 1";
-	color:white;
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	background:#4F81BD;
-	font-weight:bold;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-span.Heading2Char
-	{mso-style-name:"Heading 2 Char";
-	mso-style-link:"Heading 2";
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	background:#DBE5F1;}
-span.Heading3Char
-	{mso-style-name:"Heading 3 Char";
-	mso-style-link:"Heading 3";
-	color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.75pt;}
-span.HeaderChar
-	{mso-style-name:"Header Char";
-	mso-style-link:Header;}
-span.FooterChar
-	{mso-style-name:"Footer Char";
-	mso-style-link:Footer;}
-span.Heading4Char
-	{mso-style-name:"Heading 4 Char";
-	mso-style-link:"Heading 4";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading5Char
-	{mso-style-name:"Heading 5 Char";
-	mso-style-link:"Heading 5";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading6Char
-	{mso-style-name:"Heading 6 Char";
-	mso-style-link:"Heading 6";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading7Char
-	{mso-style-name:"Heading 7 Char";
-	mso-style-link:"Heading 7";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading8Char
-	{mso-style-name:"Heading 8 Char";
-	mso-style-link:"Heading 8";
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading9Char
-	{mso-style-name:"Heading 9 Char";
-	mso-style-link:"Heading 9";
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-style:italic;}
-span.SubtitleChar
-	{mso-style-name:"Subtitle Char";
-	mso-style-link:Subtitle;
-	color:#595959;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.QuoteChar
-	{mso-style-name:"Quote Char";
-	mso-style-link:Quote;
-	font-style:italic;}
-span.IntenseQuoteChar
-	{mso-style-name:"Intense Quote Char";
-	mso-style-link:"Intense Quote";
-	color:#4F81BD;
-	font-style:italic;}
-span.NoSpacingChar
-	{mso-style-name:"No Spacing Char";
-	mso-style-link:"No Spacing";}
-.MsoPapDefault
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;}
- /* Page Definitions */
- @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-@page WordSection2
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection2
-	{page:WordSection2;}
- /* List Definitions */
- ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
--->
-</style>
-
+	<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../skin/help.css"/>
+	<title>ImageHost Grabber Help File</title>
 </head>
 
-<body lang=EN-US link=blue vlink=purple>
+<body lang=de-DE link=blue vlink=purple>
 
 <div class=WordSection1>
 
@@ -484,1463 +16,850 @@ ul
 
 </div>
 
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271680859"><span
-lang=DE>Info</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>1</span></a></span></p>
-
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271680860"><span
-lang=DE>UNTERSTÜTZTE BILDER-HOSTS</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>1</span></a></span></p>
-
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271680861"><span
-lang=DE>Hauptfunktionen</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680862"><span
-lang=DE>Alle Bilder dieser Seite herunterladen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680863"><span
-lang=DE>Aktuellen Thread saugen</span><span style='color:windowtext;display:
-none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680864"><span
-lang=DE>Hostdateieditor</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680865"><span
-lang=DE>Gespeicherte Sitzung wiederherstellen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680866"><span
-lang=DE>SymbolleistenSCHALTFLÄCHE</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>3</span></a></span></p>
-
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271680867"><span
-lang=DE>Optionen</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680868"><span
-lang=DE>Datei-Speicheroptionen</span><span style='color:windowtext;display:
-none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680869"><span
-lang=DE>Dateinamen zur Beibehaltung der Seiten-Bildreihenfolge mit einem Präfix
-versehen</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680870"><span
-lang=DE>Was soll geschehen, wenn eine Datei bereits am Zielort vorhanden ist?</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680871"><span
-lang=DE>Imagevenue- und Fapomatic-Dateien automatisch umbenennen</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680872"><span
-lang=DE>Separate Unterordner mit Dokumenttitel im Zielordner erstellen</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680873"><span
-lang=DE>Ordner zur eindeutigen und chronologischen Identifizierung mit einem
-Präfix versehen</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680874"><span
-lang=DE>Beim Einsatz des<b> </b>Threadsaugers separate Ordner pro Seite
-erzeugen</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680875"><span
-lang=DE>Allgemein</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680876"><span
-lang=DE>Downloadordner-Auswahlfenster anzeigen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680877"><span
-lang=DE>Image Grabber-Menü im Extras-Menü anzeigen</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680878"><span
-lang=DE>Identische Links (auch seitenübergreifend) entfernen</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680879"><span
-lang=DE style='text-transform:uppercase;letter-spacing:.75pt'>CLOSE WINDOW
-DOWNLOAD WENN ALLE DOWNLOADS fertig sind</span><span style='color:windowtext;
-display:none;text-decoration:none'>.. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680880"><span
-lang=DE style='text-transform:uppercase;letter-spacing:.75pt'>Eingebettete
-Bilder</span><span style='color:windowtext;display:none;text-decoration:none'>.. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680881"><span
-lang=DE>DOWNLOAD Eingebettete Bilder</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680882"><span
-style='text-transform:uppercase;letter-spacing:.75pt'>Host-Datei</span><span
-style='color:windowtext;display:none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680883"><span
-style='text-transform:uppercase;letter-spacing:.75pt'>Enable automatic update</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680884"><span
-lang=DE>HostOptionen</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680885"><span
-lang=DE>Maximalzahl gleichzeitiger HTTS-Anfragen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680886"><span
-lang=DE>Maximale Wiederholungen pro Link</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680887"><span
-lang=DE>Anfragewartezeit vor Neuversuch (in Sekunden)</span><span
-style='color:windowtext;display:none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680888"><span
-lang=DE>Fehlersuche (Debugging)</span><span style='color:windowtext;display:
-none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680889"><span
-lang=DE>Konsolenprotokollierung aktivieren</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680890"><span
-lang=DE>Fehlersucheprotokollierung aktivieren</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>8</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680891"><span
-lang=DE>Protokoll löschen</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>8</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680892"><span
-lang=DE>Protokoll in lokalen Ordner kopieren</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>8</span></a></span></p>
-
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271680893"><span
-lang=DE>Downloadfortschritt-Fenster</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680894"><span
-lang=DE>Allgemeine Funktionen</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680895"><span
-lang=DE>Fertige Jobs automatisch entfernen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680896"><span
-lang=DE>Popup unterdrücken</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680897"><span
-lang=DE>Alle fertigen Jobs entfernen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680898"><span
-lang=DE>Alle Jobs stoppen</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680899"><span
-lang=DE>Alle gestoppten Jobs fortsetzen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680900"><span
-lang=DE>Sitzung speichern</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680901"><span
-lang=DE>Aktionen mit AUSGEWÄHLTEN ELEMENTEN</span><span style='color:windowtext;
-display:none;text-decoration:none'>.. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680902"><span
-style='text-transform:uppercase;letter-spacing:.75pt'>Open file</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680903"><span
-lang=DE style='text-transform:uppercase;letter-spacing:.75pt'>Übergeordneten
-Ordner öffnen</span><span style='color:windowtext;display:none;text-decoration:
-none'>.. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680904"><span
-lang=DE>Aus Liste entfernen</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680905"><span
-lang=DE>Download/Anfrage abbrechen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680906"><span
-lang=DE>Download/Anfrage wiederholen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680907"><span
-lang=DE>Download neu starten</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680908"><span
-lang=DE>Wiederholungszähler auf 0 setzen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680909"><span
-lang=DE>Anfragedetails anzeigen</span><span style='color:windowtext;display:
-none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680910">Export list
-to HTML<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680911"><span
-lang=DE>MAX. Anfragen und MAX. Wiederholungen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></span></p>
-
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271680912"><span
-lang=DE>Hostdateieditor</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680913"><span
-lang=DE>Hostbezeichnung</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680914"><span
-lang=DE>URL-Muster</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680915"><span
-lang=DE>Suchmuster</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680916"><span
-lang=DE>Datei aktualisieren</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680917"><span
-lang=DE>Host hinzufügen</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680918"><span
-lang=DE>Host löschen</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680919"><span
-lang=DE>hostf-Server modifizieren</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680920"><span
-lang=DE>Hostdatei auswählen</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>15</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680921"><span
-lang=DE>Auf Standardhostdatei rücksetzen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>15</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680922"><span
-lang=DE>Hostdatei zusammenfassen</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>15</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680923"><span
-lang=DE>Von Online-Hostdatei aktualisieren</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>15</span></a></span></p>
+<p class=MsoToc1><a href="#_Toc271680859">Info</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680860">UNTERSTÃœTZTE BILDER-HOSTS</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680861">Hauptfunktionen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680862">Alle Bilder dieser Seite herunterladen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680863">Aktuellen Thread saugen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680864">Hostdateieditor</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680865">Gespeicherte Sitzung wiederherstellen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680866">SymbolleistenSCHALTFLÃ„CHE</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680867">Optionen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680868">Datei-Speicheroptionen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680869">Dateinamen zur Beibehaltung der Seiten-Bildreihenfolge mit einem PrÃ¤fix versehen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680870">Was soll geschehen, wenn eine Datei bereits am Zielort vorhanden ist?</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680871">Imagevenue- und Fapomatic-Dateien automatisch umbenennen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680872">Separate Unterordner mit Dokumenttitel im Zielordner erstellen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680873">Ordner zur eindeutigen und chronologischen Identifizierung mit einem PrÃ¤fix versehen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680874">Beim Einsatz des Threadsaugers separate Ordner pro Seite erzeugen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680875">Allgemein</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680876">Downloadordner-Auswahlfenster anzeigen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680877">Image Grabber-MenÃ¼ im Extras-MenÃ¼ anzeigen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680878">Identische Links (auch seitenÃ¼bergreifend) entfernen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680879">CLOSE WINDOW DOWNLOAD WENN ALLE DOWNLOADS fertig sind</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680880">Eingebettete Bilder</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680881">DOWNLOAD Eingebettete Bilder</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680882">Host-Datei</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680883">Enable automatic update</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680884">HostOptionen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680885">Maximalzahl gleichzeitiger HTTS-Anfragen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680886">Maximale Wiederholungen pro Link</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680887">Anfragewartezeit vor Neuversuch (in Sekunden)</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680888">Fehlersuche (Debugging)</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680889">Konsolenprotokollierung aktivieren</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680890">Fehlersucheprotokollierung aktivieren</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680891">Protokoll lÃ¶schen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680892">Protokoll in lokalen Ordner kopieren</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680893">Downloadfortschritt-Fenster</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680894">Allgemeine Funktionen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680895">Fertige Jobs automatisch entfernen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680896">Popup unterdrÃ¼cken</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680897">Alle fertigen Jobs entfernen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680898">Alle Jobs stoppen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680899">Alle gestoppten Jobs fortsetzen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680900">Sitzung speichern</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680901">Aktionen mit AUSGEWÃ„HLTEN ELEMENTEN</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680902">Open file</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680903">Ãœbergeordneten Ordner Ã¶ffnen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680904">Aus Liste entfernen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680905">Download/Anfrage abbrechen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680906">Download/Anfrage wiederholen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680907">Download neu starten</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680908">WiederholungszÃ¤hler auf 0 setzen</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680909">Anfragedetails anzeigen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680910">Export list to HTML</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680911">MAX. Anfragen und MAX. Wiederholungen</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680912">Hostdateieditor</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680913">Hostbezeichnung</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680914">URL-Muster</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680915">Suchmuster</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680916">Datei aktualisieren</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680917">Host hinzufÃ¼gen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680918">Host lÃ¶schen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680919">hostf-Server modifizieren</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680920">Hostdatei auswÃ¤hlen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680921">Auf Standardhostdatei rÃ¼cksetzen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680922">Hostdatei zusammenfassen</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680923">Von Online-Hostdatei aktualisieren</a></p>
 
 <p class=MsoNormal>&nbsp;</p>
 
 </div>
 
-<span style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
+<br clear=all style='page-break-before:always'>
 
 <div class=WordSection2>
 
-<p class=MsoTitle><span lang=DE>ImageHost Grabber</span></p>
+<p class=MsoTitle>ImageHost Grabber</p>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<a name="_Toc271680859"><h1>Info</h1></a>
 
-<h1><a name="_Toc271680859"><span lang=DE>Info</span></a></h1>
-
-</div>
-
-<p class=MsoNormal><span lang=DE>Vielen Foren und Blogs fehlt es an
-Speicherkapazität zum Speichern von Bildern auf ihren eigenen Servern.
-Stattdessen müssen Teilnehmer zur Freigabe von Bildern auf Drittanbieter-Hosts
-zurückgreifen. Es gibt eine Menge kostenloser Bilder-Hosts wie Imagevenue,
+<p class=MsoNormal>Vielen Foren und Blogs fehlt es an
+SpeicherkapazitÃ¤t zum Speichern von Bildern auf ihren eigenen Servern.
+Stattdessen mÃ¼ssen Teilnehmer zur Freigabe von Bildern auf Drittanbieter-Hosts
+zurÃ¼ckgreifen. Es gibt eine Menge kostenloser Bilder-Hosts wie Imagevenue,
 Imagebam oder Imageshack, mit denen Bilder der Allgemeinheit relativ problemlos
-zur Verfügung gestellt werden können. Allerdings stellen diese Bilder-Hosts
-keine direkten Links auf gespeicherte Bilder zur Verfügung. Stattdessen
+zur VerfÃ¼gung gestellt werden kÃ¶nnen. Allerdings stellen diese Bilder-Hosts
+keine direkten Links auf gespeicherte Bilder zur VerfÃ¼gung. Stattdessen
 verweisen sie mit Links auf HTML-Seiten, in welche die Bilder integriert
 werden. Wenn Sie nun eine komplette Bildergalerie dieser Bilder-Hosts speichern
-möchten, reichen einfache Werkzeuge wie „Wget“ oder „DownThemAll“ nicht aus –
-jedenfalls nicht ohne beträchtlichen Scripting-Aufwand.</span></p>
+mÃ¶chten, reichen einfache Werkzeuge wie â€žWgetâ€œ oder â€žDownThemAllâ€œ nicht aus â€“
+jedenfalls nicht ohne betrÃ¤chtlichen Scripting-Aufwand.</p>
 
-<p class=MsoNormal><span lang=DE>ImageHost Grabber (IHG) ist eine
+<p class=MsoNormal>ImageHost Grabber (IHG) ist eine
 leistungsstarke Anwendung, die das Herunterladen solcher Galerien zum
-Kinderspiel macht. IHG erledigt dabei alles für Sie: Neuen Link öffnen,
-rechtsklicken, Speichern unter... Und das für jedes einzelne Bild der Galerie.
-Aber das ist noch längst nicht alles.</span></p>
+Kinderspiel macht. IHG erledigt dabei alles fÃ¼r Sie: Neuen Link Ã¶ffnen,
+rechtsklicken, Speichern unter... Und das fÃ¼r jedes einzelne Bild der Galerie.
+Aber das ist noch lÃ¤ngst nicht alles.</p>
 
-<p class=MsoNormal><span lang=DE>IHG erstellt automatisch Ordner für Sie und
+<p class=MsoNormal>IHG erstellt automatisch Ordner fÃ¼r Sie und
 benennt Dateien und Ordner so um, dass heruntergeladene Bilder chronologisch
 geordnet und in der Reihenfolge angezeigt werden, wie sie auf der Originalseite
 erschienen. Wir haben uns jahrelang mit Problemen beim Download von Bildern
-beschäftigt und all unsere Erkenntnisse in IHG implementiert, damit alle zur
-Verfügung stehenden Bilder auch so heruntergeladen werden, wie es sein soll.
-Und zusätzlich kann IHG auch ganze Sitzungen speichern und sämtliche Bilder
-auch zu einem späteren Zeitpunkt herunterladen. In IHG finden Sie auch eine
-spezielle Funktionen für Foren, mit der Sie auch einen gesamten Bilder-Thread
-herunterladen können. Und zum guten Schluss lädt IHG gleich mehrere Dateien auf
-einmal herunter, damit alles möglichst flott vonstatten geht.</span></p>
+beschÃ¤ftigt und all unsere Erkenntnisse in IHG implementiert, damit alle zur
+VerfÃ¼gung stehenden Bilder auch so heruntergeladen werden, wie es sein soll.
+Und zusÃ¤tzlich kann IHG auch ganze Sitzungen speichern und sÃ¤mtliche Bilder
+auch zu einem spÃ¤teren Zeitpunkt herunterladen. In IHG finden Sie auch eine
+spezielle Funktionen fÃ¼r Foren, mit der Sie auch einen gesamten Bilder-Thread
+herunterladen kÃ¶nnen. Und zum guten Schluss lÃ¤dt IHG gleich mehrere Dateien auf
+einmal herunter, damit alles mÃ¶glichst flott vonstatten geht.</p>
 
-<p class=MsoNormal><span lang=DE>In IHG finden Sie einen Hostdateieditor, mit
-dem Sie auch neue, bisher unbekannte Bilder-Hosts einbinden können. Details
-dazu finden Sie in der „Hostdatei-Anleitung“ auf der IHG-Webseite.</span></p>
+<p class=MsoNormal>In IHG finden Sie einen Hostdateieditor, mit
+dem Sie auch neue, bisher unbekannte Bilder-Hosts einbinden kÃ¶nnen. Details
+dazu finden Sie in der â€žHostdatei-Anleitungâ€œ auf der IHG-Webseite.</p>
 
-<p class=MsoNormal><span lang=DE>Bitte beachten Sie, dass dieses Programm keine
-Anhänge oder Links zu Bildern herunterlädt. Es dient lediglich zum
-Herunterladen von Bildern, die auf kostenlosen Bilder-Hosts abgelegt wurden.</span></p>
+<p class=MsoNormal>Bitte beachten Sie, dass dieses Programm keine
+AnhÃ¤nge oder Links zu Bildern herunterlÃ¤dt. Es dient lediglich zum
+Herunterladen von Bildern, die auf kostenlosen Bilder-Hosts abgelegt wurden.</p>
 
-<p class=MsoNormal><span lang=DE>Im Laufe dieser Hilfedatei benutzen wir den
-Ausdruck„Bilder“, wenn auf Bilder-Hosts abgelegte Bilder gemeint sind.</span></p>
+<p class=MsoNormal>Im Laufe dieser Hilfedatei benutzen wir den
+Ausdruckâ€žBilderâ€œ, wenn auf Bilder-Hosts abgelegte Bilder gemeint sind.</p>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h1><a name="_Toc271680860"><span lang=DE>UNTERSTÜTZTE BILDER-HOSTS</span></a></h1>
+<a name="_Toc271680860"><h1>UNTERSTÃœTZTE BILDER-HOSTS</h1></a>
 
-</div>
+<p class=MsoNormal>Eine Liste mit unterstÃ¼tzten Bilder-Hosts finden Sie auf der IHG-Webseite:&nbsp;
+<a href="http://hot-honeys.com/" target="_blank">http://hot-honeys.com/</a></p>
 
-<p class=MsoNormal><span lang=DE>Eine Liste mit unterstützten Bilder-Hosts
-finden Sie auf der IHG-Webseite: </span><a href="http://imagehost-grabber.com/"><span
-lang=DE>http://imagehost-grabber.com/</span></a></p>
+<br clear=all style='page-break-before:always'>
 
-<span lang=DE style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
+<a name="_Toc271680861"><h1>Hauptfunktionen</h1></a>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<div class=indent>
 
-<h1><a name="_Toc271680861"><span lang=DE>Hauptfunktionen</span></a></h1>
+<a name="_Toc271680862"><h2>Alle Bilder dieser Seite herunterladen</h2></a>
 
-</div>
+<p class=MsoNormal>Mit dieser Funktion laden Sie sÃ¤mtliche Bilder der derzeit angezeigten Seite herunter.</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<h5>so funktioniertâ€™s:</h5>
 
-<h2><a name="_Toc271680862"><span lang=DE>Alle Bilder dieser Seite
-herunterladen</span></a></h2>
+<p class=MsoNormal>Ã–ffnen Sie die Seite, von der Sie Bilder herunterladen mÃ¶chten.
+Klicken Sie auf â€žAlle Bilder dieser Seite herunterladenâ€œ, wÃ¤hlen Sie anschlieÃŸend den Ordner, in dem die Bilder
+gespeichert werden sollen.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Mit dieser Funktion
-laden Sie sämtliche Bilder der derzeit angezeigten Seite herunter.</span></p>
+<a name="_Toc271680863"><h2>Aktuellen Thread saugen</h2></a>
 
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
-
-<h5><span lang=DE>so funktioniert's:</span></h5>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Öffnen Sie die Seite,
-von der Sie Bilder herunterladen möchten. Klicken Sie auf„Alle Bilder dieser
-Seite herunterladen“, wählen Sie anschließend den Ordner, in dem die Bilder
-gespeichert werden sollen.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680863"><span lang=DE>Aktuellen Thread saugen</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Diese Funktion lädt
-Bilder von gleich mehreren Seiten eines Threads oder einer Galerie herunter –
-wir nennen das „saugen“. Die Forensoftware oder Galerie muss dabei von IHG
-unterstützt werden. Folgende Forensoftware und Galerien werden unterstützt:
+<p class=MsoNormal>Diese Funktion lÃ¤dt
+Bilder von gleich mehreren Seiten eines Threads oder einer Galerie herunter â€“
+wir nennen das â€žsaugenâ€œ. Die Forensoftware oder Galerie muss dabei von IHG
+unterstÃ¼tzt werden. Folgende Forensoftware und Galerien werden unterstÃ¼tzt:
 vBulletin, Studio31, Imagebeaver, Facebook, Campusbug, Myspace, UBB Threads,
-PornBB, Simple Machines Forum, ProBoards, Coppermine, e-hentai, Gelbooru, and
-Twitpic.</span></p>
+PornBB, Simple Machines Forum, ProBoards, Coppermine, e-hentai, Gelbooru, and Twitpic.</p>
 
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
+<h5>so funktioniertâ€™s:</h5>
 
-<h5><span lang=DE>so funktioniert's:</span></h5>
+<p class=MsoNormal>Rufen Sie eine
+beliebige Seite des Threads auf, den Sie saugen mÃ¶chten. Klicken Sie auf den
+MenÃ¼punkt â€žAktuellen Thread saugenâ€œ, geben Sie die Nummer der ersten und
+letzten zu saugende Seite ein, wÃ¤hlen Sie dann den Download-Basisordner.</p>
 
-</div>
+<p class=MsoNormal>Bei Bildergalerien
+Ã¶ffnen Sie das Album, dessen Bilder Sie speichern mÃ¶chten. Dann benutzen Sie den
+Threadsauger wie in einem normalen Forum. WÃ¤hlen Sie die gewÃ¼nschten Seiten des Albums.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Rufen Sie eine
-beliebige Seite des Threads auf, den Sie saugen möchten. Klicken Sie auf den
-Menüpunkt „Aktuellen Thread saugen“, geben Sie die Nummer der ersten und
-letzten zu saugende Seite ein, wählen Sie dann den Download-Basisordner.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Bei Bildergalerien
-öffnen Sie das Album, dessen Bilder Sie speichern möchten. Dann benutzen Sie den
-Threadsauger wie in einem normalen Forum. Wählen Sie die gewünschten Seiten des
-Albums.</span></p>
+<a name="_Toc271680864"><h2>Hostdateieditor</h2></a>
 
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>Mit dieser Funktion
+kÃ¶nnen Sie die IHG-Hostdatei bearbeiten. Sie kÃ¶nnen die Hostdatei
+aktualisieren, eine neue Hostdatei auswÃ¤hlen oder die bereits vorhandenen
+EintrÃ¤ge in der Hostdatei modifizieren.</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<h5>so funktioniertâ€™s:</h5>
 
-<h2><a name="_Toc271680864"><span lang=DE>Hostdateieditor</span></a></h2>
+<p class=MsoNormal>Detaillierte Hinweise
+finden Sie im Abschnitt â€žHostdateieditorâ€œ.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Mit dieser Funktion
-können Sie die IHG-Hostdatei bearbeiten.  Sie können die Hostdatei
-aktualisieren, eine neue Hostdatei auswählen oder die bereits vorhandenen
-Einträge in der Hostdatei modifizieren.</span></p>
+<a name="_Toc271680865"><h2>Gespeicherte Sitzung wiederherstellen</h2></a>
 
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>Diese Funktion dient zum Fortsetzen einer Sitzung,
+die Sie zuvor im Downloadfortschritt-Fenster gespeichert haben.</p>
 
-<h5><span lang=DE>so funktioniert's:</span></h5>
+<h5>so funktioniertâ€™s:</h5>
 
-</div>
+<p class=MsoNormal>Detaillierte Hinweise
+dazu finden Sie im Abschnitt â€žDownloadfortschritt-Fensterâ€œ.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Detaillierte Hinweise
-finden Sie im Abschnitt „Hostdateieditor“.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<a name="_Toc271680866"><h2>SymbolleistenSCHALTFLÃ„CHE</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680865"><span lang=DE>Gespeicherte Sitzung wiederherstellen</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Diese Funktion dient
-zum Fortsetzen einer Sitzung, die Sie zuvor im Downloadfortschritt-Fenster
-gespeichert haben.</span></p>
-
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
-
-<h5><span lang=DE>SO FUNKTIONIERT’S:</span></h5>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Detaillierte Hinweise
-dazu finden Sie im Abschnitt „Downloadfortschritt-Fenster“.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680866"><span lang=DE>SymbolleistenSCHALTFLÄCHE</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Sie können eine
-spezielle ImageHost Grabber-Schaltfläche in die Hauptsymbolleiste aufnehmen und
+<p class=MsoNormal>Sie kÃ¶nnen eine
+spezielle ImageHost Grabber-SchaltflÃ¤che in die Hauptsymbolleiste aufnehmen und
 so Bilder mit nur einem Mausklick bequem herunterladen. Ein Klick auf diese
-Schaltfläche wirkt so, als würden Sie  „Alle Bilder dieser Seite herunterladen“
-auswählen.</span></p>
+SchaltflÃ¤che wirkt so, als wÃ¼rden Sie â€žAlle Bilder dieser Seite herunterladenâ€œ
+auswÃ¤hlen.</p>
 
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
+<h5>so funktioniertâ€™s:</h5>
 
-<h5><span lang=DE>SO FUNKTIONIERT’S:</span></h5>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Öffnen Sie  „Ansicht
-“/„Symbolleisten“ in der Firefox-Menüleiste, klicken Sie auf „Anpassen...“.
-Blättern Sie bis zur ImageHost Grabber-Schaltfläche herunter, ziehen Sie diese
-Schaltfläche anschließend an die gewünschte Stelle in der Firefox-Symbolleiste.
+<p class=MsoNormal>Ã–ffnen Sie â€žAnsicht
+â€œ/â€žSymbolleistenâ€œ in der Firefox-MenÃ¼leiste, klicken Sie auf â€žAnpassen...â€œ.
+BlÃ¤ttern Sie bis zur ImageHost Grabber-SchaltflÃ¤che herunter, ziehen Sie diese
+SchaltflÃ¤che anschlieÃŸend an die gewÃ¼nschte Stelle in der Firefox-Symbolleiste.
 Weitere Hinweise zu diesem Thema finden Sie in der Firefox-Hilfedatei;
-alternativ können Sie mir auch eine eMail (in Englisch) schicken.</span></p>
-
-<span lang=DE style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
-
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
-
-<h1><a name="_Toc271680867"><span lang=DE>Optionen</span></a></h1>
+alternativ kÃ¶nnen Sie mir auch eine eMail (in Englisch) schicken.</p>
 
 </div>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<br clear=all style='page-break-before:always'>
 
-<h2><a name="_Toc271680868"><span lang=DE>Datei-Speicheroptionen</span></a></h2>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc271680867"><h1>Optionen</h1></a>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<div class=indent>
 
-<h3><a name="_Toc271680869"><span lang=DE>Dateinamen zur Beibehaltung der
-Seiten-Bildreihenfolge mit einem Präfix versehen</span></a></h3>
+<a name="_Toc271680868"><h2>Datei-Speicheroptionen</h2></a>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE> Diese Option stellt
-den Dateinamen eine bestimmte Zeichenfolge voran, die dafür sorgt, dass die
+<a name="_Toc271680869"><h3>Dateinamen zur Beibehaltung der Seiten-Bildreihenfolge mit einem PrÃ¤fix versehen</h3></a>
+
+<p class=MsoNormal>Diese Option stellt
+den Dateinamen eine bestimmte Zeichenfolge voran, die dafÃ¼r sorgt, dass die
 Dateien so sortiert werden, dass sie wie auf der Seite angezeigt gelistet
-werden. Der erste Teil dieses Präfixes besteht aus acht alphanumerischen
+werden. Der erste Teil dieses PrÃ¤fixes besteht aus acht alphanumerischen
 Zeichen, die zur Unterscheidung der Sitzung dienen. Jede Sitzung wird mit einem
-anderen Präfix versehen – auch dann, wenn mehrere Sitzungen gleichzeitig
-abgearbeitet werden. Auch im Threadsauger-Modus erhält jede Seite einen
-eindeutigen Präfix. Der zweite Teil besteht aus einer Zahl, die der Position
-des Bildes auf der Seite entspricht. Diese Zahl wird mit führenden Nullen
-aufgefüllt, damit auch weniger logisch arbeitende Sortieralgorithmen (wie in
+anderen PrÃ¤fix versehen â€“ auch dann, wenn mehrere Sitzungen gleichzeitig
+abgearbeitet werden. Auch im Threadsauger-Modus erhÃ¤lt jede Seite einen
+eindeutigen PrÃ¤fix. Der zweite Teil besteht aus einer Zahl, die der Position
+des Bildes auf der Seite entspricht. Diese Zahl wird mit fÃ¼hrenden Nullen
+aufgefÃ¼llt, damit auch weniger logisch arbeitende Sortieralgorithmen (wie in
 der Zeit vor Windows XP und bei Unix-Betriebssystemen) die Dateinamen richtig
-sortiert anzeigen.</span></p>
+sortiert anzeigen.</p>
 
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680870"><h3>Was soll geschehen, wenn eine Datei bereits am Zielort vorhanden ist?</h3></a>
 
-<h3><span lang=DE> <a name="_Toc271680870">Was soll geschehen, wenn eine Datei
-bereits am Zielort vorhanden ist?</a></span></h3>
+<p class=MsoNormal>Es gibt drei
+Optionen: Datei umbenennen, Skip Datei und Datei Ã¼berschreiben. Beim Umbenennen
+der Datei (en) automatisch, fÃ¼gt die Erweiterung eine Inkrementierung Zahl an
+das Ende des Dateinamens.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Es gibt drei
-Optionen: Datei umbenennen, Skip Datei und Datei überschreiben. Beim Umbenennen
-der Datei (en) automatisch, fügt die Erweiterung eine Inkrementierung Zahl an
-das Ende des Dateinamens.</span></p>
+<a name="_Toc271680871"><h3>Imagevenue- und Fapomatic-Dateien automatisch umbenennen</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>Diese Funktion war
+ursprÃ¼nglich ein Teil der â€žAuto-Umbenennen â€œ-Funktion in VorgÃ¤ngerversionen.
+Dabei werden die fÃ¼hrenden Ziffern, die von diesen beiden Servern hinzugefÃ¼gt
+werden, vom Dateinamen entfernt. Weitere Server kÃ¶nnen in kÃ¼nftigen Versionen
+ergÃ¤nzt werden.</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3><a name="_Toc271680871"><span lang=DE>Imagevenue- und Fapomatic-Dateien
-automatisch umbenennen</span></a></h3>
+<a name="_Toc271680872"><h3>Separate Unterordner mit Dokumenttitel im Zielordner erstellen</h3></a>
 
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE> Diese Funktion war
-ursprünglich ein Teil der „Auto-Umbenennen “-Funktion in Vorgängerversionen.
-Dabei werden die führenden Ziffern, die von diesen beiden Servern hinzugefügt
-werden, vom Dateinamen entfernt. Weitere Server können in künftigen Versionen
-ergänzt werden.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3><a name="_Toc271680872"><span lang=DE>Separate Unterordner mit
-Dokumenttitel im Zielordner erstellen</span></a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE> Diese Option liest
+<p class=MsoNormal>Diese Option liest
 den Titel des Dokumentes aus und nutzt diesen als Bezeichnung eines neuen
 Unterordners, in dem die Dateien gespeichert werden. Der Titel eines Dokumentes
 ist der Name der Seite, der oben im Firefox-Fenster angezeigt wird. In den
-meisten Fällen ergibt sich dadurch eine gute Möglichkeit, unterschiedliche
-Threads auseinanderzuhalten, ohne die einzelnen Namen mühsam eintippen zu
-müssen. Allerdings können dabei hin und wieder ziemlich lange Ordnernamen
-entstehen, manchmal können die Ergebnisse auch nicht eindeutig genug ausfallen.</span></p>
+meisten FÃ¤llen ergibt sich dadurch eine gute MÃ¶glichkeit, unterschiedliche
+Threads auseinanderzuhalten, ohne die einzelnen Namen mÃ¼hsam eintippen zu
+mÃ¼ssen. Allerdings kÃ¶nnen dabei hin und wieder ziemlich lange Ordnernamen
+entstehen, manchmal kÃ¶nnen die Ergebnisse auch nicht eindeutig genug ausfallen.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680873"><h3>Ordner zur eindeutigen und chronologischen Identifizierung mit einem PrÃ¤fix versehen</h3></a>
 
-<h3><a name="_Toc271680873"><span lang=DE>Ordner zur eindeutigen und
-chronologischen Identifizierung mit einem Präfix versehen</span></a></h3>
+<p class=MsoNormal>Diese Option setzt
+einen Zeitstempel vor den Ordnernamen, sofern Sie die vorherige Option nutzen.
+Dadurch kÃ¶nnen Ordner chronologisch â€“ also in der Reihenfolge, in der sie
+heruntergeladen werden â€“ angezeigt werden, ohne sie vorher von Hand sortieren
+zu mÃ¼ssen. Eine einfache Sortierung nach dem Namen (Standard bei den meisten
+Anwendungen) tut es.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Option setzt
-einen Zeitstempel vor den Ordnernamen, sofern Sie die vorherige Option nutzen. 
-Dadurch können Ordner chronologisch – also in der Reihenfolge, in der sie
-heruntergeladen werden – angezeigt werden, ohne sie vorher von Hand sortieren
-zu müssen.  Eine einfache Sortierung nach dem Namen (Standard bei den meisten
-Anwendungen) tut es.</span></p>
+<a name="_Toc271680874"><h3>Beim Einsatz des Threadsaugers separate Ordner pro Seite erzeugen</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3><a name="_Toc271680874"><span lang=DE>Beim Einsatz des<b> </b>Threadsaugers
-separate Ordner pro Seite erzeugen</span></a></h3>
+<p class=MsoNormal>Wenn Sie den
+Threadsauger nutzen, erzeugt diese Option einzelne Ordner fÃ¼r jede Seite eines
+Threads oder einer Galerie. Die Ordnernamen entsprechen dabei den
+Seitennummern. Wenn diese Option nicht aktiviert ist, werden sÃ¤mtliche Bilder
+im Basisordner (oder im automatisch erstellten Ordner) gespeichert. </p>
 
 </div>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Wenn Sie den
-Threadsauger nutzen, erzeugt diese Option einzelne Ordner für jede Seite eines
-Threads oder einer Galerie.  Die Ordnernamen entsprechen dabei den
-Seitennummern.  Wenn diese Option nicht aktiviert ist, werden sämtliche Bilder
-im Basisordner (oder im automatisch erstellten Ordner) gespeichert.  </span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
+<a name="_Toc271680875"><h2>Allgemein</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<div class=indent>
 
-<h2><a name="_Toc271680875"><span lang=DE>Allgemein</span></a></h2>
+<a name="_Toc271680876"><h3>Downloadordner-Auswahlfenster anzeigen</h3></a>
 
-</div>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3><span lang=DE> <a name="_Toc271680876">Downloadordner-Auswahlfenster
-anzeigen</a></span></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Option
-unterdrückt die Anzeige des Dialogfensters, das Sie fragt, wo die Bilder
+<p class=MsoNormal>Diese Option
+unterdrÃ¼ckt die Anzeige des Dialogfensters, das Sie fragt, wo die Bilder
 gespeichert werden sollen. Wenn diese Option nicht markiert ist, werden die
-Bilder im zuletzt benutzten Ordner gespeichert.</span></p>
+Bilder im zuletzt benutzten Ordner gespeichert.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680877"><h3>Image Grabber-MenÃ¼ im Extras-MenÃ¼ anzeigen</h3></a>
 
-<h3><a name="_Toc271680877"><span lang=DE>Image Grabber-Menü im Extras-Menü
-anzeigen</span></a></h3>
+<p class=MsoNormal>Mit dieser Option
+kÃ¶nnen Sie auswÃ¤hlen, ob das ImageHost Grabber-MenÃ¼ im Extras-MenÃ¼ oder in der
+HauptmenÃ¼leiste angezeigt wird.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Mit dieser Option
-können Sie auswählen, ob das ImageHost Grabber-Menü im Extras-Menü oder in der
-Hauptmenüleiste angezeigt wird.</span></p>
+<a name="_Toc271680878"><h3>Identische Links (auch seitenÃ¼bergreifend) entfernen</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>Diese Option
+ermÃ¶glicht Ihnen das Entfernen von identischen (doppelten) Links auf einer
+Seite. Zu doppelten Links kommt es gewÃ¶hnlich, wenn Nutzer EintrÃ¤ge
+kommentieren und in geistiger Umnachtung auch die Bilder mit zitieren. Wenn
+Sie den Threadsauger benutzen, sucht ImageHost Grabber sÃ¤mtliche beteiligten
+Seiten nach identischen Links ab.</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3><a name="_Toc271680878"><span lang=DE>Identische Links (auch seitenübergreifend)
-entfernen</span></a></h3>
+<a name="_Toc271680879"><h3>CLOSE WINDOW DOWNLOAD WENN ALLE DOWNLOADS fertig sind</h3></a>
 
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Option
-ermöglicht Ihnen das Entfernen von identischen (doppelten) Links auf einer
-Seite.  Zu doppelten Links kommt es gewöhnlich, wenn Nutzer Einträge
-kommentieren und in geistiger Umnachtung auch die Bilder mit zitieren.  Wenn
-Sie den Threadsauger benutzen, sucht ImageHost Grabber sämtliche beteiligten
-Seiten nach identischen Links ab.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<p class=MsoNormal style='margin-top:15.0pt;margin-right:0in;margin-bottom:
-0in;margin-left:0in;margin-bottom:.0001pt;border:none;padding:0in'><a
-name="_Toc271680879"><span lang=DE style='font-size:11.0pt;line-height:115%;
-color:#243F60;text-transform:uppercase;letter-spacing:.75pt'>CLOSE WINDOW
-DOWNLOAD WENN ALLE DOWNLOADS fertig sind</span></a></p>
+<p class=MsoNormal>Diese Option wird
+das Download-Fenster schlieÃŸen, nachdem alle Downloads abgeschlossen haben
+(nach 5 Sekunden VerzÃ¶gerung). Wenn es Elemente, die nicht zu Ende war
+erfolgreich sind, wird das Fenster nicht schlieÃŸen.</p>
 
 </div>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Option wird
-das Download-Fenster schließen, nachdem alle Downloads abgeschlossen haben
-(nach 5 Sekunden Verzögerung). Wenn es Elemente, die nicht zu Ende war
-erfolgreich sind, wird das Fenster nicht schließen.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
+<a name="_Toc271680880"><h2>Eingebettete Bilder</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<div class=indent>
 
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;background:
-#DBE5F1;border:none;padding:0in'><a name="_Toc271680880"><span lang=DE
-style='font-size:11.0pt;line-height:115%;text-transform:uppercase;letter-spacing:
-.75pt'>Eingebettete Bilder</span></a></p>
+<a name="_Toc271680881"><h3>DOWNLOAD Eingebettete Bilder</h3></a>
 
-</div>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3><a name="_Toc271680881"><span lang=DE>DOWNLOAD Eingebettete Bilder</span></a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Option
-ermöglicht es Ihnen, Bilder, die download &quot;embedded&quot; auf der Seite.
+<p class=MsoNormal>Diese Option
+ermÃ¶glicht es Ihnen, Bilder, die download &quot;embedded&quot; auf der Seite.
 Bei der Verwendung von &quot;Get alle Fotos auf der Seite&quot;, wird nur
-ImageHost Grabber Download der eingebetteten Bilder, deren Abmessungen größer
+ImageHost Grabber Download der eingebetteten Bilder, deren Abmessungen grÃ¶ÃŸer
 als oder gleich dem angegebenen Abmessungen her durch die &quot;Breite set&quot;
-und &quot;Höhe&quot; Schaltkästen. Bei Verwendung der Thread Sucker, wird
-ImageHost Grabber Download nur das eingebettete Bilder, deren Dateigrößen sind
-größer oder gleich der angegebenen Größe der Datei in der
-&quot;Dateigröße&quot; Kontrolle-Kästchen.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;background:
-#DBE5F1;border:none;padding:0in'><a name="_Toc271680882"><span lang=DE
-style='font-size:11.0pt;line-height:115%;text-transform:uppercase;letter-spacing:
-.75pt'>Host-Datei</span></a></p>
+und &quot;HÃ¶he&quot; SchaltkÃ¤sten. Bei Verwendung der Thread Sucker, wird
+ImageHost Grabber Download nur das eingebettete Bilder, deren DateigrÃ¶ÃŸen sind
+grÃ¶ÃŸer oder gleich der angegebenen GrÃ¶ÃŸe der Datei in der
+&quot;DateigrÃ¶ÃŸe&quot; Kontrolle-KÃ¤stchen.</p>
 
 </div>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-top:15.0pt;margin-right:0in;margin-bottom:
-0in;margin-left:0in;margin-bottom:.0001pt;border:none;padding:0in'><a
-name="_Toc271680883"><span lang=DE style='font-size:11.0pt;line-height:115%;
-color:#243F60;text-transform:uppercase;letter-spacing:.75pt'>Enable automatic
-update</span></a></p>
+<a name="_Toc271680882"><h2>Host-Datei</h2></a>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Option wird in
-der Online-Host-Datei zu verbinden, um neue Hosts zu überprüfen, jedes Mal
-ImageHost Grabber wird ausgeführt. Sie können wählen, Bestätigungsdialog
-unterdrücken, als auch die Änderung der Merge-Verhalten.</span></p>
+<a name="_Toc271680883"><h3>Enable automatic update</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680884"><span lang=DE>HostOptionen</span></a></h2>
+<p class=MsoNormal>Diese Option wird in
+der Online-Host-Datei zu verbinden, um neue Hosts zu Ã¼berprÃ¼fen, jedes Mal
+ImageHost Grabber wird ausgefÃ¼hrt. Sie kÃ¶nnen wÃ¤hlen, BestÃ¤tigungsdialog
+unterdrÃ¼cken, als auch die Ã„nderung der Merge-Verhalten.</p>
 
 </div>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3><span lang=DE> <a name="_Toc271680885">Maximalzahl gleichzeitiger
-HTTS-Anfragen</a></span></h3>
+<a name="_Toc271680884"><h2>HostOptionen</h2></a>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Dies ist die Anzahl
+<a name="_Toc271680885"><h3>Maximalzahl gleichzeitiger HTTS-Anfragen</h3></a>
+
+<p class=MsoNormal>Dies ist die Anzahl
 von Verbindungen, die gleichzeitig zu einem Bilderhost hergestellt werden. In
 der Vergangenheit konnte die Anzahl von Downloads von einem Bilderhost nicht
-gesteuert werden – lediglich die Anzahl von HTTP-Anfragen ließ sich in den
-Griff bekommen. Heute beschränkt diese Option sowohl HTTP-Anfragen als auch
+gesteuert werden â€“ lediglich die Anzahl von HTTP-Anfragen lieÃŸ sich in den
+Griff bekommen. Heute beschrÃ¤nkt diese Option sowohl HTTP-Anfragen als auch
 Downloads. Eine Anfrage wird an die Seite gesendet, das Bild gefunden und
-anschließend herunterladen. Wenn Sie diesen Wert auf 1 setzen, wird immer nur
-ein einziges Bild heruntergeladen – praktisch, wenn Sie eine langsame
-Modemverbindung mit geringer Bandbreite nutzen. Mit einer höheren Zahl lässt
-sich die Downloadgeschwindigkeit oft deutlich erhöhen; allerdings können zu
-hohe Werte – wie 10 und mehr – zu Verbindungsabbrüchen und übersprungenen
-Downloads führen. Obwohl bei langsamen Verbindungen automatisch Neuversuche
-gestartet werden, kann die Downloadgeschwindigkeit kräftig abnehmen, wenn immer
+anschlieÃŸend herunterladen. Wenn Sie diesen Wert auf 1 setzen, wird immer nur
+ein einziges Bild heruntergeladen â€“ praktisch, wenn Sie eine langsame
+Modemverbindung mit geringer Bandbreite nutzen. Mit einer hÃ¶heren Zahl lÃ¤sst
+sich die Downloadgeschwindigkeit oft deutlich erhÃ¶hen; allerdings kÃ¶nnen zu
+hohe Werte â€“ wie 10 und mehr â€“ zu VerbindungsabbrÃ¼chen und Ã¼bersprungenen
+Downloads fÃ¼hren. Obwohl bei langsamen Verbindungen automatisch Neuversuche
+gestartet werden, kann die Downloadgeschwindigkeit krÃ¤ftig abnehmen, wenn immer
 wieder neu versucht werden muss. Unsere Erfahrung zeigt, dass der Wert 5 bei den
-meisten Internetverbindungen prächtig funktioniert. Die Anzahl gleichzeitiger
-Verbindungen kann jedoch auch vom Bilderhost selbst (nicht selten abhängig von
-der Tageszeit) eingeschränkt werden.</span></p>
+meisten Internetverbindungen prÃ¤chtig funktioniert. Die Anzahl gleichzeitiger
+Verbindungen kann jedoch auch vom Bilderhost selbst (nicht selten abhÃ¤ngig von
+der Tageszeit) eingeschrÃ¤nkt werden.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680886"><h3>Maximale Wiederholungen pro Link</h3></a>
 
-<h3><a name="_Toc271680886"><span lang=DE>Maximale Wiederholungen pro Link</span></a></h3>
+<p class=MsoNormal>Durch diese Option
+kÃ¶nnen Sie festlegen, wie oft der Download einzelner Links probiert werden
+soll, bevor die Software aufgibt und zum nÃ¤chsten Eintrag wechselt. Unter
+folgenden UmstÃ¤nden kann es zu einem Neuversuch kommen:</p>
 
-</div>
+<ul>
+	<li class=MsoListParagraphCxSpFirst>Die Anfrage war unvollstÃ¤ndig (Firefox bemerkte davon jedoch nichts)</li>
+	<li class=MsoListParagraphCxSpMiddle>Die Anfrage braucht zu lange (vermutlich gab der Server bereits auf, Firefox jedoch nicht)</li>
+	<li class=MsoListParagraphCxSpMiddle>Die Anfrage wurde vom Server oder von Firefox (warum auch immer) abgebrochen</li>
+	<li class=MsoListParagraphCxSpMiddle>Bei der Anfrage trat ein Fehler auf</li>
+	<li class=MsoListParagraphCxSpLast>Der Server sendete eine Datei, die jedoch kein Bild war</li>
+</ul>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Durch diese Option
-können Sie festlegen, wie oft der Download einzelner Links probiert werden
-soll, bevor die Software aufgibt und zum nächsten Eintrag wechselt. Unter
-folgenden Umständen kann es zu einem Neuversuch kommen:</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<p class=MsoNormal style='margin-left:1.25in;text-indent:-.25in'><span lang=DE
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=DE>Die Anfrage war unvollständig (Firefox bemerkte
-davon jedoch nichts)</span></p>
-
-<p class=MsoNormal style='margin-left:1.25in;text-indent:-.25in'><span lang=DE
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=DE>Die Anfrage braucht zu lange (vermutlich gab der
-Server bereits auf, Firefox jedoch nicht)</span></p>
-
-<p class=MsoNormal style='margin-left:1.25in;text-indent:-.25in'><span lang=DE
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=DE>Die Anfrage wurde vom Server oder von Firefox
-(warum auch immer) abgebrochen</span></p>
-
-<p class=MsoNormal style='margin-left:1.25in;text-indent:-.25in'><span lang=DE
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=DE>Bei der Anfrage trat ein Fehler auf</span></p>
-
-<p class=MsoNormal style='margin-left:1.25in;text-indent:-.25in'><span lang=DE
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=DE>Der Server sendete eine Datei, die jedoch kein Bild
-war</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE> Beachten Sie bitte
-auch, dass es auch aus anderen Gründen zu einem Neuversuch kommen kann: Nicht,
+<p class=MsoNormal>Beachten Sie bitte
+auch, dass es auch aus anderen GrÃ¼nden zu einem Neuversuch kommen kann: Nicht,
 weil etwas schief ging, sondern weil eine alternative URL gefunden wurde. In
-diesen Fällen wird die Anzahl der Wiederholungen nicht beeinflusst.</span></p>
+diesen FÃ¤llen wird die Anzahl der Wiederholungen nicht beeinflusst.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680887"><h3>Anfragewartezeit vor Neuversuch (in Sekunden)</h3></a>
 
-<h3><a name="_Toc271680887"><span lang=DE>Anfragewartezeit vor Neuversuch (in
-Sekunden)</span></a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE> Mit dieser Option
+<p class=MsoNormal>Mit dieser Option
 legen Sie fest, wie lange eine Anfrage probiert wird, bevor es zu einem
-Neuversuch kommt.</span></p>
-
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680888"><span lang=DE>Fehlersuche (Debugging)</span></a></h2>
+Neuversuch kommt.</p>
 
 </div>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3><a name="_Toc271680889"><span lang=DE>Konsolenprotokollierung aktivieren</span></a></h3>
+<a name="_Toc271680888"><h2>Fehlersuche (Debugging)</h2></a>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Option
+<a name="_Toc271680889"><h3>Konsolenprotokollierung aktivieren</h3></a>
+
+<p class=MsoNormal>Diese Option
 schaltet die Konsolenprotokollierung ein. Nutzen Sie diese Option, falls die
 Software oder eine bestimmte Funktion der Software nicht richtig funktioniert.
 In diesem Fall werden kritische Fehler in einer Protokolldatei gespeichert, die
-Sie anschließend an den Entwickler senden können. Dies wirkt sich leicht
+Sie anschlieÃŸend an den Entwickler senden kÃ¶nnen. Dies wirkt sich leicht
 negativ auf die Systemleistung aus. Diese Option bringt nichts, wenn die
-Anwendung zwar funktioniert, aber nicht so, wie Sie es sich vorgestellt haben –
+Anwendung zwar funktioniert, aber nicht so, wie Sie es sich vorgestellt haben â€“
 dabei handelt es sich um einen logischen Fehler, der aber bedeutend schwieriger
-in den Griff zu bekommen ist. Ein Beispiel für eine Situation, in der diese
-Option sinnvoll wäre: Sie klicken auf „Alle Bilder dieser Seite herunterladen“,
-aber es tut sich rein gar nichts.</span></p>
+in den Griff zu bekommen ist. Ein Beispiel fÃ¼r eine Situation, in der diese
+Option sinnvoll wÃ¤re: Sie klicken auf â€žAlle Bilder dieser Seite herunterladenâ€œ,
+aber es tut sich rein gar nichts.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE> Hinweis: Nach dem
+<p class=MsoNormal>Hinweis: Nach dem
 Aktivieren dieser Option muss Firefox neu gestartet werden, damit die
-Änderungen in Kraft treten.</span></p>
+Ã„nderungen in Kraft treten.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680890"><h3>Fehlersucheprotokollierung aktivieren</h3></a>
 
-<h3><span lang=DE> <a name="_Toc271680890">Fehlersucheprotokollierung
-aktivieren</a></span></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE> Diese Option
+<p class=MsoNormal>Diese Option
 schaltet die Fehlerprotokollierung ein. Nutzen Sie diese Option, wenn die
 Anwendung zwar funktioniert, nicht aber so, wie Sie es sich vorgestellt haben.
-Ein Beispiel: Sie klicken auf „Alle Bilder dieser Seite herunterladen“,
-sämtliche Dateien werden auch brav gespeichert – allerdings sind es nicht die
+Ein Beispiel: Sie klicken auf â€žAlle Bilder dieser Seite herunterladenâ€œ,
+sÃ¤mtliche Dateien werden auch brav gespeichert â€“ allerdings sind es nicht die
 Bilder, die Sie speichern wollten. Hierbei handelt es sich um einen logischen
 Fehler. Solche Fehler sind deutlich schwieriger zu beheben als reine (oben
-erwähnte) Syntaxfehler. Aufgrund der Schwierigkeiten, die sich bei der
+erwÃ¤hnte) Syntaxfehler. Aufgrund der Schwierigkeiten, die sich bei der
 Problembehebung ergeben, werden sehr umfangreiche Daten bei der
-Programmausführung ausgegeben. Dadurch ergeben sich deutliche Einschränkungen
+ProgrammausfÃ¼hrung ausgegeben. Dadurch ergeben sich deutliche EinschrÃ¤nkungen
 der Systemleistung. Gehen Sie also entsprechend behutsam mit dieser Funktion
 um. Versuchen Sie es am besten mit Seiten, die nur wenige Bilder (20 oder
 weniger) enthalten. Und wenn Sie fertig sind, kopieren Sie das Protokoll in
-einen lokalen Ordner und löschen das Protokoll anschließend wieder. Bei einer
-einzigen Programmausführung kann die Protokolldatei gut und gerne mehrere 100
-kB groß werden.</span></p>
+einen lokalen Ordner und lÃ¶schen das Protokoll anschlieÃŸend wieder. Bei einer
+einzigen ProgrammausfÃ¼hrung kann die Protokolldatei gut und gerne mehrere 100
+kB groÃŸ werden.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE> Hinweis: Nach dem
-Aktivieren dieser Option muss Firefox neu gestartet werden, damit die Änderungen
-in Kraft treten.</span></p>
+<p class=MsoNormal>Hinweis: Nach dem
+Aktivieren dieser Option muss Firefox neu gestartet werden, damit die Ã„nderungen
+in Kraft treten.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680891"><h3>Protokoll lÃ¶schen</h3></a>
 
-<h3><span lang=DE> <a name="_Toc271680891">Protokoll löschen</a></span></h3>
+<p class=MsoNormal>Mit dieser Funktion
+lÃ¶schen Sie das Fehlersucheprotokoll. Dies sollten Sie bereits nach einem
+einzigen Durchlauf erledigen. Die Protokolldatei wÃ¤chst sonst im Handumdrehen
+ins Unermessliche an. Allerdings sollten Sie das Protokoll natÃ¼rlich erst
+lÃ¶schen, nachdem Sie die Protokolldatei in einen lokalen Ordner kopiert haben.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Mit dieser Funktion
-löschen Sie das Fehlersucheprotokoll. Dies sollten Sie bereits nach einem
-einzigen Durchlauf erledigen. Die Protokolldatei wächst sonst im Handumdrehen
-ins Unermessliche an. Allerdings sollten Sie das Protokoll natürlich erst
-löschen, nachdem Sie die Protokolldatei in einen lokalen Ordner kopiert haben.</span></p>
+<a name="_Toc271680892"><h3>Protokoll in lokalen Ordner kopieren</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3><span lang=DE> <a name="_Toc271680892">Protokoll in lokalen Ordner kopieren</a></span></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE> Mit dieser Funktion
+<p class=MsoNormal>Mit dieser Funktion
 kopieren Sie die Protokolldatei in einen beliebigen Ordner Ihrer Festplatte
-oder eines anderen Speichergerätes. Der Name der Datei ist fest vorgegeben:
-„log.txt“ Nach dem Kopieren können Sie die Datei lesen, sich an den Hut stecken
-oder – was deutlich sinnvoller ist – an den Entwickler senden.</span></p>
-
-<span lang=DE style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
-
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
-
-<h1><a name="_Toc271680893"><span lang=DE>Downloadfortschritt-Fenster</span></a></h1>
+oder eines anderen SpeichergerÃ¤tes. Der Name der Datei ist fest vorgegeben:
+â€žlog.txtâ€œ Nach dem Kopieren kÃ¶nnen Sie die Datei lesen, sich an den Hut stecken
+oder â€“ was deutlich sinnvoller ist â€“ an den Entwickler senden.</p>
 
 </div>
 
-<p class=MsoNormal><span lang=DE>Im Downloadfortschritt-Fenster finden Sie
-Funktionen, die nur hier zur Verfügung stehen.  Allgemein ausgedrückt können
-Sie weitere Jobs hinzufügen, eine Datei nach dem Download anschauen, Downloads
-neu starten, den Download noch einmal anstoßen, und so weiter.</span></p>
-
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680894"><span lang=DE>Allgemeine Funktionen</span></a></h2>
-
 </div>
 
-<p class=MsoListParagraphCxSpFirst style='margin-left:83.25pt;text-indent:-.25in'><span
-lang=DE style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=DE>Durch Doppelklick auf den jeweiligen Eintrag öffnen
-Sie eine Datei nach dem Download.</span></p>
+<br clear=all style='page-break-before:always'>
 
-<p class=MsoListParagraphCxSpMiddle style='margin-left:83.25pt;text-indent:
--.25in'><span lang=DE style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=DE>Sie markieren mehrere aufeinander folgende
-Einträge, indem Sie das erste Element der Reihe anklicken, die Umschalttaste
-gedrückt halten und anschließend auf das letzte Element der Reihe klicken.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoListParagraphCxSpMiddle style='margin-left:83.25pt;text-indent:
--.25in'><span lang=DE style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=DE>Mehrere Einträge, die nicht aufeinander folgen,
-markieren Sie, indem Sie das erste Element anklicken, die Strg-Taste gedrückt
-halten und weitere Elemente nach Belieben anklicken.</span></p>
+<a name="_Toc271680893"><h1>Downloadfortschritt-Fenster</h1></a>
 
-<p class=MsoListParagraphCxSpLast style='margin-left:83.25pt;text-indent:-.25in'><span
-lang=DE style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang=DE>Durch Rechtsklicken eines Eintrags (oder einer
-Auswahl mehrerer Einträge) öffnet sich ein Kontextmenü, mit dem Sie weitere
-Aktionen auslösen können.</span></p>
+<p class=MsoNormal>Im Downloadfortschritt-Fenster finden Sie
+Funktionen, die nur hier zur VerfÃ¼gung stehen. Allgemein ausgedrÃ¼ckt kÃ¶nnen
+Sie weitere Jobs hinzufÃ¼gen, eine Datei nach dem Download anschauen, Downloads
+neu starten, den Download noch einmal anstoÃŸen, und so weiter.</p>
 
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<div class=indent>
 
-<h2><a name="_Toc271680895"><span lang=DE>Fertige Jobs automatisch entfernen</span></a></h2>
+<a name="_Toc271680894"><h2>Allgemeine Funktionen</h2></a>
 
-</div>
+<ul>
+	<li class=MsoListParagraphCxSpFirst>Durch Doppelklick auf den jeweiligen Eintrag Ã¶ffnen Sie eine Datei nach dem Download.</li>
+	<li class=MsoListParagraphCxSpMiddle>Sie markieren mehrere aufeinander folgende EintrÃ¤ge, indem Sie das erste Element der Reihe anklicken, die Umschalttaste gedrÃ¼ckt halten und anschlieÃŸend auf das letzte Element der Reihe klicken.</li>
+	<li class=MsoListParagraphCxSpMiddle>Mehrere EintrÃ¤ge, die nicht aufeinander folgen, markieren Sie, indem Sie das erste Element anklicken, die Strg-Taste gedrÃ¼ckt halten und weitere Elemente nach Belieben anklicken.</li>
+	<li class=MsoListParagraphCxSpLast>Durch Rechtsklicken eines Eintrags (oder einer Auswahl mehrerer EintrÃ¤ge) Ã¶ffnet sich ein KontextmenÃ¼, mit dem Sie weitere Aktionen auslÃ¶sen kÃ¶nnen.</li>
+</ul>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Diese Funktion löscht
-abgeschlossene Jobs nach dem Download automatisch aus dem Fenster.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<a name="_Toc271680895"><h2>Fertige Jobs automatisch entfernen</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>Diese Funktion lÃ¶scht abgeschlossene Jobs nach dem Download automatisch aus dem Fenster.</p>
 
-<h2><a name="_Toc271680896"><span lang=DE>Popup unterdrücken</span></a></h2>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc271680896"><h2>Popup unterdrÃ¼cken</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Diese Option
-verhindert das Öffnen des Downloadfortschritt-Fensters, wenn Sie weitere
-Download-Jobs hinzufügen.  Damit dies funktioniert, muss das Fenster bereits
-geöffnet sein.</span></p>
+<p class=MsoNormal>Diese Option
+verhindert das Ã–ffnen des Downloadfortschritt-Fensters, wenn Sie weitere
+Download-Jobs hinzufÃ¼gen. Damit dies funktioniert, muss das Fenster bereits
+geÃ¶ffnet sein.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271680897"><h2>Alle fertigen Jobs entfernen</h2></a>
 
-<h2><a name="_Toc271680897"><span lang=DE>Alle fertigen Jobs entfernen</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Bewirkt, dass
+<p class=MsoNormal>Bewirkt, dass
 abgeschlossene Download-Jobs gleich nach dem Download automatisch aus dem
-Fenster entfernt werden.<br>
-<br>
-</span></p>
+Fenster entfernt werden.</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h2><a name="_Toc271680898"><span lang=DE>Alle Jobs stoppen</span></a></h2>
+<a name="_Toc271680898"><h2>Alle Jobs stoppen</h2></a>
 
-</div>
+<p class=MsoNormal>Mit dieser Funktion
+stoppen Sie sÃ¤mtliche laufenden Downloads. Dabei werden sÃ¤mtliche Downloads
+abgebrochen, unabhÃ¤ngig davon, zu welcher Sitzung sie gehÃ¶ren.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Mit dieser Funktion
-stoppen Sie sämtliche laufenden Downloads. Dabei werden sämtliche Downloads
-abgebrochen, unabhängig davon, zu welcher Sitzung sie gehören.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<a name="_Toc271680899"><h2>Alle gestoppten Jobs fortsetzen</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680899"><span lang=DE>Alle gestoppten Jobs fortsetzen</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Diese Funktion
-ermöglicht den Neustart zuvor gestoppter Sitzungen. Dabei werden sämtliche
+<p class=MsoNormal>Diese Funktion
+ermÃ¶glicht den Neustart zuvor gestoppter Sitzungen. Dabei werden sÃ¤mtliche
 gestoppten Jobs der Reihe nach neu gestartet, bei Bedarf wiederholt, bis die
-gesamte Sitzung abgearbeitet ist.</span></p>
+gesamte Sitzung abgearbeitet ist.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271680900"><h2>Sitzung speichern</h2></a>
 
-<h2><a name="_Toc271680900"><span lang=DE>Sitzung speichern</span></a></h2>
+<p class=MsoNormal>Mit dieser Funktion
+kÃ¶nnen Sie sÃ¤mtliche EintrÃ¤ge im Fenster zwischenspeichern und spÃ¤ter Ã¼ber die
+â€žGespeicherte Sitzung wiederherstellen â€œ-Funktion im ImageHost
+Grabber-HauptmenÃ¼ wieder fortsetzen. Dies ist gerade bei Verbindungsproblemen
+und anderen Widrigkeiten sehr praktisch und verhindert, dass Ihre sorgfÃ¤ltig
+zusammengestellten Downloads verloren gehen.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Mit dieser Funktion
-können Sie sämtliche Einträge im Fenster zwischenspeichern und später über die 
-„Gespeicherte Sitzung wiederherstellen “-Funktion im ImageHost
-Grabber-Hauptmenü wieder fortsetzen.  Dies ist gerade bei Verbindungsproblemen
-und anderen Widrigkeiten sehr praktisch und verhindert, dass Ihre sorgfältig
-zusammengestellten Downloads verloren gehen.</span></p>
+<a name="_Toc271680901"><h2>Aktionen mit AUSGEWÃ„HLTEN ELEMENTEN</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>SÃ¤mtliche Aktionen
+mit ausgewÃ¤hlten Elementen starten Sie, indem Sie mit der rechten Maustaste auf
+die gewÃ¼nschten Elemente klicken und anschlieÃŸend die gewÃ¼nschte Aktion aus dem
+KontextmenÃ¼ wÃ¤hlen.</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h2><a name="_Toc271680901"><span lang=DE>Aktionen mit AUSGEWÄHLTEN ELEMENTEN</span></a></h2>
+<div class=indent>
 
-</div>
+<a name="_Toc271680902"><h3>Open file</h3></a>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Sämtliche Aktionen
-mit ausgewählten Elementen starten Sie, indem Sie mit der rechten Maustaste auf
-die gewünschten Elemente klicken und anschließend die gewünschte Aktion aus dem
-Kontextmenü wählen.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<p class=MsoNormal style='margin-top:15.0pt;margin-right:0in;margin-bottom:
-0in;margin-left:0in;margin-bottom:.0001pt;border:none;padding:0in'><a
-name="_Toc271680902"><span lang=DE style='font-size:11.0pt;line-height:115%;
-color:#243F60;text-transform:uppercase;letter-spacing:.75pt'>Open file</span></a></p>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Aktion wird
-nur das Element öffnen, die den Fokus hat. Zum Beispiel, wenn Sie einen
+<p class=MsoNormal>Diese Aktion wird
+nur das Element Ã¶ffnen, die den Fokus hat. Zum Beispiel, wenn Sie einen
 Rechtsklick auf das dritte Element in einer Auswahlliste, nur das dritte
-Element wird geöffnet. Die &quot;Datei öffnen&quot; Aktion übergibt die
-Kontrolle über das Betriebssystem, um die Datei im Standard-Programm, das den
-Dateityp Griffe öffnen.</span></p>
+Element wird geÃ¶ffnet. Die &quot;Datei Ã¶ffnen&quot; Aktion Ã¼bergibt die
+Kontrolle Ã¼ber das Betriebssystem, um die Datei im Standard-Programm, das den
+Dateityp Griffe Ã¶ffnen.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680903"><h3>Ãœbergeordneten Ordner Ã¶ffnen</h3></a>
 
-<p class=MsoNormal style='margin-top:15.0pt;margin-right:0in;margin-bottom:
-0in;margin-left:0in;margin-bottom:.0001pt;border:none;padding:0in'><a
-name="_Toc271680903"><span lang=DE style='font-size:11.0pt;line-height:115%;
-color:#243F60;text-transform:uppercase;letter-spacing:.75pt'>Übergeordneten
-Ordner öffnen</span></a></p>
+<p class=MsoNormal>Diese Aktion Ã¶ffnet
+den Ordner enthÃ¤lt fÃ¼r das Element, das den Fokus hat.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Aktion öffnet
-den Ordner enthält für das Element, das den Fokus hat.</span></p>
+<a name="_Toc271680904"><h3>Aus Liste entfernen</h3></a>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>Dieser Aktion
+entfernt die ausgewÃ¤hlten Elemente dauerhaft aus der Liste.</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3><a name="_Toc271680904"><span lang=DE>Aus Liste entfernen</span></a></h3>
+<a name="_Toc271680905"><h3>Download/Anfrage abbrechen</h3></a>
 
-</div>
+<p class=MsoNormal>Mit dieser Funktion
+kÃ¶nnen Sie ein oder mehrere Downloads/Anfragen nach Belieben abbrechen. Dies
+ist zum Beispiel dann praktisch, wenn Ihnen die Zeit davonlÃ¤uft und Sie es zu
+einem spÃ¤teren Zeitpunkt noch einmal probieren mÃ¶chten.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Dieser Aktion
-entfernt die ausgewählten Elemente dauerhaft aus der Liste.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
+<a name="_Toc271680906"><h3>Download/Anfrage wiederholen</h3></a>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>Diese Funktion
+ermÃ¶glicht eine Wiederholung von abgebrochenen, abgeschlossenen oder laufenden
+Downloads. Die Funktion versucht, beim aktuellen Fortschritt der Downloads
+wieder anzusetzen.</p>
 
-<h3><span lang=DE> <a name="_Toc271680905">Download/Anfrage abbrechen</a></span></h3>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc271680907"><h3>Download neu starten</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Mit dieser Funktion
-können Sie ein oder mehrere Downloads/Anfragen nach Belieben abbrechen. Dies
-ist zum Beispiel dann praktisch, wenn Ihnen die Zeit davonläuft und Sie es zu
-einem späteren Zeitpunkt noch einmal probieren möchten.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3><a name="_Toc271680906"><span lang=DE>Download/Anfrage wiederholen</span></a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Funktion
-ermöglicht eine Wiederholung von abgebrochenen, abgeschlossenen oder laufenden
-Downloads.  Die Funktion versucht, beim aktuellen Fortschritt der Downloads
-wieder anzusetzen.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3><a name="_Toc271680907"><span lang=DE>Download neu starten</span></a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Funktion
+<p class=MsoNormal>Diese Funktion
 startet Downloads komplett neu, statt sie an der unterbrochenen Stelle
-fortzusetzen.  Die Datei wird also von Grund auf neu geladen, bereits
-heruntergeladene Teile werden dabei ignoriert.</span></p>
+fortzusetzen. Die Datei wird also von Grund auf neu geladen, bereits
+heruntergeladene Teile werden dabei ignoriert.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680908"><h3>WiederholungszÃ¤hler auf 0 setzen</h3></a>
 
-<h3><a name="_Toc271680908"><span lang=DE>Wiederholungszähler auf 0 setzen</span></a></h3>
+<p class=MsoNormal>Diese Funktion setzt
+den WiederholungszÃ¤hler der ausgewÃ¤hlten Elemente auf 0 zurÃ¼ck. Dies ist
+beispielsweise dann nÃ¼tzlich, wenn es durch Verbindungsprobleme zu einigen Wiederholungsversuchen
+kam und Sie es noch einmal von Anfang an probieren mÃ¶chten.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Funktion setzt
-den Wiederholungszähler der ausgewählten Elemente auf 0 zurück.  Dies ist
-beispielsweise dann nützlich, wenn es durch Verbindungsprobleme zu einigen Wiederholungsversuchen
-kam und Sie es noch einmal von Anfang an probieren möchten.</span></p>
+<a name="_Toc271680909"><h3>Anfragedetails anzeigen</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3><a name="_Toc271680909"><span lang=DE>Anfragedetails anzeigen</span></a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>Diese Funktion
-öffnet ein neues Fenster, in dem Sie detaillierte Angaben zur Anfrage finden –
+<p class=MsoNormal>Diese Funktion
+Ã¶ffnet ein neues Fenster, in dem Sie detaillierte Angaben zur Anfrage finden â€“
 beispielsweise Speicherort der Datei, URL des Miniaturbildes und den mit der
-Miniaturbildseite verknüpften HTML-Code.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680910"><span lang=DE>Export list to HTML</span></a></h2>
+Miniaturbildseite verknÃ¼pften HTML-Code.</p>
 
 </div>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Mit dieser Taste
-können Sie die Download-Liste als HTML-Datei zu speichern. Die HTML-Datei kann
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680910"><h2>Export list to HTML</h2></a>
+
+<p class=MsoNormal>Mit dieser Taste
+kÃ¶nnen Sie die Download-Liste als HTML-Datei zu speichern. Die HTML-Datei kann
 dann in das Hauptfenster des Browsers und neu, indem Sie &quot;Holen Sie sich alle
-Bilder auf der Seite&quot; verarbeitet geöffnet werden.</span></p>
+Bilder auf der Seite&quot; verarbeitet geÃ¶ffnet werden.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271680911"><h2>MAX. Anfragen und MAX. Wiederholungen</h2></a>
 
-<h2><a name="_Toc271680911"><span lang=DE>MAX. Anfragen und MAX. Wiederholungen</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Diese zwei
-Steuerelemente ermöglichen es Ihnen, sofort die Kontrolle der maximalen Anzahl
-von Anfragen und Wiederholungen für den Download-Prozess. Die Änderungen werden
-sofort wirksam.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=DE>&nbsp;</span></p>
-
-<span lang=DE style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
-
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
-
-<h1><a name="_Toc271680912"><span lang=DE>Hostdateieditor</span></a></h1>
+<p class=MsoNormal>Diese zwei
+Steuerelemente ermÃ¶glichen es Ihnen, sofort die Kontrolle der maximalen Anzahl
+von Anfragen und Wiederholungen fÃ¼r den Download-Prozess. Die Ã„nderungen werden
+sofort wirksam.</p>
 
 </div>
 
-<p class=MsoNormal><span lang=DE>Dieser Abschnitt deckt lediglich die Grundzüge
-der Benutzeroberfläche und einfachste Bedienschritte ab.  Eine ausführliche
-Anleitung zum Hinzufügen eigener Hosts finden Sie auf der IHG-Webseite und in
-folgender Datei: </span><a
-href="http://imagehost-grabber.com/HostFileEditor.pdf"><span lang=DE>http://imagehost-grabber.com/HostFileEditor.pdf</span></a></p>
+<br clear=all style='page-break-before:always'>
 
-<p class=MsoNormal><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271680912"><h1>Hostdateieditor</h1></a>
 
-<h2><a name="_Toc271680913"><span lang=DE>Hostbezeichnung</span></a></h2>
+<p class=MsoNormal>Dieser Abschnitt deckt lediglich die GrundzÃ¼ge
+der BenutzeroberflÃ¤che und einfachste Bedienschritte ab. Eine ausfÃ¼hrliche
+Anleitung zum HinzufÃ¼gen eigener Hosts finden Sie auf der IHG-Webseite und in
+folgender Datei:&nbsp;<a href="http://hot-honeys.com/HostFileEditor.pdf" target="_blank">
+http://hot-honeys.com/HostFileEditor.pdf</a></p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Dies ist eine
-eindeutige Bezeichnung eines Eintrags in der Hostdatei.</span></p>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<a name="_Toc271680913"><h2>Hostbezeichnung</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>Dies ist eine eindeutige Bezeichnung eines Eintrags in der Hostdatei.</p>
 
-<h2><a name="_Toc271680914"><span lang=DE>URL-Muster</span></a></h2>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc271680914"><h2>URL-Muster</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Ein regulärer
-Ausdruck, der dem URL-Muster des jeweiligen Bilderhosts entspricht.</span></p>
+<p class=MsoNormal>Ein regulÃ¤rer Ausdruck, der dem URL-Muster des jeweiligen Bilderhosts entspricht.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271680915"><h2>Suchmuster</h2></a>
 
-<h2><a name="_Toc271680915"><span lang=DE>Suchmuster</span></a></h2>
+<p class=MsoNormal>Dies ist der Teil,
+der Bilder auf der aufgerufenen Seite findet. Im Abschnitt â€žHostdateieditorâ€œ
+auf der Webseite finden Sie umfassende ErlÃ¤uterungen zum Suchmuster.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Dies ist der Teil,
-der Bilder auf der aufgerufenen Seite findet.  Im Abschnitt „Hostdateieditor“
-auf der Webseite finden Sie umfassende Erläuterungen zum Suchmuster.</span></p>
+<a name="_Toc271680916"><h2>Datei aktualisieren</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>Diese Funktion aktualisiert
+die Hostdatei mit sÃ¤mtlichen Ã„nderungen, die Sie an vorhandenen EintrÃ¤gen
+ausgefÃ¼hrt haben.</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h2><a name="_Toc271680916"><span lang=DE>Datei aktualisieren</span></a></h2>
+<a name="_Toc271680917"><h2>Host hinzufÃ¼gen</h2></a>
 
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Diese Funktion aktualisiert
-die Hostdatei mit sämtlichen Änderungen, die Sie an vorhandenen Einträgen
-ausgeführt haben.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680917"><span lang=DE>Host hinzufügen</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Fügt einen neuen
+<p class=MsoNormal>FÃ¼gt einen neuen
 Eintrag zur Hostdatei hinzu, bestehend aus den ersten drei eingegebenen
-Feldern.</span></p>
+Feldern.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271680918"><h2>Host lÃ¶schen</h2></a>
 
-<h2><a name="_Toc271680918"><span lang=DE>Host löschen</span></a></h2>
+<p class=MsoNormal>LÃ¶scht den
+ausgewÃ¤hlten Host aus der Hostdatei.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Löscht den
-ausgewählten Host aus der Hostdatei.</span></p>
+<a name="_Toc271680919"><h2>hostf-Server modifizieren</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>Mit dieser Funktion
+kÃ¶nnen Sie weitere Quellen fÃ¼r Online-Hostdateiaktualisierungen hinzufÃ¼gen.
+Geben Sie einfach die URL der neuen Hostdatei ein.</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h2><a name="_Toc271680919"><span lang=DE>hostf-Server modifizieren</span></a></h2>
+<a name="_Toc271680920"><h2>Hostdatei auswÃ¤hlen</h2></a>
 
-</div>
+<p class=MsoNormal>Diese Funktion
+ermÃ¶glicht die Auswahl einer externen Hostdatei; also einer Datei, die sich
+nicht im IHG-Ordner befindet.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Mit dieser Funktion
-können Sie weitere Quellen für Online-Hostdateiaktualisierungen hinzufügen. 
-Geben Sie einfach die URL der neuen Hostdatei ein.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<a name="_Toc271680921"><h2>Auf Standardhostdatei rÃ¼cksetzen</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>Diese Funktion
+bewirkt, dass wieder die im IHG-Ordner abgelegte Hostdatei verwendet wird.</p>
 
-<h2><a name="_Toc271680920"><span lang=DE>Hostdatei auswählen</span></a></h2>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc271680922"><h2>Hostdatei zusammenfassen</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Diese Funktion
-ermöglicht die Auswahl einer externen Hostdatei; also einer Datei, die sich
-nicht im IHG-Ordner befindet.</span></p>
+<p class=MsoNormal>ErmÃ¶glicht eine Vermischung
+von EintrÃ¤gen einer externen Hostdatei (also einer Datei, die nicht in IHG
+geladen wurde) mit den EintrÃ¤gen der aktuell verwendeten Hostdatei.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271680923"><h2>Von Online-Hostdatei aktualisieren</h2></a>
 
-<h2><a name="_Toc271680921"><span lang=DE>Auf Standardhostdatei rücksetzen</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Diese Funktion
-bewirkt, dass wieder die im IHG-Ordner abgelegte Hostdatei verwendet wird.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680922"><span lang=DE>Hostdatei zusammenfassen</span></a></h2>
+<p class=MsoNormal>Diese Funktion
+ermÃ¶glicht den Abruf aktuellster EintrÃ¤ge aus Online-Hostdateien. Den
+Speicherort solcher Hostdateien kÃ¶nnen Sie durch Anklicken der â€žhostf-Server
+modifizierenâ€œ-SchaltflÃ¤che entsprechend anpassen.</p>
 
 </div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Ermöglicht eine Vermischung
-von Einträgen einer externen Hostdatei (also einer Datei, die nicht in IHG
-geladen wurde) mit den Einträgen der aktuell verwendeten Hostdatei.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680923"><span lang=DE>Von Online-Hostdatei aktualisieren</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=DE>Diese Funktion
-ermöglicht den Abruf aktuellster Einträge aus Online-Hostdateien.  Den
-Speicherort solcher Hostdateien können Sie durch Anklicken der „hostf-Server
-modifizieren“-Schaltfläche entsprechend anpassen.</span></p>
 
 </div>
 

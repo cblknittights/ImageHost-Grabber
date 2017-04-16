@@ -4,7 +4,7 @@
 <overlay id="ImageGrabberCommon-Overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 <stringbundleset id="stringbundleset">
-    <stringbundle id="imagegrabber-strings" src="chrome://imagegrabber/locale/imagegrabber.properties" />
+	<stringbundle id="imagegrabber-strings" src="chrome://imagegrabber/locale/imagegrabber.properties" />
 </stringbundleset>
 
 <script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/globals.js" />

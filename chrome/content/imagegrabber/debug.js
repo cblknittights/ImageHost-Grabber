@@ -21,41 +21,24 @@
  *
  ***************************  End of GPL Block *******************************/
 
-
-
+LogFile = null;
+MsgBuffer = [];
+promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
 
 //////////////////////  Initialize the logFile Object  //////////////////////
-
 ihg_Functions.initLogFile = function initLogFile() {
-	var id = "{E4091D66-127C-11DB-903A-DE80D2EFDFE8}"; // imagegrabber's ID
-
-	// This should work for Firefox v1.5+  It returns a file object initialized
-	// with the path where the extension is located
-	try {
-		ihg_Globals.logFile = Components.classes["@mozilla.org/extensions/manager;1"]
-	      	    .getService(Components.interfaces.nsIExtensionManager).getInstallLocation(id).getItemLocation(id); 
-		}
-	// For those who are still using the antiquated Firefox versions
-	catch(e) {
-		ihg_Globals.logFile = Components.classes["@mozilla.org/file/directory_service;1"]
-			    .getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile);
-		ihg_Globals.logFile.append("extensions");
-		ihg_Globals.logFile.append(id);
-		}
-
-
-	ihg_Globals.logFile.append("logs");
+	LogFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
+	LogFile.initWithPath(ihg_Globals.addonPath);
+	LogFile.append("logs");
 
 	// Create the logs directory if it's not already there
-	if( !(ihg_Globals.logFile.exists()) )  ihg_Globals.logFile.create(1, 0755);
+	if( !(LogFile.exists()) )  LogFile.create(1, 0755);
 
-	ihg_Globals.logFile.append("log.txt");
+	LogFile.append("log.txt");
 
 	// Create the log file if it's not already there
-	if( !(ihg_Globals.logFile.exists()) )  ihg_Globals.logFile.create(0, 0755);
+	if( !(LogFile.exists()) )  LogFile.create(0, 0755);
 	}
-
-
 
 /****************************************************************************
  *	The following lines are the flags used for file-output.  These were
@@ -73,116 +56,70 @@ ihg_Functions.initLogFile = function initLogFile() {
  *	620 #define PR_EXCL         0x80
  ***************************************************************************/
 
+/////////////////  Dump to the log file  /////////////////////////////////
+ihg_Functions.Dump2LOG = function Dump2LOG( message ) {
+	var the_date = String(Date()).split(" ");
+	var dateForm = the_date[4] + " " + the_date[2] + " " + the_date[1] + " " + the_date[3];
+	MsgBuffer.push(dateForm + "\t" + message);
+
+	if (!LogFile || !LogFile.path) {
+		if (!ihg_Globals.addonPath) {
+			try {
+				ihg_Globals.addonPath = ihg_Globals.prefManager.getCharPref("extensions.imagegrabber.addonPath");
+				}
+			catch(e) {return;}
+			}
+		ihg_Functions.initLogFile();
+		}
+
+	var f_perms = 0755;  // this is ignored on windows
+	var f_flags = 0x02 | 0x10;
+
+	try {
+		ihg_Globals.fileOut.init(LogFile, f_flags, f_perms, null);
+		}
+	catch(e) {
+		LogFile.create(0, 0755);
+		ihg_Globals.fileOut.init(LogFile, f_flags, f_perms, null);
+		}
+
+	while (MsgBuffer.length) {
+		var outMessage = MsgBuffer.shift();
+		var count = outMessage.length;
+		ihg_Globals.fileOut.write(outMessage, count);
+		}
+
+	ihg_Globals.fileOut.close();
+}
 
 /////////////////  Dump to the log file (for Debug)  /////////////////////
-
 ihg_Functions.LOG = function LOG( message ) {
-	if(!ihg_Globals.debugOut) return;
+	if (ihg_Globals.debugOut) ihg_Functions.Dump2LOG(message);
+}
 
-	try {
-		if(!ihg_Globals.logFile.path) ihg_Functions.initLogFile();
-		}
-	catch(e) {
-		ihg_Functions.initLogFile();
-		}
-
-	var f_perms = 0755;  // this is ignored on windows
-	var f_flags = 0x02 | 0x10;
-
-	var the_date = String(Date()).split(" ");
-	var dateForm = the_date[4] + " " + the_date[2] + " " + the_date[1] + " " + the_date[3];
-
-	var outMessage = dateForm + "\t" + message;
-
-	var count = outMessage.length;
-
-	try {
-		ihg_Globals.fileOut.init(ihg_Globals.logFile, f_flags, f_perms, null);
-		}
-	catch(e) {
-		ihg_Globals.logFile.create(0, 0755);
-		ihg_Globals.fileOut.init(ihg_Globals.logFile, f_flags, f_perms, null);
-		}
-		
-	ihg_Globals.fileOut.write(outMessage, count);
-	ihg_Globals.fileOut.close();
-	}
-
-
-
-
-
-//////////////  Dump to the log file (for Console)  ///////////////////
-
+/////////////////  Dump to the log file (for Console)  ///////////////////
 ihg_Functions.CON_LOG = function CON_LOG( message ) {
-	if(!ihg_Globals.conLogOut) return;
-
-	try {
-		if(!ihg_Globals.logFile.path) ihg_Functions.initLogFile();
-		}
-	catch(e) {
-		ihg_Functions.initLogFile();
-		}
-
-	var f_perms = 0755;  // this is ignored on windows
-	var f_flags = 0x02 | 0x10;
-
-	var the_date = String(Date()).split(" ");
-	var dateForm = the_date[4] + " " + the_date[2] + " " + the_date[1] + " " + the_date[3];
-
-	var outMessage = dateForm + "\t" + message;
-
-	var count = outMessage.length;
-
-	try {
-		ihg_Globals.fileOut.init(ihg_Globals.logFile, f_flags, f_perms, null);
-		}
-	catch(e) {
-		ihg_Globals.logFile.create(0, 0755);
-		ihg_Globals.fileOut.init(ihg_Globals.logFile, f_flags, f_perms, null);
-		}
-		
-	ihg_Globals.fileOut.write(outMessage, count);
-	ihg_Globals.fileOut.close();
-	}
-
-
-
+	if (ihg_Globals.conLogOut) ihg_Functions.Dump2LOG(message);
+}
 
 /////////////////  Clears the log file    ///////////////////////
-
 ihg_Functions.clearLog = function clearLog() {
 	var f_perms = 0755;  // this is ignored on windows
 	var f_flags = 0x02 | 0x20;
 
-	try {
-		if(!ihg_Globals.logFile.path) ihg_Functions.initLogFile();
-		}
-	catch(e) {
-		ihg_Functions.initLogFile();
-		}
+	if (!LogFile || !LogFile.path) ihg_Functions.initLogFile();
 
-	ihg_Globals.fileOut.init(ihg_Globals.logFile, f_flags, f_perms, null);
+	ihg_Globals.fileOut.init(LogFile, f_flags, f_perms, null);
 
 	ihg_Globals.fileOut.write("", 0);
 	ihg_Globals.fileOut.close();
 
-	alert(ihg_Globals.strings.debug_log_cleared);
-	}
-
-
-
-
+	promptService.alert(null, null, ihg_Globals.strings.debug_log_cleared);
+}
 
 /////////////  Copys the log file to some location   //////////////
-
 ihg_Functions.copyLog = function copyLog() {
-	try {
-		if(!ihg_Globals.logFile.path) ihg_Functions.initLogFile();
-		}
-	catch(e) {
-		ihg_Functions.initLogFile();
-		}
+	if (!LogFile || !LogFile.path) ihg_Functions.initLogFile();
 
 	var copyToDir = ihg_Functions.setDownloadDir(ihg_Globals.strings.pick_a_folder, null);
 
@@ -193,21 +130,17 @@ ihg_Functions.copyLog = function copyLog() {
 	newDir.initWithPath(copyToDir);
 
 	try {
-		ihg_Globals.logFile.copyTo(newDir, null);
+		LogFile.copyTo(newDir, null);
 		}
 	catch(e) {
-		alert(ihg_Globals.strings.failed_to_copy);
+		promptService.alert(null, null, ihg_Globals.strings.failed_to_copy);
 		return;
 		}
 
-	alert(ihg_Globals.strings.log_file_copied);
-	}
-
-
-
+	promptService.alert(null, null, ihg_Globals.strings.log_file_copied);
+}
 
 /////////////////////  Get the console messages  ////////////////////
-
 ihg_Functions.getConMsgs = function getConMsgs() {
 	if(!ihg_Globals.conLogOut) return;
 
@@ -222,13 +155,13 @@ ihg_Functions.getConMsgs = function getConMsgs() {
 	consoleService.registerListener(ihg_Globals.consoleListener);
 
 	for(var i=0; i < msgObj.length; i++) ihg_Functions.CON_LOG(msgObj[i].message + "\n");
-	}
+}
 
 /////////////////////  Unregister console listener  ////////////////////
 ihg_Functions.unregisterConsoleListener = function unregisterConsoleListener() {
 	var consoleService = Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);
 	consoleService.unregisterListener(ihg_Globals.consoleListener);
-	}
+}
 
 ///////////////  Listener for the error console  /////////////////////
 
@@ -236,10 +169,9 @@ ihg_Globals.consoleListener = {
 	observe : function(msgObj) { ihg_Functions.CON_LOG(msgObj.message + "\n"); },
 
 	QueryInterface: function (iid) {
-		if (!iid.equals(Components.interfaces.nsIConsoleListener) &&
-	            !iid.equals(Components.interfaces.nsISupports)) {
+		if (!iid.equals(Components.interfaces.nsIConsoleListener) && !iid.equals(Components.interfaces.nsISupports)) {
 			throw Components.results.NS_ERROR_NO_INTERFACE;
+			}
+		return this;
 		}
-	        return this;
-	}
 }

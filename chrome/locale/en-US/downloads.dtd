@@ -10,6 +10,7 @@
 <!ENTITY  open_url "Open URL">
 <!ENTITY  view_request_details "View Request Details">
 
+<!ENTITY  zebra_scheme "Jailbird Stripes Scheme">
 <!ENTITY  auto_clear_finished "Auto Clear Finished">
 <!ENTITY  suppress_popup "Suppress Popup">
 <!ENTITY  clear_all_finished "Clear All Finished">

@@ -1,480 +1,12 @@
 <html>
 
 <head>
-<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
-<title>ImageHost Grabber Help File</title>
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-h1
-	{mso-style-link:"Heading 1 Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	background:#4F81BD;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:white;
-	text-transform:uppercase;
-	letter-spacing:.75pt;}
-h2
-	{mso-style-link:"Heading 2 Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	background:#DBE5F1;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	font-weight:normal;}
-h3
-	{mso-style-link:"Heading 3 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:1.0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	font-weight:normal;}
-h4
-	{mso-style-link:"Heading 4 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:normal;}
-h5
-	{mso-style-link:"Heading 5 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:normal;}
-h6
-	{mso-style-link:"Heading 6 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:normal;}
-p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
-	{mso-style-link:"Heading 7 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
-	{mso-style-link:"Heading 8 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:9.0pt;
-	font-family:"Calibri","sans-serif";
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
-	{mso-style-link:"Heading 9 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:9.0pt;
-	font-family:"Calibri","sans-serif";
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-style:italic;}
-p.MsoToc1, li.MsoToc1, div.MsoToc1
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:5.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoToc2, li.MsoToc2, div.MsoToc2
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:5.0pt;
-	margin-left:10.0pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoToc3, li.MsoToc3, div.MsoToc3
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:5.0pt;
-	margin-left:20.0pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoHeader, li.MsoHeader, div.MsoHeader
-	{mso-style-link:"Header Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoFooter, li.MsoFooter, div.MsoFooter
-	{mso-style-link:"Footer Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoCaption, li.MsoCaption, div.MsoCaption
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:8.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	font-weight:bold;}
-p.MsoTitle, li.MsoTitle, div.MsoTitle
-	{mso-style-link:"Title Char";
-	margin-top:.5in;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:26.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#4F81BD;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
-	{mso-style-link:"Subtitle Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:50.0pt;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#595959;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-a:link, span.MsoHyperlink
-	{color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{color:purple;
-	text-decoration:underline;}
-em
-	{color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.25pt;
-	font-style:normal;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-link:"Balloon Text Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
-	{mso-style-link:"No Spacing Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoQuote, li.MsoQuote, div.MsoQuote
-	{mso-style-link:"Quote Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";
-	font-style:italic;}
-p.MsoIntenseQuote, li.MsoIntenseQuote, div.MsoIntenseQuote
-	{mso-style-link:"Intense Quote Char";
-	margin-top:10.0pt;
-	margin-right:.8in;
-	margin-bottom:0in;
-	margin-left:.9in;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#4F81BD;
-	font-style:italic;}
-span.MsoSubtleEmphasis
-	{color:#243F60;
-	font-style:italic;}
-span.MsoIntenseEmphasis
-	{color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:bold;}
-span.MsoSubtleReference
-	{color:#4F81BD;
-	font-weight:bold;}
-span.MsoIntenseReference
-	{color:#4F81BD;
-	text-transform:uppercase;
-	font-weight:bold;
-	font-style:italic;}
-span.MsoBookTitle
-	{letter-spacing:.45pt;
-	font-weight:bold;
-	font-style:italic;}
-p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	background:#4F81BD;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:white;
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	font-weight:bold;}
-span.TitleChar
-	{mso-style-name:"Title Char";
-	mso-style-link:Title;
-	color:#4F81BD;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading1Char
-	{mso-style-name:"Heading 1 Char";
-	mso-style-link:"Heading 1";
-	color:white;
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	background:#4F81BD;
-	font-weight:bold;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-span.Heading2Char
-	{mso-style-name:"Heading 2 Char";
-	mso-style-link:"Heading 2";
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	background:#DBE5F1;}
-span.Heading3Char
-	{mso-style-name:"Heading 3 Char";
-	mso-style-link:"Heading 3";
-	color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.75pt;}
-span.HeaderChar
-	{mso-style-name:"Header Char";
-	mso-style-link:Header;}
-span.FooterChar
-	{mso-style-name:"Footer Char";
-	mso-style-link:Footer;}
-span.Heading4Char
-	{mso-style-name:"Heading 4 Char";
-	mso-style-link:"Heading 4";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading5Char
-	{mso-style-name:"Heading 5 Char";
-	mso-style-link:"Heading 5";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading6Char
-	{mso-style-name:"Heading 6 Char";
-	mso-style-link:"Heading 6";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading7Char
-	{mso-style-name:"Heading 7 Char";
-	mso-style-link:"Heading 7";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading8Char
-	{mso-style-name:"Heading 8 Char";
-	mso-style-link:"Heading 8";
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading9Char
-	{mso-style-name:"Heading 9 Char";
-	mso-style-link:"Heading 9";
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-style:italic;}
-span.SubtitleChar
-	{mso-style-name:"Subtitle Char";
-	mso-style-link:Subtitle;
-	color:#595959;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.QuoteChar
-	{mso-style-name:"Quote Char";
-	mso-style-link:Quote;
-	font-style:italic;}
-span.IntenseQuoteChar
-	{mso-style-name:"Intense Quote Char";
-	mso-style-link:"Intense Quote";
-	color:#4F81BD;
-	font-style:italic;}
-span.NoSpacingChar
-	{mso-style-name:"No Spacing Char";
-	mso-style-link:"No Spacing";}
-.MsoPapDefault
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;}
- /* Page Definitions */
- @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-@page WordSection2
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection2
-	{page:WordSection2;}
- /* List Definitions */
- ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
--->
-</style>
-
+	<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../skin/help.css"/>
+	<title>ImageHost Grabber Help File</title>
 </head>
 
-<body lang=EN-US link=blue vlink=purple>
+<body lang=en-US link=blue vlink=purple>
 
 <div class=WordSection1>
 
@@ -484,327 +16,168 @@ ul
 
 </div>
 
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271680977">About<span
-style='color:windowtext;display:none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>1</span></a></span></p>
-
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271680978">Supported
-Image Hosts<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>1</span></a></span></p>
-
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271680979">Main
-Features<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680980">Get all pics
-on page<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680981">Suck the
-current thread<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680982">Host File
-Editor<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680983">Restore
-cached session<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680984">Toolbar
-Button<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>3</span></a></span></p>
-
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271680985">Options<span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680986">File Saving
-Options<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680987">Prefix
-filenames to reflect page order<span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680988">What to do
-if file exists in target location<span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680989">Autorename
-imagevenue and fapomatic files<span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680990">Create a
-sub-directory with document title inside the target directory<span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680991">Prefix
-directories to uniquely and chronologically identify them<span
-style='color:windowtext;display:none;text-decoration:none'>.. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680992">Create
-separate directories for each page when using thread sucker<span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680993">General<span
-style='color:windowtext;display:none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680994">Show the
-Download Directory box<span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680995">Show the
-Image Grabber menu in the tools menu<span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680996">Remove
-duplicate links, even across multiple pages<span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680997">Close
-download window when all downloads are finished<span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271680998">Embedded
-Images<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271680999">Download
-embedded images<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681000">Host File<span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681001">Enable
-automatic update<span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681002">Host Options<span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681003">Max.
-simultaneous connections<span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681004">Max. number
-of retries for each link<span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681005">Request
-timeout before retry (in seconds)<span style='color:windowtext;display:none;
-text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681006">Debugging<span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681007">Enable
-Console Logging<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681008">Enable
-Debugging Log<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681009">Clear Debug
-Log<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>8</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681010">Copy Debug
-Log to Local Folder<span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>8</span></a></span></p>
-
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271681011">Download
-Progress Window<span style='color:windowtext;display:none;text-decoration:none'>.. </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681012">General
-Features<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681013">Auto Clear
-Finished<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681014">Suppress
-Popup<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681015">Clear All
-Finished<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681016">Stop All
-Sessions<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681017">Revive All
-Stopped Sessions<span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681018">Save session
-to cache<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681019">Actions on
-selected items<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681020">Open file<span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681021">Open
-containing folder<span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681022">Remove from
-list<span style='color:windowtext;display:none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681023">Abort
-download/request<span style='color:windowtext;display:none;text-decoration:
-none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681024">Retry
-download/request<span style='color:windowtext;display:none;text-decoration:
-none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681025">Restart
-Download<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681026">Reset the
-retry count to zero<span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc271681027">View Request
-Details<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681028">Export list
-to HTML<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681029">Max.
-requests and Max. retries<span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></span></p>
-
-<p class=MsoToc1><span class=MsoHyperlink><a href="#_Toc271681030">Host File
-Editor<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681031">Host Label<span
-style='color:windowtext;display:none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681032">URL Pattern<span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681033">Search
-Pattern<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681034">Update File<span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681035">Add Host<span
-style='color:windowtext;display:none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681036">Delete Host<span
-style='color:windowtext;display:none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681037">Modify hostf
-servers<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681038">Pick Host
-File<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681039">Reset to
-Default Host File<span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681040">Merge Host
-File<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></span></p>
-
-<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc271681041">Update from
-online Host file<span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></span></p>
+<p class=MsoToc1><a href="#_Toc271680977">About</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680978">Supported Image Hosts</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680979">Main Features</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680980">Get all pics on page</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680981">Suck the current thread</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680982">Host File Editor</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680983">Restore cached session</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680984">Toolbar Button</a></p>
+
+<p class=MsoToc1><a href="#_Toc271680985">Options</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680986">File Saving Options</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680987">Prefix filenames to reflect page order</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680988">What to do if file exists in target location</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680989">Autorename imagevenue and fapomatic files</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680990">Create a sub-directory with document title inside the target directory</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680991">Prefix directories to uniquely and chronologically identify them</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680992">Create separate directories for each page when using thread sucker</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680993">General</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680994">Show the Download Directory box</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680995">Show the Image Grabber menu in the tools menu</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680996">Remove duplicate links, even across multiple pages</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680997">Close download window when all downloads are finished</a></p>
+
+<p class=MsoToc2><a href="#_Toc271680998">Embedded Images</a></p>
+
+<p class=MsoToc3><a href="#_Toc271680999">Download embedded images</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681000">Host File</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681001">Enable automatic update</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681002">Host Options</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681003">Max. simultaneous connections</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681004">Max. number of retries for each link</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681005">Request timeout before retry (in seconds)</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681006">Debugging</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681007">Enable Console Logging</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681008">Enable Debugging Log</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681009">Clear Debug Log</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681010">Copy Debug Log to Local Folder</a></p>
+
+<p class=MsoToc1><a href="#_Toc271681011">Download Progress Window</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681012">General Features</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681013">Auto Clear Finished</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681014">Suppress Popup</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681015">Clear All Finished</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681016">Stop All Sessions</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681017">Revive All Stopped Sessions</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681018">Save session to cache</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681019">Actions on selected items</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681020">Open file</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681021">Open containing folder</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681022">Remove from list</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681023">Abort download/request</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681024">Retry download/request</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681025">Restart Download</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681026">Reset the retry count to zero</a></p>
+
+<p class=MsoToc3><a href="#_Toc271681027">View Request Details</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681028">Export list to HTML</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681029">Max. requests and Max. retries</a></p>
+
+<p class=MsoToc1><a href="#_Toc271681030">Host File Editor</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681031">Host Label</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681032">URL Pattern</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681033">Search Pattern</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681034">Save Changes</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681035">Add Host</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681036">Delete Host</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681037">Modify hostf servers</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681038">Pick Host File</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681039">Reset to Default Host File</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681040">Merge Host File</a></p>
+
+<p class=MsoToc2><a href="#_Toc271681041">Update from online Host file</a></p>
 
 <p class=MsoNormal>&nbsp;</p>
 
 </div>
 
-<span style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
+<br clear=all style='page-break-before:always'>
 
 <div class=WordSection2>
 
 <p class=MsoTitle>ImageHost Grabber</p>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<a name="_Toc271680977"><h1>About</h1></a>
 
-<h1><a name="_Toc271680977">About</a></h1>
-
-</div>
-
-<p class=MsoNormal>Many forums and blogs don't have the capacity to store
+<p class=MsoNormal>Many forums and blogs donâ€™t have the capacity to store
 images on their own servers. Instead, posters are required to use a third-party
 host to share images. Many free image hosts exist, such as imagevenue,
 imagebam, and imageshack to serve the purposes of sharing images. However,
-these image hosts do not give direct links to stored images. Instead, what's
+these image hosts do not give direct links to stored images. Instead, whatâ€™s
 given are links to html pages that encapsulate the images. If you want to save
 an entire gallery of images that are hosted on these image hosts, simple tools
-like &quot;wget&quot; and &quot;downthemall&quot; will not suffice (at least
+like Â«wgetÂ» and Â«downthemallÂ» will not suffice (at least
 not without some serious scripting).</p>
 
 <p class=MsoNormal>ImageHost Grabber (IHG) is a powerful utility that makes the
 task of downloading these galleries a simple task. You can think of it as IHG
-doing all the work of &quot;open new link, right-click, save-as&quot;. But the
-functionality of IHG doesn't stop there.</p>
+doing all the work of Â«open new link, right-click, save-asÂ». But the
+functionality of IHG doesnâ€™t stop there.</p>
 
 <p class=MsoNormal>IHG can automatically create the directories for you, and
 even prefix file names and directories so that images you download can be
 sorted chronologically and be sorted by the original page order. Years of
 research of download failure recovery has been implemented into IHG to ensure
-all available images are downloaded properly. If that wasn't enough, IHG can
+all available images are downloaded properly. If that wasnâ€™t enough, IHG can
 even save a session to try again later. IHG also includes a special feature for
 forums that will allow you to download an entire thread of images. And last,
 but not least, IHG uses multiple downloads to increase the download rate of the
@@ -812,419 +185,263 @@ galleries.</p>
 
 <p class=MsoNormal>IHG includes a host file editor so that you can implement a
 new image host that is not already included. Details on doing this can be found
-in the &quot;Host File Manual&quot; located on the IHG website.</p>
+in the Â«Host File ManualÂ» located on the IHG website.</p>
 
 <p class=MsoNormal>Please take note that this program will not download any
 attachments, images, or links to images. It only downloads images hosted on the
 free image hosts.</p>
 
 <p class=MsoNormal>For the remainder of this help document, the word
-&quot;images&quot; will refer to the images hosted on the hosts.</p>
+Â«imagesÂ» will refer to the images hosted on the hosts.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<a name="_Toc271680978"><h1>Supported Image Hosts</h1></a>
 
-<h1><a name="_Toc271680978">Supported Image Hosts</a></h1>
+<p class=MsoNormal>A list of supported image hosts can be found at the main website:&nbsp;
+<a href="http://hot-honeys.com/" target="_blank">http://hot-honeys.com/</a></p>
 
-</div>
-
-<p class=MsoNormal>A list of supported image hosts can be found at the main
-website:&nbsp; http://imagehost-grabber.com/</p>
-
-<span style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
+<br clear=all style='page-break-before:always'>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<a name="_Toc271680979"><h1>Main Features</h1></a>
 
-<h1><a name="_Toc271680979">Main Features</a></h1>
+<div class=indent>
 
-</div>
+<a name="_Toc271680980"><h2>Get all pics on page</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680980">Get all pics on page</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This feature downloads all the
+<p class=MsoNormal>This feature downloads all the
 images from the current page being displayed.</p>
-
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
 
 <h5>How it works:</h5>
 
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>Go to the page that you want to
-download the images from. Click the &quot;Get all pics on page&quot;, and pick
+<p class=MsoNormal>Go to the page that you want to
+download the images from. Click the Â«Get all pics on pageÂ», and pick
 the download directory.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271680981"><h2>Suck the current thread</h2></a>
 
-<h2><a name="_Toc271680981">Suck the current thread</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This feature downloads images from
-multiple pages in a thread or gallery; this is what I call &quot;sucking&quot;.
+<p class=MsoNormal>This feature downloads images from
+multiple pages in a thread or gallery; this is what I call Â«suckingÂ».
 The forum style or gallery must be supported by IHG. The following forum styles
 and galleries are supported: vBulletin, Studio31, Imagebeaver, Facebook,
 Campusbug, Myspace, UBB Threads, PornBB, Simple Machines Forum, ProBoards,
 Coppermine, e-hentai, Gelbooru, and Twitpic.</p>
 
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
-
 <h5>How it works:</h5>
 
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>Go to any page of the thread that
-you want to &quot;suck&quot;, click the &quot;Suck the current thread&quot;
+<p class=MsoNormal>Go to any page of the thread that
+you want to Â«suckÂ», click the Â«Suck the current threadÂ»
 menu item, enter the first page number you want to start from, the last page
 number to end at, and pick the base download directory.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>For image galleries, go to the
+<p class=MsoNormal>For image galleries, go to the
 album that you want to save pictures from. Then use the thread sucker like you
 would on a forum. Choose a range of pages from the album that you want.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271680982"><h2>Host File Editor</h2></a>
 
-<h2><a name="_Toc271680982">Host File Editor</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This feature allows you to modify
-the host file for IHG.  You can update the host file, pick a new host file, or
+<p class=MsoNormal>This feature allows you to modify
+the host file for IHG. You can update the host file, pick a new host file, or
 modify current entries in the host file.</p>
 
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
-
 <h5>How it works:</h5>
 
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>Please refer to the special
-section, “Host File Editor”, for details on how it works.</p>
-
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680983">Restore cached session</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This feature allows you to resume a
-session that was previously saved in the download progress window.</p>
-
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
-
-<h5>How it works:</h5>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>Please refer to the special
-section, “Download Progress Window”, for details on how this works.</p>
-
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271680984">Toolbar Button</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>You can now put the ImageHost
-Grabber toolbar button on the main toolbar for easy convenient access. It
-currently only does the &quot;Get all pics on page&quot;.</p>
-
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
-
-<h5>How it works:</h5>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>Open the &quot;Customize&quot; item
-under &quot;View-&gt;Toolbars&quot;, find the ImageHost Grabber toolbar button,
-and drag it to the toolbar where you want it to be located. For further help on
-this topic, check out Firefox's help file, or email me.</p>
-
-<span style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
+<p class=MsoNormal>Please refer to the special
+section, Â«Host File EditorÂ», for details on how it works.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<a name="_Toc271680983"><h2>Restore cached session</h2></a>
 
-<h1><a name="_Toc271680985">Options</a></h1>
+<p class=MsoNormal>This feature allows you to resume a
+session that was previously saved in the download progress window.</p>
+
+<h5>How it works:</h5>
+
+<p class=MsoNormal>Please refer to the special
+section, Â«Download Progress WindowÂ», for details on how this works.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680984"><h2>Toolbar Button</h2></a>
+
+<p class=MsoNormal>You can now put the ImageHost
+Grabber toolbar button on the main toolbar for easy convenient access. It
+currently only does the Â«Get all pics on pageÂ».</p>
+
+<h5>How it works:</h5>
+
+<p class=MsoNormal>Open the Â«CustomizeÂ» item
+under Â«Viewâ†’ToolbarsÂ», find the ImageHost Grabber toolbar button,
+and drag it to the toolbar where you want it to be located. For further help on
+this topic, check out Firefoxâ€™s help file, or email me.</p>
 
 </div>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<br clear=all style='page-break-before:always'>
 
-<h2><a name="_Toc271680986">File Saving Options</a></h2>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc271680985"><h1>Options</h1></a>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<div class=indent>
 
-<h3 style='margin-left:0in'><a name="_Toc271680987">Prefix filenames to reflect
-page order</a></h3>
+<a name="_Toc271680986"><h2>File Saving Options</h2></a>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in'> This option will add a prefix to
+<a name="_Toc271680987"><h3>Prefix filenames to reflect page order</h3></a>
+
+<p class=MsoNormal>This option will add a prefix to
 the filename so that the files can be sorted in the same order as they are
 displayed on the page. The first part of the prefix is an eight character long,
 random alpha-numeric prefix that distinguishes the session. Each session will
 have a different prefix, even when running multiple sessions at a time. Also,
 when in thread sucker mode, each page will get a unique prefix. The second part
-is a number that corresponds to the picture's position on the page. The number
+is a number that corresponds to the pictureâ€™s position on the page. The number
 is padded with leading zeros so that non-logical sort algorithms can sort the
-files properly (i.e. pre-WinXP and UNIX flavored OS's).</p>
+files properly (i.e. pre-WinXP and UNIX flavored OSâ€™s).</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680988"><h3>What to do if file exists in target location</h3></a>
 
-<h3 style='margin-left:0in'> <a name="_Toc271680988">What to do if file exists
-in target location</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'> There are three options: Rename
+<p class=MsoNormal>There are three options: Rename
 File, Skip File, and Overwrite File. When renaming the file(s) automatically,
 the extension adds an incrementing number to the end of the filename.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680989"><h3>Autorename imagevenue and fapomatic files</h3></a>
 
-<h3 style='margin-left:0in'> <a name="_Toc271680989">Autorename imagevenue and
-fapomatic files</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'> This functionality was
-originality part of the &quot;Autorename&quot; feature from previous versions.
+<p class=MsoNormal>This functionality was
+originality part of the Â«AutorenameÂ» feature from previous versions.
 This modifies the filename from the file to remove the leading digits added by
 these two servers. Other servers could be implemented here in future versions.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680990"><h3>Create a sub-directory with document title inside the target directory</h3></a>
 
-<h3 style='margin-left:0in'> <a name="_Toc271680990">Create a sub-directory
-with document title inside the target directory</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'> This option will take the
+<p class=MsoNormal>This option will take the
 document title and use that as the name of the new sub-directory to save the
 media. The document title is what you see at the top of the Firefox window
-(called the &quot;Application Bar&quot; in windows). Most of the time, this
+(called the Â«Application BarÂ» in windows). Most of the time, this
 should be a fairly unique way to identify the threads without the trouble of
 typing it yourself. Sometimes, this can produce lengthy directory names, and
 sometimes it is not unique enough. </p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680991"><h3>Prefix directories to uniquely and chronologically identify them</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc271680991">Prefix directories to
-uniquely and chronologically identify them</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This option will prefix a time
-stamp to the directory when using the previous option.  This allows the
+<p class=MsoNormal>This option will prefix a time
+stamp to the directory when using the previous option. This allows the
 directories to be sorted chronologically without the special effort of sorting
-them yourself.  The simple sorting by name, which is default for most listings,
+them yourself. The simple sorting by name, which is default for most listings,
 will work.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680992"><h3>Create separate directories for each page when using thread sucker</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc271680992">Create separate directories
-for each page when using thread sucker</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>When using the thread sucker, this
-option will create directories for each page of a thread or gallery.  The
-directory names will correspond to the page numbers.  If not enabled, all
+<p class=MsoNormal>When using the thread sucker, this
+option will create directories for each page of a thread or gallery. The
+directory names will correspond to the page numbers. If not enabled, all
 images will be saved in the base directory (or automatically created directory).</p>
 
+</div>
+
 <p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271680993"><h2>General</h2></a>
 
-<h2><a name="_Toc271680993">General</a></h2>
+<div class=indent>
 
-</div>
+<a name="_Toc271680994"><h3>Show the Download Directory box</h3></a>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'> <a name="_Toc271680994">Show the Download
-Directory box</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'> This option allows you to
+<p class=MsoNormal>This option allows you to
 suppress the dialog that asks you where to save the images. If you uncheck this
-option, images will be saved to the last directory that was used. </p>
+option, images will be saved to the last directory that was used.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680995"><h3>Show the Image Grabber menu in the tools menu</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc271680995">Show the Image Grabber menu
-in the tools menu</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This option will allow you to
-choose whether to show the ImageHost Grabber menu in the &quot;Tools&quot;
+<p class=MsoNormal>This option will allow you to
+choose whether to show the ImageHost Grabber menu in the Â«ToolsÂ»
 menu, or on the main menu bar.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271680996"><h3>Remove duplicate links, even across multiple pages</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc271680996">Remove duplicate links,
-even across multiple pages</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This option will allow you to
-remove duplicate links on the page.  These are commonly found when a user
-comments on a gallery and quotes the images, thus producing duplicate links. 
-If you’re using the thread sucker, ImageHost Grabber will look at all the pages
+<p class=MsoNormal>This option will allow you to
+remove duplicate links on the page. These are commonly found when a user
+comments on a gallery and quotes the images, thus producing duplicate links.
+If youâ€™re using the thread sucker, ImageHost Grabber will look at all the pages
 you are downloading for duplicate links.</p>
-
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc271680997">Close download window when
-all downloads are finished</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This option will close the
-download window after all downloads have finished (following a 5 second
-delay).  If there are items that did not finish successfully, the window will
-not close.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271680997"><h3>Close download window when all downloads are finished</h3></a>
 
-<h2><a name="_Toc271680998">Embedded Images</a></h2>
-
-</div>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc271680999">Download embedded images</a></h3>
+<p class=MsoNormal>This option will close the
+download window after all downloads have finished (following a 5 second
+delay). If there are items that did not finish successfully, the window will
+not close.</p>
 
 </div>
 
-<p class=MsoNormal style='margin-left:1.0in'>This option will allow you to
-download images that are “embedded” on the page.  When using “Get all pics on
-page”, ImageHost Grabber will only download the embedded images that whose
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271680998"><h2>Embedded Images</h2></a>
+
+<div class=indent>
+
+<a name="_Toc271680999"><h3>Download embedded images</h3></a>
+
+<p class=MsoNormal>This option will allow you to
+download images that are Â«embeddedÂ» on the page. When using Â«Get all pics on
+pageÂ», ImageHost Grabber will only download the embedded images that whose
 dimensions are greater than or equal to the specified dimensions set forth by
-the “Width” and “Height” control boxes.  When using the thread sucker,
+the Â«WidthÂ» and Â«HeightÂ» control boxes. When using the thread sucker,
 ImageHost Grabber will only download the embedded images whose file sizes are
-greater than or equal to the specified file size in the “File size” control
+greater than or equal to the specified file size in the Â«File sizeÂ» control
 box.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271681000">Host File</a></h2>
-
 </div>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3 style='margin-left:0in'><a name="_Toc271681001">Enable automatic update</a></h3>
+<a name="_Toc271681000"><h2>Host File</h2></a>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in'>This option will connect to the
+<a name="_Toc271681001"><h3>Enable automatic update</h3></a>
+
+<p class=MsoNormal>This option will connect to the
 online host file, to check for new hosts, every time ImageHost Grabber is
-executed.  You can choose to suppress the confirmation dialog, as well as
+executed. You can choose to suppress the confirmation dialog, as well as
 change the merge behavior.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271681002">Host Options</a></h2>
-
 </div>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3 style='margin-left:0in'><a name="_Toc271681003">Max. simultaneous
-connections</a></h3>
+<a name="_Toc271681002"><h2>Host Options</h2></a>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in'> This is the number of connections
+<a name="_Toc271681003"><h3>Max. simultaneous connections</h3></a>
+
+<p class=MsoNormal>This is the number of connections
 to an image host that the extension will make at one time. In the past, there
 was no control over the number of downloads from an image host; there was only control
 over the number of HTTP requests. Now this option restricts both the HTTP
@@ -1237,585 +454,360 @@ Although this extension includes an automatic cancel/retry feature for long
 connection times, this can seriously slow down the entire process if it has to
 retry a lot of connections. It has been my experience that 5 is the golden
 number for most high speed internet connections. The number can also be limited
-by the image host, and the time of day. </p>
-
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'> <a name="_Toc271681004">Max. number of retries for
-each link</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This option lets you specify how
-many times it should retry each link before it gives up and moves on. The
-following conditions will cause a link to be retried:</p>
-
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
-
-<p class=MsoListParagraphCxSpFirst style='margin-left:1.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span>incomplete request (but Firefox thinks it was complete)</p>
-
-<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span>request is taking too long (probably because the server gave up
-but Firefox didn't)</p>
-
-<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span>the request was cancelled by the server or by Firefox (for some
-un-godly reason)</p>
-
-<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span>there was some kind of error in the request</p>
-
-<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span>the server sent you a file, but it's not an image</p>
-
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
-
-<p class=MsoNormal style='margin-left:1.0in'> Also note that there are other
-cases where request is turned over to the retry function, but not because
-anything went wrong, but because an alternate URL was found. These other cases
-won’t affect the retry count. </p>
-
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc271681005">Request timeout before
-retry (in seconds)</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'> This option lets to specify how
-long the extension should try each request before sending the request to the
-retry function.</p>
+by the image host, and the time of day.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271681004"><h3>Max. number of retries for each link</h3></a>
 
-<h2><a name="_Toc271681006">Debugging</a></h2>
+<p class=MsoNormal>This option lets you specify how
+many times it should retry each link before it gives up and moves on. The
+following conditions will cause a link to be retried:</p>
+
+<ul>
+	<li class=MsoListParagraphCxSpFirst>incomplete request (but Firefox thinks it was complete)</li>
+	<li class=MsoListParagraphCxSpMiddle>request is taking too long (probably because the server gave up but Firefox didnâ€™t)</li>
+	<li class=MsoListParagraphCxSpMiddle>the request was cancelled by the server or by Firefox (for some un-godly reason)</li>
+	<li class=MsoListParagraphCxSpMiddle>there was some kind of error in the request</li>
+	<li class=MsoListParagraphCxSpLast>the server sent you a file, but itâ€™s not an image</li>
+</ul>
+
+<p class=MsoNormal>Also note that there are other
+cases where request is turned over to the retry function, but not because
+anything went wrong, but because an alternate URL was found. These other cases
+wonâ€™t affect the retry count.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271681005"><h3>Request timeout before retry (in seconds)</h3></a>
+
+<p class=MsoNormal>This option lets to specify how
+long the extension should try each request before sending the request to the
+retry function.</p>
 
 </div>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3 style='margin-left:0in'><a name="_Toc271681007">Enable Console Logging</a></h3>
+<a name="_Toc271681006"><h2>Debugging</h2></a>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in'> This option turns on the console
-logs. Use this if the extension doesn't work, or a feature of the extension
-doesn't work. This will record the fatal errors reported on the error console
+<a name="_Toc271681007"><h3>Enable Console Logging</h3></a>
+
+<p class=MsoNormal>This option turns on the console
+logs. Use this if the extension doesnâ€™t work, or a feature of the extension
+doesnâ€™t work. This will record the fatal errors reported on the error console
 into a log file that you can then send to the developer. This will decrease
-system performance slightly. This won't help you if the extension is working,
-but isn't doing what you expected it to do (that's called a logical error, and
+system performance slightly. This wonâ€™t help you if the extension is working,
+but isnâ€™t doing what you expected it to do (thatâ€™s called a logical error, and
 is harder to debug). An example where you would want to enable this would be if
-you click on &quot;Get all pics on page&quot; and it does nothing.</p>
+you click on Â«Get all pics on pageÂ» and it does nothing.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'> Note: Firefox has to be restarted
+<p class=MsoNormal>Note: Firefox has to be restarted
 after enabling this option.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271681008"><h3>Enable Debugging Log</h3></a>
 
-<h3 style='margin-left:0in'> <a name="_Toc271681008">Enable Debugging Log</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'> This option turns on the
+<p class=MsoNormal>This option turns on the
 debugging logs. Use this if the extension is working but is doing something
-different than what is expected. For instance, you click &quot;Get all pics on
-page&quot; and it downloads all the files, but the images it downloads aren't
+different than what is expected. For instance, you click Â«Get all pics on
+pageÂ» and it downloads all the files, but the images it downloads arenâ€™t
 the ones you wanted. This is called a logical error. This is much harder to
 debug than a syntax error (as described above). Because it is harder to debug,
 a very verbose output of the program execution is made. As a result, system
 performance will drop very noticeably. You should be careful with using this
 feature. Try to use a page with a small amount of images (i.e. 20 or less). And
-when you're done, copy the log to a local folder and clear the log. The log
+when youâ€™re done, copy the log to a local folder and clear the log. The log
 file can get to several hundred kilobytes in a single run.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'> Note: Firefox has to be restarted
+<p class=MsoNormal>Note: Firefox has to be restarted
 after enabling this option.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271681009"><h3>Clear Debug Log</h3></a>
 
-<h3 style='margin-left:0in'> <a name="_Toc271681009">Clear Debug Log</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'> Use this to clear the debug log.
+<p class=MsoNormal>Use this to clear the debug log.
 This is a good idea after doing a single run through. The log file will get
 fairly large real quick. You will want to wait to do this until after you copy
 the log file to a local folder.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271681010"><h3>Copy Debug Log to Local Folder</h3></a>
 
-<h3 style='margin-left:0in'> <a name="_Toc271681010">Copy Debug Log to Local
-Folder</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'> Use this to copy the log file to
+<p class=MsoNormal>Use this to copy the log file to
 a folder located somewhere on your hard drive/desktop/storage device. You do
-not have a choice in the name of the file; it will be &quot;log.txt&quot;. Once
+not have a choice in the name of the file; it will be Â«log.txtÂ». Once
 it is copied, you can read it, or stick it in your bum or the better choice,
 email it to the developer.</p>
 
-<span style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
-
-<p class=MsoNormal>&nbsp;</p>
-
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
-
-<h1><a name="_Toc271681011">Download Progress Window</a></h1>
+</div>
 
 </div>
 
+<br clear=all style='page-break-before:always'>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271681011"><h1>Download Progress Window</h1></a>
+
 <p class=MsoNormal>The download progress window contains features that are not
-available anywhere else in ImageHost Grabber.  In general, you can add multiple
+available anywhere else in ImageHost Grabber. In general, you can add multiple
 sessions, you can preview a file after it has finished downloading, you can
 restart and retry downloads, and so on.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<div class=indent>
 
-<h2><a name="_Toc271681012">General Features</a></h2>
+<a name="_Toc271681012"><h2>General Features</h2></a>
 
-</div>
-
-<p class=MsoListParagraphCxSpFirst style='margin-left:83.25pt;text-indent:-.25in'><span
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span>You can open the file after it has finished downloading by double
-clicking on the entry item</p>
-
-<p class=MsoListParagraphCxSpMiddle style='margin-left:83.25pt;text-indent:
--.25in'><span style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span>You can select multiple items in sequence by clicking on the
-first item in the sequence, hold the shift key, and click the last item in the
-sequence</p>
-
-<p class=MsoListParagraphCxSpMiddle style='margin-left:83.25pt;text-indent:
--.25in'><span style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span>You can select multiple items (not in sequence) by clicking on
-the first item, then while holding on the control key, click on each subsequent
-item to be selected</p>
-
-<p class=MsoListParagraphCxSpLast style='margin-left:83.25pt;text-indent:-.25in'><span
-style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span>You can perform actions on an item (or selection of items) by
-right clicking on that item (or any item in the selection)</p>
+<ul>
+	<li class=MsoListParagraphCxSpFirst>You can open the file after it has finished downloading by double clicking on the entry item</li>
+	<li class=MsoListParagraphCxSpMiddle>You can select multiple items in sequence by clicking on the first item in the sequence, hold the shift key, and click the last item in the sequence</li>
+	<li class=MsoListParagraphCxSpMiddle>You can select multiple items (not in sequence) by clicking on the first item, then while holding on the control key, click on each subsequent item to be selected</li>
+	<li class=MsoListParagraphCxSpLast>You can perform actions on an item (or selection of items) by right clicking on that item (or any item in the selection)</li>
+</ul>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271681013"><h2>Auto Clear Finished</h2></a>
 
-<h2><a name="_Toc271681013">Auto Clear Finished</a></h2>
+<p class=MsoNormal>Automatically clears downloads from the window as they are finished downloading.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'>Automatically clears downloads from
-the window as they are finished downloading.</p>
+<a name="_Toc271681014"><h2>Suppress Popup</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271681014">Suppress Popup</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This option suppresses the popup
+<p class=MsoNormal>This option suppresses the popup
 behavior of the download progress window when adding more downloads to the
-window.  The window must already be open for this to work.</p>
+window. The window must already be open for this to work.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271681015"><h2>Clear All Finished</h2></a>
 
-<h2><a name="_Toc271681015">Clear All Finished</a></h2>
+<p class=MsoNormal>Allows you to clear all the
+finished downloads from the window.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'>Allows you to clear all the
-finished downloads from the window.<br>
-<br>
-</p>
+<a name="_Toc271681016"><h2>Stop All Sessions</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271681016">Stop All Sessions</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This feature will allow you to stop
+<p class=MsoNormal>This feature will allow you to stop
 all downloads in progress. It causes each download to abort, regardless of
 which session.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271681017"><h2>Revive All Stopped Sessions</h2></a>
 
-<h2><a name="_Toc271681017">Revive All Stopped Sessions</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This feature will allow you to
+<p class=MsoNormal>This feature will allow you to
 re-start the previously stopped sessions. Each session will start with the
 previously stopped downloads, retrying them, and then continue with the rest of
 the session.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271681018"><h2>Save session to cache</h2></a>
 
-<h2><a name="_Toc271681018">Save session to cache</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This allows you to save all the
-items in the window to cache, which can be recalled later using the “Restore cached
-session” feature in the main ImageHost Grabber menu.  This is helpful if you’re
-having connection problems or whatever and you don’t want to lose all the time
+<p class=MsoNormal>This allows you to save all the
+items in the window to cache, which can be recalled later using the Â«Restore cached
+sessionÂ» feature in the main ImageHost Grabber menu. This is helpful if youâ€™re
+having connection problems or whatever and you donâ€™t want to lose all the time
 you put into building the download list.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271681019"><h2>Actions on selected items</h2></a>
 
-<h2><a name="_Toc271681019">Actions on selected items</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>All of the actions on selected
+<p class=MsoNormal>All of the actions on selected
 items are performed by right-clicking on the item(s) and selecting the action
 to be performed.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<div class=indent>
 
-<h3 style='margin-left:0in'><a name="_Toc271681020">Open file</a></h3>
+<a name="_Toc271681020"><h3>Open file</h3></a>
 
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This action will open only the
-item which has focus.  For instance, if you right click on the third item in a
-selection list, only the third item will be opened.  The “Open file” action
+<p class=MsoNormal>This action will open only the
+item which has focus. For instance, if you right click on the third item in a
+selection list, only the third item will be opened. The Â«Open fileÂ» action
 passes control over to the operating system to open the file in the default
 program that handles the file type.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271681021"><h3>Open containing folder</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc271681021">Open containing folder</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This action will open the
+<p class=MsoNormal>This action will open the
 containing folder for the item that has focus.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271681022"><h3>Remove from list</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc271681022">Remove from list</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This allows you to remove one or
+<p class=MsoNormal>This allows you to remove one or
 more item(s) from the list.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271681023"><h3>Abort download/request</h3></a>
 
-<h3 style='margin-left:0in'> <a name="_Toc271681023">Abort download/request</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This feature allows you to cancel one
+<p class=MsoNormal>This feature allows you to cancel one
 or more requests for whatever reason. This might be an option you would
 consider if it is taking too long and you want to retry it at a later time.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271681024"><h3>Retry download/request</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc271681024">Retry download/request</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This feature will allow you to
+<p class=MsoNormal>This feature will allow you to
 retry one or more downloads that have been aborted, completed successfully, or
-that is in progress.  It will retry from the current progress of the download(s).</p>
+that is in progress. It will retry from the current progress of the download(s).</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271681025"><h3>Restart Download</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc271681025">Restart Download</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This feature restarts the
-download(s) completely, regardless of the progress.  It starts with a fresh
+<p class=MsoNormal>This feature restarts the
+download(s) completely, regardless of the progress. It starts with a fresh
 download, not resuming from any previous progress.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271681026"><h3>Reset the retry count to zero</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc271681026">Reset the retry count to
-zero</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This feature allows you to reset
-the retry count of the selected item(s).  It is useful if there were connection
+<p class=MsoNormal>This feature allows you to reset
+the retry count of the selected item(s). It is useful if there were connection
 problems that inflated the retry count and you want to try again.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc271681027"><h3>View Request Details</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc271681027">View Request Details</a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in'>This feature will allow you to
-view the details of the request, such as where the file is being saved, the thumbnail's
+<p class=MsoNormal>This feature will allow you to
+view the details of the request, such as where the file is being saved, the thumbnailâ€™s
 URL, and the HTML associated with the thumbnail page.</p>
 
-<p class=MsoNormal style='margin-left:1.0in'>&nbsp;</p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271681028">Export list to HTML</a></h2>
-
 </div>
-
-<p class=MsoNormal style='margin-left:.5in'>This button allows you to save the
-download list as an html file.  The html file can then be opened in the main
-browser window and re-processed by running “Get all pics on page”.</p>
-
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271681029">Max. requests and Max. retries</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>These two controls allow you to
-instantaneously control the maximum number of requests and retries for the
-download process.  The changes take effect immediately.</p>
-
-<span style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<a name="_Toc271681028"><h2>Export list to HTML</h2></a>
 
-<h1><a name="_Toc271681030">Host File Editor</a></h1>
+<p class=MsoNormal>This button allows you to save the
+download list as an html file. The html file can then be opened in the main
+browser window and re-processed by running Â«Get all pics on pageÂ».</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271681029"><h2>Max. requests and Max. retries</h2></a>
+
+<p class=MsoNormal>These two controls allow you to
+instantaneously control the maximum number of requests and retries for the
+download process. The changes take effect immediately.</p>
 
 </div>
+
+<br clear=all style='page-break-before:always'>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc271681030"><h1>Host File Editor</h1></a>
 
 <p class=MsoNormal>This section will only cover the basics of the interface for
-basic operations.  You can find an in depth tutorial on adding your own hosts
-on the main web site, or downloading the following file:  http://imagehost-grabber.com/HostFileEditor.pdf</p>
+basic operations. You can find an in depth tutorial on adding your own hosts
+on the main web site, or downloading the following file:&nbsp;
+<a href="http://hot-honeys.com/HostFileEditor.pdf" target="_blank">
+http://hot-honeys.com/HostFileEditor.pdf</a></p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<div class=indent>
 
-<h2><a name="_Toc271681031">Host Label</a></h2>
+<a name="_Toc271681031"><h2>Host Label</h2></a>
 
-</div>
+<p class=MsoNormal>This is the unique identifying label for an entry in the host file.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>This is the unique identifying label
-for an entry in the host file.</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<a name="_Toc271681032"><h2>URL Pattern</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>This is the regular expression that corresponds to the image hosts URL pattern.</p>
 
-<h2><a name="_Toc271681032">URL Pattern</a></h2>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc271681033"><h2>Search Pattern</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in'>This is the regular expression that
-corresponds to the image hosts URL pattern.</p>
-
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271681033">Search Pattern</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This is the part that finds the
-image on the resulting page.  Please refer to the “Host File Editor” on the
+<p class=MsoNormal>This is the part that finds the
+image on the resulting page. Please refer to the Â«Host File EditorÂ» on the
 main page for in depth discussion about the search pattern.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271681034"><h2>Save Changes</h2></a>
 
-<h2><a name="_Toc271681034">Update File</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This updates the host file with any
+<p class=MsoNormal>This updates the host file with any
 changes you may have made to an existing entry.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271681035"><h2>Add Host</h2></a>
 
-<h2><a name="_Toc271681035">Add Host</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This adds a new entry to the host
+<p class=MsoNormal>This adds a new entry to the host
 file given information entered into the first three fields.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271681036"><h2>Delete Host</h2></a>
 
-<h2><a name="_Toc271681036">Delete Host</a></h2>
+<p class=MsoNormal>This deletes the entry from the host file.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'>This deletes the entry from the
-host file.</p>
+<a name="_Toc271681037"><h2>Modify hostf servers</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271681037">Modify hostf servers</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This is where you can add other
-sources of online host file updates.  Simply enter the URL of the new host file
+<p class=MsoNormal>This is where you can add other
+sources of online host file updates. Simply enter the URL of the new host file
 location.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc271681038"><h2>Pick Host File</h2></a>
 
-<h2><a name="_Toc271681038">Pick Host File</a></h2>
+<p class=MsoNormal>This allows you to pick a host file
+other than the one residing in ImageHost Grabberâ€™s extension folder.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'>This allows you to pick a host file
-other than the one residing in ImageHost Grabber’s extension folder.</p>
+<a name="_Toc271681039"><h2>Reset to Default Host File</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<p class=MsoNormal>This uses the host file that
+resides in ImageHost Grabberâ€™s extension folder.</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h2><a name="_Toc271681039">Reset to Default Host File</a></h2>
+<a name="_Toc271681040"><h2>Merge Host File</h2></a>
 
-</div>
+<p class=MsoNormal>This will allow you to merge the
+entries in a host file (other than the one youâ€™re using) with the host file
+that youâ€™re currently using.</p>
 
-<p class=MsoNormal style='margin-left:.5in'>This uses the host file that
-resides in ImageHost Grabber’s extension folder.</p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
+<a name="_Toc271681041"><h2>Update from online Host file</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271681040">Merge Host File</a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'>This will allow you to merge the
-entries in a host file (other than the one you’re using) with the host file
-that you’re currently using.</p>
-
-<p class=MsoNormal style='margin-left:.5in'>&nbsp;</p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc271681041">Update from online Host file</a></h2>
+<p class=MsoNormal>This allows you to receive the most
+up-to-date entries from the online host files. The online host file locations
+can be modified by hitting the Â«Modify hostf serversÂ» button.</p>
 
 </div>
-
-<p class=MsoNormal style='margin-left:.5in'>This allows you to receive the most
-up-to-date entries from the online host files.  The online host file locations
-can be modified by hitting the “Modify hostf servers” button.</p>
 
 </div>
 

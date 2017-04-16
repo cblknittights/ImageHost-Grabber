@@ -1,29 +1,30 @@
-<!ENTITY  imagehost_grabber_download_progress "Progression du téléchargement ImageHost Grabber">
+<!ENTITY  imagehost_grabber_download_progress "ImageHost Grabber - Progression des téléchargements">
 
 <!ENTITY  open_file "Ouvrir le fichier">
-<!ENTITY  open_folder "Ouvrez le dossier contenant">
+<!ENTITY  open_folder "Ouvrir le dossier contenant le fichier">
 <!ENTITY  remove_from_list "Retirer de la liste">
-<!ENTITY  abort_download_request "Abandonner téléchargement / demande">
-<!ENTITY  retry_download_request "Réessayez de télécharger / demande">
-<!ENTITY  restart_download "Redémarrez téléchargement">
+<!ENTITY  abort_download_request "Abandonner téléchargement/requête">
+<!ENTITY  retry_download_request "Reprendre téléchargement/requête">
+<!ENTITY  restart_download "Redémarrer téléchargement">
 <!ENTITY  reset_the_retry_count_to_zero "Réinitialiser le nombre de tentatives à zéro">
 <!ENTITY  open_url "Ouvrir une URL">
 <!ENTITY  view_request_details "Afficher les détails de la Demande">
 
+<!ENTITY  zebra_scheme "Jailbird Stripes Scheme">
 <!ENTITY  auto_clear_finished "Effacement auto quand c'est fini">
 <!ENTITY  suppress_popup "Supprimer Popup">
-<!ENTITY  clear_all_finished "Effacer tout quand c'est fini">
-<!ENTITY  stop_all_sessions "Arrêtez toutes les sessions">
-<!ENTITY  revive_all_stopped_sessions "Continuer Toutes les sessions arrêté">
+<!ENTITY  clear_all_finished "Effacer les requêtes terminées">
+<!ENTITY  stop_all_sessions "Arrêter toutes les sessions">
+<!ENTITY  revive_all_stopped_sessions "Reprendre toutes les sessions arrêtées">
 <!ENTITY  save_session_to_cache "Enregistrer session en cache">
 
 <!ENTITY  page_status "Statut page">
 <!ENTITY  file_name "Nom de fichier">
-<!ENTITY  progress "Progrès">
+<!ENTITY  progress "Progression">
 <!ENTITY  status "Statut">
 
 <!ENTITY  export_list "Exporter la liste en HTML ...">
-<!ENTITY  max_requests "Max. demandes:">
+<!ENTITY  max_requests "Max. requêtes:">
 <!ENTITY  max_requests.tooltiptext "Maximum de requêtes HTTP simultanées">
 <!ENTITY  max_retries "Max. tentatives:">
 <!ENTITY  max_retries.tooltiptext "Nombre maximal de tentatives pour chaque lien">

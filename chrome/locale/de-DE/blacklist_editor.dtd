@@ -1,0 +1,22 @@
+<!ENTITY  blacklist_editor.title "Blacklist Editor">
+<!ENTITY  blacklist_editor.description "Einträge in der Blacklist:">
+
+<!ENTITY  save "Speichern">
+
+<!ENTITY  type "Typ">
+<!ENTITY  value "Wert">
+
+<!ENTITY  add "Hinzufügen">
+<!ENTITY  modify "Bearbeiten">
+<!ENTITY  remove "Entfernen">
+
+<!ENTITY  blacklist_file_path "Aktuelle Blacklist-Datei:">
+<!ENTITY  change "Ändern">
+
+<!ENTITY  blacklist_editor_new.title "Blacklist Editor">
+<!ENTITY  blacklist_editor_new.description "Neue Muster eingeben:">
+<!ENTITY  blacklist_editor_new.type "Typ:">
+<!ENTITY  blacklist_editor_new.value "Wert:">
+
+<!ENTITY  string "Text">
+<!ENTITY  regexp "Regulärer Ausdruck">

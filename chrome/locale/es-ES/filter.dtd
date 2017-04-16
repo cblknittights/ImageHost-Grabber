@@ -1,6 +1,10 @@
 <!ENTITY  select_the_images_you_want_to_download.title "Seleccione las imágenes que desea descargar">
 <!ENTITY  select_the_images_you_want_to_download.value "Seleccione las imágenes que desea descargar:">
 
+<!ENTITY  target_folder.label "Target Folder">
+<!ENTITY  target_folder.tip "Browse for Target Folder">
+<!ENTITY  selectionCounter.value "__ de __ imágene seleccionada;__ de __ imágenes seleccionadas">
+
 <!ENTITY  check "Marcar">
 <!ENTITY  uncheck "Desmarcar">
 <!ENTITY  toggle "Conmutar">
@@ -15,6 +19,7 @@
 
 <!ENTITY  url "URL">
 <!ENTITY  host_id "Id. del servidor">
+<!ENTITY  show_all "Show All...">
 
 <!ENTITY  no_preview_available "Vista previa no disponible.">
 <!ENTITY  preview "Vista previa:">

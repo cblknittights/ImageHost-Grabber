@@ -1,25 +1,19 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
-
 .ihgmenu {
-	list-style-image: url("chrome://imagegrabber/skin/images/imagegrabber.png");
+	list-style-image: url("chrome://imagegrabber/skin/images/imagegrabber-16x16.png");
 }
-
 #imagehostgrabber-toolbarbutton {
 	list-style-image: url("chrome://imagegrabber/skin/images/imagegrabber-24x24.png");
 }
-
 toolbar[iconsize="small"] #imagehostgrabber-toolbarbutton {
 	list-style-image: url("chrome://imagegrabber/skin/images/imagegrabber-16x16.png"); 
 }
-
 .ihgmenuset {
 	-moz-binding: url("chrome://imagegrabber/content/ihgBindings.xml#ihgMenuItems");
 }
-
 .ihgtooltip {
 	-moz-binding: url("chrome://imagegrabber/content/ihgBindings.xml#ihgToolTip");
 }
-
 ihglabelgroup {
 	-moz-binding: url("chrome://imagegrabber/content/ihgBindings.xml#ihgLabelGroup");
 }

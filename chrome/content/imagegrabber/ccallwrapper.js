@@ -1,6 +1,6 @@
 /*
- * CCallWrapper.js
- * $Revision: 1.3 $ $Date: 2003/07/07 18:32:43 $
+ *	CCallWrapper.js
+ *	$Revision: 1.3 $ $Date: 2003/07/07 18:32:43 $
  */
 
 /* ***** BEGIN LICENSE BLOCK *****
@@ -39,20 +39,20 @@ ihg_Functions.CCallWrapper = function CCallWrapper(aObjectReference, aDelay, aMe
 	}
 
 ihg_Functions.CCallWrapper.prototype.execute = function() {
-	ihg_Functions.LOG("CCallWrapper with mId of " + this.mId + " and reqID of " + this.mReqId + " has timed out.  Executing the passed function\n");
+	ihg_Functions.LOG("CCallWrapper object with mId of " + this.mId + " and reqID of " + this.mReqId + " has timed out. Executing the passed function '" + this.mMethodName + "'\n");
 	this.mObjectReference[this.mMethodName]();
 	delete ihg_Functions.CCallWrapper.mPendingCalls[this.mId];
 	};
 
 ihg_Functions.CCallWrapper.prototype.cancel = function() {
-	ihg_Functions.LOG("CCallWrapper object with mId of " + this.mId + " and reqID of " + this.mReqId + " cancelled.\n");
+	ihg_Functions.LOG("CCallWrapper object with mId of " + this.mId + " and reqID of " + this.mReqId + " cancelled.[" + this.mMethodName + "]\n");
 	clearTimeout(this.mTimerId);
 	delete ihg_Functions.CCallWrapper.mPendingCalls[this.mId];
 	};
 
 ihg_Functions.CCallWrapper.asyncExecute = function (/* CCallWrapper */ callwrapper) {
 	ihg_Functions.LOG("asyncExecute called in CCallWrapper with mId of " + callwrapper.mId + " and reqID of " + callwrapper.mReqId + "\n");
-	ihg_Functions.CCallWrapper.mPendingCalls[callwrapper.mId].mTimerId = setTimeout('ihg_Functions.CCallWrapper.mPendingCalls["' + callwrapper.mId + '"].execute()', callwrapper.mDelay);
+	ihg_Functions.CCallWrapper.mPendingCalls[callwrapper.mId].mTimerId = setTimeout(self => self.execute(), callwrapper.mDelay, ihg_Functions.CCallWrapper.mPendingCalls[callwrapper.mId]);
 	};
 
 ihg_Functions.CCallWrapper.mCounter = 0;

@@ -7,13 +7,16 @@
 <!ENTITY  suck_the_current_thread.label "Aktuellen Thread saugen">
 <!ENTITY  suck_the_current_thread.accesskey "S">
 <!ENTITY  suck_the_current_thread.tooltiptext "This option is available only to recognized thread/gallery URLs.">
-<!ENTITY  suck_the_current_thread.hint "See help file for more information."> 
+<!ENTITY  suck_the_current_thread.hint "Siehe Hilfe für weitere Informationen."> 
 
 <!ENTITY  suck_selected_thread_link.label "Link zum Threadsauger senden">
 <!ENTITY  suck_selected_thread_link.accesskey "L">
 
 <!ENTITY  host_file_editor.label "Hostdateieditor">
 <!ENTITY  host_file_editor.accesskey "E">
+
+<!ENTITY  blacklist_editor.label "Blacklist Editor">
+<!ENTITY  blacklist_editor.accesskey "B">
 
 <!ENTITY  restore_cached_session.label "Gespeicherte Sitzung wiederherstellen">
 <!ENTITY  restore_cached_session.accesskey "G">

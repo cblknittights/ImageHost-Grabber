@@ -7,6 +7,8 @@
 <!ENTITY  host_options "Opciones de descarga">
 <!ENTITY  debugging "Depuración">
 
+<!ENTITY  restart_Firefox "Restart &brandShortName; now!">
+
 <!ENTITY  what_to_do_if_file_exists_in_target_location "¿Qué hacer si el archivo ya existe?">
 <!ENTITY  rename_file "Renombrar el archivo">
 <!ENTITY  skip_file "Ignorar el archivo">
@@ -20,10 +22,11 @@
 
 <!ENTITY  show_the_download_directory_box "Mostrar el selector del directorio de descarga (de estar inhabilitado, se usa el último directorio utilizado)">
 <!ENTITY  show_the_image_grabber_menu_in_the_tools_menu "Mostrar ImageHost Grabber en el menú de herramientas (de estar inhabilitado, se coloca en la barra de menúes)">
-<!ENTITY  alert_restart "Alerta: esto requiere reiniciar &brandShortName;">
 <!ENTITY  remove_duplicate_links "Borrar los enlaces duplicados">
 <!ENTITY  even_across_multiple_pages "incluso procedentes de páginas distintas">
+<!ENTITY  suppress_close_download_confirmation_dialog "Suppress Close download window confirmation dialog">
 <!ENTITY  close_download_window "Cerrar la ventana de descargas cuando éstas hayan finalizado">
+<!ENTITY  without_delay "without delay.">
 <!ENTITY  keep_download_window_contents "Mantener el contenido de la ventana de descargas (incluso después de cerrarla)">
 
 <!ENTITY  download_embedded_images "Descargar imágenes embebidas">
@@ -38,7 +41,7 @@
 
 <!ENTITY  host_file_update "Actualización del archivo de servidores:">
 <!ENTITY  enable_automatic_update "Habilitar actualización automática">
-<!ENTITY  suppress_confirmation_dialog "Suprimir diálogo de confirmación">
+<!ENTITY  suppress_host_file_update_confirmation_dialog "Suprimir diálogo de confirmación">
 <!ENTITY  merge_behavior "Comportamiento al actualizar:">
 <!ENTITY  merge_host_file_ask "Preguntar">
 <!ENTITY  merge_host_file_overwrite "Sobreescribir los servidores actuales y añadir los nuevos">
@@ -55,6 +58,7 @@
 <!ENTITY  disclaimer_line2 "Deberían ser habilitadas sólo temporalmente para registrar un evento específico e inhabilitadas de inmediato.">
 <!ENTITY  disclaimer_line3 "Mantenerlas habilitadas reduce la velocidad de &brandShortName;, consume memoria adicional y disminuye el espacio disponible en disco.">
 <!ENTITY  read_disclaimer "Asegúrese de haber leído y entendido la advertencia.">
+<!ENTITY  alert_restart "Esto requiere reiniciar &brandShortName;">
 <!ENTITY  enable_console_logging "Habilitar el registro de la consola">
 <!ENTITY  enable_debugging_logging "Habilitar el registro de depuración">
 <!ENTITY  clear_log "Borrar el registro">

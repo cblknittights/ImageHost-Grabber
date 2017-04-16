@@ -1,37 +1,42 @@
-<!ENTITY  select_the_images_you_want_to_download.title "Select the images you want to download">
-<!ENTITY  select_the_images_you_want_to_download.value "Select the images you want to download:">
+<!ENTITY  select_the_images_you_want_to_download.title "Auswählen der Bilder zum Herunterladen">
+<!ENTITY  select_the_images_you_want_to_download.value "Auswählen der Bilder zum Herunterladen:">
 
-<!ENTITY  check "Check">
-<!ENTITY  uncheck "Uncheck">
-<!ENTITY  toggle "Toggle">
+<!ENTITY  target_folder.label "Download-Basisordner">
+<!ENTITY  target_folder.tip "Auswählen des Download-Basisordner">
+<!ENTITY  selectionCounter.value "__ von __ Bild ausgewählt;__ von __ Bildern ausgewählt">
 
-<!ENTITY  simple "Simple:">
-<!ENTITY  it_allows_you_to_use_these_wildcards "It allows you to use these wildcards:">
-<!ENTITY  matches_any_number_of_characters "* - matches any number of characters.">
-<!ENTITY  matches_any_single_character "? - matches any single character.">
-<!ENTITY  regular_expression "Regular expression:">
-<!ENTITY  it_allows_you_to_create_a_regular_expression_using_js "It allows you to create a regular expression using JavaScript code.">
-<!ENTITY  note_both_filters_are_case_insensitive "Note: both filters are case insensitive.">
+<!ENTITY  check "Auswählen">
+<!ENTITY  uncheck "Abwählen">
+<!ENTITY  toggle "Wechseln">
+
+<!ENTITY  simple "Kurz:">
+<!ENTITY  it_allows_you_to_use_these_wildcards "Folgende Platzhalter sind erlaubt:">
+<!ENTITY  matches_any_number_of_characters "* - beliebiges Zeichen, beliebig oft.">
+<!ENTITY  matches_any_single_character "? - beliebiges Zeichen, 1 Mal.">
+<!ENTITY  regular_expression "Reguläre Ausdrücke:">
+<!ENTITY  it_allows_you_to_create_a_regular_expression_using_js "Erlaubt die verwendung Regulärer Ausdrücke.">
+<!ENTITY  note_both_filters_are_case_insensitive "Hinweis: Beide Filter beachten Groß-/Kleinschreibung.">
 
 <!ENTITY  url "URL">
 <!ENTITY  host_id "Host ID">
+<!ENTITY  show_all "Alle anzeigen...">
 
-<!ENTITY  no_preview_available "No preview available.">
+<!ENTITY  no_preview_available "Keine Vorschau verfügbar.">
 <!ENTITY  preview "Vorschau:">
-<!ENTITY  select_all "Select all">
-<!ENTITY  clear_all "Clear all">
-<!ENTITY  invert_selection "Invert selection">
-<!ENTITY  toggle_the_highlighted_items "Toggle the highlighted items">
+<!ENTITY  select_all "Alle auswählen">
+<!ENTITY  clear_all "Alle abwählen">
+<!ENTITY  invert_selection "Auswahl umkehren">
+<!ENTITY  toggle_the_highlighted_items "Ausgewählte Einträge umkehren">
 
-<!ENTITY  filter_value "Filter value:">
-<!ENTITY  apply_filter "Apply filter">
+<!ENTITY  filter_value "Filterkriterium:">
+<!ENTITY  apply_filter "Filter anwenden">
 
-<!ENTITY  filter_type "Filter type:">
-<!ENTITY  type_simple "Simple">
-<!ENTITY  type_regular_expression "Regular expression">
+<!ENTITY  filter_type "Filtertyp:">
+<!ENTITY  type_simple "Einfach">
+<!ENTITY  type_regular_expression "Regulärer Ausdruck">
 
-<!ENTITY  apply_filter_on "Apply filter on:">
+<!ENTITY  apply_filter_on "Filter anwenden auf:">
 
-<!ENTITY  toggle_detailed_thumbnail_view "Toggle detailed/thumbnail view">
-<!ENTITY  new_value_for_row_height "New value for row height:">
-<!ENTITY  change_row_height "Change row height">
+<!ENTITY  toggle_detailed_thumbnail_view "Wechseln Detail-/Vorschauansicht">
+<!ENTITY  new_value_for_row_height "Höhe der Zeilen:">
+<!ENTITY  change_row_height "Zeilenhöhe aktualisieren">

@@ -21,14 +21,13 @@
  *
  ***************************  End of GPL Block *******************************/
 
-
-
+promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
 
 ///////////////////////////////////////////////////////////
 // Functions used to update the host file (hostf.xml)
 
 ihg_Functions.autoUpdate = function autoUpdate() {
-	var myself = String(arguments.callee).match(/(function.*)\(.*\)\s*{/)[1];
+	var myself = arguments.callee.name;
 	ihg_Functions.LOG("Entering " + myself + "\n");
 
 	var hostFileObj = new ihg_Functions.HostFileService();
@@ -56,7 +55,7 @@ ihg_Functions.autoUpdate = function autoUpdate() {
 			
 				if (remoteLastMod > localLastMod) {
 					var conf = ihg_Globals.hostfUpdateConfirm;
-					if (!conf) conf = confirm(ihg_Globals.strings.updated_hostf_found + "\n" + ihg_Globals.strings.update_local_hostf);
+					if (!conf) conf = promptService.confirm(null, null, ihg_Globals.strings.updated_hostf_found + "\n" + ihg_Globals.strings.update_local_hostf);
 				
 					if (conf) {
 						req = new XMLHttpRequest();
@@ -89,37 +88,33 @@ ihg_Functions.autoUpdate = function autoUpdate() {
 	ihg_Functions.LOG("Exiting " + myself + "\n");
 }
 
-
 ihg_Functions.mergeHostFile = function mergeHostFile(onlineXML, hostFileObj) {
 	var mergFile = onlineXML;
 	var mergHosts = mergFile.getElementsByTagName("host");
 
 	var hFile = hostFileObj.getHosts();
 	var hosts = hFile.getElementsByTagName("host");
-	
-	var tmpList = new Array();
-	
-	for (var i=0; i < mergHosts.length; i++)
-		tmpList[i] = mergHosts[i].getAttribute("id");
 
-	tmpList = tmpList.sort();
+	var tmpList = Array.map(mergHosts, function(host) {return host.getAttribute("id")}).sort();
 
 	for (var i = 0; i < tmpList.length; i++) {
 		for (var j = 0; j < mergHosts.length; j++) {
 			if (tmpList[i] == mergHosts[j].getAttribute("id")) {
-				tmpList[i] = mergHosts[j].cloneNode(true);
+				mergFile.firstChild.appendChild(mergHosts[j]);
 				break;
 				}
 			}
 		}
 
-	for (var i = 0; i < tmpList.length; i++)
-		mergFile.firstChild.replaceChild(tmpList[i], mergHosts[i]);
+	// var overWriteMode = false;
+	// if (ihg_Globals.hostfMergeBehavior == "ask") overWriteMode = confirm(ihg_Globals.strings.overwrite_mode);
+	// else if (ihg_Globals.hostfMergeBehavior == "overwrite") overWriteMode = true;
+	switch(ihg_Globals.hostfMergeBehavior) {
+		case "ask":			var overWriteMode = promptService.confirm(null, null, ihg_Globals.strings.overwrite_mode); break;
+		case "overwrite":	var overWriteMode = true; break;
+		case "add":			var overWriteMode = false; break;
+		}
 
-	var overWriteMode = false;
-	if (ihg_Globals.hostfMergeBehavior == "ask") overWriteMode = confirm(ihg_Globals.strings.overwrite_mode);
-	else if (ihg_Globals.hostfMergeBehavior == "overwrite") overWriteMode = true;
-			
 	for (var i=0; i < mergHosts.length; i++) {
 		for (var j=0; j < hosts.length; j++) {
 			if (mergHosts[i].getAttribute("id") == hosts[j].getAttribute("id")) {
@@ -140,31 +135,20 @@ ihg_Functions.mergeHostFile = function mergeHostFile(onlineXML, hostFileObj) {
 	ihg_Functions.sortHosts(hFile, hosts);
 	ihg_Functions.writeHosts(hostFileObj, hFile, hosts);
 	}
-	
-	
+
 ihg_Functions.sortHosts = function sortHosts(hFile, hosts) {
-	var tmpList = new Array();
-
-	for (var i=0; i < hosts.length; i++)
-		tmpList[i] = hosts[i].getAttribute("id");
-
-	tmpList = tmpList.sort();
+	var tmpList = Array.map(hosts, function(host) {return host.getAttribute("id")}).sort();
 
 	for (var i = 0; i < tmpList.length; i++) {
 		for (var j = 0; j < hosts.length; j++) {
 			if (tmpList[i] == hosts[j].getAttribute("id")) {
-				tmpList[i] = hosts[j].cloneNode(true);
+				hFile.firstChild.appendChild(hosts[j]);
 				break;
 				}
 			}
 		}
-
-	for (var i = 0; i < tmpList.length; i++) {
-		hFile.firstChild.replaceChild(tmpList[i], hosts[i]);
-		}
 	}
-	
-	
+
 ihg_Functions.writeHosts = function writeHosts(hostFileObj, hFile, hosts) {
 	var newRoot = hFile.createElement("root");
 	var newHosts = new Array();

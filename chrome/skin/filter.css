@@ -1,17 +1,37 @@
+toolbarbutton#DLDirNew {
+	list-style-image: url(chrome://global/skin/dirListing/folder.png);
+}
+
 treechildren::-moz-tree-row {
 	height: 150px;
 }
 treechildren::-moz-tree-row(odd) {
 	background-color: #F0F0F0;
 }
-treechildren::-moz-tree-row(checked) { 
+treechildren::-moz-tree-row(checked) {
 	background-color: #FFFFAA; 
 }
 treechildren::-moz-tree-row(odd, checked) {
 	background-color: #F0F0A0;
 }
-treechildren::-moz-tree-row(selected) { 
-	background-color: #3399FF; 
+treechildren::-moz-tree-row(selected) {
+	background-color: #3399FF;
+}
+treechildren::-moz-tree-row(odd, selected) {
+	background-color: #3090F0;
+}
+treechildren::-moz-tree-row(current) {
+	border: 1px dotted Highlight;
+}
+treechildren::-moz-tree-row(current, selected) {
+	border: 1px dotted #F3D982;
+}
+treechildren::-moz-tree-cell-text {
+	padding-left: 0.2em;
+}
+treechildren::-moz-tree-cell-text(selected) {
+	font-weight: bold;
+	color: HighlightText;
 }
 treechildren::-moz-tree-checkbox {
 	/* unchecked checkbox treecells. This style MUST come before treechildren::-moz-tree-checkbox(checked) otherwise it won't take effect. */
@@ -25,10 +45,10 @@ treechildren::-moz-tree-checkbox(disabled) {
 	/* disabled checkbox treecells */
 	list-style-image: none;
 }
-treechildren::-moz-tree-cell-text(selected) {
-	font-weight: bold;
-	color: #FFFFFF; 
-} 
 treechildren::-moz-tree-image {
 	height: 150px;
+}
+
+textbox[type="number"][hidespinbuttons="true"] {
+	padding: 0px 2px !important;
 }

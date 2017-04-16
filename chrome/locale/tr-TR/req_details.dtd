@@ -6,6 +6,7 @@
 <!ENTITY  current_link_number "Geçerli Baglanti Sayisi">
 
 <!ENTITY  request_url "Istenen URL">
+<!ENTITY  source_url "Source URL">
 <!ENTITY  regular_expression "Düzenli Ifade">
 <!ENTITY  target_directory "Hedef Dizin">
 

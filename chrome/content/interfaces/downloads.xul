@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://imagegrabber/skin/downloads.css" type="text/css"?>
 <!DOCTYPE window [
 	<!ENTITY % downloadsDTD SYSTEM "chrome://imagegrabber/locale/downloads.dtd">
 	%downloadsDTD;
@@ -7,9 +8,11 @@
 	%optionsLIM;
 ]>
 
-<window title="&imagehost_grabber_download_progress;" id="ig_dl_win"  
+<window title="&imagehost_grabber_download_progress;" id="ig_dl_win"
 	width="640" height="480" persist="sizemode height width screenX screenY"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	onfocus="SetLayout();"
+	onclose="onClose(event);"
 	onunload="onUnLoad();">
 
 <stringbundleset id="stringbundleset">
@@ -29,12 +32,27 @@
 <script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/utils.js" />
 <script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/update.js" />
 <script type="application/x-javascript" src="chrome://imagegrabber/content/host_modules/myspace.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/host_modules/tumblr.js" />
 <script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/debug.js" />
+
 <script>
-	var ihg_prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-	ihg_Globals.debugOut = ihg_prefManager.getBoolPref("extensions.imagegrabber.enabledebug");
-	ihg_Globals.conLogOut = ihg_prefManager.getBoolPref("extensions.imagegrabber.enableconlog");
+	var Initial_pref = parse(ihg_Globals.prefManager.getCharPref("extensions.imagegrabber.enable@startup"));
+	ihg_Globals.debugOut = Initial_pref.enableDebug;
+	ihg_Globals.conLogOut = Initial_pref.enableConLog;
 </script>
+
+<script type="application/x-javascript">
+<![CDATA[
+function SetLayout() {
+	document.getElementById('outBox').setAttribute('zebra', document.getElementById('cbZebra').checked);
+}
+]]>
+</script>
+
+<preferences>
+	<preference id="hostfileloc" name="extensions.imagegrabber.hostfileloc" type="string" instantApply="true"/>
+	<preference id="DLWindowSuppressCloseConfirm" name="extensions.imagegrabber.dlwindowcloseconfirm" type="bool" inverted="true" instantApply="true"/>
+</preferences>
 
 <keyset>
 	<key id="minimize_cmd" keycode="VK_ESCAPE" oncommand="window.minimize();"/>
@@ -49,19 +67,19 @@
 </keyset>
 
 <menupopup id="dl_menu">
-  <menuitem label="&open_file;" onclick="launchFile();" key="launchFile_cmd"/>
-  <menuitem label="&open_folder;" onclick="revealFile();" key="revealFile_cmd"/>
-  <menuseparator />
-  <menuitem label="&remove_from_list;" onclick="remove_child();" key="delete_cmd"/>
-  <menuseparator />
-  <menuitem label="&abort_download_request;" onclick="abort_child();"/>
-  <menuitem label="&retry_download_request;" onclick="retry_child();"/>
-  <menuseparator />
-  <menuitem label="&restart_download;" onclick="restart_child();"/>
-  <menuitem label="&reset_the_retry_count_to_zero;" onclick="reset_retryCount();"/>
-  <menuseparator />
-  <menuitem label="&open_url;" onclick="openReqUrls();" key="openReqUrls_cmd"/>
-  <menuitem label="&view_request_details;" onclick="view_details();" key="viewDetails_cmd"/>
+	<menuitem label="&open_file;" onclick="launchFile();" key="launchFile_cmd"/>
+	<menuitem label="&open_folder;" onclick="revealFile();" key="revealFile_cmd"/>
+	<menuseparator />
+	<menuitem label="&remove_from_list;" onclick="remove_child();" key="delete_cmd"/>
+	<menuseparator />
+	<menuitem label="&abort_download_request;" onclick="abort_child();"/>
+	<menuitem label="&retry_download_request;" onclick="retry_child();"/>
+	<menuseparator />
+	<menuitem label="&restart_download;" onclick="restart_child();"/>
+	<menuitem label="&reset_the_retry_count_to_zero;" onclick="reset_retryCount();"/>
+	<menuseparator />
+	<menuitem label="&open_url;" onclick="openReqUrls();" key="openReqUrls_cmd"/>
+	<menuitem label="&view_request_details;" onclick="view_details();" key="viewDetails_cmd"/>
 </menupopup>
 
 <script type="application/x-javascript" src="chrome://imagegrabber/content/interfaces/downloads.js" />
@@ -69,6 +87,7 @@
 <hbox>
 	<button label="&window_options;" type="menu">
 		<menupopup>
+			<checkbox label="&zebra_scheme;" id="cbZebra" persist="checked" oncommand="SetLayout();"/>
 			<checkbox label="&suppress_popup;" id="cbSupPop" persist="checked"/>
 			<checkbox label="&save_session_on_exit;" id="cbAutoSaveSession" persist="checked" />
 			<checkbox label="&auto_clear_finished;" id="cbAutoClear" persist="checked" oncommand="autoClearForm();"/>
@@ -109,7 +128,7 @@
 <tree id="igTree" flex="1" enableColumnDrag="true">
 
 	<treecols>
-		<treecol id="page_stat" label="&page_status;" flex="1" persist="width ordinal hidden"/>
+		<treecol id="page_stat" label="&page_status;" flex="1" primary="true" ignoreincolumnpicker="true" persist="width ordinal hidden"/>
 		<splitter class="tree-splitter"/>
 		<treecol id="filename" label="&file_name;" flex="3" persist="width ordinal hidden"/>
 		<splitter class="tree-splitter"/>
@@ -118,8 +137,7 @@
 		<treecol id="status" label="&status;" flex="2" persist="width ordinal hidden"/>
 	</treecols>
 
-	<treechildren id="outBox" context="dl_menu" ondblclick="launchFile();">
-	</treechildren>
+	<treechildren id="outBox" context="dl_menu" ondblclick="launchFile();" minheight="100"/>
 
 </tree>
 

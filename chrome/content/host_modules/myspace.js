@@ -21,9 +21,6 @@
  *
  ***************************  End of GPL Block *******************************/
 
-
-
-
 ihg_Functions.escape_everything = function escape_everything(sometext) {
 	var tmp_string = escape(sometext);
 	tmp_string = tmp_string.replace(/\*/g, "%2A");
@@ -35,9 +32,7 @@ ihg_Functions.escape_everything = function escape_everything(sometext) {
 	tmp_string = tmp_string.replace(/\//g, "%2F");
 
 	return tmp_string;
-	}
-
-
+}
 
 ihg_Functions.get_cookies = function get_cookies() {
 	var cookieManager = Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager);
@@ -62,11 +57,7 @@ ihg_Functions.get_cookies = function get_cookies() {
 			}
 		}
 	return CookieString;
-	}
-
-
-
-
+}
 
 ihg_Functions.getMyspacePage = function getMyspacePage(pageURL, newEventTarget, newEventArgument) {
 	if (!newEventTarget) var newEventTarget = 'ctl00$Main$PagerTop';
@@ -103,10 +94,7 @@ ihg_Functions.getMyspacePage = function getMyspacePage(pageURL, newEventTarget, 
 
 		value = ihg_Functions.escape_everything(value);
 		postData += id + "=" + value + (i==inputs.length-1?"":"&");
-		}
-
-
-
+	}
 
 	var ref_uri = ios.newURI(ref_url, null, null);
 	ref_uri = ref_uri.QueryInterface(Components.interfaces.nsIURL);
@@ -160,8 +148,6 @@ ihg_Functions.getMyspacePage = function getMyspacePage(pageURL, newEventTarget, 
 			dump("isPending: " + request.isPending() + "\n");
 			}
 		}
-
-			
 	pump.init(instream, -1, -1, 0, 0, false);
 	pump.asyncRead(dataListener, null);
 	}

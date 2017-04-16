@@ -10,6 +10,7 @@
 <!ENTITY  open_url "Open URL">
 <!ENTITY  view_request_details "Indirme Ayrintilarini Görüntüle">
 
+<!ENTITY  zebra_scheme "Jailbird Stripes Scheme">
 <!ENTITY  auto_clear_finished "Bitenleri Otomatik Temizle">
 <!ENTITY  suppress_popup "Öne Gelmeyi Engelle">
 <!ENTITY  clear_all_finished "Bitenleri Temizle">

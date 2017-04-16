@@ -5,32 +5,47 @@
 
 <dialog id="ig_filter_win" title="&select_the_images_you_want_to_download.title;"
 		width="720" height="540" persist="sizemode height width screenX screenY"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		onload="onLoad();"
 		onunload="onUnLoad();"
-        buttons="accept,cancel"
-        ondialogaccept="return doOK();">
-		
+		buttons="accept,cancel,extra1"
+		ondialogaccept="return doOK();"
+		ondialogextra1="doOK(true); this.close();">
+
 <stringbundleset id="stringbundleset">
-    <stringbundle id="imagegrabber-strings" src="chrome://imagegrabber/locale/imagegrabber.properties" />
+	<stringbundle id="imagegrabber-strings" src="chrome://imagegrabber/locale/imagegrabber.properties" />
 </stringbundleset>
 
+<preferences>
+	<preference id="lastDLDir"		  name="extensions.imagegrabber.lastdldir"		  instantApply="true" type="string"/>
+	<preference id="lastDLDirHistory" name="extensions.imagegrabber.lastdldirhistory" instantApply="true" type="string"/>
+</preferences>
+
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/globals.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/imagegrabber.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/debug.js" />
+<script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/utils.js" />
 <script type="application/x-javascript" src="chrome://imagegrabber/content/interfaces/filter.js" />
 
 <keyset>
 	<key id="setAllTrue_cmd" key="A" modifiers="accel" oncommand="doSetAll('true');"/>
 	<key id="setAllFalse_cmd" key="C" modifiers="accel" oncommand="doSetAll('false');"/>
-	<key id="invertSelection_cmd" key="I" modifiers="accel" oncommand="doInvertSelection();"/>
+	<key id="invertSelection_cmd" key="I" modifiers="accel" oncommand="doSetAll('toggle');"/>
 	<key id="toggle_cmd" key=" " oncommand="applyCmd('toggle');"/>
 	<key id="openReqUrls_cmd" keycode="VK_RETURN" modifiers="accel" oncommand="applyCmd('open');"/>
 </keyset>
 
 <menupopup id="filter_menu">
-  <menuitem label="&check;" onclick="applyCmd('true');"/>
-  <menuitem label="&uncheck;" onclick="applyCmd('false');"/>
-  <menuitem label="&toggle;" onclick="applyCmd('toggle');" key="toggle_cmd"/>
-  <!--<menuseparator />
-  <menuitem label="Open link in new window" onclick="applyCmd('open');" key="openReqUrls_cmd"/>-->
+	<menuitem label="&check;" onclick="applyCmd('true');"/>
+	<menuitem label="&uncheck;" onclick="applyCmd('false');"/>
+	<menuitem label="&toggle;" onclick="applyCmd('toggle');" key="toggle_cmd"/>
+	<!--<menuseparator />
+	<menuitem label="Open link in new window" onclick="applyCmd('open');" key="openReqUrls_cmd"/>-->
+</menupopup>
+
+<menupopup id="host_list" oncommand="MaskHost(event.target);">
+	<menuseparator/>
+	<menuitem label="&show_all;" value="" type="checkbox"/>
 </menupopup>
 
 <tooltip id="typeTip">
@@ -46,81 +61,104 @@
 	<label value="&note_both_filters_are_case_insensitive;"/>
 </tooltip>
 
-<hbox><description value="&select_the_images_you_want_to_download.value;"/><spacer flex="1"/><label id="selectionCounter"/></hbox>
+<hbox align="center">
+	<label value="&target_folder.label;:" control="DLDirList"/>
+	<menulist id="DLDirList" editable="true" flex="999" maxwidth="600"
+			onfocus="this.open='true';"
+			onpopuphiding="this.blur();"
+			onselect="this.setAttribute('tooltiptext', this.value);"/>
+	<toolbarbutton id="DLDirNew" tooltiptext="&target_folder.tip;"
+		oncommand="var CurDLDir = document.getElementById('DLDirList'); CurDLDir.setAttribute('tooltiptext', CurDLDir.label = ihg_Functions.setDownloadDir(ihg_Globals.strings.setDownloadDir, CurDLDir.label) || CurDLDir.label);"/>
+	<spacer flex="1"/>
+	<label id="selectionCounter" _value="&selectionCounter.value;"/>
+</hbox>
 
-<tree id="igLinksTree" flex="1" editable="true" onclick="onTreeClicked(event);">
+<tree id="igLinksTree" flex="1" editable="true">
 
 	<treecols>
 		<treecol id="tobeornottobe" label="" type="checkbox" editable="true" width="20" fixed="true" ignoreincolumnpicker="true" ordinal="1"/>
-		<splitter class="tree-splitter" ordinal="2"/>
+		<splitter class="tree-splitter" disabled="true" ordinal="2"/>
 		<treecol id="url" label="&url;" flex="3" persist="width ordinal hidden" ordinal="3"/>
 		<splitter class="tree-splitter" ordinal="4"/>
-		<treecol id="host" label="&host_id;" flex="1" persist="width ordinal hidden" ordinal="5"/>
+		<treecol id="host" label="&host_id;" context="host_list" flex="1" persist="width ordinal hidden" ordinal="5"/>
 	</treecols>
-  
-	<treechildren id="list" context="filter_menu">
-	</treechildren>
+
+	<treechildren id="list" onclick="onTreeClicked(event);" context="filter_menu" minheight="100"/>
 
 </tree>
 
 <separator height="10"/>
 
-<hbox height="160">
-	<vbox id="previewBox">
-		<deck id="previewLabel" selectedIndex="0">
-			<label value="&no_preview_available;"/>
-			<label value="&preview;"/>
-		</deck>
-		<hbox width="200">
-			<spacer flex="1"/>
-			<image id="thumbnail" src="" width="" height=""/>
-			<spacer flex="1"/>
-		</hbox>
-	</vbox>
+<hbox>
 	<vbox>
-		<hbox>
-			<button label="&select_all;" oncommand="doSetAll('true');setFocus('igLinksTree');"/>
-			<button label="&clear_all;" oncommand="doSetAll('false');setFocus('igLinksTree');"/>
-			<button label="&invert_selection;" oncommand="doInvertSelection();setFocus('igLinksTree');"/>
+		<deck id="previewLoc" height="165" minwidth="200">
+			<vbox id="previewBox">
+				<deck id="previewLabel">
+					<label value="&no_preview_available;"/>
+					<label value="&preview;"/>
+				</deck>
+				<separator height="5"/>
+				<hbox>
+					<spacer flex="1"/>
+					<image id="thumbnail" src="" width="" height=""/>
+					<spacer flex="1"/>
+				</hbox>
+			</vbox>
+			<vbox id="rowHeightBox">
+				<hbox align="center">
+					<label value="&new_value_for_row_height;"/>
+					<spacer flex="1"/>
+					<textbox id="rowHeightVal" type="number" min="18" max="150" size="2" hidespinbuttons="true" persist="saved"/>
+				</hbox>
+				<button label="&change_row_height;" oncommand="chgRowHeight();setFocus('igLinksTree');"/>
+			</vbox>
+		</deck>
+		<separator flex="1"/>
+		<button label="&toggle_detailed_thumbnail_view;" oncommand="document.getElementById('togThumb').click();"/>
+		<checkbox id="togThumb" oncommand="chgPreview();setFocus('igLinksTree');" persist="checked" hidden="true"/>
+	</vbox>
+	<spacer minwidth="25" flex="1"/>
+	<vbox>
+		<vbox>
+			<hbox>
+				<button label="&select_all;" oncommand="doSetAll('true');setFocus('igLinksTree');" flex="1"/>
+				<button label="&clear_all;" oncommand="doSetAll('false');setFocus('igLinksTree');" flex="1"/>
+				<button label="&invert_selection;" oncommand="doSetAll('toggle');setFocus('igLinksTree');" flex="1"/>
+			</hbox>
 			<button label="&toggle_the_highlighted_items;" oncommand="applyCmd('toggle');setFocus('igLinksTree');"/>
-		</hbox>
+		</vbox>
 		<separator height="10"/>
-		<hbox>
-			<vbox>
-				<hbox>
-					<label value="&filter_value;" control="filterValue"/>
-					<textbox id="filterValue"/>
-					<button label="&apply_filter;" oncommand="applyFilter();setFocus('igLinksTree');"/>
-				</hbox>
-				<hbox>
-					<vbox>
-						<label value="&filter_type;" control="filterType" tooltip="typeTip"/>
-						<radiogroup id="filterType" oncommand="setFocus('filterValue');" tooltip="typeTip">
-							<radio label="&type_simple;" value="simple"/>
-							<radio label="&type_regular_expression;" value="regex"/>
-						</radiogroup>
-					</vbox>
-					<vbox>
-						<label value="&apply_filter_on;" control="filterOn"/>
-						<radiogroup id="filterOn" oncommand="setFocus('filterValue');">
-							<radio label="&url;" value="url"/>
-							<radio label="&host_id;" value="host"/>
-						</radiogroup>
-					</vbox>
-				</hbox>
-			</vbox>
-			<separator width="20"/>
-			<vbox>
-				<checkbox id="togThumb" label="&toggle_detailed_thumbnail_view;" oncommand="chgPreview();setFocus('igLinksTree');" persist="checked"/>
-				<vbox id="rowHeightBox">
-					<hbox>
-						<label value="&new_value_for_row_height;"/>
-						<textbox id="rowHeightVal" value="" size="3" persist="saved"/>
-					</hbox>
-					<button label="&change_row_height;" oncommand="chgRowHeight();setFocus('igLinksTree');"/>
+		<vbox>
+			<hbox align="center">
+				<label value="&filter_value;" control="filterValue"/>
+				<textbox id="filterValue"/>
+				<button label="&apply_filter;" oncommand="applyFilter();setFocus('igLinksTree');"/>
+			</hbox>
+			<hbox>
+				<vbox tooltip="typeTip">
+					<label value="&filter_type;" control="filterType"/>
+					<radiogroup id="filterType" oncommand="setFocus('filterValue');">
+						<radio label="&type_simple;" value="simple"/>
+						<radio label="&type_regular_expression;" value="regex"/>
+					</radiogroup>
 				</vbox>
-			</vbox>
+				<vbox>
+					<label value="&apply_filter_on;" control="filterOn"/>
+					<radiogroup id="filterOn" oncommand="setFocus('filterValue');">
+						<radio label="&url;" value="url"/>
+						<radio label="&host_id;" value="host"/>
+					</radiogroup>
+				</vbox>
+			</hbox>
+		</vbox>
+		<separator flex="1"/>
+		<hbox>
+			<spacer flex="1"/>
+			<button dlgtype="accept"/>
+			<button dlgtype="extra1" label="Pause"/>
+			<button dlgtype="cancel"/>
 		</hbox>
 	</vbox>
 </hbox>
+
 </dialog>

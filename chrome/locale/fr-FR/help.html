@@ -1,1992 +1,833 @@
 <html>
 
 <head>
-<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
-<title>Manuel d'aide de ImageHost Grabber</title>
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-h1
-	{mso-style-link:"Heading 1 Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	background:#4F81BD;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:white;
-	text-transform:uppercase;
-	letter-spacing:.75pt;}
-h2
-	{mso-style-link:"Heading 2 Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	background:#DBE5F1;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	font-weight:normal;}
-h3
-	{mso-style-link:"Heading 3 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:1.0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	font-weight:normal;}
-h4
-	{mso-style-link:"Heading 4 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:normal;}
-h5
-	{mso-style-link:"Heading 5 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:normal;}
-h6
-	{mso-style-link:"Heading 6 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:normal;}
-p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
-	{mso-style-link:"Heading 7 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
-	{mso-style-link:"Heading 8 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:9.0pt;
-	font-family:"Calibri","sans-serif";
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
-	{mso-style-link:"Heading 9 Char";
-	margin-top:15.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:9.0pt;
-	font-family:"Calibri","sans-serif";
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-style:italic;}
-p.MsoToc1, li.MsoToc1, div.MsoToc1
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:5.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoToc2, li.MsoToc2, div.MsoToc2
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:5.0pt;
-	margin-left:10.0pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoToc3, li.MsoToc3, div.MsoToc3
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:5.0pt;
-	margin-left:20.0pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoHeader, li.MsoHeader, div.MsoHeader
-	{mso-style-link:"Header Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoFooter, li.MsoFooter, div.MsoFooter
-	{mso-style-link:"Footer Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoCaption, li.MsoCaption, div.MsoCaption
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:8.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#365F91;
-	font-weight:bold;}
-p.MsoTitle, li.MsoTitle, div.MsoTitle
-	{mso-style-link:"Title Char";
-	margin-top:.5in;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:26.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#4F81BD;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
-	{mso-style-link:"Subtitle Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:50.0pt;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#595959;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-a:link, span.MsoHyperlink
-	{color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{color:purple;
-	text-decoration:underline;}
-em
-	{color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.25pt;
-	font-style:normal;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-link:"Balloon Text Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
-	{mso-style-link:"No Spacing Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:.5in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
-p.MsoQuote, li.MsoQuote, div.MsoQuote
-	{mso-style-link:"Quote Char";
-	margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";
-	font-style:italic;}
-p.MsoIntenseQuote, li.MsoIntenseQuote, div.MsoIntenseQuote
-	{mso-style-link:"Intense Quote Char";
-	margin-top:10.0pt;
-	margin-right:.8in;
-	margin-bottom:0in;
-	margin-left:.9in;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	line-height:115%;
-	border:none;
-	padding:0in;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";
-	color:#4F81BD;
-	font-style:italic;}
-span.MsoSubtleEmphasis
-	{color:#243F60;
-	font-style:italic;}
-span.MsoIntenseEmphasis
-	{color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-weight:bold;}
-span.MsoSubtleReference
-	{color:#4F81BD;
-	font-weight:bold;}
-span.MsoIntenseReference
-	{color:#4F81BD;
-	text-transform:uppercase;
-	font-weight:bold;
-	font-style:italic;}
-span.MsoBookTitle
-	{letter-spacing:.45pt;
-	font-weight:bold;
-	font-style:italic;}
-p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:0in;
-	margin-bottom:.0001pt;
-	line-height:115%;
-	background:#4F81BD;
-	border:none;
-	padding:0in;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:white;
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	font-weight:bold;}
-span.TitleChar
-	{mso-style-name:"Title Char";
-	mso-style-link:Title;
-	color:#4F81BD;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading1Char
-	{mso-style-name:"Heading 1 Char";
-	mso-style-link:"Heading 1";
-	color:white;
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	background:#4F81BD;
-	font-weight:bold;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-span.Heading2Char
-	{mso-style-name:"Heading 2 Char";
-	mso-style-link:"Heading 2";
-	text-transform:uppercase;
-	letter-spacing:.75pt;
-	background:#DBE5F1;}
-span.Heading3Char
-	{mso-style-name:"Heading 3 Char";
-	mso-style-link:"Heading 3";
-	color:#243F60;
-	text-transform:uppercase;
-	letter-spacing:.75pt;}
-span.HeaderChar
-	{mso-style-name:"Header Char";
-	mso-style-link:Header;}
-span.FooterChar
-	{mso-style-name:"Footer Char";
-	mso-style-link:Footer;}
-span.Heading4Char
-	{mso-style-name:"Heading 4 Char";
-	mso-style-link:"Heading 4";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading5Char
-	{mso-style-name:"Heading 5 Char";
-	mso-style-link:"Heading 5";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading6Char
-	{mso-style-name:"Heading 6 Char";
-	mso-style-link:"Heading 6";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading7Char
-	{mso-style-name:"Heading 7 Char";
-	mso-style-link:"Heading 7";
-	color:#365F91;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading8Char
-	{mso-style-name:"Heading 8 Char";
-	mso-style-link:"Heading 8";
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.Heading9Char
-	{mso-style-name:"Heading 9 Char";
-	mso-style-link:"Heading 9";
-	text-transform:uppercase;
-	letter-spacing:.5pt;
-	font-style:italic;}
-span.SubtitleChar
-	{mso-style-name:"Subtitle Char";
-	mso-style-link:Subtitle;
-	color:#595959;
-	text-transform:uppercase;
-	letter-spacing:.5pt;}
-span.QuoteChar
-	{mso-style-name:"Quote Char";
-	mso-style-link:Quote;
-	font-style:italic;}
-span.IntenseQuoteChar
-	{mso-style-name:"Intense Quote Char";
-	mso-style-link:"Intense Quote";
-	color:#4F81BD;
-	font-style:italic;}
-span.NoSpacingChar
-	{mso-style-name:"No Spacing Char";
-	mso-style-link:"No Spacing";}
-.MsoPapDefault
-	{margin-top:10.0pt;
-	margin-right:0in;
-	margin-bottom:10.0pt;
-	margin-left:0in;
-	line-height:115%;}
- /* Page Definitions */
- @page Section1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.Section1
-	{page:Section1;}
-@page Section2
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.Section2
-	{page:Section2;}
- /* List Definitions */
- ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
--->
-</style>
-
+	<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../skin/help.css"/>
+	<title>Manuel dâ€™aide de ImageHost Grabber</title>
 </head>
 
-<body lang=EN-US link=blue vlink=purple>
+<body lang=fr-FR link=blue vlink=purple>
 
-<div class=Section1>
+<div class=WordSection1>
 
 <div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
 
-<p class=MsoTocHeading style='background:#4F81BD'>Contents     <a name="_GoBack"></a>          </p>
+<p class=MsoTocHeading>Sommaire</p>
 
 </div>
 
-<p class=MsoToc1><a href="#_Toc301896205"><span lang=FR-BE>A propos</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>1</span></a></p>
-
-<p class=MsoToc1><a href="#_Toc301896206"><span lang=FR-BE>Les hébergeurs
-d’image pris en charge</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>1</span></a></p>
-
-<p class=MsoToc1><a href="#_Toc301896207"><span lang=FR-BE>Caractéristiques
-principales</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896208"><span lang=FR-BE>Obtenir toutes les
-photos sur la page</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896209"><span lang=FR-BE>Aspirer le sujet en
-cours</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896210"><span lang=FR-BE>Éditeur de fichier
-d’hôte</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>2</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896211"><span lang=FR-BE>Restaurer la session
-cache</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>3</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896212"><span lang=FR-BE>Boutons sur la barre
-d’outils</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>3</span></a></p>
-
-<p class=MsoToc1><a href="#_Toc301896213"><span lang=FR-BE>Options</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896214"><span lang=FR-BE>Options pour
-enregistrer le fichier</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896215"><span lang=FR-BE>Préfixe des noms de
-fichiers afin qu'il reflète l'ordre des pages</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896216"><span lang=FR-BE>Que faire si le
-fichier existe dans le répertoire cible</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896217"><span lang=FR-BE>Renommer
-automatiquement les fichiers imagevenue et fapomatic</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896218"><span lang=FR-BE>Créer un
-sous-répertoire avec le titre du document à l'intérieur du répertoire cible</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>4</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896219"><span lang=FR-BE>Identifier les
-préfixe répertoires unique et chronologiquement</span><span style='color:windowtext;
-display:none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896220"><span lang=FR-BE>Créer des
-répertoires distincts pour chaque page avec l’option « Aspirez le sujet en
-cours »</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896221"><span lang=FR-BE>Général</span><span
-style='color:windowtext;display:none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896222"><span lang=FR-BE>Afficher le
-répertoire de téléchargement</span><span style='color:windowtext;display:none;
-text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896223"><span lang=FR-BE>Afficher le menu
-ImageHost Grabber dans le menu outils</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896224"><span lang=FR-BE>Suppression des
-liens en doubles, même sur plusieurs pages</span><span style='color:windowtext;
-display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>5</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896225"><span lang=FR-BE>Fermer la fenêtre de
-téléchargement lorsque tous les téléchargements sont terminés</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896226"><span lang=FR-BE>Images intégrées</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896227"><span lang=FR-BE>Télécharger les
-images intégrées</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896228"><span lang=FR-BE>Fichier d’hôte</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896229"><span lang=FR-BE>Activer la mise à
-jour automatique</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896230"><span lang=FR-BE>Options de l'hôte</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896231"><span lang=FR-BE>MAX. Connexions
-simultanées</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>6</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896232"><span lang=FR-BE>MAX. Nombre de
-tentatives pour chaque lien</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896233"><span lang=FR-BE>Délai d'attente de
-la requête avant de réessayer (en secondes)</span><span style='color:windowtext;
-display:none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896234"><span lang=FR-BE>Débogage</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896235"><span lang=FR-BE>Activer la console
-de journalisation</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>7</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896236"><span lang=FR-BE>Activer le journal
-débogage</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>8</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896237"><span lang=FR-BE>Effacer le journal
-de débogage</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>8</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896238"><span lang=FR-BE>Copier le journal de
-débogage vers un dossier local</span><span style='color:windowtext;display:
-none;text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>8</span></a></p>
-
-<p class=MsoToc1><a href="#_Toc301896239"><span lang=FR-BE>Fenêtre de la progression
-du téléchargement</span><span style='color:windowtext;display:none;text-decoration:
-none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896240"><span lang=FR-BE>Caractéristiques
-générales</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896241"><span lang=FR-BE>Effacement
-automatique quand c’est fini</span><span style='color:windowtext;display:none;
-text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896242"><span lang=FR-BE>Supprimer le popup</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896243"><span lang=FR-BE>Effacer tout quand
-c'est fini</span><span style='color:windowtext;display:none;text-decoration:
-none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896244"><span lang=FR-BE>Arrêter toutes les
-sessions</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>9</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896245"><span lang=FR-BE>Relancer toutes les
-sessions arrêté</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896246"><span lang=FR-BE>Enregistrer la
-session cache</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896247"><span lang=FR-BE>Actions sur les
-éléments sélectionnés</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896248"><span lang=FR-BE>Ouvrir le fichier</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896249"><span lang=FR-BE>Ouvrez le dossier
-contenant</span><span style='color:windowtext;display:none;text-decoration:
-none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896250"><span lang=FR-BE>Retirer de la liste</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>10</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896251"><span lang=FR-BE>Abandonner le
-téléchargement / requête</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896252"><span lang=FR-BE>Réessayer de
-télécharger / requête</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896253"><span lang=FR-BE>Redémarrer le
-téléchargement</span><span style='color:windowtext;display:none;text-decoration:
-none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896254"><span lang=FR-BE>Réinitialiser le
-nombre de tentatives à zéro</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></p>
-
-<p class=MsoToc3><a href="#_Toc301896255"><span lang=FR-BE>Afficher les détails
-de la requête</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896256"><span lang=FR-BE>Exporter la liste en
-HTML</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>11</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896257"><span lang=FR-BE>Max. Requêtes et
-Max. tentatives</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>12</span></a></p>
-
-<p class=MsoToc1><a href="#_Toc301896258"><span lang=FR-BE>Editeur de fichier
-hôte</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896259"><span lang=FR-BE>Etiquette d'hôte</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896260"><span lang=FR-BE>Modèle d'URL</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896261"><span lang=FR-BE>Modèle de recherche</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896262"><span lang=FR-BE>Mise à jour des
-fichiers</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896263"><span lang=FR-BE>Ajouter un hôte</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896264"><span lang=FR-BE>Supprimer l'hôte</span><span
-style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>13</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896265"><span lang=FR-BE>Modifier les serveurs
-hôte</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896266"><span lang=FR-BE>Choisissez un
-Fichier hôte</span><span style='color:windowtext;display:none;text-decoration:
-none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896267"><span lang=FR-BE>Réinitialiser au
-fichier d'hôte par défaut</span><span style='color:windowtext;display:none;
-text-decoration:none'> </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896268"><span lang=FR-BE>Fusionner le fichier
-hôte</span><span style='color:windowtext;display:none;text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></p>
-
-<p class=MsoToc2><a href="#_Toc301896269"><span lang=FR-BE>Mise à jour du
-fichier hôte en ligne</span><span style='color:windowtext;display:none;
-text-decoration:none'>. </span><span
-style='color:windowtext;display:none;text-decoration:none'>14</span></a></p>
+<p class=MsoToc1><a href="#_Toc301896205">Ã€ propos</a></p>
+
+<p class=MsoToc1><a href="#_Toc301896206">Les hÃ©bergeurs dâ€™images pris en charge</a></p>
+
+<p class=MsoToc1><a href="#_Toc301896207">CaractÃ©ristiques principales</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896208">Obtenir toutes les images sur la page</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896209">Aspirer le sujet en cours</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896210">Ã‰diteur de fichier dâ€™hÃ´te</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896211">Restaurer la session en cache</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896212">Boutons sur la barre dâ€™outils</a></p>
+
+<p class=MsoToc1><a href="#_Toc301896213">Options</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896214">Options pour enregistrer le fichier</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896215">PrÃ©fixer les noms des fichiers afin quâ€™ils reflÃ¨tent lâ€™ordre des pages</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896216">Que faire si le fichier existe dÃ©jÃ  dans le rÃ©pertoire cible?</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896217">Renommer automatiquement les fichiers imagevenue et fapomatic</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896218">CrÃ©er un sous-rÃ©pertoire avec le titre du document Ã  lâ€™intÃ©rieur du rÃ©pertoire cible</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896219">PrÃ©fixer les rÃ©pertoires de faÃ§on unique et chronologique</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896220">CrÃ©er des rÃ©pertoires distincts pour chaque page avec lâ€™option Â«Aspirer le sujet en coursÂ»</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896221">GÃ©nÃ©ral</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896222">Afficher le rÃ©pertoire de tÃ©lÃ©chargement</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896223">Afficher le menu ImageHost Grabber dans le menu outils</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896224">Suppression des liens doublons, mÃªme sur plusieurs pages</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896225">Fermer la fenÃªtre de tÃ©lÃ©chargement lorsque tous ceux-ci sont terminÃ©s</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896226">Images incrustÃ©es</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896227">TÃ©lÃ©charger les images incrustÃ©es</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896228">Fichier dâ€™hÃ´te</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896229">Activer la mise Ã  jour automatique</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896230">Options de lâ€™hÃ´te</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896231">Nombre max. de connexions simultanÃ©es</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896232">Nombre max. de tentatives pour chaque lien</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896233">DÃ©lai dâ€™attente de la requÃªte avant de rÃ©essayer (en secondes)</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896234">DÃ©bogage</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896235">Activer la console de journalisation</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896236">Activer le journal dÃ©bogage</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896237">Effacer le journal de dÃ©bogage</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896238">Copier le journal de dÃ©bogage vers un dossier local</a></p>
+
+<p class=MsoToc1><a href="#_Toc301896239">FenÃªtre de la progression du tÃ©lÃ©chargement</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896240">CaractÃ©ristiques gÃ©nÃ©rales</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896241">Effacement automatique quand câ€™est fini</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896242">Supprimer le popup</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896243">Effacer tout quand câ€™est fini</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896244">ArrÃªter toutes les sessions</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896245">Relancer toutes les sessions arrÃªtÃ©es</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896246">Enregistrer la session en cache</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896247">Actions sur les Ã©lÃ©ments sÃ©lectionnÃ©s</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896248">Ouvrir le fichier</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896249">Ouvrir le dossier contenant</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896250">Retirer de la liste</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896251">Abandonner le tÃ©lÃ©chargement/requÃªte</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896252">RÃ©essayer de tÃ©lÃ©charger/requÃªte</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896253">RedÃ©marrer le tÃ©lÃ©chargement</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896254">RÃ©initialiser le nombre de tentatives Ã  zÃ©ro</a></p>
+
+<p class=MsoToc3><a href="#_Toc301896255">Afficher les dÃ©tails de la requÃªte</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896256">Exporter la liste en HTML</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896257">Nombre max. de requÃªtes et de tentatives</a></p>
+
+<p class=MsoToc1><a href="#_Toc301896258">Editeur de fichier hÃ´te</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896259">Etiquette dâ€™hÃ´te</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896260">ModÃ¨le dâ€™URL</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896261">ModÃ¨le de recherche</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896262">Mise Ã  jour des fichiers</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896263">Ajouter un hÃ´te</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896264">Supprimer lâ€™hÃ´te</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896265">Modifier les serveurs hÃ´te</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896266">Choisir un Fichier hÃ´te</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896267">RÃ©initialiser au fichier dâ€™hÃ´te par dÃ©faut</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896268">Fusionner le fichier hÃ´te</a></p>
+
+<p class=MsoToc2><a href="#_Toc301896269">Mise Ã  jour du fichier hÃ´te en ligne</a></p>
 
 <p class=MsoNormal>&nbsp;</p>
 
 </div>
 
-<span style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
+<br clear=all style='page-break-before:always'>
 
-<div class=Section2>
+<div class=WordSection2>
 
-<p class=MsoTitle><span lang=FR-BE>ImageHost Grabber</span></p>
+<p class=MsoTitle>ImageHost Grabber</p>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<a name="_Toc301896205"><h1>Ã€ propos</h1></a>
 
-<h1><a name="_Toc301896205"><span lang=FR-BE>A propos</span></a></h1>
+<p class=MsoNormal>De nombreux forums et blogs nâ€™ont pas la capacitÃ© de stocker des
+images sur leurs propres serveurs. Au lieu de cela, ils sont tenus dâ€™utiliser
+un hÃ´te tiers pour partager des images. Beaucoup dâ€™hÃ©bergeurs dâ€™images
+existent, comme imagevenue, imagebam et imageshack. Toutefois, ces hÃ©bergeurs
+dâ€™images ne donnent pas de liens directs vers des images stockÃ©es. Au lieu de
+cela, ce qui est donnÃ© est des liens vers les pages html qui gardent les
+images. Si vous souhaitez enregistrer une galerie entiÃ¨re dâ€™images qui sont
+stockÃ©es sur ces hÃ©bergeurs dâ€™images, des outils simples tels que "wget"
+et "DownThemAll" ne suffiront pas (du moins pas sans quelques scripts).</p>
 
-</div>
+<p class=MsoNormal>ImageHostGrabber (IHG) est un utilitaire puissant qui rend la tÃ¢che
+de tÃ©lÃ©chargement de ces galeries une tÃ¢che simple. Vous pouvez penser que
+câ€™est IHG qui fait tout le travail du "nouveau lien ouvert, cliquez droit,
+enregistrer-sous". Mais la fonctionnalitÃ© dâ€™IHG ne sâ€™arrÃªte pas lÃ .</p>
 
-<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>De nombreux forums et blogs n'ont pas la capacité de stocker des
-images sur leurs propres serveurs. Au lieu de cela, ils sont tenus d'utiliser
-un hôte tiers pour partager des images. Beaucoup d’hébergeurs d’images
-existent, comme imagevenue, imagebam et imageshack. Toutefois, ces hôtes
-d'image ne donnent pas de liens directs vers des images stockées. Au lieu de
-cela, ce qui est donné est des liens vers les pages html qui gardent les
-images. Si vous souhaitez enregistrer une galerie entière d'images qui sont
-hébergées sur ces hôtes d'image, des outils simples tels que &quot;wget&quot;
-et &quot;DownThemAll&quot; ne suffira pas (du moins pas sans quelques scripts).</span></p>
+<p class=MsoNormal>IHG peut crÃ©er automatiquement des rÃ©pertoires pour vous, et mÃªme
+des noms de fichiers et de rÃ©pertoires prÃ©fix afin que les images que vous
+tÃ©lÃ©chargez puissent Ãªtre triÃ©es par ordre chronologique et Ãªtre triÃ©es par
+ordre des pages originales. Des annÃ©es de recherche pour la reprise des Ã©checs
+de tÃ©lÃ©chargement ont Ã©tÃ© mises en Å“uvre dans IHG pour sâ€™assurer que toutes les
+images disponibles soient tÃ©lÃ©chargÃ©es correctement. Si ce nâ€™Ã©tait pas suffisant,
+IHG peut mÃªme enregistrer une session pour essayer Ã  nouveau plus tard. IHG
+possÃ¨de Ã©galement une fonction spÃ©ciale pour les forums qui vous permettra de
+tÃ©lÃ©charger un sujet entier dâ€™images. Et enfin, mais non le moindre, IHG
+utilise le tÃ©lÃ©chargement multiple pour augmenter la vitesse de tÃ©lÃ©chargement
+des galeries.</p>
 
-<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>ImageHostGrabber (IHG) est un utilitaire puissant qui rend la tâche
-de téléchargement de ces galeries une tâche simple. Vous pouvez penser que
-c'est IHG qui fait tout le travail du «nouveau lien ouvert, cliquez droit,
-enregistrer-sous&quot;. Mais la fonctionnalité d'IHG ne s'arrête pas là.</span></p>
+<p class=MsoNormal>
+IHG inclut un Ã©diteur de fichier hÃ´te afin que vous puissiez ajouter
+un hÃ©bergeur qui nâ€™est pas dÃ©jÃ  inclus. Les dÃ©tails sur cette manipulation peuvent
+Ãªtre trouvÃ©s dans le Â«Manuel du fichier hÃ´teÂ» situÃ© sur le site dâ€™IHG.</p>
 
-<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>IHG peut créer automatiquement des répertoires pour vous, et même
-des noms de fichiers et de répertoires préfix afin que les images que vous
-téléchargez puissent être triées par ordre chronologique et être triées par
-ordre des pages originales. Des années de recherche pour la reprise des échecs
-de téléchargement ont été mises en œuvre dans IHG pour s'assurer que toutes les
-images disponibles sont téléchargées correctement. Si ce n'était pas suffisant,
-IHG peut même enregistrer une session pour essayer à nouveau plus tard. IHG
-possède également une fonction spéciale pour les forums qui vous permettra de
-télécharger un sujet entier d'images. Et enfin, mais non le moindre, IHG
-utilise le téléchargement multiple pour augmenter la vitesse de téléchargement
-des galeries.</span></p>
+<p class=MsoNormal>
+Veuillez prendre note que ce programme ne peut pas tÃ©lÃ©charger
+toutes les piÃ¨ces jointes, des images ou des liens vers des images. Il ne
+tÃ©lÃ©charge que les images hÃ©bergÃ©es sur les hÃ©bergeurs dâ€™images reconnus.</p>
 
-<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>IHG inclut un éditeur de fichier hôte afin que vous puissiez ajouter
-un hébergeur qui n'est pas déjà inclus. Détails sur cette manipulation peut
-être trouvée dans le &quot;Manuel du fichier hôte» située sur le site d'IHG.</span></p>
+<p class=MsoNormal>
+Pour le reste de ce document dâ€™aide, le mot Â«imagesÂ» se rÃ©fÃ©rera aux images
+hÃ©bergÃ©es sur les hÃ´tes. Le mot Â«hÃ´teÂ» se rÃ©fÃ©rera aux hÃ©bergeurs dâ€™images.</p>
 
-<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>Veuillez prendre note que ce programme ne peut pas télécharger
-toutes les pièces jointes, des images ou des liens vers des images. Il ne
-télécharge que les images hébergées sur les hébergeurs d'image libre.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>Pour le reste de ce document d'aide, le mot «images» se référera aux
-images hébergées sur les hôtes. Le mot «&nbsp;hôte&nbsp;» se référa aux
-hébergements d’images</span></p>
+<a name="_Toc301896206"><h1>Les hÃ©bergeurs dâ€™images pris en charge</h1></a>
 
-<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>Une liste des hÃ©bergeurs dâ€™images pris en charge peut Ãªtre trouvÃ©e
+sur le site principal: <a href="http://hot-honeys.com" target="_blank">http://hot-honeys.com</a></p>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<br clear=all style='page-break-before:always'>
 
-<h1><a name="_Toc301896206"><span lang=FR-BE>Les hébergeurs d’image pris en
-charge</span></a></h1>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc301896207"><h1>CaractÃ©ristiques principales</h1></a>
 
-<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>Une liste des hébergeurs d'image pris en charge peut être trouvée
-sur le site principal: </span><a href="http://imagehost-grabber.com"><span
-lang=FR-BE>http://imagehost-grabber.com</span></a></p>
+<div class=indent>
 
-<span lang=FR-BE style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
+<a name="_Toc301896208"><h2>Obtenir toutes les images sur la page</h2></a>
 
-<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>Cette fonction tÃ©lÃ©charge toutes les images de la page en cours</p>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<h5>Comment Ã§a marche:</h5>
 
-<h1><a name="_Toc301896207"><span lang=FR-BE>Caractéristiques principales</span></a></h1>
+<p class=MsoNormal>Aller Ã  la page oÃ¹ vous souhaitez tÃ©lÃ©charger les images.
+Cliquez sur Â«Obtenir toutes les photos sur la pageÂ», et choisir le rÃ©pertoire de tÃ©lÃ©chargement.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc301896209"><h2>Aspirer le sujet en cours</h2></a>
 
-<h2><a name="_Toc301896208"><span lang=FR-BE>Obtenir toutes les photos sur la
-page</span></a></h2>
-
-</div>
-
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
-
-<h5 style='text-align:justify;text-justify:inter-ideograph'><span lang=FR-BE
-style='font-size:10.0pt;line-height:115%;color:windowtext;text-transform:none;
-letter-spacing:0pt'>Cette fonction télécharge toutes les images de la page en
-cours</span></h5>
-
-<h5><span lang=FR-BE>Comment ça marche:</span></h5>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Aller à la page où vous souhaitez télécharger
-les images. Cliquez sur « Obtenir toutes les photos sur la page », et choisir
-le répertoire de téléchargement.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896209"><span lang=FR-BE>Aspirer le sujet en cours</span></a></h2>
-
-</div>
-
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
-
-<h5 style='text-align:justify;text-justify:inter-ideograph'><span lang=FR-BE
-style='font-size:10.0pt;line-height:115%;color:windowtext;text-transform:none;
-letter-spacing:0pt'>Cette fonctionnalité télécharge des images de plusieurs
-pages dans un sujet ou d'une galerie, c'est ce que j'appelle « aspiré ». Le
-style de forum ou une galerie doit être soutenu par IHG. Les styles de forum et
-les galeries suivantes sont supportés: vBulletin, Studio31, Imagebeaver,
+<p class=MsoNormal>Cette fonctionnalitÃ© tÃ©lÃ©charge des images de plusieurs
+pages dans un sujet ou dâ€™une galerie, câ€™est ce que jâ€™appelle Â«aspirerÂ». Le
+style de forum ou une galerie doit Ãªtre reconnu par IHG. Les styles de forum et
+les galeries suivantes sont supportÃ©s: vBulletin, Studio31, Imagebeaver,
 Facebook, Campusbug, Myspace, Threads UBB, Se connecter pour Simple Machines
-Forum, ProBoards, Coppermine, e-hentai, Gelbooru et Twitpic.</span></h5>
+Forum, ProBoards, Coppermine, e-hentai, Gelbooru et Twitpic.</p>
 
-<h5><span lang=FR-BE>COMMENT ÇA MARCHE:</span></h5>
+<h5>Comment Ã§a marche:</h5>
 
-</div>
+<p class=MsoNormal>Prenez nâ€™importe quelle page du sujet que
+vous voulez Â«aspirerÂ», cliquez sur Â«Aspirer le sujet en coursÂ» dans le menu, entrez le numÃ©ro
+de la premiÃ¨re page Ã  partir de laquelle vous souhaitez dÃ©marrer, et le numÃ©ro de la derniÃ¨re page oÃ¹
+vous souhaitez arrÃªter, et choisissez le rÃ©pertoire cible oÃ¹ seront enregistrÃ©es vos images</p>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Prenez n'importe quelle page du sujet que
-vous voulez « aspirer », cliquez sur « Aspirez le sujet en cours » dans le
-menu, entrez le numéro de la première page à partir duquel vous souhaitez
-démarrer, et le dernier numéro de la page où vous souhaitez arrêter, et
-choisissez le répertoire cible où sera enregistré vos images</span></p>
+<p class=MsoNormal>Pour les galeries dâ€™images, allez dans lâ€™album
+oÃ¹ vous souhaitez enregistrer des photos. Ensuite, utilisez lâ€™option Â«aspirerÂ»
+comme vous le feriez sur un forum. Choisissez les pages de lâ€™album que vous
+voulez avoir.</p>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Pour les galeries d'image, allez dans l'album
-où vous souhaitez enregistrer des photos. Ensuite, utilisez l’option « aspiré »
-comme vous le feriez sur un forum. Choisissez les pages de l'album que vous
-voulez avoir.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896210"><h2>Ã‰diteur de fichier dâ€™hÃ´te</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>Cette fonctionnalitÃ© vous permet de modifier le fichier
+hÃ´te pour IHG. Vous pouvez mettre Ã  jour le fichier hÃ´te, choisir un nouveau
+fichier hÃ´te, ou modifier des entrÃ©es en cours dans le fichier hÃ´te.</p>
 
-<h2><a name="_Toc301896210"><span lang=FR-BE>Éditeur de fichier d’hôte</span></a></h2>
+<h5>Comment Ã§a marche:</h5>
 
-</div>
+<p class=MsoNormal>RÃ©fÃ©rez-vous Ã  la section spÃ©ciale, Â«Ã‰diteur
+de fichier dâ€™hÃ´teÂ», pour plus de dÃ©tails sur la faÃ§on dont il fonctionne.</p>
 
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h5 style='text-align:justify;text-justify:inter-ideograph'><span lang=FR-BE
-style='font-size:10.0pt;line-height:115%;color:windowtext;text-transform:none;
-letter-spacing:0pt'>Cette fonctionnalité vous permet de modifier le fichier
-hôte pour IHG. Vous pouvez mettre à jour le fichier hôte, choisissez un nouveau
-fichier hôte, ou modifier des entrées en cours dans le fichier hôte.</span></h5>
+<a name="_Toc301896211"><h2>Restaurer la session en cache</h2></a>
 
-<h5><span lang=FR-BE>COMMENT ÇA MARCHE:</span></h5>
+<p class=MsoNormal>Cette fonctionnalitÃ© vous permet de reprendre une session
+qui a Ã©tÃ© prÃ©cÃ©demment enregistrÃ©e dans la fenÃªtre de progression du tÃ©lÃ©chargement.</p>
 
-</div>
+<h5>Comment Ã§a marche:</h5>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Référez-vous à la section spéciale, « Éditeur
-de fichier d’hôte », pour plus de détails sur la façon dont il fonctionne.</span></p>
+<p class=MsoNormal>RÃ©fÃ©rez-vous Ã  la section spÃ©ciale, Â«fenÃªtre
+de progression du tÃ©lÃ©chargementÂ», pour plus de dÃ©tails sur la faÃ§on dont cela fonctionne.</p>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc301896212"><h2>Boutons sur la barre dâ€™outils</h2></a>
 
-<h2><a name="_Toc301896211"><span lang=FR-BE>Restaurer la session cache</span></a></h2>
+<p class=MsoNormal>Vous pouvez maintenant mettre le bouton ImageHostGrabber
+sur la barre dâ€™outils pour un accÃ¨s pratique et facile. Il y a actuellement que
+lâ€™option Â«Obtenir toutes les photos sur la pageÂ».</p>
 
-</div>
+<h5>Comment Ã§a marche:</h5>
 
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>Pour mettre le bouton ImageHostGrabber sur la
+barre dâ€™outils. Allez dans le menu Affichageâ†’Barre dâ€™outilsâ†’Personnaliser.
+Prenez lâ€™icÃ´ne ImageHostGrabber et faites le glisser sur votre
+barre dâ€™outils. Pour lâ€™enlever, faites la manipulation inverse. Pour plus
+dâ€™aide sur ce sujet, consultez le fichier dâ€™aide de Firefox, ou Ã©crivez-moi.</p>
 
-<h5 style='text-align:justify;text-justify:inter-ideograph'><span lang=FR-BE
-style='font-size:10.0pt;line-height:115%;color:windowtext;text-transform:none;
-letter-spacing:0pt'>Cette fonctionnalité vous permet de reprendre une session
-qui a été précédemment enregistrée dans la fenêtre de progression du
-téléchargement.</span></h5>
-
-<h5><span lang=FR-BE>COMMENT ÇA MARCHE:</span></h5>
+<p class=MsoNormal>Note: Pour ceux qui sont sur Firefox 4 et +
+faites Â«AltÂ» sur votre clavier pour retrouver le menu Firefox.</p>
 
 </div>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Référez-vous à la section spéciale, « fenêtre
-de progression du téléchargement », pour plus de détails sur la façon dont cela
-fonctionne.</span></p>
+<br clear=all style='page-break-before:always'>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc301896213"><h1>Options</h1></a>
 
-<h2><a name="_Toc301896212"><span lang=FR-BE>Boutons sur la barre d’outils</span></a></h2>
+<div class=indent>
 
-</div>
+<a name="_Toc301896214"><h2>Options pour enregistrer le fichier</h2></a>
 
-<div style='border:none;border-bottom:solid #4F81BD 1.0pt;padding:0in 0in 1.0pt 0in;
-margin-left:.5in;margin-right:0in'>
+<div class=indent>
 
-<h5 style='text-align:justify;text-justify:inter-ideograph'><span lang=FR-BE
-style='font-size:10.0pt;line-height:115%;color:windowtext;text-transform:none;
-letter-spacing:0pt'>Vous pouvez maintenant mettre le bouton ImageHostGrabber
-sur la barre d'outils pour un accès pratique et facile. Il y a actuellement que
-l’option « Obtenir toutes les photos sur la page ».</span></h5>
+<a name="_Toc301896215"><h3>PrÃ©fixer les noms des fichiers afin quâ€™ils reflÃ¨tent lâ€™ordre des pages</h3></a>
 
-<h5><span lang=FR-BE>COMMENT ÇA MARCHE:</span></h5>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Pour mettre le bouton ImageHostGrabber sur la
-barre d’outils. Allez dans le menu affichage &gt; Barre d’outils &gt;
-Personnaliser. Prenez l’icône ImageHostGrabber et faites le glisser sur votre
-barre d’outils. Pour l’enlever, faites la manipulation inverse. Pour plus
-d’aide sur ce sujet, consultez le fichier d’aide de Firefox, ou écrivez-moi.</span></p>
-
-<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
-text-indent:.5in'><span lang=FR-BE>Note: Pour ceux qui sont sur Firefox 4 et +
-faites « Alt » sur votre clavier pour retrouver le menu Firefox.</span></p>
-
-<span lang=FR-BE style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
-
-<p class=MsoNormal><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
-
-<h1><a name="_Toc301896213"><span lang=FR-BE>Options</span></a></h1>
-
-</div>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896214"><span lang=FR-BE>Options pour enregistrer le
-fichier</span></a></h2>
-
-</div>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc301896215"><span lang=FR-BE>Préfixe
-des noms de fichiers afin qu'il reflète l'ordre des pages</span></a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option va ajouter un préfixe au nom du
-fichier afin que les fichiers puissent être triés dans l'ordre où ils sont
-affichés sur la page. La première partie du préfixe est de huit caractères de
-long, aléatoire alphanumérique préfixe qui distingue la session. Chaque session
-aura un préfixe différent, même lors de l'exécution de plusieurs sessions à la
-fois. Aussi, lorsqu'il est en mode « aspiré le sujet », chaque page aura un
-préfixe unique. La deuxième partie est un numéro qui correspond à la position
-de l'image sur la page. Le nombre est rempli par des zéros afin que les
+<p class=MsoNormal>Cette option va ajouter un prÃ©fixe au nom du
+fichier afin que les fichiers puissent Ãªtre triÃ©s dans lâ€™ordre oÃ¹ ils sont
+affichÃ©s sur la page. La premiÃ¨re partie du prÃ©fixe est constituÃ© de huit caractÃ¨res de
+long, alÃ©atoire alphanumÃ©rique prÃ©fixe qui distingue la session. Chaque session
+aura un prÃ©fixe diffÃ©rent, mÃªme lors de lâ€™exÃ©cution de plusieurs sessions Ã  la
+fois. Aussi, lorsquâ€™il est en mode Â«aspirer le sujetÂ», chaque page aura un
+prÃ©fixe unique. La deuxiÃ¨me partie est un numÃ©ro qui correspond Ã  la position
+de lâ€™image sur la page. Le nombre est rempli par des zÃ©ros afin que les
 algorithmes de tri non logiques puissent trier les fichiers correctement
-(c'est-à-dire pré-WinXP et UNIX, aromatisé OS).</span></p>
+(câ€™est-Ã -dire les OS 'Ã  la sauce' prÃ©-WinXP et UNIX).</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc301896216"><h3>Que faire si le fichier existe dÃ©jÃ  dans le rÃ©pertoire cible?</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc301896216"><span lang=FR-BE>Que faire
-si le fichier existe dans le répertoire cible</span></a></h3>
+<p class=MsoNormal>Il y a trois options: Renommer le fichier,
+Ignorer le fichier, et Ã©craser le fichier. Lorsque vous renommez le fichier
+automatiquement, lâ€™extension ajoute un nombre incrÃ©mentÃ© Ã  la fin du nom du
+fichier.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Il y a trois options: Renommer le fichier,
-Ignorer le fichier, et écraser le fichier. Lorsque vous renommez le fichier
-automatiquement, l'extension ajoute un nombre incrémenté à la fin du nom du
-fichier.</span></p>
+<a name="_Toc301896217"><h3>Renommer automatiquement les fichiers imagevenue et fapomatic</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>Cette fonctionnalitÃ© Ã©tait disponible dans
+les versions prÃ©cÃ©dentes. Cela modifie le nom du fichier Ã  partir du fichier
+original en retirant les premiers chiffres ajoutÃ©s par ces deux serveurs. Les
+autres serveurs pourraient Ãªtre mis en Å“uvre dans de futures versions.</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3 style='margin-left:0in'><a name="_Toc301896217"><span lang=FR-BE>Renommer automatiquement
-les fichiers imagevenue et fapomatic</span></a></h3>
+<a name="_Toc301896218"><h3>CrÃ©er un sous-rÃ©pertoire avec le titre du document Ã  lâ€™intÃ©rieur du rÃ©pertoire cible</h3></a>
 
-</div>
+<p class=MsoNormal>Cette option prendra le titre du document et
+lâ€™utilisera comme nom du nouveau sous-rÃ©pertoire pour sauver les images. Le
+titre du document est ce que vous voyez en haut de la fenÃªtre de Firefox
+(appelÃ© Â«barre dâ€™applicationÂ» dans les fenÃªtres). La plupart du temps, cela
+devrait Ãªtre une maniÃ¨re assez unique pour identifier les sujets sans la peine
+de taper soi-mÃªme. Parfois, cela peut produire des noms de rÃ©pertoires longs,
+et parfois ce nâ€™est pas assez unique.</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette fonctionnalité était disponible dans
-les versions précédentes. Cela modifie le nom du fichier à partir du fichier
-original qui retire les premiers chiffres ajoutés par ces deux serveurs. Les
-autres serveurs pourraient être mis en œuvre dans de futures versions.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896219"><h3>PrÃ©fixer les rÃ©pertoires de maniÃ¨re unique et chronologique</h3></a>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>Cette option prÃ©fixe est un horodata dans le
+rÃ©pertoire lorsque vous utilisez lâ€™option prÃ©cÃ©dente. Cela permet Ã  des
+rÃ©pertoires dâ€™Ãªtre triÃ©s par ordre chronologique, sans que vous ayez besoin de
+les trier vous-mÃªme. Le tri simple par nom, qui est par dÃ©faut pour la plupart
+des listes, va fonctionner.</p>
 
-<h3 style='margin-left:0in'><a name="_Toc301896218"><span lang=FR-BE>Créer un
-sous-répertoire avec le titre du document à l'intérieur du répertoire cible</span></a></h3>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc301896220"><h3>CrÃ©er des rÃ©pertoires distincts pour chaque page avec lâ€™option Â«Aspirer le sujet en coursÂ»</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option prendra le titre du document et
-l'utilisera comme nom du nouveau sous-répertoire pour sauver les images. Le
-titre du document est ce que vous voyez en haut de la fenêtre de Firefox
-(appelé « barre d'application » dans les fenêtres). La plupart du temps, cela
-devrait être une manière assez unique pour identifier les sujets sans la peine
-de taper soi-même. Parfois, cela peut produire des noms de répertoires longs,
-et parfois ce n'est pas assez unique.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc301896219"><span lang=FR-BE>Identifier
-les préfixe répertoires unique et chronologiquement</span></a></h3>
+<p class=MsoNormal>Lors de lâ€™utilisation de lâ€™option Â«Aspirer
+le sujet en coursÂ», cette option permettra de crÃ©er des rÃ©pertoires pour
+chaque page dâ€™un sujet ou une galerie. Les noms des rÃ©pertoires correspondent
+aux numÃ©ros de page. Si ce nâ€™est pas activÃ©, toutes les images seront
+sauvegardÃ©es dans le rÃ©pertoire de base (ou rÃ©pertoire crÃ©Ã© automatiquement).</p>
 
 </div>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option préfixe est un horodata dans le
-répertoire lorsque vous utilisez l'option précédente. Cela permet à des
-répertoires d’être triés par ordre chronologique, sans que vous ayez besoin de
-les trier vous-même. Le tri simple par nom, qui est par défaut pour la plupart
-des listes, va fonctionner.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896221"><h2>GÃ©nÃ©ral</h2></a>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<div class=indent>
 
-<h3 style='margin-left:0in'><a name="_Toc301896220"><span lang=FR-BE>Créer des
-répertoires distincts pour chaque page avec l’option « Aspirez le sujet en
-cours »</span></a></h3>
+<a name="_Toc301896222"><h3>Afficher le rÃ©pertoire de tÃ©lÃ©chargement</h3></a>
 
-</div>
+<p class=MsoNormal>Cette option vous permet de supprimer la
+boÃ®te de dialogue qui vous demande oÃ¹ enregistrer les images. Si vous dÃ©cochez
+cette option, les images seront enregistrÃ©es dans le dernier rÃ©pertoire qui a
+Ã©tÃ© utilisÃ©.</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Lors de l'utilisation de l’option « Aspirez
-le sujet en cours », cette option permettra de créer des répertoires pour
-chaque page d'un sujet ou une galerie. Les noms des répertoires correspondent
-aux numéros de page. Si ce n'est pas activé, toutes les images seront
-sauvegardées dans le répertoire de base (ou répertoire créé automatiquement).</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896223"><h3>Afficher le menu ImageHost Grabber dans le menu outils</h3></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>Cette option vous permettra de choisir dâ€™afficher le menu
+ImageHostGrabber dans le menu Â«OutilsÂ», ou sur la barre du menu principal.</p>
 
-<h2><a name="_Toc301896221"><span lang=FR-BE>Général</span></a></h2>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc301896224"><h3>Suppression des liens doublons, mÃªme sur plusieurs pages</h3></a>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc301896222"><span lang=FR-BE>Afficher
-le répertoire de téléchargement</span></a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option vous permet de supprimer la
-boîte de dialogue qui vous demande où enregistrer les images. Si vous décochez
-cette option, les images seront enregistrées dans le dernier répertoire qui a
-été utilisé.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc301896223"><span lang=FR-BE>Afficher
-le menu ImageHost Grabber dans le menu outils</span></a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option vous permettra de choisir d'afficher
-le menu ImageHostGrabber dans le menu &quot;Outils&quot;, ou sur la barre du
-menu principal.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc301896224"><span lang=FR-BE>Suppression
-des liens en doubles, même sur plusieurs pages</span></a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option vous permettra de supprimer les
-liens en double sur la page. Ils sont communément trouvés quand un utilisateur
+<p class=MsoNormal>Cette option vous permettra de supprimer les
+liens en double sur la page. Ils sont communÃ©ment trouvÃ©s quand un utilisateur
 fait un commentaire sur une galerie en faisant des citations des images,
-produisant ainsi des liens en double. Si vous utilisez « aspirer le sujet
-courant », ImageHostGrabber se penchera sur toutes les pages que vous
-téléchargez pour trouver des liens en double.</span></p>
+produisant ainsi des liens en double. Si vous utilisez Â«aspirer le sujet
+courantÂ», ImageHostGrabber se penchera sur toutes les pages que vous
+tÃ©lÃ©chargez pour trouver des liens en double.</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc301896225"><h3>Fermer la fenÃªtre de tÃ©lÃ©chargement lorsque tous ceux-ci sont terminÃ©s</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc301896225"><span lang=FR-BE>Fermer la
-fenêtre de téléchargement lorsque tous les téléchargements sont terminés</span></a></h3>
-
-</div>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option va fermer la fenêtre de téléchargement
-après avoir terminé tous les téléchargements (après un retard de 5 secondes).
-S’il y a des éléments qui ne se terminent pas correctement, la fenêtre ne fermera
-pas.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896226"><span lang=FR-BE>Images intégrées</span></a></h2>
+<p class=MsoNormal>Cette option va fermer la fenÃªtre de tÃ©lÃ©chargement
+aprÃ¨s avoir terminÃ© tous les tÃ©lÃ©chargements (aprÃ¨s un dÃ©lai de 5 secondes).
+Sâ€™il y a des Ã©lÃ©ments qui ne se terminent pas correctement, la fenÃªtre ne fermera
+pas.</p>
 
 </div>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3 style='margin-left:0in'><a name="_Toc301896227"><span lang=FR-BE>Télécharger
-les images intégrées</span></a></h3>
+<a name="_Toc301896226"><h2>Images incrustÃ©es</h2></a>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option vous permettra de télécharger
-des images qui sont « intégrées » sur la page. Lorsque vous utilisez « Obtenir
-toutes les photos sur la page », ImageHostGrabber ne téléchargera que les
-images intégrées dont les dimensions sont supérieures ou égales aux dimensions
-spécifiées définies par les paramètres « largeur » et « Hauteur » dans les
-options. Lors de l'utilisation de l’option « aspirer le sujet courant »,
-ImageHostGrabber ne téléchargera que les images intégrées dont les dimensions
-sont supérieures ou égales aux dimensions spécifiées définies par les
-paramètres « largeur » et « Hauteur » dans les options.</span></p>
+<a name="_Toc301896227"><h3>TÃ©lÃ©charger les images incrustÃ©es</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896228"><span lang=FR-BE>Fichier d’hôte</span></a></h2>
+<p class=MsoNormal>Cette option vous permettra de tÃ©lÃ©charger
+des images qui sont Â«incrustÃ©esÂ» sur la page. Lorsque vous utilisez Â«Obtenir
+toutes les photos sur la pageÂ», ImageHostGrabber ne tÃ©lÃ©chargera que les
+images incrustÃ©es dont les dimensions sont supÃ©rieures ou Ã©gales aux dimensions
+spÃ©cifiÃ©es dÃ©finies par les paramÃ¨tres Â«LargeurÂ» et Â«HauteurÂ» dans les
+options. Lors de lâ€™utilisation de lâ€™option Â«aspirer le sujet courantÂ»,
+ImageHostGrabber ne tÃ©lÃ©chargera que les images incrustÃ©es dont les dimensions
+sont supÃ©rieures ou Ã©gales aux dimensions spÃ©cifiÃ©es dÃ©finies par les
+paramÃ¨tres Â«LargeurÂ» et Â«HauteurÂ» dans les options.</p>
 
 </div>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3 style='margin-left:0in'><a name="_Toc301896229"><span lang=FR-BE>Activer la
-mise à jour automatique</span></a></h3>
+<a name="_Toc301896228"><h2>Fichier dâ€™hÃ´te</h2></a>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option va se connecter au fichier hôte
-en ligne, pour vérifier les nouveaux hôtes, une fois qu’ImageHostGrabber est
-exécuté. Vous pouvez choisir de supprimer la boîte de dialogue de confirmation.</span></p>
+<a name="_Toc301896229"><h3>Activer la mise Ã  jour automatique</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896230"><span lang=FR-BE>Options de l'hôte</span></a></h2>
+<p class=MsoNormal>Cette option va se connecter au fichier hÃ´te
+en ligne, pour vÃ©rifier les nouveaux hÃ´tes, une fois quâ€™ImageHostGrabber est
+exÃ©cutÃ©. Vous pouvez choisir de supprimer la boÃ®te de dialogue de confirmation.</p>
 
 </div>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3 style='margin-left:0in'><a name="_Toc301896231"><span lang=FR-BE>MAX. Connexions
-simultanées</span></a></h3>
+<a name="_Toc301896230"><h2>Options de lâ€™hÃ´te</h2></a>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>C'est le nombre de connexions à un hébergeur
-d'image que l'extension fera en une seule fois. Dans le passé, il n'y avait aucun
-contrôle sur le nombre de téléchargements à partir d'un hôte d'image, il y
-avait seulement un contrôle sur le nombre de requêtes HTTP. Maintenant, cette
-option limite les requêtes HTTP et les téléchargements. Il fait une demande à
-la page, où se trouve l'image, et télécharge ensuite l'image. Si vous deviez
-définir cette valeur à 1, alors il aurait téléchargé une image à la fois.
-Augmenter le nombre peut améliorer les performances du téléchargement, mais un
-trop grand nombre, comme plus de 10, peuvent causer des délais de connexion et
-des erreurs de téléchargement. Bien que cette extension comprend une fonction
-automatique annuler/recommencée en cas de connexion longue, cela peut
-sérieusement ralentir le processus entier si elle a pour tâche de recommencer
-un grand nombre de connexions. Selon mon expérience, 5 est le nombre d'or pour
-la plupart des connexions Internet à haut débit. Ce numéro peut également être
-limité par l'hôte d'image, et l'heure de la journée.</span></p>
+<a name="_Toc301896231"><h3>Nombre max. de connexions simultanÃ©es</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>Câ€™est le nombre de connexions Ã  un hÃ©bergeur
+dâ€™image que lâ€™extension fera en une seule fois. Dans le passÃ©, il nâ€™y avait aucun
+contrÃ´le sur le nombre de tÃ©lÃ©chargements Ã  partir dâ€™un hÃ´te dâ€™image, il y
+avait seulement un contrÃ´le sur le nombre de requÃªtes HTTP. Maintenant, cette
+option limite les requÃªtes HTTP et les tÃ©lÃ©chargements. Il fait une demande Ã 
+la page, oÃ¹ se trouve lâ€™image, et tÃ©lÃ©charge ensuite lâ€™image. Si vous deviez
+dÃ©finir cette valeur Ã  1, alors il aurait tÃ©lÃ©chargÃ© une image Ã  la fois.
+Augmenter le nombre peut amÃ©liorer les performances du tÃ©lÃ©chargement, mais un
+trop grand nombre, comme plus de 10, peuvent causer des dÃ©lais de connexion et
+des erreurs de tÃ©lÃ©chargement. Bien que cette extension comprend une fonction
+automatique annuler/recommencÃ©e en cas de connexion longue, cela peut
+sÃ©rieusement ralentir le processus entier si elle a pour tÃ¢che de recommencer
+un grand nombre de connexions. Selon mon expÃ©rience, 5 est le nombre dâ€™or pour
+la plupart des connexions Internet Ã  haut dÃ©bit. Ce numÃ©ro peut Ã©galement Ãªtre
+limitÃ© par lâ€™hÃ´te dâ€™image, et lâ€™heure de la journÃ©e.</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3 style='margin-left:0in'><a name="_Toc301896232"><span lang=FR-BE>MAX.
-Nombre de tentatives pour chaque lien</span></a></h3>
+<a name="_Toc301896232"><h3>Nombre max. de tentatives pour chaque lien</h3></a>
 
-</div>
+<p class=MsoNormal>Cette option vous permet de spÃ©cifier combien
+de fois il doit retenter chaque lien avant quâ€™il abandonne. Les conditions
+suivantes entraÃ®neront un lien pour faire une nouvelle tentative:</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option vous permet de spécifier combien
-de fois il doit retenter chaque lien avant qu'il abandonne. Les conditions
-suivantes entraîneront un lien pour faire une nouvelle tentative:</span></p>
+<ul>
+	<li class=MsoListParagraphCxSpFirst>demande incomplÃ¨te (mais Firefox pense quâ€™il Ã©tait complet)</li>
+	<li class=MsoListParagraphCxSpMiddle>la demande est trop longue (probablement parce que le serveur a abandonnÃ©, mais Firefox nâ€™a pas encore abandonnÃ©)</li>
+	<li class=MsoListParagraphCxSpMiddle>la demande a Ã©tÃ© annulÃ©e par le serveur ou par Firefox (pour une raison inconnue)</li>
+	<li class=MsoListParagraphCxSpMiddle>il y avait une sorte dâ€™erreur dans la requÃªte</li>
+	<li class=MsoListParagraphCxSpLast>le serveur vous envoie un fichier, mais ce nâ€™est pas une image</li>
+</ul>
 
-<p class=MsoNoSpacing style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>Notez aussi quâ€™il y a dâ€™autres cas oÃ¹ la
+requÃªte est remise Ã  la fonction de redÃ©marrage, mais pas parce que quelque
+chose tournait mal, mais parce quâ€™une URL alternative a Ã©tÃ© trouvÃ©e. Ces autres
+cas nâ€™auront aucune incidence sur le nombre de tentatives.</p>
 
-<p class=MsoNoSpacing style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph;text-indent:.5in'><span lang=FR-BE>• demande incomplète (mais
-Firefox pense qu'il était complet)</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNoSpacing style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>• la demande est trop longue (probablement
-parce que le serveur a abandonné, mais Firefox n'a pas encore abandonné)</span></p>
+<a name="_Toc301896233"><h3>DÃ©lai dâ€™attente de la requÃªte avant de rÃ©essayer (en secondes)</h3></a>
 
-<p class=MsoNoSpacing style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph;text-indent:.5in'><span lang=FR-BE>• la demande a été annulée
-par le serveur ou par Firefox (pour une raison inconnue)</span></p>
-
-<p class=MsoNoSpacing style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph;text-indent:.5in'><span lang=FR-BE>• il y avait une sorte
-d'erreur dans la requête</span></p>
-
-<p class=MsoNoSpacing style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph;text-indent:.5in'><span lang=FR-BE>• le serveur vous envoie un
-fichier, mais ce n'est pas une image</span></p>
-
-<p class=MsoNoSpacing style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>&nbsp;</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Notez aussi qu'il y a d'autres cas où la
-requête est remise à la fonction de redémarrage, mais pas parce que quelque
-chose tournait mal, mais parce qu’une URL alternative a été trouvée. Ces autres
-cas n'auront aucune incidence sur le nombre de tentatives.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc301896233"><span lang=FR-BE>Délai
-d'attente de la requête avant de réessayer (en secondes)</span></a></h3>
+<p class=MsoNormal>Cette option permet de spÃ©cifier combien de
+temps lâ€™extension doit essayer chaque demande avant dâ€™envoyer la requÃªte Ã  la
+fonction de redÃ©marrage.</p>
 
 </div>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option permet de spécifier combien de
-temps l'extension doit essayer chaque demande avant d'envoyer la requête à la
-fonction de redémarrage.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896234"><h2>DÃ©bogage</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<div class=indent>
 
-<h2><a name="_Toc301896234"><span lang=FR-BE>Débogage</span></a></h2>
+<a name="_Toc301896235"><h3>Activer la console de journalisation</h3></a>
 
-</div>
+<p class=MsoNormal>Cette option active les logs de la console.
+Utilisez cette option si lâ€™extension ne fonctionne pas, ou une caractÃ©ristique
+de lâ€™extension ne fonctionne pas. Ce relevÃ© signale des erreurs fatales sur la
+console dâ€™erreur dans un fichier journal que vous pouvez ensuite envoyer au
+dÃ©veloppeur. Cela rÃ©duira lÃ©gÃ¨rement les performances du systÃ¨me. Cela ne vous
+aidera pas si lâ€™extension fonctionne, mais ne fait pas ce Ã  quoi vous vous
+attendiez (câ€™est ce quâ€™on appelle une erreur de logique, et il est plus
+difficile Ã  dÃ©boguer). Un exemple oÃ¹ vous souhaitez lâ€™activer Ã§a serait si vous
+cliquez sur Â«Obtenir toutes les photos sur la pageÂ» et il ne fait rien.</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>Note: Firefox doit Ãªtre redÃ©marrÃ© aprÃ¨s lâ€™activation
+de cette option.</p>
 
-<h3 style='margin-left:0in'><a name="_Toc301896235"><span lang=FR-BE>Activer la
-console de journalisation</span></a></h3>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc301896236"><h3>Activer le journal dÃ©bogage</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option active les logs de la console.
-Utilisez cette option si l'extension ne fonctionne pas, ou une caractéristique
-de l'extension ne fonctionne pas. Ce relevé signale des erreurs fatales sur la
-console d'erreur dans un fichier journal que vous pouvez ensuite envoyer au
-développeur. Cela réduira les performances du système légèrement. Cela ne vous
-aidera pas si l'extension fonctionne, mais ne fait pas ce à quoi vous vous
-attendiez (c'est ce qu'on appelle une erreur de logique, et il est plus
-difficile à déboguer). Un exemple où vous souhaitez l’activer ça serait si vous
-cliquez sur « Obtenir toutes les photos sur la page » et il ne fait rien.</span></p>
+<p class=MsoNormal>Cette option active les journaux de dÃ©bogage.
+Utilisez cette option si lâ€™extension fonctionne, mais que quelque chose de
+diffÃ©rent se produit au lieu de quelque chose qui Ã©tait attendu. Par exemple,
+vous cliquez sur Â«Obtenir toutes les images sur la pageÂ» et il tÃ©lÃ©charge
+tous les fichiers, mais les images quâ€™il tÃ©lÃ©charge ne sont pas celles que vous
+voulez. Câ€™est ce quâ€™on appelle une erreur de logique. Cela est beaucoup plus
+difficile Ã  dÃ©boguer quâ€™une erreur de syntaxe (comme dÃ©crit ci-dessus). Parce
+quâ€™il est plus difficile Ã  dÃ©boguer, un dÃ©bit trÃ¨s dÃ©taillÃ© de lâ€™exÃ©cution du
+programme. En consÃ©quence, les performances du systÃ¨me vont baisser trÃ¨s
+sensiblement. Vous devez Ãªtre prudent avec cette fonction. Essayez dâ€™utiliser
+une page avec une petite quantitÃ© dâ€™images (soit 20 ou moins). Et lorsque vous
+avez terminÃ©, une copie du journal dans un dossier local et effacer le journal.
+Le fichier journal peut arriver Ã  plusieurs centaines de kilo-octets en un seul
+passage.</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>Note: Firefox doit Ãªtre redÃ©marrÃ© aprÃ¨s lâ€™activation de cette option.</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Note: Firefox doit être redémarré après l'activation
-de cette option.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc301896237"><h3>Effacer le journal de dÃ©bogage</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc301896236"><span lang=FR-BE>Activer le
-journal débogage</span></a></h3>
+<p class=MsoNormal>Utilisez cette fonction pour effacer le
+journal de dÃ©bogage. Câ€™est une bonne idÃ©e aprÃ¨s avoir fait un seul passage. Le
+fichier journal sera assez grand. Faites ce nettoyage aprÃ¨s avoir copiÃ© le
+fichier log dans un dossier local.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option active les journaux de débogage.
-Utilisez cette option si l'extension fonctionne, mais que quelque chose de
-différent se produit au lieu de quelque chose qui était attendu. Par exemple,
-vous cliquez sur « Obtenir toutes les images sur la page&quot; et il télécharge
-tous les fichiers, mais les images qu'il télécharge ne sont pas celles que vous
-voulez. C'est ce qu'on appelle une erreur de logique. Cela est beaucoup plus
-difficile à déboguer qu'une erreur de syntaxe (comme décrit ci-dessus). Parce
-qu'il est plus difficile à déboguer, un débit très détaillé de l'exécution du
-programme. En conséquence, les performances du système vont baisser très
-sensiblement. Vous devez être prudent avec cette fonction. Essayez d'utiliser
-une page avec une petite quantité d'images (soit 20 ou moins). Et lorsque vous
-avez terminé, une copie du journal dans un dossier local et effacer le journal.
-Le fichier journal peut arriver à plusieurs centaines de kilo-octets en un seul
-passage.</span></p>
+<a name="_Toc301896238"><h3>Copier le journal de dÃ©bogage vers un dossier local</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Note: Firefox doit être redémarré après
-l'activation de cette option.</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc301896237"><span lang=FR-BE>Effacer le
-journal de débogage</span></a></h3>
+<p class=MsoNormal>Utilisez cette option pour copier le fichier
+log dans un dossier situÃ© quelque part sur votre disque dur, sur votre bureau
+ou sur un pÃ©riphÃ©rique de stockage. Vous nâ€™avez pas le choix dans le nom du
+fichier, Ã§a sera Â«log.txtÂ». Une fois quâ€™il est copiÃ©, vous pouvez le lire, ou
+lâ€™envoyer par courriel au dÃ©veloppeur.</p>
 
 </div>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Utilisez cette fonction pour effacer le
-journal de débogage. C'est une bonne idée après avoir fait un seul passage. Le
-fichier journal sera assez grand. Faites ce nettoyage après avoir copié le
-fichier log dans un dossier local.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc301896238"><span lang=FR-BE>Copier le
-journal de débogage vers un dossier local</span></a></h3>
-
 </div>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Utilisez cette option pour copier le fichier
-log dans un dossier situé quelque part sur votre disque dur, sur votre bureau
-ou sur un périphérique de stockage. Vous n'avez pas le choix dans le nom du
-fichier, ça sera « log.txt ». Une fois qu'il est copié, vous pouvez le lire, ou
-l'envoyer par courriel au développeur.</span></p>
+<br clear=all style='page-break-before:always'>
 
-<span lang=FR-BE style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896239"><h1>FenÃªtre de la progression du tÃ©lÃ©chargement</h1></a>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<p class=MsoNormal>La fenÃªtre de progression du tÃ©lÃ©chargement contient des
+fonctionnalitÃ©s qui ne sont disponibles nulle part ailleurs dans ImageHostGrabber.
+En gÃ©nÃ©ral, vous pouvez 'cumuler' plusieurs sessions, vous pouvez prÃ©visualiser
+un fichier une fois son tÃ©lÃ©chargement terminÃ©, vous pouvez redÃ©marrer et
+rÃ©essayer des tÃ©lÃ©chargements, et ainsi de suite.</p>
 
-<h1><a name="_Toc301896239"><span lang=FR-BE>Fenêtre de la progression du
-téléchargement</span></a></h1>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<div class=indent>
 
-<p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-lang=FR-BE>La fenêtre de progression du téléchargement contient des
-fonctionnalités qui ne sont pas disponibles nulle part ailleurs dans
-ImageHostGrabber. En général, vous pouvez ajouter plusieurs sessions, vous
-pouvez prévisualiser un fichier après son téléchargement terminé, vous pouvez
-redémarrer et réessayer des téléchargements, et ainsi de suite.</span></p>
+<a name="_Toc301896240"><h2>CaractÃ©ristiques gÃ©nÃ©rales</h2></a>
 
-<p class=MsoNormal><span lang=FR-BE>&nbsp;</span></p>
+<ul>
+	<li class=MsoListParagraphCxSpFirst>Vous pouvez ouvrir le fichier aprÃ¨s son tÃ©lÃ©chargement terminÃ© en double cliquant sur l'Ã©lÃ©ment dâ€™entrÃ©e</li>
+	<li class=MsoListParagraphCxSpMiddle>Vous pouvez sÃ©lectionner plusieurs Ã©lÃ©ments dans la sÃ©quence en cliquant sur le premier Ã©lÃ©ment de la sÃ©quence, maintenez la touche Maj et cliquez sur le dernier Ã©lÃ©ment de la sÃ©quence</li>
+	<li class=MsoListParagraphCxSpMiddle>Vous pouvez sÃ©lectionner plusieurs Ã©lÃ©ments (pas dans la sÃ©quence) en cliquant sur le premier point, puis tout en maintenant la touche Ctrl, cliquez sur chaque article suivant pour Ãªtre sÃ©lectionnÃ©s</li>
+	<li class=MsoListParagraphCxSpLast>Vous pouvez effectuer des actions sur un Ã©lÃ©ment (ou la sÃ©lection des articles) par un clic droit sur ce point (ou tout autre Ã©lÃ©ment de la sÃ©lection)</li>
+</ul>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h2><a name="_Toc301896240"><span lang=FR-BE>Caractéristiques générales</span></a></h2>
+<a name="_Toc301896241"><h2>Effacement automatique quand câ€™est fini</h2></a>
 
-</div>
+<p class=MsoNormal>Efface automatiquement les tÃ©lÃ©chargements Ã 
+partir de la fenÃªtre, quand les tÃ©lÃ©chargements sont finis.</p>
 
-<p class=MsoNoSpacing><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNoSpacing style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>• Vous pouvez ouvrir le fichier après son
-téléchargement terminé en double cliquant sur l'élément d'entrée</span></p>
+<a name="_Toc301896242"><h2>Supprimer le popup</h2></a>
 
-<p class=MsoNoSpacing style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>• Vous pouvez sélectionner plusieurs éléments
-dans la séquence en cliquant sur le premier élément de la séquence, maintenez
-la touche Maj et cliquez sur le dernier élément de la séquence</span></p>
+<p class=MsoNormal>Cette option supprime le contenu contextuel
+de la fenÃªtre de progression du tÃ©lÃ©chargement lors de lâ€™ajout de plus de
+tÃ©lÃ©chargements sur la fenÃªtre. La fenÃªtre doit dÃ©jÃ  Ãªtre ouverte pour que cela
+fonctionne.</p>
 
-<p class=MsoNoSpacing style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>• Vous pouvez sélectionner plusieurs éléments
-(pas dans la séquence) en cliquant sur le premier point, puis tout en
-maintenant la touche Ctrl, cliquez sur chaque article suivant pour être
-sélectionnés</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNoSpacing style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>• Vous pouvez effectuer des actions sur un
-élément (ou la sélection des articles) par un clic droit sur ce point (ou tout
-autre élément de la sélection)</span></p>
+<a name="_Toc301896243"><h2>Effacer tout quand câ€™est fini</h2></a>
 
-<p class=MsoNoSpacing><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>Permet dâ€™effacer tous les tÃ©lÃ©chargements finis Ã  partir de la fenÃªtre.</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h2><a name="_Toc301896241"><span lang=FR-BE>Effacement automatique quand c’est
-fini</span></a></h2>
+<a name="_Toc301896244"><h2>ArrÃªter toutes les sessions</h2></a>
 
-</div>
+<p class=MsoNormal>Cette fonctionnalitÃ© vous permettra dâ€™arrÃªter
+tous les tÃ©lÃ©chargements en cours. Il provoque lâ€™abandon de chaque
+tÃ©lÃ©chargement, quelle que soit la session.</p>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Efface automatiquement les téléchargements à
-partir de la fenêtre, quand les téléchargements sont finis.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896245"><h2>Relancer toutes les sessions arrÃªtÃ©es</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>Cette fonctionnalitÃ© vous permettra de
+relancer les sessions prÃ©cÃ©demment arrÃªtÃ©es. Chaque sÃ©ance dÃ©butera par les
+tÃ©lÃ©chargements prÃ©alablement arrÃªtÃ©s, puis continuera avec le reste de la
+session.</p>
 
-<h2><a name="_Toc301896242"><span lang=FR-BE>Supprimer le popup</span></a></h2>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc301896246"><h2>Enregistrer la session en cache</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette option supprime le contenu contextuel
-de la fenêtre de progression du téléchargement lors de l'ajout de plus de
-téléchargements sur la fenêtre. La fenêtre doit déjà être ouverte pour que cela
-fonctionne.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896243"><span lang=FR-BE>Effacer tout quand c'est fini</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>Permet d'effacer
-tous les téléchargements finis à partir de la fenêtre.<br>
-<br>
-</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896244"><span lang=FR-BE>Arrêter toutes les sessions</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette fonctionnalité vous permettra d'arrêter
-tous les téléchargements en cours. Il provoque l’abandon de chaque
-téléchargement, quelle que soit la session.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896245"><span lang=FR-BE>Relancer toutes les sessions
-arrêté</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette fonctionnalité vous permettra de
-relancer les sessions précédemment arrêtées. Chaque séance débutera par les
-téléchargements préalablement arrêtés, puis continuera avec le reste de la
-session.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896246"><span lang=FR-BE>Enregistrer la session cache</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cela vous permet de sauvegarder tous les
-éléments dans la fenêtre et de mettre en cache, ce qui peut être rappelé plus
-tard en utilisant la fonction « Restaurer la session cache » dans le menu
-ImageHostGrabber. Ceci est utile si vous rencontrez des problèmes de connexion
+<p class=MsoNormal>Cela vous permet de sauvegarder tous les
+Ã©lÃ©ments dans la fenÃªtre et de mettre en cache, ce qui peut Ãªtre rappelÃ© plus
+tard en utilisant la fonction Â«Restaurer la session cacheÂ» dans le menu
+ImageHostGrabber. Ceci est utile si vous rencontrez des problÃ¨mes de connexion
 ou autre chose et vous ne voulez pas perdre tout le temps que vous mettez dans
-la construction de la liste de téléchargement.</span></p>
+la construction de la liste de tÃ©lÃ©chargement.</p>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc301896247"><h2>Actions sur les Ã©lÃ©ments sÃ©lectionnÃ©s</h2></a>
 
-<h2><a name="_Toc301896247"><span lang=FR-BE>Actions sur les éléments
-sélectionnés</span></a></h2>
+<p class=MsoNormal>Toutes les actions sur les Ã©lÃ©ments
+sÃ©lectionnÃ©s sont effectuÃ©es par un clic droit sur l'Ã©lÃ©ment (s) et en
+sÃ©lectionnant lâ€™action Ã  effectuer.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Toutes les actions sur les éléments
-sélectionnés sont effectuées par un clic droit sur l'élément (s) et en
-sélectionnant l'action à effectuer.</span></p>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896248"><h3>Ouvrir le fichier</h3></a>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>Cette action sera lancÃ©e uniquement sur
+l'Ã©lÃ©ment qui a Ã©tÃ© sÃ©lectionnÃ©. Par exemple, si vous faites un clic droit sur
+le troisiÃ¨me Ã©lÃ©ment de la liste de sÃ©lection, lui seul sera ouvert.
+Lâ€™action Â«Ouvrir le fichierÂ» passe le contrÃ´le au systÃ¨me dâ€™exploitation qui
+lancera le programme par dÃ©faut qui gÃ¨re le type de fichier.</p>
 
-<h3 style='margin-left:0in'><a name="_Toc301896248"><span lang=FR-BE>Ouvrir le
-fichier</span></a></h3>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc301896249"><h3>Ouvrir le dossier contenant</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette action sera ouverte uniquement sur
-l'élément qui a été sélectionné. Par exemple, si vous faites un clic droit sur
-le troisième élément de la liste de sélection, seul le troisième point sera
-ouvert. Le « Ouvrir le fichier » l’action passe le contrôle sur le système
-d'exploitation pour ouvrir le fichier dans le programme par défaut qui gère le
-type de fichier.</span></p>
+<p class=MsoNormal>Cette action va ouvrir le dossier contenant
+l'Ã©lÃ©ment qui a Ã©tÃ© sÃ©lectionnÃ©</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc301896250"><h3>Retirer de la liste</h3></a>
 
-<h3 style='margin-left:0in'><a name="_Toc301896249"><span lang=FR-BE>Ouvrez le
-dossier contenant</span></a></h3>
+<p class=MsoNormal>Cela vous permet de supprimer un ou plusieurs
+Ã©lÃ©ment(s) dans la liste.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette action va ouvrir le dossier contenant
-l'élément qui a été sélectionné</span></p>
+<a name="_Toc301896251"><h3>Abandonner le tÃ©lÃ©chargement/requÃªte</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>Cette fonctionnalitÃ© vous permet dâ€™annuler
+une ou plusieurs requÃªtes pour une raison quelconque. Ã‡a pourrait Ãªtre une
+option que vous considÃ©rez si le tÃ©lÃ©chargement est trop long et que vous
+voulez rÃ©essayer ultÃ©rieurement.</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3 style='margin-left:0in'><a name="_Toc301896250"><span lang=FR-BE>Retirer de
-la liste</span></a></h3>
+<a name="_Toc301896252"><h3>RÃ©essayer de tÃ©lÃ©charger/requÃªte</h3></a>
 
-</div>
+<p class=MsoNormal>Cette fonctionnalitÃ© vous permettra de
+recommencer un ou plusieurs tÃ©lÃ©chargements qui ont Ã©tÃ© abandonnÃ©s, sâ€™est
+terminÃ©e avec succÃ¨s, ou qui est en cours. Il va rÃ©essayer dâ€™avancer le progrÃ¨s
+actuel du tÃ©lÃ©chargement (s).</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cela vous permet de supprimer un ou plusieurs
-produit (s) dans la liste.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896253"><h3>RedÃ©marrer le tÃ©lÃ©chargement</h3></a>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>Cette fonction redÃ©marre le tÃ©lÃ©chargement
+(s) complÃ¨tement, quel que soit l'Ã©tat dâ€™avancement. Il commence avec un
+nouveau tÃ©lÃ©chargement, il ne reprend pas les progrÃ¨s antÃ©rieurs.</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h3 style='margin-left:0in'><a name="_Toc301896251"><span lang=FR-BE>Abandonner
-le téléchargement / requête</span></a></h3>
+<a name="_Toc301896254"><h3>RÃ©initialiser le nombre de tentatives Ã  zÃ©ro</h3></a>
 
-</div>
+<p class=MsoNormal>Cette fonctionnalitÃ© vous permet de
+rÃ©initialiser le nombre de tentatives de l'Ã©lÃ©ment sÃ©lectionnÃ© (s). Il est
+utile sâ€™il y avait des problÃ¨mes de connexion qui a gonflÃ© le nombre de tentatives
+et que vous voulez essayer Ã  nouveau.</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette fonctionnalité vous permet d'annuler
-une ou plusieurs requêtes pour une raison quelconque. Ça pourrait être une
-option que vous considérez si le téléchargement est trop long et que vous
-voulez réessayer ultérieurement.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896255"><h3>Afficher les dÃ©tails de la requÃªte</h3></a>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc301896252"><span lang=FR-BE>Réessayer
-de télécharger / requête</span></a></h3>
+<p class=MsoNormal>Cette fonctionnalitÃ© vous permettra de
+visualiser les dÃ©tails de la requÃªte, par exemple lorsque le fichier est
+enregistrÃ©, lâ€™URL de la vignette, et le code HTML associÃ© Ã  la page des
+vignettes.</p>
 
 </div>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette fonctionnalité vous permettra de
-recommencer un ou plusieurs téléchargements qui ont été abandonnés, s'est
-terminée avec succès, ou qui est en cours. Il va réessayer d’avancer le progrès
-actuel du téléchargement (s).</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896256"><h2>Exporter la liste en HTML</h2></a>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<p class=MsoNormal>Ce bouton vous permet dâ€™enregistrer la liste
+de tÃ©lÃ©chargement dans un fichier html. Le fichier html peut ensuite Ãªtre
+ouvert dans la fenÃªtre principale du navigateur et Ãªtre retraitÃ© en exÃ©cutant Â«
+Obtenir toutes les photos sur la pageÂ».</p>
 
-<h3 style='margin-left:0in'><a name="_Toc301896253"><span lang=FR-BE>Redémarrer
-le téléchargement</span></a></h3>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc301896257"><h2>Nombre max. de requÃªtes et de tentatives</h2></a>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette fonction redémarre le téléchargement
-(s) complètement, quel que soit l'état d'avancement. Il commence avec un
-nouveau téléchargement, il ne reprend pas les progrès antérieurs.</span></p>
-
-<p class=MsoNormal style='margin-left:1.0in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
-
-<h3 style='margin-left:0in'><a name="_Toc301896254"><span lang=FR-BE>Réinitialiser
-le nombre de tentatives à zéro</span></a></h3>
+<p class=MsoNormal>Ces deux commandes vous permettent
+instantanÃ©ment de contrÃ´ler le nombre maximum de requÃªtes et de tentatives pour
+le processus de tÃ©lÃ©chargement. Les changements prennent effet immÃ©diatement.</p>
 
 </div>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette fonctionnalité vous permet de
-réinitialiser le nombre de tentatives de l'élément sélectionné (s). Il est
-utile s'il y avait des problèmes de connexion qui a gonflé le nombre de tentatives
-et que vous voulez essayer à nouveau.</span></p>
+<br clear=all style='page-break-before:always'>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border-top:solid #4F81BD 1.0pt;border-left:solid #4F81BD 1.0pt;
-border-bottom:none;border-right:none;padding:2.0pt 0in 0in 2.0pt;margin-left:
-1.0in;margin-right:0in'>
+<a name="_Toc301896258"><h1>Editeur de fichier hÃ´te</h1></a>
 
-<h3 style='margin-left:0in'><a name="_Toc301896255"><span lang=FR-BE>Afficher
-les détails de larequête</span></a></h3>
+<p class=MsoNormal>Cette section ne couvre que les bases de lâ€™interface pour les opÃ©rations de base. Vous pouvez trouver un tutoriel
+complet sur lâ€™ajout de vos propres hÃ´tes sur le site Web, ou en tÃ©lÃ©chargeant le fichier suivant:&nbsp;
+<a href="http://hot-honeys.com/HostFileEditor.pdf" target="_blank">http://hot-honeys.com/HostFileEditor.pdf</a></p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:1.0in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette fonctionnalité vous permettra de
-visualiser les détails de la requête, par exemple lorsque le fichier est
-enregistré, l'URL de la vignette, et le code HTML associé à la page des
-vignettes.</span></p>
+<div class=indent>
 
-<p class=MsoNormal style='margin-left:1.0in'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896259"><h2>Etiquette dâ€™hÃ´te</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>Ceci est l'Ã©tiquette dâ€™identification unique pour une entrÃ©e dans le fichier hÃ´te.</p>
 
-<h2><a name="_Toc301896256"><span lang=FR-BE>Exporter la liste en HTML</span></a></h2>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc301896260"><h2>ModÃ¨le dâ€™URL</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Ce bouton vous permet d'enregistrer la liste
-de téléchargement dans un fichier html. Le fichier html peut ensuite être
-ouvert dans la fenêtre principale du navigateur et être retraité en exécutant «
-Obtenir toutes les photos sur la page ».</span></p>
+<p class=MsoNormal>Ceci est lâ€™expression rÃ©guliÃ¨re qui correspond au motif URL de lâ€™hÃ©bergeur dâ€™images.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc301896261"><h2>ModÃ¨le de recherche</h2></a>
 
-<h2><a name="_Toc301896257"><span lang=FR-BE>Max. Requêtes et Max. tentatives</span></a></h2>
+<p class=MsoNormal>Câ€™est la partie qui trouve lâ€™image sur la
+page rÃ©sultante. Veuillez-vous rÃ©fÃ©rer Ã  lâ€™Â«Ã‰diteur de fichiers hÃ´teÂ» sur la
+page principale de discussion sur le modÃ¨le de recherche.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Ces deux commandes vous permettent
-instantanément de contrôler le nombre maximum de requêtes et de tentatives pour
-le processus de téléchargement. Les changements prennent effet immédiatement.</span></p>
+<a name="_Toc301896262"><h2>Mise Ã  jour des fichiers</h2></a>
 
-<span lang=FR-BE style='font-size:10.0pt;line-height:115%;font-family:"Calibri","sans-serif"'><br
-clear=all style='page-break-before:always'>
-</span>
+<p class=MsoNormal>Cette mise Ã  jour du fichier hÃ´te avec tous
+les changements que vous avez apportÃ©s Ã  une entrÃ©e existante.</p>
 
-<p class=MsoNormal><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
+<a name="_Toc301896263"><h2>Ajouter un hÃ´te</h2></a>
 
-<h1><a name="_Toc301896258"><span lang=FR-BE>Editeur de fichier hôte</span></a></h1>
+<p class=MsoNormal>Cela ajoute une nouvelle entrÃ©e Ã 
+lâ€™information de fichier hÃ´te donnÃ© dans les trois premiers champs.</p>
 
-</div>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal><span lang=FR-BE>Cette section ne couvre que les bases de
-l'interface pour les opérations de base. Vous pouvez trouver un tutoriel
-complet sur l'ajout de vos propres hôtes sur le site Web, ou en téléchargeant
-le fichier suivant: </span><a
-href="http://imagehost-grabber.com/HostFileEditor.pdf"><span lang=FR-BE>http://imagehost-grabber.com/HostFileEditor.pdf</span></a></p>
+<a name="_Toc301896264"><h2>Supprimer lâ€™hÃ´te</h2></a>
 
-<p class=MsoNormal><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>Ceci supprime lâ€™entrÃ©e dans le fichier hÃ´te.</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>&nbsp;</p>
 
-<h2><a name="_Toc301896259"><span lang=FR-BE>Etiquette d'hôte</span></a></h2>
+<a name="_Toc301896265"><h2>Modifier les serveurs hÃ´te</h2></a>
 
-</div>
+<p class=MsoNormal>Câ€™est lÃ  que vous pouvez ajouter dâ€™autres sources hÃ´te.
+Entrez simplement lâ€™URL de lâ€™emplacement du nouveau fichier hÃ´te.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>Ceci est
-l'étiquette d'identification unique pour une entrée dans le fichier hôte.</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
+<a name="_Toc301896266"><h2>Choisir un Fichier dâ€™hÃ´te</h2></a>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<p class=MsoNormal>Cela vous permet de choisir un fichier dâ€™hÃ´te
+autre que celle rÃ©sidant dans le dossier dâ€™extension dâ€™ImageHostGrabber.</p>
 
-<h2><a name="_Toc301896260"><span lang=FR-BE>Modèle d'URL</span></a></h2>
+<p class=MsoNormal>&nbsp;</p>
 
-</div>
+<a name="_Toc301896267"><h2>RÃ©initialiser au fichier dâ€™hÃ´te par dÃ©faut</h2></a>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>Ceci est
-l'expression régulière qui correspond au motif URL de l’hébergeur d’images.</span></p>
+<p class=MsoNormal>Utilisation du fichier dâ€™hÃ´te qui rÃ©side dans le dossier dâ€™extension dâ€™ImageHostGrabber.</p>
 
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
+<p class=MsoNormal>&nbsp;</p>
 
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
+<a name="_Toc301896268"><h2>Fusionner le fichier hÃ´te</h2></a>
 
-<h2><a name="_Toc301896261"><span lang=FR-BE>Modèle de recherche</span></a></h2>
+<p class=MsoNormal>Cela vous permettra de fusionner les entrÃ©es dans un fichier hÃ´te
+(autre que celui que vous utilisez) avec le fichier hÃ´te que vous utilisez actuellement.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<a name="_Toc301896269"><h2>Mise Ã  jour du fichier hÃ´te en ligne</h2></a>
+
+<p class=MsoNormal>Cela vous permet
+de recevoir des entrÃ©es les plus Ã  jour Ã  partir des fichiers dâ€™hÃ´te en ligne.
+Les emplacements en ligne de fichiers hÃ´te peuvent Ãªtre modifiÃ©s en appuyant
+sur le bouton Â«Modifier les serveurs hÃ´tesÂ»</p>
 
 </div>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>C'est la partie qui trouve l'image sur la
-page résultante. Veuillez-vous référer à l’« Éditeur de fichiers hôte » sur la
-page principale de discussion sur le modèle de recherche.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896262"><span lang=FR-BE>Mise à jour des fichiers</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cette mise à jour du fichier hôte avec tous
-les changements que vous avez apportés à une entrée existante.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896263"><span lang=FR-BE>Ajouter un hôte</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cela ajoute une nouvelle entrée à
-l'information de fichier hôte donné dans les trois premiers champs.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896264"><span lang=FR-BE>Supprimer l'hôte</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>Ceci supprime
-l'entrée dans le fichier hôte.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896265"><span lang=FR-BE>Modifier les serveurs hôte</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>C'est là que vous pouvez ajouter d'autres
-sources hôte. Entrez simplement l'URL de l'emplacement du nouveau fichier hôte.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896266"><span lang=FR-BE>Choisissez un Fichier hôte</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in;text-align:justify;text-justify:
-inter-ideograph'><span lang=FR-BE>Cela vous permet de choisir un fichier hôte
-autre que celle résidant dans le dossier d'extension d’ImageHostGrabber.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896267"><span lang=FR-BE>Réinitialiser au fichier d'hôte
-par défaut</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>Il utilise le
-fichier hôte qui réside dans le dossier d'extension d’ImageHostGrabber.</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896268"><span lang=FR-BE>Fusionner le fichier hôte</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>Cela vous
-permettra de fusionner les entrées dans un fichier hôte (autre que celui que
-vous utilisez) avec le fichier hôte que vous utilisez actuellement.</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
-
-<div style='border:solid #DBE5F1 3.0pt;padding:0in 0in 0in 0in;background:#DBE5F1;
-margin-left:.5in;margin-right:0in'>
-
-<h2><a name="_Toc301896269"><span lang=FR-BE>Mise à jour du fichier hôte en
-ligne</span></a></h2>
-
-</div>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>Cela vous permet
-de recevoir des entrées les plus à jour à partir des fichiers d'hôte en ligne.
-Les emplacements en ligne de fichiers hôte peuvent être modifiés en appuyant
-sur le bouton « Modifier les serveurs hôtes »</span></p>
-
-<p class=MsoNormal style='margin-left:.5in'><span lang=FR-BE>&nbsp;</span></p>
 
 </div>
 

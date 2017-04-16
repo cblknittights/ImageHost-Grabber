@@ -10,6 +10,7 @@
 <!ENTITY  open_url "Abrir URL">
 <!ENTITY  view_request_details "Ver detalles de la descarga">
 
+<!ENTITY  zebra_scheme "Jailbird Stripes Scheme">
 <!ENTITY  auto_clear_finished "Auto-borrar finalizadas">
 <!ENTITY  suppress_popup "Suprimir ventana emergente">
 <!ENTITY  clear_all_finished "Borrar finalizadas">

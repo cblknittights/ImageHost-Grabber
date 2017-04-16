@@ -2,7 +2,8 @@
 
 <!ENTITY  select_host "Sunucu Seç…">
 
-<!ENTITY  host_label "Sunucu Etiketi">
+<!ENTITY  host_ID.label "Sunucu Etiketi">
+<!ENTITY  host_ID.placeholder "Unique identifying label for the entry">
 <!ENTITY  host_max_threads "Max. threads">
 <!ENTITY  host_max_threads.tooltiptext "Max. simultaneous HTTP requests for this host.">
 <!ENTITY  host_max_threads.hint "If enabled, will override global setting.">

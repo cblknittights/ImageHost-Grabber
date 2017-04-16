@@ -6,6 +6,7 @@
 <!ENTITY  current_link_number "Nombre de lien actuelle:">
 
 <!ENTITY  request_url "URL de la requête:">
+<!ENTITY  source_url "Source URL:">
 <!ENTITY  regular_expression "Expression régulière:">
 <!ENTITY  target_directory "Répertoire cible:">
 

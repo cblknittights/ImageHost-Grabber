@@ -1,28 +1,29 @@
 <!ENTITY  host_file_editor "Editeur de Fichier hôtes">
 
-<!ENTITY  select_host "Sélectionner l'hébergeur...">
+<!ENTITY  select_host "Sélectionner l’hébergeur...">
 
-<!ENTITY  host_label "Etiquette d'hôte">
+<!ENTITY  host_ID.label "Etiquette d’hôte">
+<!ENTITY  host_ID.placeholder "Identifiant unique pour l’entrée">
 <!ENTITY  host_max_threads "Nb. Max. requêtes">
 <!ENTITY  host_max_threads.tooltiptext "Nombre Max. de requêtes HTTP simultanées pour cet hébergeur.">
 <!ENTITY  host_max_threads.hint "Si activé, supplantera le paramètre global.">
-<!ENTITY  timeout "D/L Time Delay">
+<!ENTITY  timeout "Temporisation">
 <!ENTITY  timeout.tooltiptext "Temporisation entre les téléchargements pour cet hébergeur.">
 <!ENTITY  timeout.hint "Si activé, supplantera le paramètre global.">
 <!ENTITY  timeout.disabled "Désactivé">
 
-<!ENTITY  url_pattern "Format d'URL">
+<!ENTITY  url_pattern "Format d’URL">
 
 <!ENTITY  search_pattern "Motif à rechercher">
 <!ENTITY  select_func "Modèles...">
 
-<!ENTITY  update_file "MàJ du Fichier">
+<!ENTITY  update_file "MàJ de l’hôte">
 <!ENTITY  reset_form "Effacer le Formulaire">
-<!ENTITY  add_host "Ajouter l'hôte">
-<!ENTITY  delete_host "Supprimer l'hôte">
+<!ENTITY  add_host "Ajouter l’hôte">
+<!ENTITY  delete_host "Supprimer l’hôte">
 <!ENTITY  modify_hostf_servers "Modifier les serveurs hôtes">
 
-<!ENTITY  pick_host_file "Choisir le Fichier d'hôtes">
+<!ENTITY  pick_host_file "Choisir le Fichier d’hôtes">
 <!ENTITY  reset_to_default_host_file "Réinitialiser au fichier d'hôtes par défaut">
-<!ENTITY  merge_host_file "Fusionner le Fichier d'hôtes">
-<!ENTITY  update_from_online_host_file "MàJ du Fichier d'hôtes en ligne">
+<!ENTITY  merge_host_file "Fusionner le Fichier d’hôtes">
+<!ENTITY  update_from_online_host_file "MàJ du Fichier d’hôtes en ligne">

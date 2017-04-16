@@ -7,6 +7,8 @@
 <!ENTITY  host_options "Sunucu Ayarlari">
 <!ENTITY  debugging "Hata Ayiklama">
 
+<!ENTITY  restart_Firefox "Restart &brandShortName; now!">
+
 <!ENTITY  what_to_do_if_file_exists_in_target_location "Dosya Mevcutsa Ne Yapilsin?">
 <!ENTITY  rename_file "Yeniden Adlandir">
 <!ENTITY  skip_file "Atla">
@@ -20,10 +22,11 @@
 
 <!ENTITY  show_the_download_directory_box "Kaydedilecek Yeri Sor(Bu Seçenek Isaretsizse Son Indirme Klasörü Kullanilir)">
 <!ENTITY  show_the_image_grabber_menu_in_the_tools_menu "Araçlar Menüsünde Image Grabber Menüsünü Göster(Bu Seçenek Isaretsizse Ana Menüde Konumlanir)">
-<!ENTITY  alert_restart "alert: this requires a restart of &brandShortName;">
 <!ENTITY  remove_duplicate_links "Ayni linkleri sil">
 <!ENTITY  even_across_multiple_pages "Farkli sayfalardan bile olsa">
+<!ENTITY  suppress_close_download_confirmation_dialog "Suppress Close download window confirmation dialog">
 <!ENTITY  close_download_window "Bütün indirmeler bittikten sonra indirme penceresini kapat">
+<!ENTITY  without_delay "without delay.">
 <!ENTITY  keep_download_window_contents "Farkli Sayfalardan Bile Olsa Ayni Linkleri Sil">
 
 <!ENTITY  download_embedded_images "Gömülü resimleri indir">
@@ -38,7 +41,7 @@
 
 <!ENTITY  host_file_update "Sunucu dosyasi güncelleme:">
 <!ENTITY  enable_automatic_update "Otomatik güncellestirmeyi etkinlestir.">
-<!ENTITY  suppress_confirmation_dialog "Dogrulama penceresini bastir">
+<!ENTITY  suppress_host_file_update_confirmation_dialog "Dogrulama penceresini bastir">
 <!ENTITY  merge_behavior "Birlestirme tarzi:">
 <!ENTITY  merge_host_file_ask "Sor">
 <!ENTITY  merge_host_file_overwrite "Mevcut sunucularin üzerine yaz ve yenileri ekle">
@@ -55,6 +58,7 @@
 <!ENTITY  disclaimer_line2 "Sadece Özel Durumlarda Geçici Olarak Aktif Hale Getirilmeli,Sonra Hemen Devre Disi Birakilmalidir.">
 <!ENTITY  disclaimer_line3 "Aktif Halde Birakilmalari &brandShortName;’un Yavas Çalismasina,Fazla Bellek ve Hard Disk Kullanimina Sebep Olur.">
 <!ENTITY  read_disclaimer "Uyariyi Okuyup Anladigindan Emin Ol.">
+<!ENTITY  alert_restart "This requires a restart of &brandShortName;">
 <!ENTITY  enable_console_logging "Günlük Konsolunu Aktiflestir">
 <!ENTITY  enable_debugging_logging "Hata Ayiklama Günlügünü Aktiflestir">
 <!ENTITY  clear_log "Günlügü Temizle">

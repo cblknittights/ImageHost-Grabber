@@ -7,6 +7,8 @@
 <!ENTITY  host_options "Host Options">
 <!ENTITY  debugging "Debugging">
 
+<!ENTITY  restart_Firefox "Restart &brandShortName; now!">
+
 <!ENTITY  what_to_do_if_file_exists_in_target_location "What to do if file exists in target location?">
 <!ENTITY  rename_file "Rename File">
 <!ENTITY  skip_file "Skip File">
@@ -20,10 +22,11 @@
 
 <!ENTITY  show_the_download_directory_box "Show the Download Directory box (if unchecked, will use the last directory used)">
 <!ENTITY  show_the_image_grabber_menu_in_the_tools_menu "Show the Image Grabber menu in the tools menu. (if unchecked, places it on the main menubar)">
-<!ENTITY  alert_restart "alert: this requires a restart of &brandShortName;">
 <!ENTITY  remove_duplicate_links "Remove duplicate links">
 <!ENTITY  even_across_multiple_pages "even across multiple pages.">
+<!ENTITY  suppress_close_download_confirmation_dialog "Suppress Close download window confirmation dialog">
 <!ENTITY  close_download_window "Close download window when all downloads are finished">
+<!ENTITY  without_delay "without delay.">
 <!ENTITY  keep_download_window_contents "Keep Download Window Contents (even after closed)">
 
 <!ENTITY  download_embedded_images "Download embedded images">
@@ -38,7 +41,7 @@
 
 <!ENTITY  host_file_update "Host file update:">
 <!ENTITY  enable_automatic_update "Enable automatic update">
-<!ENTITY  suppress_confirmation_dialog "Suppress confirmation dialog">
+<!ENTITY  suppress_host_file_update_confirmation_dialog "Suppress confirmation dialog">
 <!ENTITY  merge_behavior "Merge behavior:">
 <!ENTITY  merge_host_file_ask "Ask">
 <!ENTITY  merge_host_file_overwrite "Overwrite current hosts and add new hosts">
@@ -51,10 +54,11 @@
 <!ENTITY  host_timeout_seconds "Time to wait in seconds">
 
 <!ENTITY  disclaimer "DISCLAIMER:">
-<!ENTITY  disclaimer_line1 "Enabling/Disabling the following options will require a restart of &brandShortName; in order to take affect.">
+<!ENTITY  disclaimer_line1 "Enabling/Disabling the following options will require a restart of &brandShortName; in order to take effect.">
 <!ENTITY  disclaimer_line2 "They should only be enabled temporarily to log a specific event, and then disabled right away.">
 <!ENTITY  disclaimer_line3 "Leaving them enabled will cause &brandShortName; to run slow, chew up memory, and eat up hard drive space.">
 <!ENTITY  read_disclaimer "Make sure have read and understood the disclaimer.">
+<!ENTITY  alert_restart "This requires a restart of &brandShortName;">
 <!ENTITY  enable_console_logging "Enable Console Logging">
 <!ENTITY  enable_debugging_logging "Enable Debugging Logging">
 <!ENTITY  clear_log "Clear Log">

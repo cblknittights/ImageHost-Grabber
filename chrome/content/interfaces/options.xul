@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/preferences.css" type="text/css"?>
 <?xml-stylesheet href="chrome://imagegrabber/skin/options.css" type="text/css"?>
 <!DOCTYPE window [
 	<!ENTITY % optionsDTD SYSTEM "chrome://imagegrabber/locale/options.dtd">
@@ -12,7 +13,6 @@
 
 
 <prefwindow title="&imagegrabber_options;" id="imagegrabberPreferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	ondialogaccept="setPrefGlobVars();"
 	onload="setEnableStates();">
 
 <stringbundleset id="stringbundleset">
@@ -26,16 +26,13 @@
 
 <script type="text/javascript">
 <![CDATA[
-function setEnableStates() {
-	ihg_Globals.strbundle = document.getElementById("imagegrabber-strings");
-	ihg_Functions.read_locale_strings();
-	toggleEnableState('cb_prefixFileNames', true, 'rg_existBehavior');
-	toggleEnableState('cb_createDocSub', false, 'cb_prefixDirs');
-	toggleEnableState('cb_removeDupLinks', false, 'cb_removeDupLinksXpages');
-	toggleEnableState('cb_embImages', false, 'lab_minEmbeddedWidth', 'lab_minEmbeddedHeight', 'lab_minSize');
-	toggleEnableState('cb_autoUpdate', false, 'cb_suppressConfirm', 'rg_mergeBehavior');
-	toggleEnableState('cb_downloadTimeout', false, 'tb_downloadTimeout', 'lab_downloadTimeout');
+var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
 
+ihg_Globals.addonPath = ihg_Globals.prefManager.getCharPref("extensions.imagegrabber.addonPath");
+var Initial_pref = parse(ihg_Globals.prefManager.getCharPref("extensions.imagegrabber.enable@startup"));
+
+function setEnableStates() {
+	toggleEnableState('cb_downloadTimeout', false, 'tb_downloadTimeout', 'lab_downloadTimeout');
 	handleDLTimeoutControl();
 	}
 
@@ -45,18 +42,27 @@ function handleDLTimeoutControl() {
 	
 	if (cbDLTimeout.checked) {
 		tbDLTimeout.setAttribute("min", "1");
-	}
+		}
 	else {
 		tbDLTimeout.removeAttribute("min");
+		}
 	}
-}
-	
-function setPrefGlobVars() {
-	var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
 
-	var chkBx2 = document.getElementById("cb_enableConLog");
+function checkRestart() {
+	let RestartApp_button = document.getElementById("restartApp");
+	if (['enableConLog','enableDebug'].some(function(prefId) {
+			return document.getElementById(prefId).value != Initial_pref[prefId];
+			})) {
+		RestartApp_button.removeAttribute("disabled");
+		}
+	else {
+		RestartApp_button.setAttribute("disabled", true);
+		};
+	}
 
-	prefManager.setBoolPref("javascript.options.showInConsole", chkBx2.checked);
+function restartApp() {
+	let nsIAppStartup = Components.interfaces.nsIAppStartup;
+	Components.classes["@mozilla.org/toolkit/app-startup;1"].getService(nsIAppStartup).quit(nsIAppStartup.eForceQuit | nsIAppStartup.eRestart);
 	}
 
 // This function toggles the enabled state of a target element with ID
@@ -70,20 +76,10 @@ function setPrefGlobVars() {
 // This is a variable length function to allow multiple targetId's
 // i.e.:	toggleEnableState(controlId, invertState, targetId1, targetId2, ...)
 
-function toggleEnableState() {
-	var args = toggleEnableState.arguments;
-
-	var controlId = args[0];
-	var controlElem = document.getElementById(controlId);
-
-	var invertState = args[1];
-	var targetDisabled = invertState ? controlElem.checked : !controlElem.checked;
-
-	for (var i = 2; i < args.length; i++) {
-		var targetId = args[i];
-		var targetElem = document.getElementById(targetId);
-		targetElem.disabled = targetDisabled;
-		}
+function toggleEnableState(controlId, invertState, ...targetIds) {
+	var control = document.getElementById(controlId).checked;
+	var targetDisabled = invertState ? control : !control;
+	targetIds.forEach((targetId) => document.getElementById(targetId).disabled = targetDisabled);
 	}
 
 ]]>
@@ -106,7 +102,7 @@ function toggleEnableState() {
 	</preferences>
 
 	<checkbox id="cb_prefixFileNames" preference="prefixFileName" label="&prefix_filenames_to_reflect_page_order;"
-		oncommand="toggleEnableState(this.id, true, 'rg_existBehavior');"/>
+		onsyncfrompreference="toggleEnableState(this.id, true, 'rg_existBehavior');"/>
 	<groupbox id="gb_existBehavior">
 		<caption label="&what_to_do_if_file_exists_in_target_location;"/>
 		<radiogroup id="rg_existBehavior" preference="fileExistBehavior" orient="horizontal">
@@ -116,7 +112,8 @@ function toggleEnableState() {
 		</radiogroup>
 	</groupbox>
 	<checkbox preference="boolpref_autorename" label="&autorename_imagevenue_and_fapomatic_files;"/>
-	<checkbox id="cb_createDocSub" preference="createDocSub" label="&create_a_subdirectory_with_document_title_inside_the_target_directory;" oncommand="toggleEnableState(this.id, false, 'cb_prefixDirs');"/>
+	<checkbox id="cb_createDocSub" preference="createDocSub" label="&create_a_subdirectory_with_document_title_inside_the_target_directory;"
+		onsyncfrompreference="toggleEnableState(this.id, false, 'cb_prefixDirs');"/>
 	<checkbox id="cb_prefixDirs" preference="prefixDirs" label="&prefix_directories_to_uniquely_and_chronologically_identify_them;" class="indent"/>
 	<checkbox id="boolpref_createPageDirs" preference="createPageDirs" label="&create_separate_directories_for_each_page_when_using_thread_sucker;"/>
 	<checkbox id="cb_useLastModFromHeader" preference="useLastModFromHeader" label="&use_last_modified_header;"/>
@@ -128,17 +125,23 @@ function toggleEnableState() {
 	<preferences>
 		<preference id="showDLDir" name="extensions.imagegrabber.showdldir" type="bool"/>
 		<preference id="showInTools" name="extensions.imagegrabber.showintools" type="bool"/>
-		<preference id="cacheDLWin" name="extensions.imagegrabber.cachedlwin" type="bool"/>
 		<preference id="removeDupLinks" name="extensions.imagegrabber.removeduplinks" type="bool"/>
 		<preference id="removeDupLinksXpages" name="extensions.imagegrabber.removeduplinksXpages" type="bool"/>
-		<preference id="autocb_autoCloseWindow" name="extensions.imagegrabber.autoclosewindow" type="bool"/>
+		<preference id="DLWindowSuppressCloseConfirm" name="extensions.imagegrabber.dlwindowcloseconfirm" type="bool" inverted="true"/>
+		<preference id="autoCloseWindow" name="extensions.imagegrabber.autoclosewindow" type="bool"/>
+		<preference id="DLWindowCloseImmediately" name="extensions.imagegrabber.dlwindowcloseimmediately" type="bool"/>
+		<preference id="cacheDLWin" name="extensions.imagegrabber.cachedlwin" type="bool"/>
 	</preferences>
 
 	<checkbox id="cb_showDLDir" preference="showDLDir" label="&show_the_download_directory_box;"/>
-	<checkbox id="cb_showInTools" preference="showInTools" label="&show_the_image_grabber_menu_in_the_tools_menu;" onclick="alert('&alert_restart;');"/>
-	<checkbox id="cb_removeDupLinks" preference="removeDupLinks" label="&remove_duplicate_links;" oncommand="toggleEnableState(this.id, false, 'cb_removeDupLinksXpages');"/>
+	<checkbox id="cb_showInTools" preference="showInTools" label="&show_the_image_grabber_menu_in_the_tools_menu;"/>
+	<checkbox id="cb_removeDupLinks" preference="removeDupLinks" label="&remove_duplicate_links;"
+		onsyncfrompreference="toggleEnableState(this.id, false, 'cb_removeDupLinksXpages');"/>
 	<checkbox id="cb_removeDupLinksXpages" preference="removeDupLinksXpages" label="&even_across_multiple_pages;" class="indent"/>
-	<checkbox id="cb_autoCloseWindow" preference="autocb_autoCloseWindow" label="&close_download_window;"/>
+	<checkbox id="cb_DLWindowSuppressCloseConfirm" preference="DLWindowSuppressCloseConfirm" label="&suppress_close_download_confirmation_dialog;"/>
+	<checkbox id="cb_autoCloseWindow" preference="autoCloseWindow" label="&close_download_window;"
+		onsyncfrompreference="toggleEnableState(this.id, false, 'cb_DLWindowCloseImmediately');"/>
+	<checkbox id="cb_DLWindowCloseImmediately" preference="DLWindowCloseImmediately" label="&without_delay;" class="indent"/>
 	<checkbox id="cb_cacheDLWin" hidden="true" preference="cacheDLWin" label="&keep_download_window_contents;"/>
 
 </prefpane>
@@ -155,25 +158,34 @@ function toggleEnableState() {
 	<groupbox>
 		<caption>
 			<checkbox id="cb_embImages" preference="downloadEmbeddedImages" label="&download_embedded_images;"
-				oncommand="toggleEnableState(this.id, false, 'lab_minEmbeddedWidth', 'lab_minEmbeddedHeight', 'lab_minSize');"/>
+				onsyncfrompreference="toggleEnableState(this.id, false, 'lab_minEmbeddedWidth', 'lab_minEmbeddedHeight', 'lab_minSize');"/>
 		</caption>
 		<grid>
 			<rows>
 				<label>&enter_the_minimum_width_and_height_that_will_be_considered_for_downloading;</label>
 				<row align="center">
 					<label control="lab_minEmbeddedWidth">&image_width;</label>
-					<hbox><textbox id="lab_minEmbeddedWidth" type="number" size="3" hidespinbuttons="true" preference="minEmbeddedWidth"/>px</hbox>
+					<hbox align="baseline">
+						<textbox id="lab_minEmbeddedWidth" type="number" size="3" hidespinbuttons="true" preference="minEmbeddedWidth"/>
+						<description value="px" style="margin: 0"/>
+					</hbox>
 				</row>
 				<row align="center">
 					<label control="lab_minEmbeddedHeight">&image_height;</label>
-					<hbox><textbox id="lab_minEmbeddedHeight" type="number" size="3" hidespinbuttons="true" preference="minEmbeddedHeight"/>px</hbox>
+					<hbox align="baseline">
+						<textbox id="lab_minEmbeddedHeight" type="number" size="3" hidespinbuttons="true" preference="minEmbeddedHeight"/>
+						<description value="px" style="margin: 0"/>
+					</hbox>
 				</row>
 				<separator height="10"/>
 				<label>&enter_the_minimum_file_size;</label>
 				<label>&setting_this_value_to_zero_disables_this_filter;</label>
 				<row align="center">
 					<label control="lab_minSize">&file_size_filter;</label>
-					<hbox><textbox id="lab_minSize" type="number" size="3" hidespinbuttons="true" preference="minFileSize"/>&kilobytes;</hbox>
+					<hbox align="baseline">
+						<textbox id="lab_minSize" type="number" size="3" hidespinbuttons="true" preference="minFileSize"/>
+						<description value="&kilobytes;" style="margin: 0"/>
+					</hbox>
 				</row>
 				<separator height="10"/>
 				<label>&the_file_size_filter_is_the_only_one_used;</label>
@@ -193,8 +205,8 @@ function toggleEnableState() {
 
 	<groupbox>
 		<caption label="&host_file_update;"/>
-		<checkbox id="cb_autoUpdate" preference="hostfcb_autoUpdate" label="&enable_automatic_update;" oncommand="toggleEnableState(this.id, false, 'cb_suppressConfirm', 'rg_mergeBehavior');"/>
-		<checkbox id="cb_suppressConfirm" preference="hostfUpdateConfirm" label="&suppress_confirmation_dialog;" class="indent"/>
+		<checkbox id="cb_autoUpdate" preference="hostfcb_autoUpdate" label="&enable_automatic_update;" onsyncfrompreference="toggleEnableState(this.id, false, 'cb_suppressConfirm', 'rg_mergeBehavior');"/>
+		<checkbox id="cb_suppressConfirm" preference="hostfUpdateConfirm" label="&suppress_host_file_update_confirmation_dialog;" class="indent"/>
 		<groupbox class="indent">
 			<caption label="&merge_behavior;"/>
 			<radiogroup id="rg_mergeBehavior" preference="hostfrg_mergeBehavior">
@@ -243,7 +255,7 @@ function toggleEnableState() {
 				<checkbox label="&host_timeout_between_downloads;" id="cb_downloadTimeout"
 					oncommand="toggleEnableState(this.id, false, 'tb_downloadTimeout', 'lab_downloadTimeout'); handleDLTimeoutControl();"
 					preference="downloadTimeout"
-					onsynctopreference="return (this.checked ? 1 : 0);"
+					onsynctopreference="return (this.checked ? 3 : 0);"
 				/>
 			</row>
 			<row align="center">
@@ -260,20 +272,36 @@ function toggleEnableState() {
 <prefpane id="debug" label="&debugging;" orient="vertical">
 
 	<preferences>
-		<preference id="enableDebug" name="extensions.imagegrabber.enabledebug" type="bool"/>
-		<preference id="enableConLog" name="extensions.imagegrabber.enableconlog" type="bool"/>
+		<preference id="showInConsole" name="javascript.options.showInConsole" type="bool"/>
+		<preference id="enableConLog" name="extensions.imagegrabber.enableconlog" type="bool"
+			onchange="if (document.getElementById('showInConsole').value != this.value) document.getElementById('cb_showInConsole').click(); checkRestart();"/>
+		<preference id="enableDebug" name="extensions.imagegrabber.enabledebug" type="bool" onchange="checkRestart();"/>
 	</preferences>
 
-	<label>&disclaimer;</label>
-	<label>&disclaimer_line1;</label>
-	<label>&disclaimer_line2;</label>
-	<label>&disclaimer_line3;</label>
+	<description class="header" value="&disclaimer;"/>
+
+	<description class="indent" value="&disclaimer_line1;"/>
+	<description class="indent" value="&disclaimer_line2;"/>
+	<description class="indent" value="&disclaimer_line3;"/>
 	<separator height="15"/>
-	<checkbox id="cb_enableConLog" preference="enableConLog" label="&enable_console_logging;" onclick="alert('&read_disclaimer;');"/>
-	<checkbox id="cb_enableDebug" preference="enableDebug" label="&enable_debugging_logging;" onclick="alert('&read_disclaimer;');"/>
+	<checkbox id="cb_showInConsole" preference="showInConsole" hidden="true"/>
+	<checkbox id="cb_enableConLog" preference="enableConLog" label="&enable_console_logging;" onclick="promptService.alert(this.window, null, (!this.checked ? '&read_disclaimer;\n' : '') + '&alert_restart;');"/>
+	<checkbox id="cb_enableDebug" preference="enableDebug" label="&enable_debugging_logging;" onclick="promptService.alert(this.window, null, (!this.checked ? '&read_disclaimer;\n' : '') + '&alert_restart;');"/>
+	<separator height="10"/>
 	<button id="but_clear" label="&clear_log;" oncommand="ihg_Functions.clearLog();"/>
 	<button id="but_copy" label="&copy_log_to_local_folder;" oncommand="ihg_Functions.copyLog();"/>
 
 </prefpane>
+
+<hbox class="prefWindow-dlgbuttons" flex="1">
+	<button id="restartApp" label="&restart_Firefox;" class="button-link" oncommand="acceptDialog();restartApp();" disabled="true" tabindex="-1"/>
+	<spacer flex="1"/>
+	<button dlgtype="accept"/>
+	<button dlgtype="cancel"/>
+</hbox>
+
+<script type="text/javascript">
+<![CDATA[checkRestart();]]>
+</script>
 
 </prefwindow>

@@ -1,6 +1,10 @@
 <!ENTITY  select_the_images_you_want_to_download.title "Select the images you want to download">
 <!ENTITY  select_the_images_you_want_to_download.value "Select the images you want to download:">
 
+<!ENTITY  target_folder.label "Target Folder">
+<!ENTITY  target_folder.tip "Browse for Target Folder">
+<!ENTITY  selectionCounter.value "__ of __ image selected;__ of __ images selected">
+
 <!ENTITY  check "Check">
 <!ENTITY  uncheck "Uncheck">
 <!ENTITY  toggle "Toggle">
@@ -15,6 +19,7 @@
 
 <!ENTITY  url "URL">
 <!ENTITY  host_id "Host ID">
+<!ENTITY  show_all "Show All...">
 
 <!ENTITY  no_preview_available "No preview available.">
 <!ENTITY  preview "Preview:">

@@ -7,9 +7,10 @@
 <!ENTITY  retry_download_request "Download/Anfrage wiederholen">
 <!ENTITY  restart_download "Download neu starten">
 <!ENTITY  reset_the_retry_count_to_zero "Wiederholungszähler auf 0 setzen">
-<!ENTITY  open_url "Open URL">
+<!ENTITY  open_url "URL öffnen">
 <!ENTITY  view_request_details "Anfragedetails anzeigen">
 
+<!ENTITY  zebra_scheme "Jailbird Stripes Scheme">
 <!ENTITY  auto_clear_finished "Fertige Jobs automatisch entfernen">
 <!ENTITY  suppress_popup "Popup unterdrücken">
 <!ENTITY  clear_all_finished "Alle fertigen Jobs entfernen">

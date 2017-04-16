@@ -2,7 +2,8 @@
 
 <!ENTITY  select_host "Escoja un servidor...">
 
-<!ENTITY  host_label "Etiqueta">
+<!ENTITY  host_ID.label "Etiqueta">
+<!ENTITY  host_ID.placeholder "Unique identifying label for the entry">
 <!ENTITY  host_max_threads "Peticiones simultáneas">
 <!ENTITY  host_max_threads.tooltiptext "Número máximo de peticiones HTTP simultáneas para este servidor.">
 <!ENTITY  host_max_threads.hint "If enabled, will override global setting.">

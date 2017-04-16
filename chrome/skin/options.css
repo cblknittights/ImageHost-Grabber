@@ -1,29 +1,45 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
-
 radio[pane] {
 	list-style-image: url("chrome://imagegrabber/skin/images/options.png");
 }
-
 radio[pane="fileopts"] {
 	-moz-image-region: rect(0px, 32px, 32px, 0px);
 }
-
 radio[pane="genopts"] {
 	-moz-image-region: rect(0px, 64px, 32px, 32px);
 }
-
 radio[pane="embeddedopts"] {
 	-moz-image-region: rect(0px, 96px, 32px, 64px);
 }
-
 radio[pane="hostfopts"] {
 	list-style-image: url("chrome://imagegrabber/skin/images/imagegrabber.png");
 }
-
 radio[pane="hostopts"] {
 	-moz-image-region: rect(0px, 128px, 32px, 96px);
 }
-
 radio[pane="debug"] {
 	-moz-image-region: rect(0px, 160px, 32px, 128px);
+}
+button.button-link {
+	-moz-appearance: none;
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	font-weight: bold;
+	text-decoration: underline;
+	min-width: 0;
+	margin: 0 6px;
+}
+button.button-link:not([disabled]) {
+	color: #0066CC;
+	text-shadow: 1px 1px white;
+	cursor: pointer;
+}
+button.button-link:not([disabled]):hover,
+button.button-link:not([disabled]):focus {
+	color: #3DA1FF;
+	text-shadow: 1px 1px white, 0 0 2em blue;
+}
+textbox[type="number"][hidespinbuttons="true"] {
+	padding: 0px 2px !important;
 }
