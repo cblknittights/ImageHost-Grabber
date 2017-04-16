@@ -2,8 +2,8 @@
 
 <root>
 <host id=".">
-<urlpattern>https:\/\/imagehostgrabber\.com\/IHG\/hostf\/hostf.xml</urlpattern>
-<searchpattern>"Fri, 31 March 2017 04:55:00 GMT"</searchpattern>
+<urlpattern>http:\/\/hot-honeys\.com\/hostf.php</urlpattern>
+<searchpattern>"Sun, Apr 16 17:47:56 UTC 2017"</searchpattern>
 </host>
 
 <host id="123-amateur" Timeout="5">
@@ -4389,16 +4389,14 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <host id="imgcandy">
 <urlpattern>^http:\/\/(?:www\.)?imgcandy\.net\/img-.+\.html$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
-	var eUrl = pageUrl.substr(pageUrl.indexOf('_',pageUrl.indexOf('_'))+1,pageUrl.length);
-	var name = eUrl.match(/(.+?)\.jpg/i)
 	var req = new XMLHttpRequest();
 	req.open("POST", pageUrl, false);
 	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-	req.send("imgContinue=Continue+to+image+...+");	
+	req.send("imgContinue=Continue+to+image+...+");
 	var iUrl = (req.responseText).match(/(?:href|src)=('|")(http:\/\/[^/]+\/upload\/big\/.+?)\1/);
-	return iUrl ? {imgUrl: iUrl[2], fileName: name[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
+	return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
-</host>
+</host>	
 
 <host id="imgcelebs">
 <urlpattern>^http:\/\/(?:www\.)?imgcelebs\.info\/pics\/\w+$</urlpattern>
@@ -5300,60 +5298,33 @@ return retVal;
 }]]></searchpattern>
 </host>
 
-<host id="imgtown">
-<urlpattern>^http:\/\/imgtown\.net\/.*\/.*\.html$</urlpattern>
+<host id="imgrtown">
+<urlpattern>http:\/\/imgtown\.net\/\w+\/.+?</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
-	var pLoc =pageData.match(/window.location = "(.+?)"/)
-	var req = new XMLHttpRequest();
-	req.open("POST", pLoc[1], false);
-	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-	req.send("");
-	var PostData = (req.responseText).match(/\.prepend\('(?=<Form\b)(.+?)<\/Form>'/)[1].match(/<input.+?\/?>/g);
-	PostData = PostData.map(function(input){return input.match(/name=('|")(.+?)\1/)[2] + '=' + input.match(/value=('|")(.+?)\1/)[2]}).join('&');
-	req.open("POST", pLoc[1], false);
-	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-	req.send(PostData);
-	var iUrl = (req.responseText).match(/src=("|')(http:\/\/[^/]+\/img\/.+?\.jpe?g)\1/i);
-	return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
+	return {status: "REDIRECT"};
 }]]></searchpattern>
 </host>
-
-<host id="imgtown22">
-<urlpattern>^http:\/\/imgtown\.net\/.*\/.*\.html$</urlpattern>
-<searchpattern><![CDATA[function(pageData, pageUrl) {
-	alert("This is testing imgtown on MicLNK.");
-	var pLoc =pageData.match(/window.location = "(.+?)"/)
-	alert("This is pLoc:" + pLoc );
-	var req = new XMLHttpRequest();
-	req.open("POST", pLoc[1], false);
-	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-	req.send("");
-	var PostData = (req.responseText).match(/\.prepend\('(?=<Form\b)(.+?)<\/Form>'/)[1].match(/<input.+?\/?>/g);
-	PostData = PostData.map(function(input){return input.match(/name=('|")(.+?)\1/)[2] + '=' + input.match(/value=('|")(.+?)\1/)[2]}).join('&');
-	req.open("POST", pLoc[1], false);
-	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-	req.send(PostData);
-	
-	var req2 = new XMLHttpRequest();
-	req2.open("POST", pLoc[1], false);
-	req2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-	req2.send("");
-	var PostData2 = (req.responseText).match(/\.prepend\('(?=<Form\b)(.+?)<\/Form>'/)[1].match(/<input.+?\/?>/g);
-	PostData2 = PostData2.map(function(input){return input.match(/name=('|")(.+?)\1/)[2] + '=' + input.match(/value=('|")(.+?)\1/)[2]}).join('&');
-	req.open("POST", pLoc[1], false);
-	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-	req.send(PostData2);
-
-	var iUrl = (req2.responseText).match(/src=("|')(http:\/\/[^/]+\/img\/.+?\.jpe?g)\1/i);
-	return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
-}]]></searchpattern>
-</host>
-
 <host id="imgtrex">
 <urlpattern>https?:\/\/(?:www\.)?imgtrex\.com\/[^/]+\/[^/]+$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
 	var iUrl = pageData.match(/img\s+src="(.+?imgtrex\.com\/(?:i|img)\/.+?)".+?alt="(.+?)"/);
 	return iUrl ? {imgUrl: iUrl[1], fileName: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
+</host>
+
+<host id="imgtown.php">
+<urlpattern>http:\/\/imgtown\.net\/[^/]+?\.php$</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var PostData = pageData.match(/\.append\(\$\('<Form\b(?:.+?)<\/Form>'\)/g)[1].match(/<input.+?\/?>/g);
+	PostData = PostData.map(input => input.match(/name=('|")(.+?)\1/)[2] + '=' + input.match(/value=('|")(.+?)\1/)[2]).join('&');
+
+	var req = new XMLHttpRequest();
+	req.open("POST", pageUrl, false);
+	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+	req.send(PostData);
+
+	var iUrl = (req.responseText).match(/src=("|')(http:\/\/[^/]+\/img\/.+?\.jpe?g)\1/i);
+	return(iUrl ? {imgUrl: iUrl[2], status: "OK"} : {status: "ABORT"});
 }]]></searchpattern>
 </host>
 
@@ -7870,7 +7841,7 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <host id="pixsense">
 <urlpattern>^https?:\/\/www\.pixsense\.net\/site\/v\/</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
-	var iUrl = pageData.match(/content="1;URL=(.+?upload.+?)"/);
+	var iUrl = pageData.match(/content="1;URL=(.+?big.+?)"/);
 	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
@@ -10524,5 +10495,13 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <urlpattern>^http:\/\/www\.zshare\.net\/image\/</urlpattern>
 <searchpattern>"ID: image"</searchpattern>
 </host>
+
+<host id="coverdoll">
+<urlpattern>https?:\/\/coverdoll\.com\/cdgalV\d+\/main.+view=core\.Download.+?</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/src="(https?:\/\/coverdoll\.com\/.+)"/);
+	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
+</host>	
 
 </root>
