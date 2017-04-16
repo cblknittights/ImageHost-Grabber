@@ -17,10 +17,10 @@
 	<RDF:Description RDF:about="urn:mozilla:install-manifest"
 			em:id="{E4091D66-127C-11DB-903A-DE80D2EFDFE8}"
 			em:name="ImageHost Grabber"
-			em:version="1.7.0.4a"
+			em:version="1.7.0.4b"
 			em:creator="Cybormatt"
 			em:description="Downloads images hosted on most of the popular image hosts."
-			em:homepageURL="http://imagehost-grabber.org/"
+			em:homepageURL="https://imagehostgrabber.com/"
 			em:iconURL="chrome://imagegrabber/skin/images/imagegrabber.png"
 			em:optionsURL="chrome://imagegrabber/content/interfaces/options.xul">
 		<em:translator>Queenie Fontaine [French]</em:translator>
@@ -35,7 +35,7 @@
 		<em:targetApplication RDF:resource="rdf:#$pmBrwsr"/>
 		<em:file RDF:resource="urn:mozilla:extension:file:imagegrabber.jar"/>
 		<em:unpack>true</em:unpack>
-		<em:updateURL>http://imagehost-grabber.org/xpi_files/imagegrabber/beta/update.rdf</em:updateURL>
+		<em:updateURL>https://imagehostgrabber.com/IHG/update.rdf</em:updateURL>
 		<em:updateKey>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCo9rfIHZsHy3OJQkGWS+tqElkqSmYt64g7N2BiLIbwD1uU/ZL+zOr4efNX6WNyzST3SFkXaVJHsY/PTKMCQWh0Kapvk0GaItrPFe5kXExCcRE/+Iv6Aic7HluYM6YPnx510s9xVq3S9SZTx/jKS2gBFEvo0ARh7fZi6sdbIjLP9wIDAQAB</em:updateKey>
 
 		<em:localized>
@@ -43,7 +43,7 @@
 				<em:locale>de-DE</em:locale>
 				<em:name>ImageHost Grabber</em:name>
 				<em:creator>Cybormatt</em:creator>
-				<em:homepageURL>http://imagehost-grabber.org/</em:homepageURL>
+				<em:homepageURL>https://imagehostgrabber.com/</em:homepageURL>
 				<em:translator>Jörn Reppenhagen</em:translator>
 				<em:translator>Firewaran</em:translator>
 				<em:contributor>web_surfer</em:contributor>
@@ -56,7 +56,7 @@
 				<em:locale>es-ES</em:locale>
 				<em:name>ImageHost Grabber</em:name>
 				<em:creator>Cybormatt</em:creator>
-				<em:homepageURL>http://imagehost-grabber.org/</em:homepageURL>
+				<em:homepageURL>https://imagehostgrabber.com/</em:homepageURL>
 				<em:translator>Ricardo A. Rivas</em:translator>
 				<em:contributor>web_surfer</em:contributor>
 				<em:contributor>blockout69</em:contributor>
@@ -68,7 +68,7 @@
 				<em:locale>fr-FR</em:locale>
 				<em:name>ImageHost Grabber</em:name>
 				<em:creator>Cybormatt</em:creator>
-				<em:homepageURL>http://imagehost-grabber.org/</em:homepageURL>
+				<em:homepageURL>https://imagehostgrabber.com/</em:homepageURL>
 				<em:description>Permet de télécharger toutes les images partagées sur de nombreux sites d'hébergement.</em:description>
 				<em:translator>Queenie Fontaine</em:translator>
 				<em:contributor>web_surfer</em:contributor>
