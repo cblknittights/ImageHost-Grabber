@@ -1,0 +1,15 @@
+<!ENTITY  imagehost_grabber_request_details "ImageHost Grabber – Anfragedetails">
+
+<!ENTITY  unique_id "ID:">
+<!ENTITY  page_number "Seitennummer:">
+<!ENTITY  total_number_of_links "Link-Gesamtzahl:">
+<!ENTITY  current_link_number "Aktuelle Linknummer:">
+
+<!ENTITY  request_url "Anfrage-URL:">
+<!ENTITY  source_url "Source URL:">
+<!ENTITY  regular_expression "Regulärer Ausdruck:">
+<!ENTITY  target_directory "Zielordner:">
+
+<!ENTITY  http_ready_state "HTTP-Bereitschaftsstatus:">
+<!ENTITY  http_status "HTTP-Status:">
+<!ENTITY  response_text "Rückmeldungstext:">

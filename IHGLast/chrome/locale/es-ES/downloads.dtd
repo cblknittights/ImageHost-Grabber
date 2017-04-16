@@ -1,0 +1,36 @@
+<!ENTITY  imagehost_grabber_download_progress "ImageHost Grabber - Progreso de descarga">
+
+<!ENTITY  open_file "Abrir archivo">
+<!ENTITY  open_folder "Abrir carpeta contenedora">
+<!ENTITY  remove_from_list "Borrar de la lista">
+<!ENTITY  abort_download_request "Cancelar descarga">
+<!ENTITY  retry_download_request "Reintentar descarga">
+<!ENTITY  restart_download "Reiniciar descarga">
+<!ENTITY  reset_the_retry_count_to_zero "Reiniciar el contador de reintentos en cero">
+<!ENTITY  open_url "Abrir URL">
+<!ENTITY  view_request_details "Ver detalles de la descarga">
+
+<!ENTITY  zebra_scheme "Jailbird Stripes Scheme">
+<!ENTITY  auto_clear_finished "Auto-borrar finalizadas">
+<!ENTITY  suppress_popup "Suprimir ventana emergente">
+<!ENTITY  clear_all_finished "Borrar finalizadas">
+<!ENTITY  stop_all_sessions "Detener sesión">
+<!ENTITY  revive_all_stopped_sessions "Reanudar sesión">
+<!ENTITY  save_session_to_cache "Guardar sesión en caché">
+
+<!ENTITY  page_status "Estado de la página">
+<!ENTITY  file_name "Nombre del archivo">
+<!ENTITY  progress "Progreso">
+<!ENTITY  status "Estado">
+
+<!ENTITY  export_list "Exportar lista a HTML...">
+<!ENTITY  max_requests "Máx. descargas:">
+<!ENTITY  max_requests.tooltiptext "Máximo de descargas simultáneas">
+<!ENTITY  max_retries "Máx. reintentos:">
+<!ENTITY  max_retries.tooltiptext "Máximo de reintentos por cada enlace">
+<!ENTITY  window_options "Opciones de ventana">
+<!ENTITY  save_session_on_exit "Guardar sesión al salir">
+<!ENTITY  session "Sesión">
+<!ENTITY  load_saved_session "Cargar una sesión guardada">
+<!ENTITY  export_session_file "Exportar un archivo de sesión">
+<!ENTITY  reinit_session "Reinicializar sesión">

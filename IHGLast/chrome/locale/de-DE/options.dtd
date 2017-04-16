@@ -1,0 +1,65 @@
+<!ENTITY  imagegrabber_options "Imagegrabber-Optionen">
+
+<!ENTITY  file_saving_options "Datei-Speicheroptionen">
+<!ENTITY  general "Allgemein">
+<!ENTITY  embedded_images "Eingebettete Bilder">
+<!ENTITY  host_file "Hostdatei">
+<!ENTITY  host_options "Hostoptionen">
+<!ENTITY  debugging "Fehlersuche (Debugging)">
+
+<!ENTITY  restart_Firefox "Jetzt &brandShortName; neustarten!">
+
+<!ENTITY  what_to_do_if_file_exists_in_target_location "Was soll geschehen, wenn eine Datei bereits am Zielort vorhanden ist?">
+<!ENTITY  rename_file "Datei umbenennen">
+<!ENTITY  skip_file "Datei überspringen">
+<!ENTITY  overwrite_file "Datei überschreiben">
+<!ENTITY  autorename_imagevenue_and_fapomatic_files "Imagevenue- und Fapomatic-Dateien automatisch umbenennen">
+<!ENTITY  create_a_subdirectory_with_document_title_inside_the_target_directory "Separate Unterordner mit Dokumenttitel im Zielordner erstellen">
+<!ENTITY  prefix_directories_to_uniquely_and_chronologically_identify_them "Ordner zur eindeutigen und chronologischen Identifizierung mit einem Präfix versehen">
+<!ENTITY  create_separate_directories_for_each_page_when_using_thread_sucker "Beim Einsatz des Threadsaugers separate Ordner pro Seite erzeugen">
+<!ENTITY  prefix_filenames_to_reflect_page_order "Dateinamen zur Beibehaltung der Seiten-Bildreihenfolge mit einem Präfix versehen">
+<!ENTITY  use_last_modified_header "Behalte Zeitstempel des Servers für heruntergeladene Dateien">
+
+<!ENTITY  show_the_download_directory_box "Downloadordner-Auswahlfenster anzeigen (wenn nicht markiert, wird der zuletzt genutzte Ordner verwendet)">
+<!ENTITY  show_the_image_grabber_menu_in_the_tools_menu "ImageGrabber-Menü im Extras-Menü anzeigen (wenn nicht markiert, erscheint das Menü in der Hauptmenüleiste)">
+<!ENTITY  remove_duplicate_links "Identische Links (auch seitenübergreifend) entfernen">
+<!ENTITY  even_across_multiple_pages "über mehrere Seiten">
+<!ENTITY  suppress_close_download_confirmation_dialog "Unterdrücke schließen Dialog des Downloadfensters">
+<!ENTITY  close_download_window "Download-Fenster schließen, wenn alle Downloads abgeschlossen sind">
+<!ENTITY  without_delay "ohne Verzögerung.">
+<!ENTITY  keep_download_window_contents "Downloadfenster-Inhalte (auch nach dem Schließen) beibehalten">
+
+<!ENTITY  download_embedded_images "Eingebettete Bilder herunterladen">
+<!ENTITY  enter_the_minimum_width_and_height_that_will_be_considered_for_downloading "Zum Download erforderliche Minimalbreite und -höhe eingeben.">
+<!ENTITY  image_width "Breite:">
+<!ENTITY  image_height "Höhe:">
+<!ENTITY  enter_the_minimum_file_size "Zum Download erforderliche Minimaldateigröße eingeben.">
+<!ENTITY  setting_this_value_to_zero_disables_this_filter "(Der Wert 0 setzt diesen Filter außer Kraft.)">
+<!ENTITY  file_size_filter "Dateigröße:">
+<!ENTITY  kilobytes "KB">
+<!ENTITY  the_file_size_filter_is_the_only_one_used "Hinweis: Im Threadsauger-Modus wird nur der Dateigröße-Filter genutzt.">
+
+<!ENTITY  host_file_update "Hostdatei-Aktualisierung:">
+<!ENTITY  enable_automatic_update "Automatische Aktualisierung aktivieren">
+<!ENTITY  suppress_host_file_update_confirmation_dialog "Bestätigungsdialog unterdrücken">
+<!ENTITY  merge_behavior "Verhalten beim Zusammenfassen:">
+<!ENTITY  merge_host_file_ask "Nachfragen">
+<!ENTITY  merge_host_file_overwrite "Aktuelle Hosts überschreiben, neue Hosts zufügen">
+<!ENTITY  merge_host_file_add "Nur neue Hosts zufügen">
+
+<!ENTITY  max_simultaneous_http_requests "Maximalzahl gleichzeitiger HTTP-Anfragen">
+<!ENTITY  max_number_of_retries_for_each_link "Maximale Wiederholungen pro Link">
+<!ENTITY  request_timeout_before_retry "Anfragewartezeit vor Neuversuch (in Sekunden)">
+<!ENTITY  host_timeout_between_downloads "Aktiviere Wartezeit zwischen jedem Downloadsatz">
+<!ENTITY  host_timeout_seconds "Wartezeit in Sekunden">
+
+<!ENTITY  disclaimer "Achtung:">
+<!ENTITY  disclaimer_line1 "Beim Aktivieren/Deaktivieren der folgenden Optionen muss &brandShortName; neu gestartet werden, damit die Änderungen in Kraft treten.">
+<!ENTITY  disclaimer_line2 "Die Optionen sollten nur vorübergehend zum Protokollieren eines bestimmten Ereignisses aktiviert und anschließend gleich wieder deaktiviert werden.">
+<!ENTITY  disclaimer_line3 "Bleiben die Optionen aktiviert, wird &brandShortName; ausgebremst und verbraucht viel Speicher und Festplattenspeicherplatz.">
+<!ENTITY  read_disclaimer "Lesen Sie unbedingt den Haftungsausschluss!">
+<!ENTITY  alert_restart "Erfordert Neustart von &brandShortName;">
+<!ENTITY  enable_console_logging "Konsolenprotokollierung aktivieren">
+<!ENTITY  enable_debugging_logging "Fehlersucheprotokollierung aktivieren">
+<!ENTITY  clear_log "Protokoll löschen">
+<!ENTITY  copy_log_to_local_folder "Protokoll in lokalen Ordner kopieren">

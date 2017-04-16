@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<window title="ImageHost Grabber Console" id="IhgConsoleWindow"
+		width="640" height="480" persist="sizemode height width screenX screenY"
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		onload="IhgConsoleWindow_onload();">
+
+<script type="application/x-javascript" src="chrome://imagegrabber/content/interfaces/console.js" />
+
+	<listbox id="lstOutput" style="font-family: courier; font-size: 8.0pt;" flex="1"/>
+
+</window>
