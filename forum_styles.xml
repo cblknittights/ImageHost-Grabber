@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- forum_styles.xml dated Fri, 31 March 2017 21:01:00 GMT -->
+
 <root>
-<forum id="bellazon">
-<urlpattern>http:\/\/www\.bellazon\.com\/.+?(?:page-\d+)?$</urlpattern>
+  
+<forum id="universal with page">
+<urlpattern>^https?:\/\/.+page[=|\/]?\d+(.+)?</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	return threadURL.replace(/\/(?:page-\d+)?$/, "\/page-" + (threadsucker_Globals.linkIndex));
+    var Strings = {};
+    Strings.orEmpty = function( entity ) { return entity || ""; };
+    var sParts = threadURL.match(/(^https?:\/\/.+page[=|\/]?)(\d+)(.+)?/);
+    var sNextPage = sParts[1] + (threadsucker_Globals.linkIndex) + Strings.orEmpty(sParts[3]);
+    return sNextPage;    
+}]]></searchpattern>
+</forum>
+
+<forum id="4chan">
+<urlpattern>http:\/\/boards\.4chan\.org\/.+\/</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var tmp = threadURL.replace(/\/\d+$/, "/" + threadsucker_Globals.linkIndex);
+	if (!tmp.match(/\/\d+$/)) tmp = threadURL + threadsucker_Globals.linkIndex;
+	return tmp;
+}]]></searchpattern>
+</forum>
+
+<forum id="4put">
+<urlpattern>^http:\/\/4put\.ru\/pics\/(?:all_\d+\/)?(?:\w_\d+_\d+\/)?(?:sort_\d+_\d+_\d+\/)?</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var iUrl = null;
+	var bthema = null;
+	var bsort = threadURL.match(/(http:\/\/4put.ru\/pics\/.+?(sort).+?)/);
+	if (!bsort) {
+		bthema = threadURL.match(/(http:\/\/4put.ru\/pics\/.+?(s_\d+_\d+\/))/);
+		if (!bthema) iUrl = threadURL.match(/(http:\/\/4put.ru\/pics\/all)_\d+\//);
+		else iUrl = threadURL.match(/(http:\/\/4put.ru\/pics\/(?:all_\d+\/)?(?:\w_\d+)?)/);
+		}	
+	else {
+		bthema = threadURL.match(/(http:\/\/4put.ru\/pics\/(?:all_\d+\/)?s_\d+_\d+\/sort_\d+_\d+)/);
+		if (!bthema) iUrl = threadURL.match(/(http:\/\/4put.ru\/pics\/all_\d+\/sort_\d+_\d+)_\d+/);
+		else iUrl = threadURL.match(/(http:\/\/4put.ru\/pics\/(?:all_\d+\/)?s_\d+_\d+\/sort_\d+_\d+)_\d+/);
+		}		
+	return iUrl[1] + "_" + (threadsucker_Globals.linkIndex);	
 }]]></searchpattern>
 </forum>
 
@@ -15,33 +52,44 @@
 }]]></searchpattern>
 </forum>
 
-<forum id="xeno-picturepub">
-<urlpattern>http:\/\/.+\/index\.php\?threads\/.+\.\d+\/</urlpattern>
+<forum id="campusbug">
+<urlpattern>http:\/\/campusbug\.com\/pics\/viewallpictures\.php\?</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/page-\d+/, "page-" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/page-\d+/)) tmp = threadURL + "page-" + threadsucker_Globals.linkIndex;
+	var albumID = threadURL.match(/http:\/\/campusbug\.com\/pics\/viewallpictures\.php\?.*?album=([0-9]*)/)[1];
+	var userID = threadURL.match(/http:\/\/campusbug\.com\/pics\/viewallpictures\.php\?.*?id=([0-9]*)/)[1];
+	suckMode = false;
+	return threadURL.match(/http:\/\/campusbug\.com\/pics\/viewallpictures\.php\?/) + "id=" + userID + "&album=" + albumID + "&page=" + (threadsucker_Globals.linkIndex - 1);
+}]]></searchpattern>
+</forum>
+
+<forum id="cfake">
+<urlpattern>^http:\/\/(?:www\.)?cfake\.com\/.+p\d+$</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var match = threadURL.match(/http:\/\/(?:www\.)?cfake.com\/picture(?:\/[\w]+\/[\d]+)?\//)
+	return threadURL.match(/http:\/\/(?:www\.)?cfake.com\/picture(?:\/[\w]+\/[\d]+)?\//) + "p" + 30*(threadsucker_Globals.linkIndex-1);
+}]]></searchpattern>
+</forum>
+
+<forum id="comicvine">
+<urlpattern>^http:\/\/www\.comicvine\.com\/.+\/.+\/images\/</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	return threadURL.match(/^http:\/\/www\.comicvine\.com\/.+\/.+\/images\//) + (threadsucker_Globals.linkIndex == 1 ? "?":("?page=" + threadsucker_Globals.linkIndex));
+}]]></searchpattern>
+</forum>
+
+<forum id="Coppermine gallery classic">
+<urlpattern>http:\/\/.+\/thumbnails\.php\?.+page=\d+</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var tmp = threadURL.replace(/page=\d+/, "page=" + threadsucker_Globals.linkIndex);
+	if (!tmp.match(/page=\d+/)) tmp = threadURL + "&page=" + threadsucker_Globals.linkIndex;
 	return tmp;
-	}]]></searchpattern>
-</forum>
-
-<forum id="eroticity">
-<urlpattern>^http:\/\/eroticity\.net\/threads\/[\w-]+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.match(/http:\/\/eroticity.net\/threads\/[\w-]+/) + "\/page" + threadsucker_Globals.linkIndex;
 }]]></searchpattern>
 </forum>
 
-<forum id="listal">
-<urlpattern>^http:\/\/www\.listal\.com\/[^\/]+\/pictures(?:\/\/\d+)?$</urlpattern>
+<forum id="Coppermine gallery mod1">
+<urlpattern>http:\/\/.+\/thumbnails-\d+(?:-page-\d+)?\.html</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	return threadURL.replace(/(?:\/\/\d+)?$/, "//" + threadsucker_Globals.linkIndex);
-}]]></searchpattern>
-</forum>
-
-<forum id="Gettyimages">
-<urlpattern>http:\/\/www\.gettyimages\.[a-z]+?\/(?:detail|editorial)\/.+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.match(/http:\/\/www\.gettyimages\.[a-z]+?\/(?:detail|editorial)\/.+(?:&page=\d+)?/) + "?page=" + (threadsucker_Globals.linkIndex);
+	return threadURL.match(/http:\/\/.+\/thumbnails-\d+/) + "-page-" + threadsucker_Globals.linkIndex + ".html";
 }]]></searchpattern>
 </forum>
 
@@ -52,56 +100,103 @@
 }]]></searchpattern>
 </forum>
 
-<forum id="theplace2">
-<urlpattern>^http:\/\/www\.theplace2\.ru\/photos\/[^/]+\/(?:page\d+\/)?$</urlpattern>
+<forum id="deviantart">
+<urlpattern>^http:\/\/.+\.deviantart\.com\/(?:\w+\/).*$</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	return threadURL.replace(/(?:page\d+)?$/,'page') + (threadsucker_Globals.linkIndex) + "\/";
-}]]></searchpattern>
-</forum>
-
-<forum id="hootersgirls.tumblr">
-<urlpattern>^http:\/\/hootersgirls\.tumblr\.com\/(?:page\/\d+)?$</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.replace(/(?:page\/\d+)?$/,'page/') + (threadsucker_Globals.linkIndex);
-}]]></searchpattern>
-</forum>
-
-<forum id="Studio31">
-<urlpattern>http:\/\/.+\.studio31\.org\/.+\/index\.php\?</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var matched = threadURL.match(/(http:\/\/.+\.studio31\.org\/.+\/index\.php\?album=.+)(?:&page=\d+)?/);
-	return matched[1] + "&page=" + threadsucker_Globals.linkIndex;
-}]]></searchpattern>
-</forum>
-
-<forum id="Imagebeaver">
-<urlpattern>http:\/\/www\.imagebeaver\.com\/photos\/.*\d+-.*\.html(?:\?&amp;pg=\d+)?</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var matched = threadURL.match(/(http:\/\/www\.imagebeaver\.com\/photos\/.*\d+-.*\.html)(?:\?&pg=\d+)?/);
-	return matched[1] + "?&pg=" + threadsucker_Globals.linkIndex;
-}]]></searchpattern>
-</forum>
-
-<forum id="pixiv">
-<urlpattern>http:\/\/www\.pixiv\.net\/search\.php\?.+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/&p=\d+/, "&p=" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/&p=\d+/)) tmp = tmp + "&p=" + threadsucker_Globals.linkIndex;
-	return tmp;
+	var ofs = "offset="
+	var eofs = "&" + ofs;
+	var qofs = "?" + ofs;
+	
+	var n = (threadsucker_Globals.linkIndex-1)*24;
+	var tmp = threadURL.replace(/offset=\d+/, ofs + n);
+	
+	return (tmp.match(/\/\?/)) ? threadURL + eofs + n : threadURL + qofs + n;
 }]]></searchpattern>
 </forum>
 
 <forum id="e-hentai">
-<urlpattern>http:\/\/g\.e-hentai\.org\/g\/\d+\/\w+\/</urlpattern>
+<urlpattern>https?:\/\/e-hentai\.org\/g\/\d+\/\w+\/</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	return threadURL.match(/http:\/\/g\.e-hentai\.org\/g\/\d+\/\w+\//) + "?p=" + (threadsucker_Globals.linkIndex-1);
+	return threadURL.match(/https?:\/\/e-hentai\.org\/g\/\d+\/\w+\//) + "?p=" + (threadsucker_Globals.linkIndex-1);
+}]]></searchpattern>
+</forum>
+
+<forum id="e621">
+<urlpattern>^https?:\/\/e621\.net\/</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+   return threadURL.replace(/(^.+)\/\d+\/(.+|$)?/, "$1\/" + threadsucker_Globals.linkIndex + "\/$2")
+}]]></searchpattern>
+</forum>
+
+<forum id="eurobabeforum">
+<urlpattern>^https?:\/\/.+eurobabeforum\.com\/.+?start=</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	return threadURL.match(/^https?:\/\/.+eurobabeforum\.com\/.+?start=/) + (threadsucker_Globals.linkIndex-1)*15;
 }]]></searchpattern>
 </forum>
 
 <forum id="exhentai">
-<urlpattern>^http:\/\/exhentai\.org\/g\/\d+\/\w+\/</urlpattern>
+<urlpattern>https?:\/\/exhentai\.org\/.+?</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-    return threadURL.match(/^http:\/\/exhentai\.org\/g\/\d+\/\w+\//) + "?p=" + (threadsucker_Globals.linkIndex-1);
+	return threadURL.match(/https?:\/\/exhentai\.org\/g\/\d+\/\w+\//) + "?p=" + (threadsucker_Globals.linkIndex-1);
+}]]></searchpattern>
+</forum>
+
+<forum id="extreme-board">
+<urlpattern>http:\/\/(?:www\.)?extreme-board\.com\/.+\/\d+(?:-\d+)?\.htm</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	return threadURL.match(/http:\/\/(?:www\.)?extreme-board\.com\/.+\/\d+/) + "-" + threadsucker_Globals.linkIndex + ".htm";
+}]]></searchpattern>
+</forum>
+
+<forum id="facebook">
+<urlpattern>http:\/\/.+?\.facebook\.com\/photo_search\.php\?.+</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var userID = threadURL.match(/http:\/\/.+?\.facebook\.com\/photo_search\.php\?.+id=([0-9]+)/)[1];
+	var fbView = threadURL.match(/http:\/\/.+?\.facebook\.com\/photo_search\.php\?.+view=(\w+)/)[1];
+	suckMode = false;
+	return threadURL.match(/http:\/\/.+?\.facebook\.com\/photo_search\.php\?/) + "&id=" + userID + "&view=" + fbView + "&page=" + threadsucker_Globals.linkIndex;
+}]]></searchpattern>
+</forum>
+
+<forum id="famousnudefakes">
+<urlpattern>http:\/\/www\.famousnudefakes\.com\/Thread-.+</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var tmp = threadURL.replace(/page=\d+/, "page=" + threadsucker_Globals.linkIndex);
+	if (!tmp.match(/page=\d+/)) tmp = threadURL + "?page=" + threadsucker_Globals.linkIndex;
+	return tmp;
+}]]></searchpattern>
+</forum>
+
+<forum id="flashback">
+<urlpattern>https?:\/\/www\.flashback\.org\/t\d+(?:p\d+)?$</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	return threadURL.match(/https?:\/\/www\.flashback\.org\/t\d+/) + "p" + threadsucker_Globals.linkIndex;
+}]]></searchpattern>
+</forum>
+
+<forum id="flickr group">
+<urlpattern>https?:\/\/www\.flickr\.com\/(?:groups|photos)\/(?:.+\/|.+\/.+\/)</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var tmp = threadURL.replace(/\/page\d+(?=\/?$)/, "/page" + threadsucker_Globals.linkIndex);
+	if (!tmp.match(/page\d+\/?$/)) tmp = threadURL + "page" + threadsucker_Globals.linkIndex + "/";
+	return tmp;
+}]]></searchpattern>
+</forum>
+
+<forum id="flickr search">
+<urlpattern>http:\/\/www\.flickr\.com\/search\/\?q=.+</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var tmp = threadURL.replace(/page=\d+$/, "page=" + threadsucker_Globals.linkIndex);
+	if (!tmp.match(/page=\d+$/)) tmp = threadURL + "&page=" + threadsucker_Globals.linkIndex;
+	return tmp;
+}]]></searchpattern>
+</forum>
+
+<forum id="freeforumzone">
+<urlpattern>http:\/\/.+\/discussione\.aspx\?idd=\d+</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	return threadURL.match(/http:\/\/.+\/discussione\.aspx\?idd=\d+/) + "&p=" + threadsucker_Globals.linkIndex;
 }]]></searchpattern>
 </forum>
 
@@ -113,24 +208,62 @@
 }]]></searchpattern>
 </forum>
 
-<forum id="danbooru">
-<urlpattern>^http:\/\/danbooru\.donmai\.us\/post(?:\?|\/)</urlpattern>
+<forum id="Gettyimages">
+<urlpattern>http:\/\/www\.gettyimages\.[a-z]+?\/(?:detail|editorial)\/.+</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/(^http:\/\/danbooru\.donmain\.us\/post)\?(.+)/, "$1/index$2");
-	tmp = tmp.replace(/page=\d+/, "page=" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/page=\d+/)) tmp = tmp + (tmp.match(/\?$/) ? "" : "&") + "page=" + threadsucker_Globals.linkIndex;
+	return threadURL.match(/http:\/\/www\.gettyimages\.[a-z]+?\/(?:detail|editorial)\/.+(?:&page=\d+)?/) + "?page=" + (threadsucker_Globals.linkIndex);
+}]]></searchpattern>
+</forum>
+
+<forum id="hootersgirls.tumblr">
+<urlpattern>^http:\/\/hootersgirls\.tumblr\.com\/(?:page\/\d+)?$</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	return threadURL.replace(/(?:page\/\d+)?$/,'page/') + (threadsucker_Globals.linkIndex);
+}]]></searchpattern>
+</forum>
+
+<forum id="Imagebeaver">
+<urlpattern>http:\/\/www\.imagebeaver\.com\/photos\/.*\d+-.*\.html(?:\?&amp;pg=\d+)?</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var matched = threadURL.match(/(http:\/\/www\.imagebeaver\.com\/photos\/.*\d+-.*\.html)(?:\?&pg=\d+)?/);
+	return matched[1] + "?&pg=" + threadsucker_Globals.linkIndex;
+}]]></searchpattern>
+</forum>
+
+<forum id="imageweb">
+<urlpattern>^http:\/\/www\.imageweb\.ws.+?\/p\d+\.html</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	return threadURL.replace(/(\/p\d+\.html)/,"\/p" + (threadsucker_Globals.linkIndex) + "\.html");
+}]]></searchpattern>
+</forum>
+
+<forum id="imouto">
+<urlpattern>http:\/\/.+\.imouto\.org\/post\?page=\d+</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	return threadURL.replace(/page=\d+/, "page=" + threadsucker_Globals.linkIndex);
+}]]></searchpattern>
+</forum>
+
+<forum id="IP.Board">
+<urlpattern>http:\/\/.+\/index\.php\?showtopic=\d+</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var tmp = threadURL.replace(/st=\d+/, "st=" + (threadsucker_Globals.linkIndex-1)*20);
+	if (!tmp.match(/st=\d+/)) tmp = tmp + "&st=" + (threadsucker_Globals.linkIndex-1)*20;
 	return tmp;
 }]]></searchpattern>
 </forum>
 
-<forum id="konachan.com">
-<urlpattern>^http:\/\/konachan\.com\/post(?:\?|\/)</urlpattern>
+<forum id="kapanlagi">
+<urlpattern>http:\/\/www\.kapanlagi\.com\/foto\/.+\/index\d*\.html$</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL;
-	tmp = tmp.replace(/(^http:\/\/konachan\.com\/post)\?(.+)/, "$1/index$2");
-	tmp = tmp.replace(/page=\d+/, "page=" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/page=\d+/)) tmp = tmp + (tmp.match(/\?$/) ? "" : "&") + "page=" + threadsucker_Globals.linkIndex;
-	return tmp;
+	return threadURL.replace(/index\d*\.html/, "index" + ((threadsucker_Globals.linkIndex == 1) ? "" : threadsucker_Globals.linkIndex-1) + ".html");
+}]]></searchpattern>
+</forum>
+
+<forum id="listal">
+<urlpattern>^http:\/\/www\.listal\.com\/[^\/]+\/pictures(?:\/\/\d+)?$</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	return threadURL.replace(/(?:\/\/\d+)?$/, "//" + threadsucker_Globals.linkIndex);
 }]]></searchpattern>
 </forum>
 
@@ -166,45 +299,10 @@
 }]]></searchpattern>
 </forum>
 
-<forum id="twitpic">
-<urlpattern>^http:\/\/(?:www\.)?twitpic\.com\/photos\/.+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/\?page=\d+/, "");
-	return tmp + "?page=" + threadsucker_Globals.linkIndex;
-}]]></searchpattern>
-</forum>
-
-<forum id="comicvine">
-<urlpattern>^http:\/\/www\.comicvine\.com\/.+\/.+\/images\/</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.match(/^http:\/\/www\.comicvine\.com\/.+\/.+\/images\//) + (threadsucker_Globals.linkIndex == 1 ? "?":("?page=" + threadsucker_Globals.linkIndex));
-}]]></searchpattern>
-</forum>
-
 <forum id="mjv-art">
 <urlpattern>^http:\/\/mjv-art\.org\/jvwall\/view_posts\/\d+\?</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
 	return threadURL.replace(/(^http:\/\/mjv-art\.org\/jvwall\/view_posts\/)\d+(\?.*)/, "$1" + threadsucker_Globals.linkIndex + "$2");
-}]]></searchpattern>
-</forum>
-
-<forum id="facebook">
-<urlpattern>http:\/\/.+?\.facebook\.com\/photo_search\.php\?.+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var userID = threadURL.match(/http:\/\/.+?\.facebook\.com\/photo_search\.php\?.+id=([0-9]+)/)[1];
-	var fbView = threadURL.match(/http:\/\/.+?\.facebook\.com\/photo_search\.php\?.+view=(\w+)/)[1];
-	suckMode = false;
-	return threadURL.match(/http:\/\/.+?\.facebook\.com\/photo_search\.php\?/) + "&id=" + userID + "&view=" + fbView + "&page=" + threadsucker_Globals.linkIndex;
-}]]></searchpattern>
-</forum>
-
-<forum id="campusbug">
-<urlpattern>http:\/\/campusbug\.com\/pics\/viewallpictures\.php\?</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var albumID = threadURL.match(/http:\/\/campusbug\.com\/pics\/viewallpictures\.php\?.*?album=([0-9]*)/)[1];
-	var userID = threadURL.match(/http:\/\/campusbug\.com\/pics\/viewallpictures\.php\?.*?id=([0-9]*)/)[1];
-	suckMode = false;
-	return threadURL.match(/http:\/\/campusbug\.com\/pics\/viewallpictures\.php\?/) + "id=" + userID + "&album=" + albumID + "&page=" + (threadsucker_Globals.linkIndex - 1);
 }]]></searchpattern>
 </forum>
 
@@ -219,20 +317,6 @@
 }]]></searchpattern>
 </forum>
 
-<forum id="flashback">
-<urlpattern>https?:\/\/www\.flashback\.org\/t\d+(?:p\d+)?$</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.match(/https?:\/\/www\.flashback\.org\/t\d+/) + "p" + threadsucker_Globals.linkIndex;
-}]]></searchpattern>
-</forum>
-
-<forum id="phantasi">
-<urlpattern>http:\/\/(?:www\.)?phantasi\.cc\/post\/list\/(?:[^\/]+\/)?\d+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.match(/http:\/\/(?:www\.)?phantasi\.cc\/post\/list\/(?:[^\/]+\/)?/) + threadsucker_Globals.linkIndex;
-}]]></searchpattern>
-</forum>
-
 <forum id="motherless">
 <urlpattern>http:\/\/motherless\.com\/G.+</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
@@ -242,44 +326,10 @@
 }]]></searchpattern>
 </forum>
 
-<forum id="4chan">
-<urlpattern>http:\/\/boards\.4chan\.org\/.+\/</urlpattern>
+<forum id="nudecollect">
+<urlpattern>^https?:\/\/.+nudecollect\.com\/.+?start-</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/\/\d+$/, "/" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/\/\d+$/)) tmp = threadURL + threadsucker_Globals.linkIndex;
-	return tmp;
-}]]></searchpattern>
-</forum>
-
-<forum id="flickr search">
-<urlpattern>http:\/\/www\.flickr\.com\/search\/\?q=.+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/page=\d+$/, "page=" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/page=\d+$/)) tmp = threadURL + "&page=" + threadsucker_Globals.linkIndex;
-	return tmp;
-}]]></searchpattern>
-</forum>
-
-<forum id="flickr group">
-<urlpattern>https?:\/\/www\.flickr\.com\/(?:groups|photos)\/(?:.+\/|.+\/.+\/)</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/\/page\d+(?=\/?$)/, "/page" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/page\d+\/?$/)) tmp = threadURL + "page" + threadsucker_Globals.linkIndex + "/";
-	return tmp;
-}]]></searchpattern>
-</forum>
-
-<forum id="imouto">
-<urlpattern>http:\/\/.+\.imouto\.org\/post\?page=\d+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.replace(/page=\d+/, "page=" + threadsucker_Globals.linkIndex);
-}]]></searchpattern>
-</forum>
-
-<forum id="kapanlagi">
-<urlpattern>http:\/\/www\.kapanlagi\.com\/foto\/.+\/index\d*\.html$</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.replace(/index\d*\.html/, "index" + ((threadsucker_Globals.linkIndex == 1) ? "" : threadsucker_Globals.linkIndex-1) + ".html");
+	return threadURL.match(/^https?:\/\/.+nudecollect\.com\/.+?start-/) + (threadsucker_Globals.linkIndex-1)*20 + "/";
 }]]></searchpattern>
 </forum>
 
@@ -301,6 +351,31 @@
 }]]></searchpattern>
 </forum>
 
+<forum id="phantasi">
+<urlpattern>http:\/\/(?:www\.)?phantasi\.cc\/post\/list\/(?:[^\/]+\/)?\d+</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	return threadURL.match(/http:\/\/(?:www\.)?phantasi\.cc\/post\/list\/(?:[^\/]+\/)?/) + threadsucker_Globals.linkIndex;
+}]]></searchpattern>
+</forum>
+
+<forum id="phpBB">
+<urlpattern>http:\/\/.+\/viewtopic\.php\?t=\d+</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var tmp = threadURL.replace(/start=\d+/, "start=" + (threadsucker_Globals.linkIndex-1)*30);
+	if (!tmp.match(/start=\d+/)) tmp = tmp + "&start=" + (threadsucker_Globals.linkIndex-1)*30;
+	return tmp;
+}]]></searchpattern>
+</forum>
+
+<forum id="pixiv">
+<urlpattern>^http:\/\/www\.pixiv\.net\/.+?p=\d+$</urlpattern>
+<searchpattern><![CDATA[function(threadURL) {
+	var tmp = threadURL.replace(/&p=\d+/, "&p=" + threadsucker_Globals.linkIndex);
+	if (!tmp.match(/&p=\d+/)) tmp = tmp + "&p=" + threadsucker_Globals.linkIndex;
+	return tmp;
+}]]></searchpattern>
+</forum>
+
 <forum id="pornbb.org">
 <urlpattern>http:\/\/.*pornbb\.org\/.+-t\d+(?:-\d+)?\.html</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
@@ -316,49 +391,41 @@
 }]]></searchpattern>
 </forum>
 
-<forum id="famousnudefakes">
-<urlpattern>http:\/\/www\.famousnudefakes\.com\/Thread-.+</urlpattern>
+<forum id="ProBoards">
+<urlpattern>http:\/\/.+\/index\.cgi\?.*thread=[0-9]*</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/page=\d+/, "page=" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/page=\d+/)) tmp = threadURL + "?page=" + threadsucker_Globals.linkIndex;
-	return tmp;
+	return threadURL.match(/http:\/\/.+\/index\.cgi\?.*thread=[0-9]*/) + "&page=" + threadsucker_Globals.linkIndex;
 }]]></searchpattern>
 </forum>
 
-<forum id="hentai-foundry user">
-<urlpattern>http:\/\/www\.hentai-foundry\.com\/user(?:_|-).+\.php</urlpattern>
+<forum id="xeno-picturepub">
+<urlpattern>http:\/\/.+\/index\.php\?threads\/.+\.\d+\/</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
 	var tmp = threadURL.replace(/page-\d+/, "page-" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/\.page-\d+\.php/)) { 
-		tmp = threadURL.replace(/\/user-/, "/user_pictures-");
-		tmp = tmp.replace(/\.php/, "") + ".page-" + threadsucker_Globals.linkIndex + ".php";
-		}
+	if (!tmp.match(/page-\d+/)) tmp = threadURL + "page-" + threadsucker_Globals.linkIndex;
 	return tmp;
 }]]></searchpattern>
 </forum>
 
-<forum id="hentai-foundry cat">
-<urlpattern>http:\/\/www\.hentai-foundry\.com\/cat-.+\.php</urlpattern>
+<forum id="socwall">
+<urlpattern>https?:\/\/www\.socwall\.com\/wallpapers\/page:\d+\/</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/page-\d+/, "page-" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/page-\d+/)) tmp = threadURL.replace(/\.php/, "") + "_page-" + threadsucker_Globals.linkIndex + ".php";
-	return tmp;
+	return threadURL.match(/https?:\/\/www\.socwall\.com\/wallpapers/) + "/page:" + threadsucker_Globals.linkIndex + "/";
 }]]></searchpattern>
 </forum>
 
-<forum id="hentai-foundry search">
-<urlpattern>http:\/\/www\.hentai-foundry\.com\/\/?search\.php\?.+</urlpattern>
+<forum id="SMF">
+<urlpattern>http:\/\/.+\/index\.php\?topic=\d+\.\d+</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/pageID=\d+/, "pageID=" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/pageID=\d+/)) tmp = threadURL + "&pageID=" + threadsucker_Globals.linkIndex;
-	return tmp;
+	return threadURL.match(/http:\/\/.+\/index\.php\?topic=\d+\./) + threadsucker_Globals.linkIndex*15;
 }]]></searchpattern>
 </forum>
 
-<forum id="extreme-board">
-<urlpattern>http:\/\/(?:www\.)?extreme-board\.com\/.+\/\d+(?:-\d+)?\.htm</urlpattern>
+<forum id="Studio31">
+<urlpattern>http:\/\/.+\.studio31\.org\/.+\/index\.php\?</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
-	return threadURL.match(/http:\/\/(?:www\.)?extreme-board\.com\/.+\/\d+/) + "-" + threadsucker_Globals.linkIndex + ".htm";
+	var matched = threadURL.match(/(http:\/\/.+\.studio31\.org\/.+\/index\.php\?album=.+)(?:&page=\d+)?/);
+	return matched[1] + "&page=" + threadsucker_Globals.linkIndex;
 }]]></searchpattern>
 </forum>
 
@@ -373,20 +440,6 @@
 <urlpattern>http:\/\/.+\/ubbthreads\.php\?.*Number=\d+&amp;page=\d+</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
 	return threadURL.match(/http:\/\/.+\/ubbthreads\.php\?.*Number=\d+/) + "&page=" + threadsucker_Globals.linkIndex;
-}]]></searchpattern>
-</forum>
-
-<forum id="SMF">
-<urlpattern>http:\/\/.+\/index\.php\?topic=\d+\.\d+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.match(/http:\/\/.+\/index\.php\?topic=\d+\./) + threadsucker_Globals.linkIndex*15;
-}]]></searchpattern>
-</forum>
-
-<forum id="ProBoards">
-<urlpattern>http:\/\/.+\/index\.cgi\?.*thread=[0-9]*</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.match(/http:\/\/.+\/index\.cgi\?.*thread=[0-9]*/) + "&page=" + threadsucker_Globals.linkIndex;
 }]]></searchpattern>
 </forum>
 
@@ -443,47 +496,6 @@
 }]]></searchpattern>
 </forum>
 
-<forum id="phpBB">
-<urlpattern>http:\/\/.+\/viewtopic\.php\?t=\d+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/start=\d+/, "start=" + (threadsucker_Globals.linkIndex-1)*30);
-	if (!tmp.match(/start=\d+/)) tmp = tmp + "&start=" + (threadsucker_Globals.linkIndex-1)*30;
-	return tmp;
-}]]></searchpattern>
-</forum>
-
-<forum id="IP.Board">
-<urlpattern>http:\/\/.+\/index\.php\?showtopic=\d+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/st=\d+/, "st=" + (threadsucker_Globals.linkIndex-1)*20);
-	if (!tmp.match(/st=\d+/)) tmp = tmp + "&st=" + (threadsucker_Globals.linkIndex-1)*20;
-	return tmp;
-}]]></searchpattern>
-</forum>
-
-<forum id="freeforumzone">
-<urlpattern>http:\/\/.+\/discussione\.aspx\?idd=\d+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.match(/http:\/\/.+\/discussione\.aspx\?idd=\d+/) + "&p=" + threadsucker_Globals.linkIndex;
-}]]></searchpattern>
-</forum>
-
-<forum id="Coppermine gallery classic">
-<urlpattern>http:\/\/.+\/thumbnails\.php\?.+page=\d+</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL.replace(/page=\d+/, "page=" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/page=\d+/)) tmp = threadURL + "&page=" + threadsucker_Globals.linkIndex;
-	return tmp;
-}]]></searchpattern>
-</forum>
-
-<forum id="Coppermine gallery mod1">
-<urlpattern>http:\/\/.+\/thumbnails-\d+(?:-page-\d+)?\.html</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	return threadURL.match(/http:\/\/.+\/thumbnails-\d+/) + "-page-" + threadsucker_Globals.linkIndex + ".html";
-}]]></searchpattern>
-</forum>
-
 <forum id="WhatBoysWant">
 <urlpattern>http:\/\/whatboyswant\.com\/forum_read\/\d+\/?(?:\d+\/\d+\/\w+\.html)?</urlpattern>
 <searchpattern><![CDATA[function(threadURL) {
@@ -491,14 +503,4 @@
 }]]></searchpattern>
 </forum>
 
-<forum id="e621">
-<urlpattern>^http:\/\/e621\.net\/post(?:\?|\/)</urlpattern>
-<searchpattern><![CDATA[function(threadURL) {
-	var tmp = threadURL;
-	tmp = tmp.replace(/(^http:\/\/e621\.net\/post)\?(.+)/, "$1/index$2");
-	tmp = tmp.replace(/page=\d+/, "page=" + threadsucker_Globals.linkIndex);
-	if (!tmp.match(/page=\d+/)) tmp = tmp + (tmp.match(/\?$/) ? "" : "&") + "page=" + threadsucker_Globals.linkIndex;
-	return tmp;
-}]]></searchpattern>
-</forum>
 </root>
