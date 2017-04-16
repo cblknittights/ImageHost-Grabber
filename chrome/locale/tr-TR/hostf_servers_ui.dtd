@@ -1,5 +1,0 @@
-<!ENTITY  host_file_servers "Sunucular">
-
-<!ENTITY  add_host_file_server "Sunucu Ekle">
-<!ENTITY  delete_host_file_server "Sunucuyu Sil">
-<!ENTITY  update_file "Dosyayi Güncelle">
