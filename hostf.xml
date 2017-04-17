@@ -5304,13 +5304,6 @@ return retVal;
 	return {status: "REDIRECT"};
 }]]></searchpattern>
 </host>
-<host id="imgtrex">
-<urlpattern>https?:\/\/(?:www\.)?imgtrex\.com\/[^/]+\/[^/]+$</urlpattern>
-<searchpattern><![CDATA[function(pageData, pageUrl) {
-	var iUrl = pageData.match(/img\s+src="(.+?imgtrex\.com\/(?:i|img)\/.+?)".+?alt="(.+?)"/);
-	return iUrl ? {imgUrl: iUrl[1], fileName: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
-}]]></searchpattern>
-</host>
 
 <host id="imgtown.php">
 <urlpattern>http:\/\/imgtown\.net\/[^/]+?\.php$</urlpattern>
@@ -5325,6 +5318,14 @@ return retVal;
 
 	var iUrl = (req.responseText).match(/src=("|')(http:\/\/[^/]+\/img\/.+?\.jpe?g)\1/i);
 	return(iUrl ? {imgUrl: iUrl[2], status: "OK"} : {status: "ABORT"});
+}]]></searchpattern>
+</host>
+
+<host id="imgtrex">
+<urlpattern>https?:\/\/(?:www\.)?imgtrex\.com\/[^/]+\/[^/]+$</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/img\s+src="(.+?imgtrex\.com\/(?:i|img)\/.+?)".+?alt="(.+?)"/);
+	return iUrl ? {imgUrl: iUrl[1], fileName: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
 
