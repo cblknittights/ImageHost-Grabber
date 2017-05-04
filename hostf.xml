@@ -2866,7 +2866,15 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <urlpattern>http:\/\/.+\.hartists\.net\/gallery\/submission\/\d+</urlpattern>
 <searchpattern>"http:\\/\\/submissions\\.hartists\\.net\\/.+\\.\\w{3,4}"</searchpattern>
 </host>
-
+	
+<host id="hawtcelebs">
+<urlpattern>^https?:\/\/www\.hawtcelebs\.com\/.+?\/uploads</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	iUrl = pageUrl.replace("_thumbnail","");
+	return iUrl ? {imgUrl: iUrl[1], fileName: iUrl[1].replace(/\.jpe?g/i, ".jpg"), status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
+</host>
+	
 <host id="hbrowse">
 <urlpattern>^http:\/\/www\.hbrowse\.com\/\d+\/.+\/.+</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
