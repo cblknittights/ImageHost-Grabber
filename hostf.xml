@@ -1871,6 +1871,14 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 	}]]></searchpattern>
 </host>
 
+<host id="erotica7">
+<urlpattern>^https?:\/\/(?:www\.)?erotica7\.com\/gallery\/.+\/\d+\.html\?xxx=[0-9x]+$</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/src="(.+?\.jpe?g)"/);
+	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"};
+}]]></searchpattern>
+</host>
+	
 <host id="escapecollectibles">
 <urlpattern>^https?:\/\/www\.escapecollectibles\.com\/[\w-\d]+signed[\w-\d]+\/</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
