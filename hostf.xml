@@ -144,6 +144,18 @@
 <searchpattern>"ID: image"</searchpattern>
 </host>
 
+<host id="acidimg">
+<urlpattern>^https?:\/\/acidimg\.cc\/.+$</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var req = new XMLHttpRequest();
+	req.open("POST", pageUrl, false);
+	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+	req.send("imgContinue=Continue+to+image+...+");
+	var iUrl = (req.responseText).match(/(?:href|src)=('|")(https?:\/\/[^/]+\/upload\/big\/.+?)\1/);
+	return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
+</host>
+
 <host id="addimage">
 <urlpattern>^http:\/\/addimage\.info\/img-.+?\.html$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
@@ -1878,7 +1890,7 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"};
 }]]></searchpattern>
 </host>
-	
+
 <host id="escapecollectibles">
 <urlpattern>^https?:\/\/www\.escapecollectibles\.com\/[\w-\d]+signed[\w-\d]+\/</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
@@ -2566,23 +2578,11 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 </host>
 
 <host id="gelbooru">
-<urlpattern>^http:\/\/(?:www\.)?gelbooru\.com\/index\.php\?page=post&amp;s=view&amp;id=\d+</urlpattern>
+<urlpattern>^https?:\/\/gelbooru\.com\/redirect.php</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
-	var retVal = {};
-	
 	var iUrl = pageData.match(/<a href="([^"]+)"[^>]+>Original\simage/);
-	
-	if (!iUrl) {
-		retVal.imgUrl = null;
-		retVal.status = "ABORT";
-		}
-	else {
-		retVal.imgUrl = iUrl[1];
-		retVal.status = "OK";
-		}
-	
-	return retVal;
-	}]]></searchpattern>
+	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"};
+}]]></searchpattern>
 </host>
 
 <host id="getbig">
@@ -2866,7 +2866,7 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <urlpattern>http:\/\/.+\.hartists\.net\/gallery\/submission\/\d+</urlpattern>
 <searchpattern>"http:\\/\\/submissions\\.hartists\\.net\\/.+\\.\\w{3,4}"</searchpattern>
 </host>
-	
+
 <host id="hawtcelebs">
 <urlpattern>^https?:\/\/www\.hawtcelebs\.com\/.+?\/uploads</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
@@ -2874,7 +2874,7 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 	return iUrl ? {imgUrl: iUrl[1], fileName: iUrl[1].replace(/\.jpe?g/i, ".jpg"), status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
-	
+
 <host id="hbrowse">
 <urlpattern>^http:\/\/www\.hbrowse\.com\/\d+\/.+\/.+</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
@@ -3396,16 +3396,15 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 </host>
 
 <host id="ima.gy">
-<urlpattern>^https?:\/\/ima\.gy\/.+$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
 	var req = new XMLHttpRequest();
 	req.open("POST", pageUrl, false);
 	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 	req.send("imgContinue=Continue+to+image+...+");
-	var iUrl = (req.responseText).match(/(?:href|src)=('|")(https?:\/\/[^/]+\/upload\/big\/.+?)\1/);
-	return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
+	var iUrl = (req.responseText).match(/(?:href|src)=('|")(https?:\/\/[^/]+\/upload\/big\/.+?)\1.+?alt=(?:"|')(.+?)(?:"|')/);
+	return iUrl ? {imgUrl: iUrl[2], fileName: iUrl[3], status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
-</host>
+</host>/host>
 
 <host id="imaaage">
 <urlpattern>^http:\/\/(?:www\.)?imaaage\.com\/view\/</urlpattern>
@@ -5540,16 +5539,16 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <host id="imgzen">
 <urlpattern>^https?:\/\/imgzen.com\/.+?$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
-	var PostData = pageData.match(/(?=<Form\b)((.|\r|\n)+?)<\/Form>/)[1].match(/<input.+?\/?>/g);
-	PostData = PostData.map(function(input){return input.match(/name=('|")(.+?)\1/)[2] + '=' + input.match(/value=('|")(.+?)\1/)[2]}).join('&');
-
+	var id = pageUrl.match(/http:\/\/imgzen\.com\/(.+?)\.html/);
 	var req = new XMLHttpRequest();
 	req.open("POST", pageUrl, false);
 	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-	req.send(PostData);
-
-	var iUrl = (req.responseText).match(/src=("|')(http:\/\/[^/]+\/(img|i)\/.+?)\1.+alt=("|')(.+\.jpe?g)\4/i);
-	return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
+	req.send("op=view&id="+id[1]+"&pre=1&next=Continue to image.");
+	var iUrl = (req.responseText).match(/src="(http:\/\/imgzen\.com\/.+?\.jpe?g)"/);
+	var sUrl = iUrl[1].split("/");
+	var code = sUrl[5].match(/(.+?)_\w(.+)/); 
+	var sol = "http://" + sUrl[3] + "." + sUrl[2] + "/" + code[1] + code[2];
+	return iUrl ? {imgUrl: sol, status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
 
@@ -7671,12 +7670,18 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <host id="picz.site">
 <urlpattern>^https?:\/\/picz\.site\/img-.+$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
+	var prot = pageUrl.match(/^(.+?)(:\/\/.+)/);
+	var sec = "https" + prot[2];
 	var req = new XMLHttpRequest();
-	req.open("POST", pageUrl, false);
+	req.open("POST", sec, false);
 	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 	req.send("imgContinue=Continue+to+image+...+");
-	var iUrl = (req.responseText).match(/(?:href|src)=('|")(https?:\/\/[^/]+\/upload\/big\/.+?)\1/);
-	return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
+	var iUrl = (req.responseText).match(/href=('|")(https?:\/\/[^/]+\/upload\/big\/.+?)(\.jpe?g)\1 title=('|")(\w.+?)\4/i);
+	if (! iUrl){
+		iUrl = (req.responseText).match(/href=('|")(https?:\/\/[^/]+\/upload\/big\/.+?)(\.jpe?g)\1/i);
+		return iUrl ? {imgUrl: iUrl[2]+iUrl[3], status: "OK"} : {imgUrl: null, status: "ABORT"}
+		}
+	if (iUrl[5]) return {imgUrl: iUrl[2]+iUrl[3], fileName: iUrl[5]+iUrl[3].replace(/\.jpe?g/i,".jpg"), status: "OK"}
 }]]></searchpattern>
 </host>
 
@@ -7858,7 +7863,7 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <host id="pixsense">
 <urlpattern>^https?:\/\/www\.pixsense\.net\/site\/v\/</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
-	var iUrl = pageData.match(/content="1;URL=(.+?big.+?)"/);
+	var iUrl = pageData.match(/content="1;URL=(.+?(big|uploads).+?)"/);
 	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
@@ -9866,6 +9871,18 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 		}
 	return retVal;
 	}]]></searchpattern>
+</host>
+
+<host id="urlgalleries">
+<urlpattern>^https?:\/\/.+?urlgalleries\.net\/image.php</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var req = new XMLHttpRequest();
+	req.open("POST", pageUrl, false);
+	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+	req.send("");
+	
+	return req.responseURL ?  {imgUrl: req.responseURL, status: "REQUEUE"} :  {imgUrl: null, status: "ABORT"};
+}]]></searchpattern>
 </host>
 
 <host id="usemycomputer">
