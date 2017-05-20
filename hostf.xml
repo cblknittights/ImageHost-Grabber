@@ -3,7 +3,7 @@
 <root>
 <host id=".">
 <urlpattern>https:\/\/imagehostgrabber\.com\/IHG\/hostf\/hostf.xml</urlpattern>
-<searchpattern>"Sat, May 20 10:46:43 UTC 2017"</searchpattern>
+<searchpattern>"Sun, Apr 16 17:47:56 UTC 2017"</searchpattern>
 </host>
 
 <host id="123-amateur" Timeout="5">
@@ -3394,17 +3394,6 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <urlpattern>^http:\/\/im9\.eu\/picture\/.+?$</urlpattern>
 <searchpattern>"http:\/\/p\.im9\.eu\/.+?"</searchpattern>
 </host>
-
-<host id="ima.gy">
-<searchpattern><![CDATA[function(pageData, pageUrl) {
-	var req = new XMLHttpRequest();
-	req.open("POST", pageUrl, false);
-	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-	req.send("imgContinue=Continue+to+image+...+");
-	var iUrl = (req.responseText).match(/(?:href|src)=('|")(https?:\/\/[^/]+\/upload\/big\/.+?)\1.+?alt=(?:"|')(.+?)(?:"|')/);
-	return iUrl ? {imgUrl: iUrl[2], fileName: iUrl[3], status: "OK"} : {imgUrl: null, status: "ABORT"}
-}]]></searchpattern>
-</host>/host>
 
 <host id="imaaage">
 <urlpattern>^http:\/\/(?:www\.)?imaaage\.com\/view\/</urlpattern>
