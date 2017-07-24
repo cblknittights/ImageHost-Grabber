@@ -3329,6 +3329,14 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
 
+<host id="ibb">
+<urlpattern>^https:\/\/ibb\.co\/</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/<meta property="og:image" content="([^"]+)" \/>/);
+	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
+</host>
+
 <host id="iceimg">
 <urlpattern>^http:\/\/iceimg\.com\/\w+\/[^\/]+$</urlpattern>
 <searchpattern>"itemprop="contentUrl""</searchpattern>
