@@ -129,12 +129,12 @@
 </host>
 
 <host id="8muses">
-<urlpattern>^https?:\/\/www\.8muses\.com\/comix\/picture\/.+?$</urlpattern>
+<urlpattern>^https?:\/\/www\.8muses\.com\/comix\/(?:community\/)?picture\/.+?$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
-	var hUrl = pageUrl.substr(0,pageUrl.indexOf('/',pageUrl.indexOf('.')));
+	var root = "https://cdn.ampproject.org/i/s/www.8muses.com";
 	var imD = pageData.match(/id="imageDir" value="(.+)"/);
 	var imN = pageData.match(/id="imageName" value="(.+)"/);
-	var iUrl = hUrl + imD[1] + "small/" + imN[1];
+	var iUrl = root + imD[1] + imN[1];
 	return iUrl ? { imgUrl: iUrl, status: "OK" } : { imgUrl: null, status: "ABORT" }
 }]]></searchpattern>
 </host>
@@ -1544,10 +1544,10 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 </host>
 
 <host id="deviantart">
-<urlpattern>^http:\/\/.+\.deviantart\.com\/art\/(?:[^#]+|[^#]+#(?!comments).+)$</urlpattern>
+<urlpattern>^https?:\/\/.+\.deviantart\.com\/art\/(?:[^#]+|[^#]+#(?!comments).+)$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
 	var iUrl = pageData.match(/data-download_url="(.+?)"/);
-	if (! iUrl) iUrl = pageData.match(/src="(http:\/\/(ori|pre|img).+?)"/);
+	if (! iUrl) iUrl = pageData.match(/src="(https?:\/\/(ori|pre|img).+?)"/);
 	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"};
 }]]></searchpattern>
 </host>
@@ -2594,7 +2594,7 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 </host>
 
 <host id="gelbooru">
-<urlpattern>^https?:\/\/gelbooru\.com\/redirect.php</urlpattern>
+<urlpattern>^https?:\/\/gelbooru\.com\/index.php\?page=post.+s=view</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
 	var iUrl = pageData.match(/<a href="([^"]+)"[^>]+>Original\simage/);
 	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"};
@@ -4295,6 +4295,13 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <searchpattern>"REPLACE: 'viewer\\.php\\?file=(.+)','images/$1'"</searchpattern>
 </host>
 
+<host id="imagflash">
+<urlpattern>^https?:\/\/imagflash.com\/image\/.+?$</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/src=("|')(https?:\/\/imagflash\.com\/.+?\.jpg)\1/);
+	return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern></host>
+
 <host id="imdb">
 <urlpattern>^https?:\/\/www\.imdb\.com\/.+?\/mediaviewer\/.+?</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {	
@@ -4469,8 +4476,11 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 </host>
 
 <host id="imgbox">
-<urlpattern>http:\/\/imgbox\.com\/\w+</urlpattern>
-<searchpattern>"REPLACE: '(http:\/\/)(imgbox\.com\/\w+)', '$1i.$2'"</searchpattern>
+<urlpattern>^https?:\/\/(?:i\.)?imgbox\.com\/(?=.*[A-Z]).{8}$</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/src=('|")(https?:\/\/)(i|images)(\.imgbox\.com\/.+?)\1 title=('|")(.+?)\5/);
+	return iUrl ? {imgUrl:  iUrl[2] + iUrl[3] + iUrl[4], fileName: iUrl[6], status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
 </host>
 
 <host id="imgcandy">
@@ -4558,9 +4568,9 @@ return retVal;
 </host>
 
 <host id="imgcredit">
-<urlpattern>^http:\/\/(?:sr\d+\.)?imgcredit\.xyz\/.+$</urlpattern>
-<searchpattern><![CDATA[function(pageData, pageUrl) {	
-	var iUrl = pageData.match(/src=('|")(https?:\/\/[^/]+\/upload\/big\/.+?)\1/);	
+<urlpattern>^http:\/\/(?:(v|w){3}\.)?(?:sr\d+\.)?imgcredit\.xyz\/.+$</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/src=('|")(https?:\/\/[^/]+\/upload\/big\/.+?)\1/);
 	return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
@@ -4911,9 +4921,9 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 </host>
 
 <host id="imgmax">
-<urlpattern>^http:\/\/imgmax\.com\/image\/\w+$</urlpattern>
-<searchpattern><![CDATA[function(pageData, pageUrl) {	
-	var iUrl = pageData.match(/href="(http:\/\/imgmax\.com\/images\/.+?\.jpg)"/);	
+<urlpattern>^https?:\/\/(?:www\.)?imgmax\.com\/image\/\w+$</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/href="(https?:\/\/(?:www\.)?imgmax\.com\/images\/.+?\.jpg)"/);
 	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
@@ -5258,14 +5268,14 @@ return retVal;
 </host>
 
 <host id="imgsen">
-<urlpattern>^http:\/\/imgsen\.se\/.+$</urlpattern>
+<urlpattern>https?:\/\/imgsen\.se\/img-.+?\.html</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
 	var req = new XMLHttpRequest();
 	req.open("POST", pageUrl, false);
 	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-	req.send("imgContinue=Continue+to+image+...+");
-	var iUrl = (req.responseText).match(/(?:href|src)=('|")(http:\/\/[^/]+\/upload\/big\/.+?)\1/);
-	return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
+	req.send("imgContinue=Continue+to+image+...+");	
+	var iUrl = (req.responseText).match(/href(?:\s+)?=(?:\s+)?("|')(https?.+?\/big\/.+?)\1\s+title(?:\s+)?=(?:\s+)?("|')(.+?)\3/);
+	return iUrl ? {imgUrl: iUrl[2], fileName: iUrl[4], status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
 
@@ -5301,11 +5311,11 @@ return retVal;
 </host>
 
 <host id="imgspice">
-<urlpattern>^http:\/\/(?:www\.)?imgspice\.com\/[a-z\d]+\/[-\w()\.]+\.jpe?g\.html$</urlpattern>
+<urlpattern>^https?:\/\/(?:www\.)?imgspice\.com\/[a-z\d]+\/[-\w()\.]+\.jpe?g\.html$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
-	var title = pageData.match(/Filename.+nowrap>(.+\.\w{3,4})</);
-	var iUrl = pageData.match(/src=("|')(.+\/i\/.+\.jpe?g)\1 id/);
-	return iUrl ? {imgUrl: iUrl[2], fileName: title ? title[1] : null, status: "OK"} : {imgUrl: null, status: "ABORT"};
+	 var title = pageData.match(/Filename.+nowrap>(.+\.\w{3,4})</);
+	 var iUrl = pageData.match(/src=("|')(.+\/i\/.+\.jpe?g)\1 id/);
+	 return iUrl ? {imgUrl: iUrl[2], fileName: title ? title[1] : null, status: "OK"} : {imgUrl: null, status: "ABORT"};
 }]]></searchpattern>
 </host>
 
@@ -5324,11 +5334,28 @@ return retVal;
 <host id="imgsrc">
 <urlpattern>^https?:\/\/imgsrc\.ru\/.+\.html#bp$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
-	var id = pageData.match(/s='(...)',/);
-	var iUrL = pageData.match(/class='cur' src='(http:\/\/s.+\/\d\/)(\d+)(\w{3})\.jpg'/);
-    	var ice = pageData.match(/i=.+?\((\d)\)\+[^t]+t\((\d)\)\+.+\((\d)\)/);
-	var ImageUrl = iUrL[1] + "imgsrc.ru_" + iUrL[2] +  id[1].charAt(ice[1]) + id[1].charAt(ice[2]) + id[1].charAt(ice[3]) + ".jpg";
-	return iUrL ? {imgUrl: ImageUrl.replace(/http:\/\/s/,"http:\/\/o"), status: "OK"} : {imgUrl: null, status: "ABORT"}
+	var idx = pageData.match(/s='(...)'\;/);
+	var curl = pageData.match(/class='cur' src='(http:\/\/s.+\/\d\/)(\d+)(\w{3})\.jpg'/);
+	var val = pageData.match(/\w\.charAt\((\d+)\).\w\.charAt\((\d+)\).\w\.charAt\((\d+)\)/);
+	var tip = pageData.match(/id='bip' src='(http:\/\/.+?\.jpg)'/);
+	var qss = pageData.match(/i=q\.slice\(z,a\)\+q.charAt.+\+s.charAt\(\d+\)\+s\.char/);
+	var sqs = pageData.match(/i=q\.slice\(z,a\)\+s.charAt.+\+q.charAt\(\d+\)\+s\.char/);
+	var ssq = pageData.match(/i=q\.slice\(z,a\)\+s.charAt.+\+s.charAt\(\d+\)\+q\.char/);
+	var sqq = pageData.match(/i=q\.slice\(z,a\)\+s.charAt.+\+q.charAt\(\d+\)\+q\.char/);
+	var qqs = pageData.match(/i=q\.slice\(z,a\)\+q.charAt.+\+q.charAt\(\d+\)\+s\.char/);
+	var qqq = pageData.match(/i=q\.slice\(z,a\)\+q.charAt.+\+q.charAt\(\d+\)\+q\.char/);
+	var sss = pageData.match(/i=q\.slice\(z,a\)\+s.charAt.+\+s.charAt\(\d+\)\+s\.char/);
+	var qsq = pageData.match(/i=q\.slice\(z,a\)\+q.charAt.+\+s.charAt\(\d+\)\+q\.char/);
+	
+	if (sqs) {var ImageUrl = curl[1] + "imgsrc.ru_" + curl[2] +  idx[1].charAt(val[1]) + tip[1].charAt(val[2]) + idx[1].charAt(val[3]) + ".jpg";}
+	if (qss) {var ImageUrl = curl[1] + "imgsrc.ru_" + curl[2] +  tip[1].charAt(val[1]) + idx[1].charAt(val[2]) + idx[1].charAt(val[3]) + ".jpg";}
+	if (ssq) {var ImageUrl = curl[1] + "imgsrc.ru_" + curl[2] +  idx[1].charAt(val[1]) + idx[1].charAt(val[2]) + tip[1].charAt(val[3]) + ".jpg";}
+	if (sqq) {var ImageUrl = curl[1] + "imgsrc.ru_" + curl[2] +  idx[1].charAt(val[1]) + tip[1].charAt(val[2]) + tip[1].charAt(val[3]) + ".jpg";}
+	if (qqs) {var ImageUrl = curl[1] + "imgsrc.ru_" + curl[2] +  tip[1].charAt(val[1]) + tip[1].charAt(val[2]) + idx[1].charAt(val[3]) + ".jpg";}
+	if (qqq) {var ImageUrl = curl[1] + "imgsrc.ru_" + curl[2] +  tip[1].charAt(val[1]) + tip[1].charAt(val[2]) + tip[1].charAt(val[3]) + ".jpg";}
+	if (sss) {var ImageUrl = curl[1] + "imgsrc.ru_" + curl[2] +  idx[1].charAt(val[1]) + idx[1].charAt(val[2]) + idx[1].charAt(val[3]) + ".jpg";}
+	if (qsq) {var ImageUrl = curl[1] + "imgsrc.ru_" + curl[2] +  tip[1].charAt(val[1]) + idx[1].charAt(val[2]) + tip[1].charAt(val[3]) + ".jpg";}
+    return curl ? {imgUrl: ImageUrl.replace(/http:\/\/s/,"http:\/\/b"), status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
 
@@ -5984,17 +6011,25 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <searchpattern>"REPLACE: 'show','direct'"</searchpattern>
 </host>
 
+<host id="kino-teatr">
+<urlpattern>^https?:\/\/www\.kino-teatr\.ru\/kino\/acter\/\w+\/\w+\/\d+\/foto\/(?:i\d+\/)?\d+\/</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/src="(\/acter\/album\/\d+\/\d+.+?\.jpg)"/);
+	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
+</host>
+
 <host id="kodiefiles">
 <urlpattern>^http:\/\/images\.kodiefiles\.nl\/\d+\/.+\.html</urlpattern>
 <searchpattern>"full\\/.+\\..{3,4}"</searchpattern>
 </host>
 
 <host id="komodogirls">
-<urlpattern>^http:\/\/komodogirls\.com\/(?!(pages|tag|login))[^?]+$</urlpattern>
+<urlpattern>^https?:\/\/komodogirls\.com\/(?!(pages|tag|login))[^?]+$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
 	var hUrl = pageUrl.substr(0,pageUrl.indexOf('/',pageUrl.indexOf('.')));
-	var iUrl = pageData.match(/src="\/var\/resizes\/(.+?)" alt="(.+?)"/);
-	return iUrl ? {imgUrl: hUrl + "/var/albums/" + iUrl[1], fileName: iUrl[2] + ".jpg", status: "OK"} : {imgUrl: null, status: "ABORT"};
+	var iUrl = pageData.match(/src="(\/var\/resizes\/.+?)" alt="(.+?)"/);
+	return iUrl ? {imgUrl: hUrl + iUrl[1], fileName: iUrl[2] + ".jpg", status: "OK"} : {imgUrl: null, status: "ABORT"};
 }]]></searchpattern>
 </host>
 
@@ -7792,31 +7827,16 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 </host>
 
 <host id="pinterest">
-<urlpattern>^http:\/\/(?:www\.)?pinterest\.com\/pin\/\w+\/?$</urlpattern>
+<urlpattern>^https?:\/\/(?:www\.)?pinterest\.com\/pin\/\w+\/?$</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
-	var retVal = {imgUrl: null, status: "ABORT"};
-	
-	var iUrl = null;
-	
-	var theId = "(?:pinCloseupImage|ui-Image-\\d+)";
-	var searchPat = new RegExp("<img[^>]+id\\s*=\\s*(\"|')?" + theId + "\\1[^>]+>", "i");
-	var tmpMatch = pageData.match(searchPat);
-	if (tmpMatch) {
-		tmpMatch = tmpMatch[0];
-		iUrl = tmpMatch.match(/src\s*=\s*("|')?(.+?)\1/i);
-		if (iUrl) iUrl = iUrl[2];
-	}
-	if (!iUrl) {
-		iUrl = pageData.match(/<img src="(.+?)"\s*class="pinImage"/);
-		if (iUrl) iUrl = iUrl[1];
-	}
-
-	if (iUrl) {
-		retVal.imgUrl = iUrl;
-		retVal.status = "OK";
-	}
-
-	return retVal;
+	var pUrl = pageData.match(/name="og:see_also" content="(.+?)"/);
+	var req = new XMLHttpRequest();
+	req.open("POST", pUrl[1], false);
+	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+	req.send("");	
+	var iUrl = (req.responseText).match(/property="og:image" content="(.+?)"/);
+	var tUrl = (req.responseText).match(/property="og:title" content="(.+?)"/);
+	return iUrl ? {imgUrl:  iUrl[1], fileName: tUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
 
@@ -7849,7 +7869,10 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 
 <host id="pixhost">
 <urlpattern>https?:\/\/(?:www\.)?pixhost\.org\/show\/.+</urlpattern>
-<searchpattern>"ID: image"</searchpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/img id=('|")image\1.*?src=\1(https?:\/\/.+?\.pixhost\.org\/images\/\d+\/\d+_)(.+?)\1/);
+	return iUrl ? {imgUrl:  iUrl[2] + iUrl[3], fileName: iUrl[3], status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
 </host>
 
 <host id="pixhub.eu">
@@ -8495,17 +8518,20 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 </host>
 
 <host id="rule34.xxx">
-<urlpattern>^http:\/\/rule34\.xxx\/index\.php\?page=post&amp;s=view.+</urlpattern>
+<urlpattern>^https?:\/\/rule34\.xxx\/index.php\?page=post.+s=view</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
-	var retVal = {imgUrl: null, status: "ABORT"};
-	
-	var iUrl = pageData.match(/href=["']([^"']+)[^<]*>Original image/);
-	if (iUrl) {
-		retVal.imgUrl = iUrl[1];
-		retVal.status = "OK";
-	}
+	var iUrl = pageData.match(/(\/\/img\.rule34\.xxx.+?\.(jpe?g|png))/);
+	var sol = "https:/" + iUrl[1].replace(/\/\//g,"/");
+	return iUrl ? {imgUrl: sol, status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
+</host>
 
-	return retVal;
+<host id="rule34hentai">
+<urlpattern>^https?:\/\/rule34hentai\.net\/(pool|post)\/(list|view)\/\d+$</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/(https?:\/\/rule34hentai\.net\/image\/.+?\.jpg)/);				
+	var name = pageData.match(/property="og:title" content="(.+?)"/);
+	return iUrl ? {imgUrl: iUrl[1], fileName: name[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
 }]]></searchpattern>
 </host>
 
@@ -8629,6 +8655,14 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <host id="sensualgirls">
 <urlpattern>http:\/\/(?:www\.)?sensualgirls\.org\/.+\/.+\/\d+\/</urlpattern>
 <searchpattern>"\/media\/pictures\/[^\/]+\/.+?\..{3,4}" border="0""</searchpattern>
+</host>
+
+<host id="servimg">
+<urlpattern>^https?:\/\/servimg\.com\/view\/\d+\/\d+?</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/src="(https?:\/\/i\d+\.servimg\.com\/.+?)"/);			
+	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
 </host>
 
 <host id="sex">
@@ -10379,6 +10413,24 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <searchpattern>"ID: imgSized"</searchpattern>
 </host>
 
+<host id="xhamster.beta" maxThreads="3">
+<urlpattern>^https?:\/\/(?:de\.)?xhamster\.com\/photos\/(view|gallery)\/\d+\/\d+</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var thu = pageData.match(/rel="next" href="(.+)\/\w+"/);
+	if (!thu) thu =	pageData.match(/rel="prev" href="(.+)\/\w+"/);
+	if (!thu) thu =	pageData.match(/><a class="link" href="(.+)"/);
+	var req = new XMLHttpRequest();
+	req.open("POST", thu[1], false);
+	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+	req.send("");	
+	var afa = (req.responseText).match(/https?:\/\/\wp\d+\.xhcdn\.com\/\d+\/\d+\/\d+\/[\d_]+\.jpg/gi);	
+	var dUrl = pageData.match(/<meta name="description" content="([^"]+)"/);
+	var ind = dUrl[1].match(/(Ph|F)oto #(.+)/);
+	var iUrl = afa[ind[2]-1];
+	return iUrl ? {imgUrl: iUrl, status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
+</host>
+
 <host id="xiuren">
 <urlpattern>^https?:\/\/wwww\.xiuren\.org\/mics\/.+</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
@@ -10435,6 +10487,14 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 	}]]></searchpattern>
 </host>
 
+<host id="xuk.net">
+<urlpattern>^https?:\/\/xuk\.net\/photo\/\d+</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/img.+photomodel.+src="(.+?)"/);
+	return iUrl ? {imgUrl: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
+</host>
+
 <host id="xximg">
 <urlpattern>^http:\/\/(?:www\.)?xximg\.net\/img-</urlpattern>
 <searchpattern><![CDATA[function(pageData, pageUrl) {
@@ -10488,6 +10548,15 @@ return iUrl ? {imgUrl: iUrl[2], status: "OK"} : {imgUrl: null, status: "ABORT"}
 <host id="yankoimages">
 <urlpattern>^http:\/\/(?:www\.)?yankoimages\.net\/.+\/.+\.html</urlpattern>
 <searchpattern>"http:\/\/img\d*\.imageporter\.com\/i\/.+\/.+\.\w{3,4}"</searchpattern>
+</host>
+
+<host id="yandex.ru">
+<urlpattern>https?:\/\/.+?yandex.ru\/.+?\/view\/\d+.+?page=\d+</urlpattern>
+<searchpattern><![CDATA[function(pageData, pageUrl) {
+	var iUrl = pageData.match(/name="title" content="(.+?)".+link.+?image_src.+?href="(.+?)"/);	
+	var tUrl = iUrl[2].match(/(.+?)_XL.jpg/);
+	return iUrl ? {imgUrl: tUrl[1] + "_orig", fileName: iUrl[1], status: "OK"} : {imgUrl: null, status: "ABORT"}
+}]]></searchpattern>
 </host>
 
 <host id="ychan.ca">
