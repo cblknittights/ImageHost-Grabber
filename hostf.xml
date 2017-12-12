@@ -3,7 +3,7 @@
 <root>
 <host id=".">
 <urlpattern>https:\/\/imagehostgrabber\.com\/IHG\/hostf\/hostf.xml</urlpattern>
-<searchpattern>"Sat, May 20 19:21:22 UTC 2017"</searchpattern>
+<searchpattern>"Tue, Dec 12 16:06:54 UTC 2017"</searchpattern>
 </host>
 
 <host id="123-amateur" Timeout="5">
