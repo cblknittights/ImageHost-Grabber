@@ -39,7 +39,6 @@
 </script>
 
 <preferences>
-	<preference id="blacklistFilePath" name="extensions.imagegrabber.blacklistfilepath"	type="string"	instantApply="true"/>
 	<preference id="showInTools" name="extensions.imagegrabber.showintools" type="bool" onchange="document.getElementById('menu_IGmain').setAttribute('hidden', this.value);"/>
 </preferences>
 
@@ -71,6 +70,22 @@
 		<label value="&suck_the_current_thread.hint;" style="font-style: italic;"/>
 	</tooltip>
 </popupset>
+
+<menu id="menu_IGtools" class="menu-iconic ihgmenu" command="ihg-menu">
+	<menupopup>
+		<menuitem command="GetAllPics" key="ihg-getAll_cmd"/>
+		<menuitem command="SelectPics" key="ihg-getSelected_cmd"/>
+		<menuseparator/>
+		<menuitem command="SuckThread" tooltip="suck_the_current_thread-tip"/>
+		<menuseparator/>
+		<menuitem command="HostEditor"/>
+		<menuitem command="Blacklist"/>
+		<menuitem command="ProgressWin"/>
+		<menuseparator/>
+		<menuitem command="Options"/>
+		<menuitem command="Help"/>
+	</menupopup>
+</menu>
 
 <toolbarpalette id="BrowserToolbarPalette">
 	<toolbarbutton id="imagehostgrabber-toolbarbutton" label="ImageHost Grabber"
@@ -112,7 +127,7 @@
 </vbox>
 
 <menubar id="main-menubar">
-	<menu id="menu_IGmain" command="ihg-menu" insertbefore="helpMenu">
+	<menu id="menu_IGmain" command="ihg-menu" insertbefore="helpMenu,menu_Help">
 		<menupopup>
 			<menuitem command="GetAllPics" key="ihg-getAll_cmd"/>
 			<menuitem command="SelectPics" key="ihg-getSelected_cmd"/>
@@ -129,23 +144,16 @@
 	</menu>
 </menubar>
 
+<!-- Tools menu Firefox -->
 <menupopup id="menu_ToolsPopup">
 	<menuseparator id="ihgSep" insertbefore="prefSep"/>
-	<menu id="menu_IGtools" class="menu-iconic ihgmenu" command="ihg-menu" insertafter="ihgSep">
-		<menupopup>
-			<menuitem command="GetAllPics" key="ihg-getAll_cmd"/>
-			<menuitem command="SelectPics" key="ihg-getSelected_cmd"/>
-			<menuseparator/>
-			<menuitem command="SuckThread" tooltip="suck_the_current_thread-tip"/>
-			<menuseparator/>
-			<menuitem command="HostEditor"/>
-			<menuitem command="Blacklist"/>
-			<menuitem command="ProgressWin"/>
-			<menuseparator/>
-			<menuitem command="Options"/>
-			<menuitem command="Help"/>
-		</menupopup>
-	</menu>
+	<menu id="menu_IGtools" insertafter="ihgSep"/>
+</menupopup>
+
+<!-- Tools menu SeaMonkey -->
+<menupopup id="taskPopup">
+	<menuseparator id="ihgSep" insertafter="downloadmgr,navBeginGlobalItems"/>
+	<menu id="menu_IGtools" insertbefore="ihgSep"/>
 </menupopup>
 
 <popup id="contentAreaContextMenu" insertafter="helpMenu">

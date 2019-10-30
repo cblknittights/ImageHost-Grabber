@@ -1,4 +1,5 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
 radio[pane] {
 	list-style-image: url("chrome://imagegrabber/skin/images/options.png");
 }
@@ -20,6 +21,7 @@ radio[pane="hostopts"] {
 radio[pane="debug"] {
 	-moz-image-region: rect(0px, 160px, 32px, 128px);
 }
+
 button.button-link {
 	-moz-appearance: none;
 	background: transparent;
@@ -40,6 +42,7 @@ button.button-link:not([disabled]):focus {
 	color: #3DA1FF;
 	text-shadow: 1px 1px white, 0 0 2em blue;
 }
+
 textbox[type="number"][hidespinbuttons="true"] {
 	padding: 0px 2px !important;
 }

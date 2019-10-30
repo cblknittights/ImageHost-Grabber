@@ -1,23 +1,23 @@
 /****************************** Start of GPL Block ****************************
- *   ImageHost Grabber - Imagegrabber is a firefox extension designed to 
- *   download pictures from image hosts such as imagevenue, imagebeaver, and 
- *   others (see help file for a full list of supported hosts).
+ *	ImageHost Grabber - Imagegrabber is a firefox extension designed to 
+ *	download pictures from image hosts such as imagevenue, imagebeaver, and 
+ *	others (see help file for a full list of supported hosts).
  *
- *   Copyright (C) 2007   Matthew McMullen.
- * 
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
+ *	Copyright (C) 2007   Matthew McMullen.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ *	This program is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation; either version 2 of the License, or
+ *	(at your option) any later version.
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program; if not, write to the Free Software
+ *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  ***************************  End of GPL Block *******************************/
 
@@ -32,7 +32,7 @@ ihg_Functions.escape_everything = function escape_everything(sometext) {
 	tmp_string = tmp_string.replace(/\//g, "%2F");
 
 	return tmp_string;
-}
+	}
 
 ihg_Functions.get_cookies = function get_cookies() {
 	var cookieManager = Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager);
@@ -57,7 +57,7 @@ ihg_Functions.get_cookies = function get_cookies() {
 			}
 		}
 	return CookieString;
-}
+	}
 
 ihg_Functions.getMyspacePage = function getMyspacePage(pageURL, newEventTarget, newEventArgument) {
 	if (!newEventTarget) var newEventTarget = 'ctl00$Main$PagerTop';
@@ -94,7 +94,7 @@ ihg_Functions.getMyspacePage = function getMyspacePage(pageURL, newEventTarget, 
 
 		value = ihg_Functions.escape_everything(value);
 		postData += id + "=" + value + (i==inputs.length-1?"":"&");
-	}
+		}
 
 	var ref_uri = ios.newURI(ref_url, null, null);
 	ref_uri = ref_uri.QueryInterface(Components.interfaces.nsIURL);
@@ -148,6 +148,7 @@ ihg_Functions.getMyspacePage = function getMyspacePage(pageURL, newEventTarget, 
 			dump("isPending: " + request.isPending() + "\n");
 			}
 		}
+
 	pump.init(instream, -1, -1, 0, 0, false);
 	pump.asyncRead(dataListener, null);
 	}

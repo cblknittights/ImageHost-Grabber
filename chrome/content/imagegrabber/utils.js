@@ -24,25 +24,25 @@
 if (!String.prototype.trim) {						// String.trim is not natively available before FF3.5
 	String.prototype.trim = function () {
 		return this.replace(/^\s+|\s+$/g, '');
-	};
-}
+		};
+	}
 
 var parse = stringify = function() { throw "IHG error: No JSON implementation available"; }
 try {
 	parse = JSON.parse;
 	stringify = JSON.stringify;
-}
+	}
 catch(e) {
 	// not available before FF3.5
 	let nsIJSON = Components.classes["@mozilla.org/dom/json;1"].createInstance(Components.interfaces.nsIJSON);
 	parse = function(source) nsIJSON.decode(source);
 	stringify = function(value, replacer, space) nsIJSON.encode(value, replacer);
-}
+	}
 
 var extregexp = [];
 for (let propName in ihg_Globals.LinksByFileExt) {
 	extregexp.push(ihg_Globals.LinksByFileExt[propName].map(([Name,patt,SOI]) => patt).join("|"));
-};
+	};
 var FileEXT = "\\.(?:" + extregexp.join("|") + ")$";
 
 ///////////////////////////////   Get the current page number //////////////////////////
@@ -70,7 +70,7 @@ ihg_Functions.getCurPageNum = function getCurPageNum() {
 	ihg_Functions.LOG("In " + myself + ", getCurP is equal to: " + getCurP + "\n");
 	if (!getCurP) return 1;
 	return getCurP[1];
-}
+	}
 
 /////////////////  Gets the last page number ////////////////////////
 ihg_Functions.getLastPageNum = function getLastPageNum() {
@@ -97,7 +97,7 @@ ihg_Functions.getLastPageNum = function getLastPageNum() {
 	ihg_Functions.LOG("In " + myself + ", getLastP is equal to: " + getLastP + "\n");
 	if (!getLastP) return 1;
 	return getLastP[1];
-}
+	}
 
 ihg_Functions.getFormattedDate = function getFormattedDate() {
 	var rightNow = new Date();
@@ -237,7 +237,7 @@ ihg_Functions.generateFName = function generateFName(reqObj, URLFile) {
 	displayName = ihg_Functions.cutFName(displayName);
 
 	return displayName;
-}
+	}
 
 ihg_Functions.getOutputFile = function getOutputFile(reqObj, URLFile) {
 	var displayName = null;
@@ -249,7 +249,7 @@ ihg_Functions.getOutputFile = function getOutputFile(reqObj, URLFile) {
 			var contDisp = reqObj.xmlhttp.getResponseHeader("Content-disposition");
 			if (contDisp) {
 				var mhp = Components.classes["@mozilla.org/network/mime-hdrparam;1"]
-										.getService(Components.interfaces.nsIMIMEHeaderParam);
+									.getService(Components.interfaces.nsIMIMEHeaderParam);
 				displayName = mhp.getParameter(contDisp, "filename", "", true, {});
 				displayName = displayName.replace(/[\\/:*?"<>|,]/g, '').trim();
 				ihg_Functions.LOG("Filename(Response-Header): " + displayName + "\n");
@@ -318,11 +318,11 @@ ihg_Functions.getOutputFile = function getOutputFile(reqObj, URLFile) {
 
 		reqObj.queueHandler();
 		return null;
-	}
+		}
 
 	ihg_Functions.LOG("aLocalFile.path is equal to: " + aLocalFile.path + "\n");
 	return aLocalFile;
-}
+	}
 
 // special case: get file name from response header
 ihg_Functions.getFNameFromHeader = function getFNameFromHeader(reqObj, request) {
@@ -333,7 +333,7 @@ ihg_Functions.getFNameFromHeader = function getFNameFromHeader(reqObj, request) 
 		var contDisp = httpChan.getResponseHeader("Content-disposition");
 		if (!contDisp) return null;
 		var mhp = Components.classes["@mozilla.org/network/mime-hdrparam;1"]
-									.getService(Components.interfaces.nsIMIMEHeaderParam);
+							.getService(Components.interfaces.nsIMIMEHeaderParam);
 		displayName = mhp.getParameter(contDisp, "filename", "", true, {});
 		displayName = displayName.replace(/[\\/:*?"<>|,]/g, '').trim();
 		ihg_Functions.LOG("Filename(Response-Header): " + displayName + "\n");
@@ -346,7 +346,7 @@ ihg_Functions.getFNameFromHeader = function getFNameFromHeader(reqObj, request) 
 		}
 
 	return displayName;
-}
+	}
 
 ihg_Functions.prefixFName = function prefixFName(reqObj, fname) {
 	var result = fname;
@@ -359,7 +359,7 @@ ihg_Functions.prefixFName = function prefixFName(reqObj, fname) {
 	result = reqObj.uniqFN_prefix + "_" + formatted + "_" + result;
 
 	return result;
-}
+	}
 
 
 ihg_Functions.cutFName = function cutFName(fname) {
@@ -374,8 +374,7 @@ ihg_Functions.cutFName = function cutFName(fname) {
 		result = tempVar[1].substring(0, maxLength-4) + Math.random().toString().substring(2,6) + tempVar[2];
 
 	return result;
-}
-
+	}
 
 ihg_Functions.doStartDownload = function doStartDownload(reqObj, URLFile) {
 	var myself = arguments.callee.name;
@@ -399,12 +398,12 @@ ihg_Functions.doStartDownload = function doStartDownload(reqObj, URLFile) {
 	if (aLocalFile == null) {
 		reqObj.abort(ihg_Globals.strings.could_not_initialize);
 		return;
-	}
+		}
 
 	if (!aLocalFile.parent.exists()) {
 		reqObj.abort(ihg_Globals.strings.target_directory_no_longer_exists);
 		return;
-	}
+		}
 
 	if (reqObj.maxProgress > 0) {
 		if (!aLocalFile.exists()) ihg_Functions.LOG("In " + myself + ", file to resume no longer exists ... reloading");
@@ -420,13 +419,26 @@ ihg_Functions.doStartDownload = function doStartDownload(reqObj, URLFile) {
 	aListener.aFile = aLocalFile;
 
 	// Make a new resumable channel
-	var aResChan = ihg_Globals.ioService.newChannelFromURI(pic_uri);
+	// var aResChan = ihg_Globals.ioService.newChannelFromURI(pic_uri);
+
+	var secMngr = Components.classes["@mozilla.org/scriptsecuritymanager;1"].getService(Components.interfaces.nsIScriptSecurityManager);
+	if (ihg_Globals.ioService.newChannelFromURI2) {
+		var aResChan = ihg_Globals.ioService.newChannelFromURI2(
+						pic_uri, null,
+						secMngr.getSystemPrincipal(), null,
+						Components.interfaces.nsILoadInfo.SEC_NORMAL,
+						Components.interfaces.nsIContentPolicy.TYPE_OTHER);
+		}
+	else {
+		var aResChan = ihg_Globals.ioService.newChannelFromURI(pic_uri);
+		}
+
 	if (!reqObj.notResumable) aResChan.QueryInterface(Components.interfaces.nsIResumableChannel);
 	aResChan.QueryInterface(Components.interfaces.nsIHttpChannel);
 
 	try {
 		aResChan.QueryInterface(Components.interfaces.nsIHttpChannelInternal).forceAllowThirdPartyCookie = true;
-	}
+		}
 	catch(e) { /* Requires Gecko 1.9.2 */ }
 
 	// tell that channel to resume at the given byte position
@@ -463,28 +475,28 @@ ihg_Functions.removeDuplicates = function removeDuplicates(docLinks, thumbLinks)
 					if (cleanDocLinks[k][l] == docLinks[i][j]) {
 						if (thumbLinks) {
 							if (!cleanThumbLinks[k][l]) cleanThumbLinks[k][l] = thumbLinks[i][j];
-						}
+							}
 						continue loop;
+						}
 					}
 				}
-			}
 			cleanDocLinks[k-1][l] = docLinks[i][j];
 			if (thumbLinks) cleanThumbLinks[k-1][l] = thumbLinks[i][j];
-		}
+			}
 		// The originating page is added to the end of docLinks array if
 		// IHG is run in thread sucker mode. We should NOT remove it.
 		if (ihg_Globals.suckMode && cleanDocLinks[i][cleanDocLinks[i].length-1] != docLinks[i][docLinks[i].length-1]) {
 			cleanDocLinks[i][cleanDocLinks[i].length] = docLinks[i][docLinks[i].length-1];
+			}
 		}
-	}
 
 	return { docLinks:cleanDocLinks, thumbLinks:cleanThumbLinks };
-}
+	}
 
 ihg_Functions.restartFF = function restartFF() {
 	var nsIAppStartup = Components.interfaces.nsIAppStartup;
 	Components.classes["@mozilla.org/toolkit/app-startup;1"].getService(nsIAppStartup).quit(nsIAppStartup.eForceQuit | nsIAppStartup.eRestart);
-}
+	}
 
 ihg_Functions.AlertPopup = function AlertPopup(title, message, listener, clickable) {
 	var logo = "chrome://imagegrabber/skin/images/imagegrabber.png";
@@ -502,19 +514,19 @@ ihg_Functions.AlertPopup = function AlertPopup(title, message, listener, clickab
 		}
 
 	/************************************************************************************************************************************************
-	* EVENT_NEW_MAIL_RECEIVED 		0 	The system receives email. Requires Gecko 1.9.2
-	* EVENT_ALERT_DIALOG_OPEN 		1 	An alert dialog is opened. Requires Gecko 1.9.2
-	* EVENT_CONFIRM_DIALOG_OPEN 	2 	A confirm dialog is opened. Requires Gecko 1.9.2
-	* EVENT_PROMPT_DIALOG_OPEN 		3 	A prompt dialog (one that allows the user to enter data, such as an authentication dialog) is opened. Requires Gecko 1.9.2
-	* EVENT_SELECT_DIALOG_OPEN 		4 	A select dialog (one that contains a list box) is opened. Requires Gecko 1.9.2
-	* EVENT_MENU_EXECUTE 			5 	A menu item is executed. Requires Gecko 1.9.2
-	* EVENT_MENU_POPUP 				6 	A popup menu is shown. Requires Gecko 1.9.2
-	* EVENT_EDITOR_MAX_LEN 			7 	More characters than the maximum allowed are typed into a text field. Requires Gecko 9.0
-	************************************************************************************************************************************************/
+	 * EVENT_NEW_MAIL_RECEIVED 		0	The system receives email. Requires Gecko 1.9.2
+	 * EVENT_ALERT_DIALOG_OPEN 		1	An alert dialog is opened. Requires Gecko 1.9.2
+	 * EVENT_CONFIRM_DIALOG_OPEN 	2	A confirm dialog is opened. Requires Gecko 1.9.2
+	 * EVENT_PROMPT_DIALOG_OPEN 	3	A prompt dialog (one that allows the user to enter data, such as an authentication dialog) is opened. Requires Gecko 1.9.2
+	 * EVENT_SELECT_DIALOG_OPEN 	4	A select dialog (one that contains a list box) is opened. Requires Gecko 1.9.2
+	 * EVENT_MENU_EXECUTE 			5	A menu item is executed. Requires Gecko 1.9.2
+	 * EVENT_MENU_POPUP 			6	A popup menu is shown. Requires Gecko 1.9.2
+	 * EVENT_EDITOR_MAX_LEN 		7	More characters than the maximum allowed are typed into a text field. Requires Gecko 9.0
+	 ************************************************************************************************************************************************/
 
 	Components.classes["@mozilla.org/sound;1"].createInstance(Components.interfaces.nsISound)
 		.playEventSound(0);
-}
+	}
 
 ihg_Functions.writeXMLDocumentToFile = function writeXMLDocumentToFile(XMLDocument, file) {
 	var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance(Components.interfaces.nsIFileOutputStream);
@@ -528,7 +540,7 @@ ihg_Functions.writeXMLDocumentToFile = function writeXMLDocumentToFile(XMLDocume
 	serializer.serializeToStream(XMLDocument, foStream, "UTF-8");
 
 	converter.close();
-}
+	}
 
 ihg_Functions.removeAnonymizer = function removeAnonymizer(url) {
 	var res = url;
@@ -538,6 +550,6 @@ ihg_Functions.removeAnonymizer = function removeAnonymizer(url) {
 	if (tmpMatch) {
 		if (url.search(/^https?:\/\/[^/]*facebook\.com\//) == -1)
 			res = tmpMatch[1];
-	}
+		}
 	return res;
-}
+	}

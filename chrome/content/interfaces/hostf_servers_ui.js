@@ -30,9 +30,7 @@ hostf_servers_Globals.hostFileObj = null;
 
 
 function HostFileService() {
-	var addonPath = document.getElementById("addonPath").value;
-	var hostf_servers = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
-	hostf_servers.initWithPath(addonPath);
+	var hostf_servers = ihg_Globals.prefManager.getComplexValue("extensions.imagegrabber.addonPath", Components.interfaces.nsILocalFile);
 	hostf_servers.append("hostf_servers.xml");
 
 	this.hostf_servers = hostf_servers;
@@ -44,7 +42,7 @@ HostFileService.prototype = {
 		var persist = Components.classes["@mozilla.org/embedding/browser/nsWebBrowserPersist;1"].createInstance(Components.interfaces.nsIWebBrowserPersist);
 		persist.persistFlags = persist.PERSIST_FLAGS_NO_CONVERSION | persist.PERSIST_FLAGS_REPLACE_EXISTING_FILES | persist.PERSIST_FLAGS_BYPASS_CACHE;
 		persist.saveDocument(hostf_servers_Globals.hFile, this.hostf_servers, null, null, null, null);
-	},
+		},
 
 	getHostf_servers : function() {
 		if( !this.hostf_servers.exists() ) return null;

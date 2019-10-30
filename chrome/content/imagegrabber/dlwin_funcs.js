@@ -23,8 +23,8 @@
 
 windowWatcher = Components.classes["@mozilla.org/embedcomp/window-watcher;1"].getService(Components.interfaces.nsIWindowWatcher);
 
-ihg_Functions.clearFromWin =  function clearFromWin(reqID, ignoreAutoClear) {
-	ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
+ihg_Functions.clearFromWin = function clearFromWin(reqID, ignoreAutoClear) {
+	var ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
 	if (!ig_dl_win) return;
 
 	var myself = arguments.callee.name;
@@ -57,17 +57,18 @@ ihg_Functions.clearFromWin =  function clearFromWin(reqID, ignoreAutoClear) {
 	var containerItem = parentItem.parentNode;
 	if (containerItem.getAttribute("container")) {
 		if (!parentItem.hasChildNodes()) {
+			containerItem.removeChild(parentItem);
 			setTimeout(ihg_Functions.clearFromWin, 1000, containerItem.id, true);
 			}
 		}
-	
+
 	ihg_Functions.LOG("Exiting " + myself + "\n");
-}
+	}
 
 ihg_Functions.addDownloadReqObjs = function addDownloadReqObjs(req_objs) {
 	if (!req_objs || req_objs.length == 0) return;
 
-	ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
+	var ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
 	if (!ig_dl_win) return;
 
 	var myself = arguments.callee.name;
@@ -76,12 +77,12 @@ ihg_Functions.addDownloadReqObjs = function addDownloadReqObjs(req_objs) {
 	var doc = ig_dl_win.document;
 
 	var outBox = doc.getElementById("outBox");
-	
+
 	var treeItem = doc.createElement("treeitem");
 	treeItem.setAttribute("id", "page_" + (Math.floor(1e9 * (1 + Math.random()))).toString().substring(1));
 	treeItem.setAttribute("container", "true");
 	treeItem.setAttribute("open", "true");
-	
+
 	var treeRow = doc.createElement("treerow");
 	var treeCell0 = doc.createElement("treecell");
 	treeCell0.setAttribute("label", ihg_Globals.strings.page + " " + req_objs[0].pageNum + " : " + req_objs.length + " Reqs");
@@ -99,15 +100,15 @@ ihg_Functions.addDownloadReqObjs = function addDownloadReqObjs(req_objs) {
 	for (var i = 0; i < req_objs.length; i++) {
 		let treeItem = doc.createElement("treeitem");
 		treeItem.setAttribute("id", req_objs[i].uniqID);
-		
+
 		let treeRow = doc.createElement("treerow");
-		
+
 		let treeCell0 = doc.createElement("treecell");
 		let m = req_objs[i].curLinkNum + 1;
 		let page_stat = ihg_Globals.strings.page + " " + req_objs[i].pageNum + ": " + m + " " + ihg_Globals.strings.of + " " + req_objs[i].totLinkNum;
 		treeCell0.setAttribute("label", page_stat);
 		treeCell0.setAttribute("id", "page_stat_" + req_objs[i].uniqID);
-		
+
 		let treeCell1 = doc.createElement("treecell");
 		treeCell1.setAttribute("label", req_objs[i].reqURL);
 		treeCell1.setAttribute("id", "fname_" + req_objs[i].uniqID);
@@ -117,29 +118,29 @@ ihg_Functions.addDownloadReqObjs = function addDownloadReqObjs(req_objs) {
 		if (req_objs[i].maxProgress > 0) treeCell2.setAttribute("value", String(100 * (req_objs[i].curProgress / req_objs[i].maxProgress)))
 		else treeCell2.setAttribute("value", "0");
 		treeCell2.setAttribute("id", "prog_met_" + req_objs[i].uniqID);
-		
+
 		let treeCell3 = doc.createElement("treecell");
 		treeCell3.setAttribute("label", req_objs[i].status ? req_objs[i].status : ihg_Globals.strings.waiting);
 		treeCell3.setAttribute("id", "stat_text_" + req_objs[i].uniqID);
-		
+
 		treeRow.appendChild(treeCell0);
 		treeRow.appendChild(treeCell1);
 		treeRow.appendChild(treeCell2);
 		treeRow.appendChild(treeCell3);
-		
+
 		treeItem.appendChild(treeRow);
 
 		treeChildren.appendChild(treeItem);
-	}
+		}
 	treeItem.appendChild(treeChildren);
-	
+
 	outBox.appendChild(treeItem);
 
 	ihg_Functions.LOG("Exiting " + myself + "\n");
-}
+	}
 
 ihg_Functions.addDownloadProgress = function addDownloadProgress(page_stat, some_id, fName, status_text) {
-	ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
+	var ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
 	if (!ig_dl_win) return;
 
 	var myself = arguments.callee.name;
@@ -155,7 +156,7 @@ ihg_Functions.addDownloadProgress = function addDownloadProgress(page_stat, some
 	treeItem.setAttribute("id", some_id);
 
 	var treeRow = doc.createElement("treerow");
-	
+
 	var treeCell0 = doc.createElement("treecell");
 	treeCell0.setAttribute("label", page_stat);
 	treeCell0.setAttribute("id", "page_stat_" + some_id);
@@ -181,7 +182,7 @@ ihg_Functions.addDownloadProgress = function addDownloadProgress(page_stat, some
 	outBox.appendChild(treeItem);
 
 	ihg_Functions.LOG("Exiting " + myself + "\n");
-}
+	}
 
 /* first arg is the request id, or the id of the object you are trying to add.
  * the rest of the args are optional... they correspond to the fields that
@@ -189,7 +190,7 @@ ihg_Functions.addDownloadProgress = function addDownloadProgress(page_stat, some
  * column.
  */
 ihg_Functions.updateDownloadProgress = function updateDownloadProgress(page_stat, some_id, fname, progress, status) {
-	ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
+	var ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
 	if (!ig_dl_win) return;
 
 	var myself = arguments.callee.name;
@@ -225,10 +226,10 @@ ihg_Functions.updateDownloadProgress = function updateDownloadProgress(page_stat
 		}
 
 	ihg_Functions.LOG("Exiting " + myself + "\n");
-}
+	}
 
 ihg_Functions.updateDownloadStatus = function updateDownloadStatus(someText) {
-	ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
+	var ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
 	if (!ig_dl_win) return;
 
 	var myself = arguments.callee.name;
@@ -238,47 +239,47 @@ ihg_Functions.updateDownloadStatus = function updateDownloadStatus(someText) {
 
 	var statLabel = doc.getElementById("statLabel");
 	statLabel.value = someText;
-}
-	
+	}
+
 ihg_Functions.setFocus = function setFocus() {
-	ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
+	var ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
 	if (!ig_dl_win) return;
 	
 	var tree = ig_dl_win.document.getElementById("igTree");
 	tree.focus();
 	if (tree.view.rowCount > 0) tree.view.selection.select(0);
-}
+	}
 
 ihg_Functions.startCloseCountdown = function startCloseCountdown() {
-	ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
+	var ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
 	if (!ig_dl_win) return;
-	
+
 	var req_objs = ig_dl_win.req_objs;
 	if (req_objs) {
 		for (var i = 0; i < req_objs.length; i++) {
 			if (req_objs[i].finished == false || req_objs[i].aborted == true)
 				return;
+			}
 		}
-	}
-	
+
 	ihg_Globals.closeCountdown = ihg_Globals.DLWindowCloseImmediately ?  0 : 5;
-	
+
 	if (ihg_Globals.closeInterval) clearInterval(ihg_Globals.closeInterval);
 	ihg_Globals.closeInterval = setInterval(ihg_Functions.closeWindow, 800);
-}
+	}
 
 ihg_Functions.closeWindow = function closeWindow() {
-	ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
-	
+	var ig_dl_win = windowWatcher.getWindowByName("ig-dl_win", null);
+
 	if (ig_dl_win && ihg_Globals.closeCountdown > 0)
-		ihg_Functions.updateDownloadStatus(ihg_Globals.strings.closing + " (" + ihg_Globals.closeCountdown-- + ")...");
+		ihg_Functions.updateDownloadStatus(ihg_Globals.strings.closing([ihg_Globals.closeCountdown--]));
 	else {
 		clearInterval(ihg_Globals.closeInterval);
 		ihg_Globals.closeInterval = null;
 		ihg_Globals.closeCountdown = null;
-		
+
 		if (!ig_dl_win) return;
-		
+
 		var req_objs = ig_dl_win.req_objs;
 		if (req_objs) {
 			// We check the download list again, just to make sure that the 
@@ -287,10 +288,10 @@ ihg_Functions.closeWindow = function closeWindow() {
 				if (req_objs[i].finished == false || req_objs[i].aborted == true) {
 					ihg_Functions.updateDownloadStatus(ihg_Globals.strings.running);
 					return;
+					}
 				}
 			}
-		}
-		
+
 		ig_dl_win.close();
 		}
-}
+	}

@@ -39,8 +39,10 @@ ihg_Globals.__defineGetter__("strings", function() {
 	let enumerator = this.strbundle.strings;
 	while (enumerator.hasMoreElements()) {
 		let property = enumerator.getNext().QueryInterface(Components.interfaces.nsIPropertyElement);
-		if (property.value.search(/%(\d+\$)?S/) >= 0) continue;	// This is most probably a formatted string...
-		ihg_strings[property.key] = property.value;
+		if (/%(?:\d+\$)?S/.test(property.value))
+			ihg_strings[property.key] = (aArray) => ihg_Globals.strbundle.getFormattedString(property.key, aArray);
+		else
+			ihg_strings[property.key] = property.value;
 		}
 	return this.strings = ihg_strings;
 	});
@@ -142,8 +144,7 @@ ihg_Globals.DLWindowCloseImmediately = null;
 
 ihg_Globals.useLastModFromHeader = null;
 
-ihg_Globals.blacklistFilePath = null;
 ihg_Globals.blacklist = null;
 
-ihg_Globals.ConsoleWin = null;
-ihg_Globals.Console = null;
+ihg_Globals.ConsoleWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"].getService(Components.interfaces.nsIWindowWatcher).getWindowByName("IhgConsoleWindow", null);
+ihg_Globals.Console = ihg_Globals.ConsoleWin ? ihg_Globals.ConsoleWin.Accessor : {Write: () => {}, WriteLine: () => {}};

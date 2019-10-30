@@ -22,10 +22,6 @@
 <script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/file_services.js"/>
 <script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/utils.js"/>
 
-<preferences>
-	<preference id="blacklistFilePath" name="extensions.imagegrabber.blacklistfilepath" type="string" instantApply="true"/>
-</preferences>
-
 <broadcasterset>
 	<broadcaster id="treeIsEmpty"/>
 </broadcasterset>

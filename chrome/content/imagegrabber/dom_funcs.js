@@ -50,13 +50,13 @@ ihg_Functions.getLinks = function getLinks(sometext) {
 					else
 						url = ihg_Functions.removeAnonymizer(url);
 					caca.push(url);
+					}
 				}
 			}
 		}
-	}
 	ihg_Functions.LOG("In " + myself + ", caca is equal to: " + caca + "\n");	
 	return caca;
-}
+	}
 
 ////////////////////////////    Used to get an image source given the ID   /////////////////////////
 ihg_Functions.getImgSrcById = function getImgSrcById(sometext, theID){
@@ -72,9 +72,9 @@ ihg_Functions.getImgSrcById = function getImgSrcById(sometext, theID){
 	if (filtered) {
 		for (var j = 0; j < filtered.length; j++) {
 			if (filtered[j]) {
-				var idAttr = filtered[j].match(/\bid\s*=\s*("|')?(.+?)\1[\s>]/i);
+				var idAttr = filtered[j].match(/\bid\s*=\s*("|')?(.+?)\1(?=\s|\/?>)/i);
 				if (idAttr && idAttr[2] == theID) {
-					theLinks[j] = filtered[j].match(/\bsrc\s*=\s*("|')?(.+?)\1[\s>]/i);
+					theLinks[j] = filtered[j].match(/\bsrc\s*=\s*("|')?(.+?)\1(?=\s|\/?>)/i);
 					if (theLinks[j]) {
 						var caca = theLinks[j][2].replace(/&amp;/ig, '&');
 						}
@@ -86,7 +86,7 @@ ihg_Functions.getImgSrcById = function getImgSrcById(sometext, theID){
 	if(!caca) ihg_Functions.LOG("In " + myself + ", sometext is equal to: " + sometext + "\n");
 	ihg_Functions.LOG("In " + myself + ", caca is equal to: " + caca + "\n");
 	return caca;
-}
+	}
 
 ////////////////////////////    Used to get the frame tags    /////////////////////////
 ihg_Functions.getFrameTags = function getFrameTags(sometext){
@@ -98,7 +98,7 @@ ihg_Functions.getFrameTags = function getFrameTags(sometext){
 
 	ihg_Functions.LOG("In " + myself + ", filtered is equal to: " + filtered + "\n");
 	return filtered;
-}
+	}
 
 ////////////////////////////    Used to get the image tags    /////////////////////////
 ihg_Functions.getImgTags = function getImgTags(sometext){
@@ -110,27 +110,25 @@ ihg_Functions.getImgTags = function getImgTags(sometext){
 
 	ihg_Functions.LOG("In " + myself + ", filtered is equal to: " + filtered + "\n");
 	return filtered;
-}
+	}
 
 //////////////////   Gets the image source from an image tag /////////////////
 ihg_Functions.getImgSrcFromTag = function getImgSrcFromTag(sometext){
 	var myself = arguments.callee.name;
 	ihg_Functions.LOG("Entering " + myself + "\n");
 
-	var filtered = sometext;
-
 	ihg_Functions.LOG("In " + myself + ", fixing to find the image.\n");
-	if (filtered) {
-		var theSrc = filtered.match(/\bsrc\s*=\s*("|')?(.+?)\1[\s>]/i);
+	if (sometext) {
+		var theSrc = sometext.match(/\bsrc\s*=\s*("|')?(.+?)\1(?=\s|\/?>)/i);
 		ihg_Functions.LOG("In " + myself + ", theSrc is equal to: " + theSrc + "\n");	
 		if (theSrc) {
 			return theSrc[2].replace(/&amp;/ig, '&');
+			}
 		}
-	}
 
 	ihg_Functions.LOG("In " + myself + ", no image 'src' found.\n");
 	return null;
-}
+	}
 
 ///////////////////////////  Get the data in a <p> node  ///////////////////////////////
 ihg_Functions.getPNodeData = function getPNodeData(sometext){
@@ -149,4 +147,4 @@ ihg_Functions.getPNodeData = function getPNodeData(sometext){
 
 	ihg_Functions.LOG("In " + myself + ", filtered is equal to: " + filtered + "\n");
 	return filtered;
-}
+	}

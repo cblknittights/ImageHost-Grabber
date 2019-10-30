@@ -35,22 +35,22 @@ promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].ge
 var theSortedList = [];
 
 function HostFileService() {
-	var addonPath = document.getElementById("addonPath").value;
-
-	var hostFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
-	var hostf_servers = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
+	var hostFile = ihg_Globals.prefManager.getComplexValue("extensions.imagegrabber.addonPath", Components.interfaces.nsILocalFile);
+	hostFile.append("hostf.xml");
 
 	var hostFileLoc = document.getElementById("hostfileloc");
-	if (hostFileLoc.value != "") {
-		hostFile.initWithPath(hostFileLoc.value);
-		if (!hostFile.exists()) hostFileLoc.value = "";
-		}
-	if (hostFileLoc.value == "") {
-		hostFile.initWithPath(addonPath);
-		hostFile.append("hostf.xml");
+	if (hostFileLoc.hasUserValue) {
+		try {
+			let tempHostFile = hostFileLoc.value;
+			if (!tempHostFile.exists()) hostFileLoc.reset();
+			else hostFile = tempHostFile;
+			}
+		catch (e) {
+			hostFileLoc.reset();
+			}
 		}
 
-	hostf_servers.initWithPath(addonPath);
+	var hostf_servers = ihg_Globals.prefManager.getComplexValue("extensions.imagegrabber.addonPath", Components.interfaces.nsILocalFile);
 	hostf_servers.append("hostf_servers.xml");
 
 	this.hostFile = hostFile;
@@ -104,16 +104,8 @@ HostFileService.prototype = {
 	}
 
 function sortHosts() {
-	theSortedList = Array.map(hostfile_Globals.hosts, function(host) {return host.getAttribute("id")}).sort();
-
-	for (var i = 0; i < theSortedList.length; i++) {
-		for (var j = 0; j < hostfile_Globals.hosts.length; j++) {
-			if (theSortedList[i] == hostfile_Globals.hosts[j].getAttribute("id")) {
-				hostfile_Globals.hFile.firstChild.appendChild(hostfile_Globals.hosts[j]);
-				break;
-				}
-			}
-		}
+	theSortedList = Array.map(hostfile_Globals.hosts, host => host.getAttribute("id")).sort();
+	theSortedList.forEach(hostID => hostfile_Globals.hFile.firstChild.appendChild(hostfile_Globals.hFile.getElementById(hostID)));
 	}
 
 
@@ -134,7 +126,7 @@ function initWindow() {
 	 .forEach(function([label, searchPat]) {
 		var newElem = searchType.appendItem(label);
 		var thecommand = "var uPat = document.getElementById(\"tb_urlPattern\").value || '...'; \
-							document.getElementById(\"tb_searchPattern\").value = " + searchPat + ";";
+									 document.getElementById(\"tb_searchPattern\").value = " + searchPat + ";";
 		newElem.setAttribute("oncommand", thecommand);
 		});
 	}
@@ -200,7 +192,8 @@ function handleKeyUp(event) {
 function validate(inputItem) {
 	var valid_Host = true;
 
-	if (['hostLabel','urlPattern','searchPattern'].some(inputTB => (document.getElementById('tb_'+inputTB).value == ""))) valid_Host = false;
+	if (['hostLabel','urlPattern','searchPattern'].some(inputTB => (document.getElementById("tb_" + inputTB).value == ""))) valid_Host = false;
+	if (document.getElementById("cb_POSTData").checked && ((document.getElementById("tb_POSTData").value == null) || (document.getElementById("tb_POSTData").value == ""))) valid_Host = false;
 
 	if (valid_Host) {
 		document.getElementById("but_updateFile").disabled = !(document.getElementById('theList').selectedItem);
@@ -211,22 +204,17 @@ function validate(inputItem) {
 		document.getElementById("but_addHost").disabled = true;
 		}
 	}
-/* 
-function resizeResponseTextBox() {
-	var rBoxThing = document.getElementById("tb_searchPattern");
-	rBoxThing.height = window.innerHeight - 212;
-	}
- */
+
 function loadHostFile() {
 	window.setCursor('wait');
 
 	hostfile_Globals.hostFileObj = new HostFileService();
+	document.getElementById("tb_hostFileLoc").defaultValue = hostfile_Globals.hostFileObj.hostFile.path;
+
 	hostfile_Globals.hFile = hostfile_Globals.hostFileObj.getHosts();
 	hostfile_Globals.hosts = hostfile_Globals.hFile.getElementsByTagName("host");
 
 	sortHosts();
-
-	document.getElementById("tb_hostFileLoc").value = hostfile_Globals.hostFileObj.hostFile.path;
 
 	var menu_popup = document.getElementById("theList");
 	menu_popup.removeAllItems();
@@ -238,11 +226,11 @@ function loadHostFile() {
 	window.setCursor('auto');
 	}
 
-function fillTBs(idx) {
+function Fill_Form(idx) {
 	var uPatNode = hostfile_Globals.hosts[idx].getElementsByTagName("urlpattern")[0];
-	var uPat = uPatNode.textContent;
+	var uPat = uPatNode && uPatNode.textContent;
 	var sPatNode = hostfile_Globals.hosts[idx].getElementsByTagName("searchpattern")[0];
-	var sPat = sPatNode.textContent;
+	var sPat = sPatNode && sPatNode.textContent;
 
 	var hl_tbout = document.getElementById("tb_hostLabel");
 	hl_tbout.value = hostfile_Globals.hosts[idx].getAttribute("id");
@@ -251,7 +239,7 @@ function fillTBs(idx) {
 	var maxThreads = hostfile_Globals.hosts[idx].getAttribute("maxThreads");
 
 	var cbMaxThreads = document.getElementById("cb_hostMaxThreads");
-	cbMaxThreads.checked = (maxThreads != null)?true:false;
+	cbMaxThreads.checked = (maxThreads != null) ? true : false;
 	mt_tbout.disabled = !cbMaxThreads.checked;
 	mt_tbout.value = maxThreads || 1;
 
@@ -259,15 +247,23 @@ function fillTBs(idx) {
 	var timeout = hostfile_Globals.hosts[idx].getAttribute("Timeout");
 
 	var cbDLTimeout = document.getElementById("cb_downloadTimeout");
-	cbDLTimeout.checked = (timeout != null)?true:false;
+	cbDLTimeout.checked = (timeout != null) ? true : false;
 	timer_tbout.disabled = !cbDLTimeout.checked;
 	timer_tbout.value = timeout || 1;
 
 	var up_tbout = document.getElementById("tb_urlPattern");
 	up_tbout.value = uPat;
 
+	var pd_tbout = document.getElementById("tb_POSTData");
+	var POSTData = uPatNode && uPatNode.getAttribute("POSTData");
+
+	var cbPOSTData = document.getElementById("cb_POSTData");
+	cbPOSTData.checked = (POSTData != null) ? true : false;
+	pd_tbout.disabled = !cbPOSTData.checked;
+	pd_tbout.value = POSTData || "";
+
 	var sp_tbout = document.getElementById("tb_searchPattern");
-	if(!sPat.match(/^function\b/)) sp_tbout.value = sPat.replace(/\\\\/g, "\\");
+	if (!/^function\b/.test(sPat)) sp_tbout.value = sPat.replace(/\\\\/g, "\\");
 	else sp_tbout.value = sPat;
 
 	document.getElementById("but_updateFile").disabled = true;
@@ -286,7 +282,7 @@ function updateHostFile(newHost) {
 
 	if (theSortedList.indexOf(label) >= 0) {
 		if (newHost || (document.getElementById('theList').label != label)) {
-			promptService.alert(this, null, ihg_Globals.strings.hostID_already_exists);
+			promptService.alert(null, null, ihg_Globals.strings.hostID_already_exists);
 			return;
 			}
 		}
@@ -294,7 +290,7 @@ function updateHostFile(newHost) {
 	var urlPattern = document.getElementById("tb_urlPattern").value;
 	try {
 		new RegExp(urlPattern);
-		var SchemeName_Patt = /^\^?http(?:s\??)?:\\\/\\\//i;
+		var SchemeName_Patt = /^\^?http(?:s\??)?:\\?\/\\?\//i;
 		if (SchemeName_Patt.test(urlPattern)) {
 			var wo_scheme_name = urlPattern.replace(SchemeName_Patt, "");
 			var authority_SP = wo_scheme_name.match(/^(?:\[[^\[\]]+\]|[^\[\]])+?(?=\\?\/|\$?$)/);
@@ -303,12 +299,12 @@ function updateHostFile(newHost) {
 					new RegExp(authority_SP[0]);
 					}
 				catch(E) {
-					promptService.alert(this, null, ihg_Globals.strings.URL_Domain_search_not_RegExp + "\n" + authority_SP + "\n" + E);
+					promptService.alert(null, null, ihg_Globals.strings.URL_Domain_search_not_RegExp + "\n" + authority_SP + "\n" + E);
 					return;
 					}
 				}
 			else {
-				promptService.alert(this, null, ihg_Globals.strings.URL_Domain_search_not_found);
+				promptService.alert(null, null, ihg_Globals.strings.URL_Domain_search_not_found);
 				return;
 				}
 			}
@@ -319,7 +315,7 @@ function updateHostFile(newHost) {
 							 promptService.BUTTON_POS_1_DEFAULT;												// DONT_SAVE by default
 
 			var ConfirmSave = promptService.confirmEx(
-				this,
+				null,
 				null,
 				ihg_Globals.strings.URL_Pattern_wo_SchemeName,
 				buttonflag,
@@ -329,23 +325,25 @@ function updateHostFile(newHost) {
 
 			switch (ConfirmSave) {
 				case 0: break;
-				case 2: fillTBs(document.getElementById("theList").selectedIndex);
+				case 2: Fill_Form(document.getElementById("theList").selectedIndex);
 				case 1:
 				default:return;
 				}
 			}
 		}
 	catch(e) {
-		promptService.alert(this, null, ihg_Globals.strings.URL_Pattern_not_RegExp + "\n" + urlPattern + "\n" + e);
+		promptService.alert(null, null, ihg_Globals.strings.URL_Pattern_not_RegExp + "\n" + urlPattern + "\n" + e);
 		return;
 		}
 
 	var searchPattern = document.getElementById("tb_searchPattern").value;
-	if (!searchPattern.match(/^function\b/)) searchPattern = searchPattern.replace(/\\(?!\")/g, "\\\\");
+	if (!/^function\b/.test(searchPattern)) searchPattern = searchPattern.replace(/\\(?!\")/g, "\\\\");
 	var maxThreads = document.getElementById("tb_hostMaxThreads").value;
 	var timeout = document.getElementById("tb_downloadTimeout").value;
+	var POSTData = document.getElementById("tb_POSTData").value;
 	var cb_maxThreads = document.getElementById("cb_hostMaxThreads").checked;
 	var cb_timeout = document.getElementById("cb_downloadTimeout").checked;
+	var cb_POSTData = document.getElementById("cb_POSTData").checked;
 
 	var menupopup = document.getElementById("theList");
 
@@ -363,7 +361,10 @@ function updateHostFile(newHost) {
 
 	uPatNode.textContent = urlPattern;
 
-	if (searchPattern.match(/^function\b/)) {
+	if (cb_POSTData == false) uPatNode.removeAttribute("POSTData");
+	else uPatNode.setAttribute("POSTData", POSTData);
+
+	if (/^function\b/.test(searchPattern)) {
 		var cData = hostfile_Globals.hFile.createCDATASection(searchPattern);
 		if (!newHost) sPatNode.removeChild(sPatNode.firstChild);
 		sPatNode.appendChild(cData);
@@ -382,7 +383,6 @@ function updateHostFile(newHost) {
 	}
 
 	sortHosts();
-
 	hostfile_Globals.hostFileObj.writeHosts();
 
 	loadHostFile();
@@ -392,7 +392,7 @@ function updateHostFile(newHost) {
 		var zha = menupopup.getItemAtIndex(i);
 		if (zha.label == label) { 
 			menupopup.selectedIndex = i;
-			fillTBs(i);
+			Fill_Form(i);
 			break;
 			}
 		}
@@ -402,13 +402,13 @@ function addHost() {
 	var label = document.getElementById("tb_hostLabel").value;
 
 	if (theSortedList.indexOf(label) >= 0) {
-		promptService.alert(this, null, ihg_Globals.strings.hostID_already_exists);
+		promptService.alert(null, null, ihg_Globals.strings.hostID_already_exists);
 		return;
 	}
 
 	var urlPattern = document.getElementById("tb_urlPattern").value;
 	var searchPattern = document.getElementById("tb_searchPattern").value;
-	if (!searchPattern.match(/function/)) searchPattern = searchPattern.replace(/\\(?!\")/g, "\\\\");
+	if (!/^function\b/.test(searchPattern)) searchPattern = searchPattern.replace(/\\(?!\")/g, "\\\\");
 	var maxThreads = document.getElementById("tb_hostMaxThreads").value;
 	var timeout = document.getElementById("tb_downloadTimeout").value;
 	var cb_maxThreads = document.getElementById("cb_hostMaxThreads").checked;
@@ -429,7 +429,7 @@ function addHost() {
 	newUP.textContent = urlPattern;
 
 	var newSP = hostfile_Globals.hFile.createElement("searchpattern");
-	if (searchPattern.match(/function/)) {
+	if (/^function\b/.test(searchPattern)) {
 		var cData = hostfile_Globals.hFile.createCDATASection(searchPattern);
 		newSP.appendChild(cData);
 		}
@@ -455,7 +455,7 @@ function addHost() {
 		var zha = menupopup.getItemAtIndex(i);
 		if (zha.label == label) { 
 			menupopup.selectedIndex = i;
-			fillTBs(i);
+			Fill_Form(i);
 			break;
 			}
 		}
@@ -483,14 +483,10 @@ function changeHostFile() {
 	const nsIFilePicker = Components.interfaces.nsIFilePicker;
 	var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 
-	var FpTitle=ihg_Globals.strings.pick_host_file;
-
-	fp.init(top.window, FpTitle, nsIFilePicker.modeOpen);
-	var res = fp.show();
-
-	if (res == nsIFilePicker.returnOK) {
+	fp.init(top.window, ihg_Globals.strings.pick_host_file, nsIFilePicker.modeOpen);
+	if (fp.show() == nsIFilePicker.returnOK) {
 		if (fp.file && (fp.file.path.length > 0)) {
-			document.getElementById("hostfileloc").value = fp.file.path;
+			document.getElementById("hostfileloc").value = fp.file;
 			loadHostFile();
 			resetTextBoxes();
 			}
@@ -515,20 +511,13 @@ function onlineHostF() {
 
 
 function mergeHostFile(onlineXML) {
-	window.setCursor('wait');
-
 	if (!onlineXML) {
 		const nsIFilePicker = Components.interfaces.nsIFilePicker;
 		var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 
-		var FpTitle=ihg_Globals.strings.pick_host_file;
-
-		fp.init(top.window, FpTitle, nsIFilePicker.modeOpen);
-		var res = fp.show();
-
-		if (res != nsIFilePicker.returnOK) return false;
-		if (!fp.file) return false;
-		if (!(fp.file.path.length > 0)) return false;
+		fp.init(top.window, ihg_Globals.strings.pick_host_file, nsIFilePicker.modeOpen);
+		if (fp.show() != nsIFilePicker.returnOK) return false;
+		if (!(fp.file && (fp.file.path.length > 0))) return false;
 
 		var fileURI = ihg_Globals.ioService.newFileURI(fp.file);
 		var req = new XMLHttpRequest();
@@ -537,20 +526,15 @@ function mergeHostFile(onlineXML) {
 
 		var mergFile = req.responseXML;
 		}
-	else mergFile = onlineXML;
+	else var mergFile = onlineXML;
+
+	window.setCursor('wait');
 
 	var mergHosts = mergFile.getElementsByTagName("host");
+	if (!mergHosts.length) return false;
 
-	var tmpList = Array.map(mergHosts, function(host) {return host.getAttribute("id")}).sort();
-
-	for (var i = 0; i < tmpList.length; i++) {
-		for (var j = 0; j < mergHosts.length; j++) {
-			if (tmpList[i] == mergHosts[j].getAttribute("id")) {
-				mergFile.firstChild.appendChild(mergHosts[j]);
-				break;
-				}
-			}
-		}
+	var tmpList = Array.map(mergHosts, host => host.getAttribute("id")).sort();
+	tmpList.forEach(hostID => mergFile.firstChild.appendChild(mergFile.getElementById(hostID)));
 
 	window.setCursor('auto');
 
@@ -558,21 +542,39 @@ function mergeHostFile(onlineXML) {
 
 	window.setCursor('wait');
 
-	for (var i=0; i < mergHosts.length; i++) {
-		for (var j=0; j < hostfile_Globals.hosts.length; j++) {
-			if (mergHosts[i].getAttribute("id") == hostfile_Globals.hosts[j].getAttribute("id")) {
-				if (overWriteMode) hostfile_Globals.hFile.firstChild.removeChild(hostfile_Globals.hosts[j]);
-				else { mergFile.firstChild.removeChild(mergHosts[i]); i--; }
-				break;
+	for (var i = tmpList.shift(), j = theSortedList.shift(); i || j; ) {
+		if (i && j) {
+			if (i == j) {
+				if (overWriteMode) {
+					hostfile_Globals.hFile.firstChild.removeChild(hostfile_Globals.hFile.getElementById(j));
+					j = theSortedList.shift();
+					}
+				else {
+					mergFile.firstChild.removeChild(mergFile.getElementById(i));
+					i = tmpList.shift();
+					}
+				}
+			else {
+				if (i < j) {
+					hostfile_Globals.hFile.firstChild.appendChild(mergFile.getElementById(i));
+					i = tmpList.shift();
+					}
+				else {
+					hostfile_Globals.hFile.firstChild.appendChild(hostfile_Globals.hFile.getElementById(j));
+					j = theSortedList.shift();
+					}
 				}
 			}
-		}
-
-	for (var i=0; i < mergHosts.length; i++) {
-		// This rule is not strictly enforced.
-		// But, it ensures the owner document is proper
-		var tmpNode = hostfile_Globals.hFile.importNode(mergHosts[i], true);
-		hostfile_Globals.hFile.firstChild.appendChild(tmpNode);
+		else {
+			while (i) {
+				hostfile_Globals.hFile.firstChild.appendChild(mergFile.getElementById(i));
+				i = tmpList.shift();
+				}
+			while (j) {
+				hostfile_Globals.hFile.firstChild.appendChild(hostfile_Globals.hFile.getElementById(j));
+				j = theSortedList.shift();
+				}
+			}
 		}
 
 	sortHosts();
@@ -582,13 +584,12 @@ function mergeHostFile(onlineXML) {
 	resetTextBoxes();
 
 	window.setCursor('auto');
-
 	return true;
 	}
 
 
 function resetHostFileLoc() {
-	document.getElementById("hostfileloc").value = "";
+	document.getElementById("hostfileloc").reset();
 	loadHostFile();
 	resetTextBoxes();
 	}
@@ -600,7 +601,7 @@ function resetTextBoxes() {
 		setAttribute("label", getAttribute("_label"));
 		}
 
-	document.getElementById("tb_hostLabel").value = "";
+	document.getElementById("tb_hostLabel").reset();
 	document.getElementById("cb_hostMaxThreads").checked = false;
 	document.getElementById("tb_hostMaxThreads").disabled = true;
 	document.getElementById("tb_hostMaxThreads").reset();
@@ -608,8 +609,12 @@ function resetTextBoxes() {
 	document.getElementById("tb_downloadTimeout").disabled = true;
 	document.getElementById("tb_downloadTimeout").reset();
 
-	document.getElementById("tb_urlPattern").value = "";
-	document.getElementById("tb_searchPattern").value = "";
+	document.getElementById("tb_urlPattern").reset();
+	document.getElementById("cb_POSTData").checked = false;
+	document.getElementById("tb_POSTData").disabled = true;
+	document.getElementById("tb_POSTData").reset();
+	document.getElementById("tb_searchPattern").reset();
+	document.getElementById("tb_hostFileLoc").reset();
 
 	document.getElementById("but_updateFile").disabled = true;
 	document.getElementById("but_addHost").disabled = true;

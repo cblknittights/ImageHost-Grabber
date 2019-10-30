@@ -1,23 +1,23 @@
 /****************************** Start of GPL Block ****************************
- *   ImageHost Grabber - Imagegrabber is a firefox extension designed to 
- *   download pictures from image hosts such as imagevenue, imagebeaver, and 
- *   others (see help file for a full list of supported hosts).
+ *	ImageHost Grabber - Imagegrabber is a firefox extension designed to
+ *	download pictures from image hosts such as imagevenue, imagebeaver, and
+ *	others (see help file for a full list of supported hosts).
  *
- *   Copyright (C) 2007   Matthew McMullen.
- * 
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
+ *	Copyright (C) 2007   Matthew McMullen.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ *	This program is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation; either version 2 of the License, or
+ *	(at your option) any later version.
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program; if not, write to the Free Software
+ *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  ***************************  End of GPL Block *******************************/
 
@@ -52,11 +52,11 @@ ihg_Functions.autoUpdate = function autoUpdate() {
 			
 				var remoteLastMod = new Date(remoteLastModStr);
 				ihg_Functions.LOG("Remote host file (" + someUrl + ") -> Last-Modified: " + remoteLastMod.toString() + "\n");
-			
+
 				if (remoteLastMod > localLastMod) {
 					var conf = ihg_Globals.hostfUpdateConfirm;
 					if (!conf) conf = promptService.confirm(null, null, ihg_Globals.strings.updated_hostf_found + "\n" + ihg_Globals.strings.update_local_hostf);
-				
+
 					if (conf) {
 						req = new XMLHttpRequest();
 
@@ -75,7 +75,7 @@ ihg_Functions.autoUpdate = function autoUpdate() {
 						}
 					}
 					else ihg_Functions.LOG("User has cancelled the operation.\n");
-					
+
 					break;
 				}
 			}

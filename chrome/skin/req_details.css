@@ -1,0 +1,39 @@
+#req_response {
+	font-family: courier;
+}
+treecol {
+	min-width: 0px;
+}
+treechildren::-moz-tree-row {
+	border-width: 0px;
+	min-height: 15px;
+	height: 1.3em;
+/*	margin-bottom: 1px; */
+}
+treechildren::-moz-tree-cell(a) {
+	background-color: lightblue;
+}
+treechildren::-moz-tree-cell(p) {
+	background-color: whitesmoke;
+}
+treechildren::-moz-tree-cell(img) {
+	background-color: lightpink;
+}
+treechildren::-moz-tree-cell(form) {
+	background-color: orange;
+}
+treechildren::-moz-tree-cell(input) {
+	background-color: yellow;
+}
+treechildren::-moz-tree-row(error_1) {
+	background-color: red;
+}
+treechildren::-moz-tree-row(error_2) {
+	background-color: tomato;
+}
+treechildren::-moz-tree-row(error_3) {
+	background-color: violet;
+}
+treechildren::-moz-tree-cell-text(error) {
+	color: white;
+}

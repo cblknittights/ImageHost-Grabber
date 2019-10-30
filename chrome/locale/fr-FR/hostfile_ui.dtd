@@ -14,6 +14,9 @@
 
 <!ENTITY  url_pattern "Format d’URL">
 
+<!ENTITY  POSTData.label "POST Data">
+<!ENTITY  POSTData.placeholder "données à envoyer par la méthode POST">
+
 <!ENTITY  search_pattern "Motif à rechercher">
 <!ENTITY  select_func "Modèles...">
 
@@ -24,6 +27,6 @@
 <!ENTITY  modify_hostf_servers "Modifier les serveurs hôtes">
 
 <!ENTITY  pick_host_file "Choisir le Fichier d’hôtes">
-<!ENTITY  reset_to_default_host_file "Réinitialiser au fichier d'hôtes par défaut">
+<!ENTITY  reset_to_default_host_file "Réinitialiser au Fichier d’hôtes par défaut">
 <!ENTITY  merge_host_file "Fusionner le Fichier d’hôtes">
 <!ENTITY  update_from_online_host_file "MàJ du Fichier d’hôtes en ligne">

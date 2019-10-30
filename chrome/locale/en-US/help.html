@@ -2,13 +2,14 @@
 
 <head>
 	<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" media="screen" href="../../skin/help.css"/>
 	<title>ImageHost Grabber Help File</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="../../skin/help.css"/>
+	<script type="text/javascript" language="javascript" src="../../content/help.js"></script>
 </head>
 
-<body lang=en-US link=blue vlink=purple>
+<body lang=en-US link=blue vlink=purple onload="buildContents();">
 
-<div class=WordSection1>
+<div id="Contents" class=WordSection1>
 
 <div style='border:solid #4F81BD 3.0pt;padding:0in 0in 0in 0in;background:#4F81BD'>
 
@@ -16,147 +17,15 @@
 
 </div>
 
-<p class=MsoToc1><a href="#_Toc271680977">About</a></p>
-
-<p class=MsoToc1><a href="#_Toc271680978">Supported Image Hosts</a></p>
-
-<p class=MsoToc1><a href="#_Toc271680979">Main Features</a></p>
-
-<p class=MsoToc2><a href="#_Toc271680980">Get all pics on page</a></p>
-
-<p class=MsoToc2><a href="#_Toc271680981">Suck the current thread</a></p>
-
-<p class=MsoToc2><a href="#_Toc271680982">Host File Editor</a></p>
-
-<p class=MsoToc2><a href="#_Toc271680983">Restore cached session</a></p>
-
-<p class=MsoToc2><a href="#_Toc271680984">Toolbar Button</a></p>
-
-<p class=MsoToc1><a href="#_Toc271680985">Options</a></p>
-
-<p class=MsoToc2><a href="#_Toc271680986">File Saving Options</a></p>
-
-<p class=MsoToc3><a href="#_Toc271680987">Prefix filenames to reflect page order</a></p>
-
-<p class=MsoToc3><a href="#_Toc271680988">What to do if file exists in target location</a></p>
-
-<p class=MsoToc3><a href="#_Toc271680989">Autorename imagevenue and fapomatic files</a></p>
-
-<p class=MsoToc3><a href="#_Toc271680990">Create a sub-directory with document title inside the target directory</a></p>
-
-<p class=MsoToc3><a href="#_Toc271680991">Prefix directories to uniquely and chronologically identify them</a></p>
-
-<p class=MsoToc3><a href="#_Toc271680992">Create separate directories for each page when using thread sucker</a></p>
-
-<p class=MsoToc2><a href="#_Toc271680993">General</a></p>
-
-<p class=MsoToc3><a href="#_Toc271680994">Show the Download Directory box</a></p>
-
-<p class=MsoToc3><a href="#_Toc271680995">Show the Image Grabber menu in the tools menu</a></p>
-
-<p class=MsoToc3><a href="#_Toc271680996">Remove duplicate links, even across multiple pages</a></p>
-
-<p class=MsoToc3><a href="#_Toc271680997">Close download window when all downloads are finished</a></p>
-
-<p class=MsoToc2><a href="#_Toc271680998">Embedded Images</a></p>
-
-<p class=MsoToc3><a href="#_Toc271680999">Download embedded images</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681000">Host File</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681001">Enable automatic update</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681002">Host Options</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681003">Max. simultaneous connections</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681004">Max. number of retries for each link</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681005">Request timeout before retry (in seconds)</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681006">Debugging</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681007">Enable Console Logging</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681008">Enable Debugging Log</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681009">Clear Debug Log</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681010">Copy Debug Log to Local Folder</a></p>
-
-<p class=MsoToc1><a href="#_Toc271681011">Download Progress Window</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681012">General Features</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681013">Auto Clear Finished</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681014">Suppress Popup</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681015">Clear All Finished</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681016">Stop All Sessions</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681017">Revive All Stopped Sessions</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681018">Save session to cache</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681019">Actions on selected items</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681020">Open file</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681021">Open containing folder</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681022">Remove from list</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681023">Abort download/request</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681024">Retry download/request</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681025">Restart Download</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681026">Reset the retry count to zero</a></p>
-
-<p class=MsoToc3><a href="#_Toc271681027">View Request Details</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681028">Export list to HTML</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681029">Max. requests and Max. retries</a></p>
-
-<p class=MsoToc1><a href="#_Toc271681030">Host File Editor</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681031">Host Label</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681032">URL Pattern</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681033">Search Pattern</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681034">Save Changes</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681035">Add Host</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681036">Delete Host</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681037">Modify hostf servers</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681038">Pick Host File</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681039">Reset to Default Host File</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681040">Merge Host File</a></p>
-
-<p class=MsoToc2><a href="#_Toc271681041">Update from online Host file</a></p>
-
-<p class=MsoNormal>&nbsp;</p>
-
 </div>
 
 <br clear=all style='page-break-before:always'>
 
-<div class=WordSection2>
+<div id="Corpus" class=WordSection2>
 
 <p class=MsoTitle>ImageHost Grabber</p>
 
-<a name="_Toc271680977"><h1>About</h1></a>
+<h1>About</h1>
 
 <p class=MsoNormal>Many forums and blogs don’t have the capacity to store
 images on their own servers. Instead, posters are required to use a third-party
@@ -196,23 +65,22 @@ free image hosts.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680978"><h1>Supported Image Hosts</h1></a>
+<h1>Supported Image Hosts</h1>
 
 <p class=MsoNormal>A list of supported image hosts can be found at the main website:&nbsp;
-<a href="http://hot-honeys.com/" target="_blank">http://hot-honeys.com/</a></p>
+<a href="https://imagehostgrabber.com/hostf.html" target="_blank">ImageHost Grabber Host File</a></p>
 
 <br clear=all style='page-break-before:always'>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680979"><h1>Main Features</h1></a>
+<h1>Main Features</h1>
 
 <div class=indent>
 
-<a name="_Toc271680980"><h2>Get all pics on page</h2></a>
+<h2>Get all pics on page</h2>
 
-<p class=MsoNormal>This feature downloads all the
-images from the current page being displayed.</p>
+<p class=MsoNormal>This feature downloads all the images from the current page being displayed.</p>
 
 <h5>How it works:</h5>
 
@@ -222,7 +90,7 @@ the download directory.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680981"><h2>Suck the current thread</h2></a>
+<h2>Suck the current thread</h2>
 
 <p class=MsoNormal>This feature downloads images from
 multiple pages in a thread or gallery; this is what I call «sucking».
@@ -244,7 +112,7 @@ would on a forum. Choose a range of pages from the album that you want.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680982"><h2>Host File Editor</h2></a>
+<h2>Host File Editor</h2>
 
 <p class=MsoNormal>This feature allows you to modify
 the host file for IHG. You can update the host file, pick a new host file, or
@@ -257,7 +125,7 @@ section, «Host File Editor», for details on how it works.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680983"><h2>Restore cached session</h2></a>
+<h2>Restore cached session</h2>
 
 <p class=MsoNormal>This feature allows you to resume a
 session that was previously saved in the download progress window.</p>
@@ -269,7 +137,7 @@ section, «Download Progress Window», for details on how this works.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680984"><h2>Toolbar Button</h2></a>
+<h2>Toolbar Button</h2>
 
 <p class=MsoNormal>You can now put the ImageHost
 Grabber toolbar button on the main toolbar for easy convenient access. It
@@ -288,15 +156,15 @@ this topic, check out Firefox’s help file, or email me.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680985"><h1>Options</h1></a>
+<h1>Options</h1>
 
 <div class=indent>
 
-<a name="_Toc271680986"><h2>File Saving Options</h2></a>
+<h2>File Saving Options</h2>
 
 <div class=indent>
 
-<a name="_Toc271680987"><h3>Prefix filenames to reflect page order</h3></a>
+<h3>Prefix filenames to reflect page order</h3>
 
 <p class=MsoNormal>This option will add a prefix to
 the filename so that the files can be sorted in the same order as they are
@@ -310,7 +178,7 @@ files properly (i.e. pre-WinXP and UNIX flavored OS’s).</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680988"><h3>What to do if file exists in target location</h3></a>
+<h3>What to do if file exists in target location</h3>
 
 <p class=MsoNormal>There are three options: Rename
 File, Skip File, and Overwrite File. When renaming the file(s) automatically,
@@ -318,7 +186,7 @@ the extension adds an incrementing number to the end of the filename.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680989"><h3>Autorename imagevenue and fapomatic files</h3></a>
+<h3>Autorename imagevenue and fapomatic files</h3>
 
 <p class=MsoNormal>This functionality was
 originality part of the «Autorename» feature from previous versions.
@@ -327,7 +195,7 @@ these two servers. Other servers could be implemented here in future versions.</
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680990"><h3>Create a sub-directory with document title inside the target directory</h3></a>
+<h3>Create a sub-directory with document title inside the target directory</h3>
 
 <p class=MsoNormal>This option will take the
 document title and use that as the name of the new sub-directory to save the
@@ -335,11 +203,11 @@ media. The document title is what you see at the top of the Firefox window
 (called the «Application Bar» in windows). Most of the time, this
 should be a fairly unique way to identify the threads without the trouble of
 typing it yourself. Sometimes, this can produce lengthy directory names, and
-sometimes it is not unique enough. </p>
+sometimes it is not unique enough.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680991"><h3>Prefix directories to uniquely and chronologically identify them</h3></a>
+<h3>Prefix directories to uniquely and chronologically identify them</h3>
 
 <p class=MsoNormal>This option will prefix a time
 stamp to the directory when using the previous option. This allows the
@@ -349,7 +217,7 @@ will work.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680992"><h3>Create separate directories for each page when using thread sucker</h3></a>
+<h3>Create separate directories for each page when using thread sucker</h3>
 
 <p class=MsoNormal>When using the thread sucker, this
 option will create directories for each page of a thread or gallery. The
@@ -360,11 +228,11 @@ images will be saved in the base directory (or automatically created directory).
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680993"><h2>General</h2></a>
+<h2>General</h2>
 
 <div class=indent>
 
-<a name="_Toc271680994"><h3>Show the Download Directory box</h3></a>
+<h3>Show the Download Directory box</h3>
 
 <p class=MsoNormal>This option allows you to
 suppress the dialog that asks you where to save the images. If you uncheck this
@@ -372,7 +240,7 @@ option, images will be saved to the last directory that was used.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680995"><h3>Show the Image Grabber menu in the tools menu</h3></a>
+<h3>Show the Image Grabber menu in the tools menu</h3>
 
 <p class=MsoNormal>This option will allow you to
 choose whether to show the ImageHost Grabber menu in the «Tools»
@@ -380,7 +248,7 @@ menu, or on the main menu bar.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680996"><h3>Remove duplicate links, even across multiple pages</h3></a>
+<h3>Remove duplicate links, even across multiple pages</h3>
 
 <p class=MsoNormal>This option will allow you to
 remove duplicate links on the page. These are commonly found when a user
@@ -390,7 +258,7 @@ you are downloading for duplicate links.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680997"><h3>Close download window when all downloads are finished</h3></a>
+<h3>Close download window when all downloads are finished</h3>
 
 <p class=MsoNormal>This option will close the
 download window after all downloads have finished (following a 5 second
@@ -401,11 +269,11 @@ not close.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271680998"><h2>Embedded Images</h2></a>
+<h2>Embedded Images</h2>
 
 <div class=indent>
 
-<a name="_Toc271680999"><h3>Download embedded images</h3></a>
+<h3>Download embedded images</h3>
 
 <p class=MsoNormal>This option will allow you to
 download images that are «embedded» on the page. When using «Get all pics on
@@ -420,11 +288,11 @@ box.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681000"><h2>Host File</h2></a>
+<h2>Host File</h2>
 
 <div class=indent>
 
-<a name="_Toc271681001"><h3>Enable automatic update</h3></a>
+<h3>Enable automatic update</h3>
 
 <p class=MsoNormal>This option will connect to the
 online host file, to check for new hosts, every time ImageHost Grabber is
@@ -435,11 +303,11 @@ change the merge behavior.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681002"><h2>Host Options</h2></a>
+<h2>Host Options</h2>
 
 <div class=indent>
 
-<a name="_Toc271681003"><h3>Max. simultaneous connections</h3></a>
+<h3>Max. simultaneous connections</h3>
 
 <p class=MsoNormal>This is the number of connections
 to an image host that the extension will make at one time. In the past, there
@@ -458,7 +326,7 @@ by the image host, and the time of day.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681004"><h3>Max. number of retries for each link</h3></a>
+<h3>Max. number of retries for each link</h3>
 
 <p class=MsoNormal>This option lets you specify how
 many times it should retry each link before it gives up and moves on. The
@@ -479,7 +347,7 @@ won’t affect the retry count.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681005"><h3>Request timeout before retry (in seconds)</h3></a>
+<h3>Request timeout before retry (in seconds)</h3>
 
 <p class=MsoNormal>This option lets to specify how
 long the extension should try each request before sending the request to the
@@ -489,11 +357,11 @@ retry function.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681006"><h2>Debugging</h2></a>
+<h2>Debugging</h2>
 
 <div class=indent>
 
-<a name="_Toc271681007"><h3>Enable Console Logging</h3></a>
+<h3>Enable Console Logging</h3>
 
 <p class=MsoNormal>This option turns on the console
 logs. Use this if the extension doesn’t work, or a feature of the extension
@@ -504,12 +372,11 @@ but isn’t doing what you expected it to do (that’s called a logical error, a
 is harder to debug). An example where you would want to enable this would be if
 you click on «Get all pics on page» and it does nothing.</p>
 
-<p class=MsoNormal>Note: Firefox has to be restarted
-after enabling this option.</p>
+<p class=MsoNormal>Note: Firefox has to be restarted after enabling this option.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681008"><h3>Enable Debugging Log</h3></a>
+<h3>Enable Debugging Log</h3>
 
 <p class=MsoNormal>This option turns on the
 debugging logs. Use this if the extension is working but is doing something
@@ -523,12 +390,11 @@ feature. Try to use a page with a small amount of images (i.e. 20 or less). And
 when you’re done, copy the log to a local folder and clear the log. The log
 file can get to several hundred kilobytes in a single run.</p>
 
-<p class=MsoNormal>Note: Firefox has to be restarted
-after enabling this option.</p>
+<p class=MsoNormal>Note: Firefox has to be restarted after enabling this option.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681009"><h3>Clear Debug Log</h3></a>
+<h3>Clear Debug Log</h3>
 
 <p class=MsoNormal>Use this to clear the debug log.
 This is a good idea after doing a single run through. The log file will get
@@ -537,7 +403,7 @@ the log file to a local folder.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681010"><h3>Copy Debug Log to Local Folder</h3></a>
+<h3>Copy Debug Log to Local Folder</h3>
 
 <p class=MsoNormal>Use this to copy the log file to
 a folder located somewhere on your hard drive/desktop/storage device. You do
@@ -553,7 +419,7 @@ email it to the developer.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681011"><h1>Download Progress Window</h1></a>
+<h1>Download Progress Window</h1>
 
 <p class=MsoNormal>The download progress window contains features that are not
 available anywhere else in ImageHost Grabber. In general, you can add multiple
@@ -564,7 +430,7 @@ restart and retry downloads, and so on.</p>
 
 <div class=indent>
 
-<a name="_Toc271681012"><h2>General Features</h2></a>
+<h2>General Features</h2>
 
 <ul>
 	<li class=MsoListParagraphCxSpFirst>You can open the file after it has finished downloading by double clicking on the entry item</li>
@@ -575,13 +441,13 @@ restart and retry downloads, and so on.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681013"><h2>Auto Clear Finished</h2></a>
+<h2>Auto Clear Finished</h2>
 
 <p class=MsoNormal>Automatically clears downloads from the window as they are finished downloading.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681014"><h2>Suppress Popup</h2></a>
+<h2>Suppress Popup</h2>
 
 <p class=MsoNormal>This option suppresses the popup
 behavior of the download progress window when adding more downloads to the
@@ -589,14 +455,13 @@ window. The window must already be open for this to work.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681015"><h2>Clear All Finished</h2></a>
+<h2>Clear All Finished</h2>
 
-<p class=MsoNormal>Allows you to clear all the
-finished downloads from the window.</p>
+<p class=MsoNormal>Allows you to clear all the finished downloads from the window.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681016"><h2>Stop All Sessions</h2></a>
+<h2>Stop All Sessions</h2>
 
 <p class=MsoNormal>This feature will allow you to stop
 all downloads in progress. It causes each download to abort, regardless of
@@ -604,7 +469,7 @@ which session.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681017"><h2>Revive All Stopped Sessions</h2></a>
+<h2>Revive All Stopped Sessions</h2>
 
 <p class=MsoNormal>This feature will allow you to
 re-start the previously stopped sessions. Each session will start with the
@@ -613,7 +478,7 @@ the session.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681018"><h2>Save session to cache</h2></a>
+<h2>Save session to cache</h2>
 
 <p class=MsoNormal>This allows you to save all the
 items in the window to cache, which can be recalled later using the «Restore cached
@@ -623,7 +488,7 @@ you put into building the download list.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681019"><h2>Actions on selected items</h2></a>
+<h2>Actions on selected items</h2>
 
 <p class=MsoNormal>All of the actions on selected
 items are performed by right-clicking on the item(s) and selecting the action
@@ -633,7 +498,7 @@ to be performed.</p>
 
 <div class=indent>
 
-<a name="_Toc271681020"><h3>Open file</h3></a>
+<h3>Open file</h3>
 
 <p class=MsoNormal>This action will open only the
 item which has focus. For instance, if you right click on the third item in a
@@ -643,21 +508,20 @@ program that handles the file type.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681021"><h3>Open containing folder</h3></a>
+<h3>Open containing folder</h3>
 
 <p class=MsoNormal>This action will open the
 containing folder for the item that has focus.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681022"><h3>Remove from list</h3></a>
+<h3>Remove from list</h3>
 
-<p class=MsoNormal>This allows you to remove one or
-more item(s) from the list.</p>
+<p class=MsoNormal>This allows you to remove one or more item(s) from the list.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681023"><h3>Abort download/request</h3></a>
+<h3>Abort download/request</h3>
 
 <p class=MsoNormal>This feature allows you to cancel one
 or more requests for whatever reason. This might be an option you would
@@ -665,7 +529,7 @@ consider if it is taking too long and you want to retry it at a later time.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681024"><h3>Retry download/request</h3></a>
+<h3>Retry download/request</h3>
 
 <p class=MsoNormal>This feature will allow you to
 retry one or more downloads that have been aborted, completed successfully, or
@@ -673,7 +537,7 @@ that is in progress. It will retry from the current progress of the download(s).
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681025"><h3>Restart Download</h3></a>
+<h3>Restart Download</h3>
 
 <p class=MsoNormal>This feature restarts the
 download(s) completely, regardless of the progress. It starts with a fresh
@@ -681,7 +545,7 @@ download, not resuming from any previous progress.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681026"><h3>Reset the retry count to zero</h3></a>
+<h3>Reset the retry count to zero</h3>
 
 <p class=MsoNormal>This feature allows you to reset
 the retry count of the selected item(s). It is useful if there were connection
@@ -689,7 +553,7 @@ problems that inflated the retry count and you want to try again.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681027"><h3>View Request Details</h3></a>
+<h3>View Request Details</h3>
 
 <p class=MsoNormal>This feature will allow you to
 view the details of the request, such as where the file is being saved, the thumbnail’s
@@ -699,7 +563,7 @@ URL, and the HTML associated with the thumbnail page.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681028"><h2>Export list to HTML</h2></a>
+<h2>Export list to HTML</h2>
 
 <p class=MsoNormal>This button allows you to save the
 download list as an html file. The html file can then be opened in the main
@@ -707,7 +571,7 @@ browser window and re-processed by running «Get all pics on page».</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681029"><h2>Max. requests and Max. retries</h2></a>
+<h2>Max. requests and Max. retries</h2>
 
 <p class=MsoNormal>These two controls allow you to
 instantaneously control the maximum number of requests and retries for the
@@ -719,31 +583,31 @@ download process. The changes take effect immediately.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681030"><h1>Host File Editor</h1></a>
+<h1>Host File Editor</h1>
 
 <p class=MsoNormal>This section will only cover the basics of the interface for
 basic operations. You can find an in depth tutorial on adding your own hosts
 on the main web site, or downloading the following file:&nbsp;
-<a href="http://hot-honeys.com/HostFileEditor.pdf" target="_blank">
-http://hot-honeys.com/HostFileEditor.pdf</a></p>
+<a href="https://imagehostgrabber.com/IHG/HostFileEditor.pdf" target="_blank">
+ImageHost Grabber Host File Editor Manual</a></p>
 
 <p class=MsoNormal>&nbsp;</p>
 
 <div class=indent>
 
-<a name="_Toc271681031"><h2>Host Label</h2></a>
+<h2>Host Label</h2>
 
 <p class=MsoNormal>This is the unique identifying label for an entry in the host file.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681032"><h2>URL Pattern</h2></a>
+<h2>URL Pattern</h2>
 
 <p class=MsoNormal>This is the regular expression that corresponds to the image hosts URL pattern.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681033"><h2>Search Pattern</h2></a>
+<h2>Search Pattern</h2>
 
 <p class=MsoNormal>This is the part that finds the
 image on the resulting page. Please refer to the «Host File Editor» on the
@@ -751,27 +615,27 @@ main page for in depth discussion about the search pattern.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681034"><h2>Save Changes</h2></a>
+<h2>Save Changes</h2>
 
 <p class=MsoNormal>This updates the host file with any
 changes you may have made to an existing entry.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681035"><h2>Add Host</h2></a>
+<h2>Add Host</h2>
 
 <p class=MsoNormal>This adds a new entry to the host
 file given information entered into the first three fields.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681036"><h2>Delete Host</h2></a>
+<h2>Delete Host</h2>
 
 <p class=MsoNormal>This deletes the entry from the host file.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681037"><h2>Modify hostf servers</h2></a>
+<h2>Modify hostf servers</h2>
 
 <p class=MsoNormal>This is where you can add other
 sources of online host file updates. Simply enter the URL of the new host file
@@ -779,21 +643,20 @@ location.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681038"><h2>Pick Host File</h2></a>
+<h2>Pick Host File</h2>
 
 <p class=MsoNormal>This allows you to pick a host file
 other than the one residing in ImageHost Grabber’s extension folder.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681039"><h2>Reset to Default Host File</h2></a>
+<h2>Reset to Default Host File</h2>
 
-<p class=MsoNormal>This uses the host file that
-resides in ImageHost Grabber’s extension folder.</p>
+<p class=MsoNormal>This uses the host file that resides in ImageHost Grabber’s extension folder.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681040"><h2>Merge Host File</h2></a>
+<h2>Merge Host File</h2>
 
 <p class=MsoNormal>This will allow you to merge the
 entries in a host file (other than the one you’re using) with the host file
@@ -801,7 +664,7 @@ that you’re currently using.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<a name="_Toc271681041"><h2>Update from online Host file</h2></a>
+<h2>Update from online Host file</h2>
 
 <p class=MsoNormal>This allows you to receive the most
 up-to-date entries from the online host files. The online host file locations

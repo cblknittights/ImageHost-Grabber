@@ -12,10 +12,6 @@
 <script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/imagegrabber.js" />
 <script type="application/x-javascript" src="chrome://imagegrabber/content/interfaces/hostf_servers_ui.js" />
 
-<preferences>
-	<preference id="addonPath" name="extensions.imagegrabber.addonPath" type="string"/>
-</preferences>
-
 <script type="text/javascript"><![CDATA[
 ]]></script>
 
