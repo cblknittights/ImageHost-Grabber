@@ -1,5 +1,5 @@
-content	imagegrabber chrome/content/
-skin	imagegrabber default chrome/skin/
+content		imagegrabber chrome/content/
+skin		imagegrabber default chrome/skin/
 
 locale	imagegrabber en-US chrome/locale/en-US/
 locale	imagegrabber de-DE chrome/locale/de-DE/
@@ -8,9 +8,12 @@ locale	imagegrabber tr-TR chrome/locale/tr-TR/
 locale	imagegrabber fr-FR chrome/locale/fr-FR/
 
 # Firefox windows
-overlay	chrome://browser/content/browser.xul	chrome://imagegrabber/content/overlay.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+overlay	chrome://browser/content/browser.xul		chrome://imagegrabber/content/overlay.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 # Pale Moon windows
-overlay	chrome://browser/content/browser.xul	chrome://imagegrabber/content/overlay.xul application={8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}
+overlay	chrome://browser/content/browser.xul		chrome://imagegrabber/content/overlay.xul application={8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}
+# SeaMonkey windows
+overlay	chrome://navigator/content/navigator.xul	chrome://imagegrabber/content/overlay.xul application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
 
 style	chrome://browser/content/browser.xul			chrome://imagegrabber/skin/overlay.css
+style	chrome://navigator/content/navigator.xul		chrome://imagegrabber/skin/overlay.css
 style	chrome://global/content/customizeToolbar.xul	chrome://imagegrabber/skin/overlay.css

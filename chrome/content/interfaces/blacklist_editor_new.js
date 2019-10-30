@@ -13,7 +13,9 @@ function setFocus(id) {
 
 function doOK() {
 	var doc = this.document;
+
 	var type = doc.getElementById("patternType").value;
 	var val = doc.getElementById("patternValue").value;
+
 	params.out = {type: type, value: val};
 }

@@ -60,24 +60,24 @@ ihg_Functions.hostGrabber = function hostGrabber(docLinks, filterImages) {
 				content.document.URL.match(/\/archive/)) {
 				ihg_Functions.getTumblrPage(content.document.URL, filterImages);
 				return;
+				}
 			}
-		}
 		catch (e) {
 			/* nothing to do */
-		}
+			}
 
 		var docLinks = new Array();
 		var thumbLinks = new Array();
-		
+
 		docLinks[ihg_Globals.firstPage] = new Array();
 		thumbLinks[ihg_Globals.firstPage] = new Array();
-		
+
 		ihg_Functions.getLinksAndImages(content, docLinks, thumbLinks);
 		}
 	ihg_Functions.LOG("In hostGrabber, docLinks is equal to: " + docLinks.toSource() + "\n");
 
 	if (ihg_Globals.lastHost.urlPattern) {
-		ihg_Globals.lastHost = { hostID : null, maxThreads : null, downloadTimeout : null, urlPattern : null, searchPattern : null };
+		ihg_Globals.lastHost = { hostID : null, maxThreads : null, downloadTimeout : null, urlPattern : null, POSTData: null, searchPattern : null };
 		}
 
 	if (ihg_Globals.hosts_list) ihg_Globals.hosts_list = null;
@@ -95,7 +95,7 @@ ihg_Functions.hostGrabber = function hostGrabber(docLinks, filterImages) {
 	tmp_req_objs = ihg_Functions.setUpLinkedList(tmp_req_objs);
 
 	if (tmp_req_objs.length == 0) {
-		promptService.alert(null, null, ihg_Globals.strings.no_images_or_links_found);
+		promptService.alert(null, ihg_Globals.appName, ihg_Globals.strings.no_images_or_links_found);
 		ihg_Functions.updateDownloadStatus(ihg_Globals.strings.running);
 		ihg_Globals.autoCloseWindow = ihg_Globals.prefManager.getBoolPref("extensions.imagegrabber.autoclosewindow");
 		if (ihg_Globals.autoCloseWindow) ihg_Functions.startCloseCountdown();
@@ -123,7 +123,7 @@ ihg_Functions.hostGrabber = function hostGrabber(docLinks, filterImages) {
 			delete ig_dl_win.req_objs;
 			new_array = ihg_Functions.setUpLinkedList(new_array);
 			ig_dl_win.req_objs = new_array;
-		}
+			}
 		else ig_dl_win.req_objs = tmp_req_objs;
 
 		var doc = ig_dl_win.document;
@@ -131,8 +131,8 @@ ihg_Functions.hostGrabber = function hostGrabber(docLinks, filterImages) {
 
 		if (!supPop) ig_dl_win.focus();
 		ihg_Functions.finishUp(tmp_req_objs);
-	}
-} //end of hostGrabber function
+		}
+	} //end of hostGrabber function
 
 
 ihg_Functions.getLinksAndImages = function getLinksAndImages(content, docLinks, thumbLinks) {
@@ -157,12 +157,12 @@ ihg_Functions.getLinksAndImages = function getLinksAndImages(content, docLinks, 
 									width:someNode.childNodes[a].naturalWidth,
 									height:someNode.childNodes[a].naturalHeight };
 						break;
+						}
 					}
 				}
-			}
 			thumbLinks[ihg_Globals.firstPage].push(thumbnail);
+			}
 		}
-	}
 
 	if (content.document.images && ihg_Globals.downloadEmbeddedImages) {
 		var imgs = content.document.images;
@@ -171,16 +171,16 @@ ihg_Functions.getLinksAndImages = function getLinksAndImages(content, docLinks, 
 				// add a tag to the link so we can identify it later
 				docLinks[ihg_Globals.firstPage].push("[embeddedImg]" + imgs[q].src);
 				thumbLinks[ihg_Globals.firstPage].push({ src:imgs[q].src, width:imgs[q].naturalWidth, height:imgs[q].naturalHeight });
+				}
 			}
 		}
-	}
 
 	if (content.frames) {
 		for (var q = 0; q < content.frames.length; q++) {
 			ihg_Functions.getLinksAndImages(content.frames[q], docLinks, thumbLinks);
+			}
 		}
 	}
-}
 
 
 ihg_Functions.setupBlacklistData = function setupBlacklistData() {
@@ -201,7 +201,7 @@ ihg_Functions.setupBlacklistData = function setupBlacklistData() {
 	if (regexpList.length == 0)
 		regexpList = null;
 	return [stringList, regexpList];
-}
+	}
 
 ihg_Functions.isBlacklisted = function isBlacklisted(url, stringList, regexpList) {
 	if (stringList) {
@@ -210,20 +210,20 @@ ihg_Functions.isBlacklisted = function isBlacklisted(url, stringList, regexpList
 			if (urlLowerCase == stringList[i]) {
 				ihg_Functions.LOG("Blacklisted URL (stringList): " + url + "\n");
 				return true;
+				}
 			}
 		}
-	}
 	if (regexpList) {
 		for (var i = 0; i < regexpList.length; i++) {
 			if (regexpList[i].test(url)) {
 				ihg_Functions.LOG("Blacklisted URL (regexpList): " + url + "\n");
 				return true;
+				}
 			}
 		}
-	}
 
 	return false;
-}
+	}
 
 ihg_Functions.finishUp = function finishUp(req_objs) {
 	// if this is the event for the window load, re-assign the variable.
@@ -237,13 +237,13 @@ ihg_Functions.finishUp = function finishUp(req_objs) {
 	if (req_objs.length == 0) return;
 
 	for (var pageIndex = ihg_Globals.firstPage; pageIndex <= ihg_Globals.lastPage; pageIndex++) {
-		ihg_Functions.addDownloadReqObjs(req_objs.filter(function (element) (element.pageNum == pageIndex)));
-	}
+		ihg_Functions.addDownloadReqObjs(req_objs.filter(element => (element.pageNum == pageIndex)));
+		}
 
 	ihg_Functions.setFocus();
 	
 	req_objs[0].queueHandler();
-}
+	}
 
 ihg_Functions.showDLWin = function showDLWin(fileName) {
 	ihg_Functions.initVars(true); // true to suppress directory selection dialog
@@ -263,34 +263,34 @@ ihg_Functions.showDLWin = function showDLWin(fileName) {
 				ihg_Functions.addDownloadReqObjs(req_objs);
 
 				ihg_Functions.setFocus();
-			};
+				};
+			}
 		}
-	}
 	else {
 		ig_dl_win.focus();
 		return;
+		}
 	}
-}
 
 ihg_Functions.getDLCache = function getDLCache(fileName) {
 	var target;
 	if (ihg_Globals.lastSessionDir) {
 		var cacheDir = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 		cacheDir.initWithPath(ihg_Globals.lastSessionDir);
-	}
+		}
 	else {
 		var cacheDir = Components.classes["@mozilla.org/file/directory_service;1"].getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile);
 
 		cacheDir.append("ihg_cache");
 		if (!cacheDir.exists() || !cacheDir.isDirectory()) {
 			cacheDir.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0755);
-		}
+			}
 
 		if (fileName) {
 			cacheDir.append(fileName);
 			target = cacheDir.path;
+			}
 		}
-	}
 
 	if (!fileName) {
 		const nsIFilePicker = Components.interfaces.nsIFilePicker;
@@ -301,7 +301,7 @@ ihg_Functions.getDLCache = function getDLCache(fileName) {
 		var rv = fp.show();
 		if (rv == nsIFilePicker.returnCancel) return null;
 		target = fp.file.path;
-	}
+		}
 
 	ihg_Globals.docTitle = target;
 	
@@ -313,13 +313,12 @@ ihg_Functions.getDLCache = function getDLCache(fileName) {
 	var req_objs = new Array();
 	for (var h = 0; h < reqList.length; h++) {
 		req_objs[h] = new ihg_Classes.requestObj();
-		req_objs[h].debugLog();
 		var props = reqList[h].getElementsByTagName("prop");
 		for (var i = 0; i < props.length; i++) {
 			var propType = props[i].getAttribute("type");
 
 			var propName = props[i].getAttribute("id");
-			if (propName.match(/^uniqID_\d+/)) continue;
+			if (/^uniqID_\d+$/.test(propName)) continue;
 			propName = propName.match(/(.+)_\d+/)[1];
 
 			if (propType == "function") {
@@ -331,24 +330,24 @@ ihg_Functions.getDLCache = function getDLCache(fileName) {
 				var cc = bb.replace(/NEWLINE/g, '\n');
 
 				propValue = new Function(cunt[1], cunt[2], cc);
-			}
+				}
 			else if (propType == "string") var propValue = props[i].textContent;
 			else if (propType == "number") var propValue = parseInt(props[i].textContent);
 			else if (propType == "boolean") {
 				if (props[i].textContent == "true") var propValue = true;
 				else var propValue = false;
-			}
+				}
 
 			req_objs[h][propName] = propValue;
 			}
 		req_objs[h].hostFunc = ihg_Functions.genericHostFunc;
 		req_objs[h].inprogress = false;
 		req_objs[req_objs[h].uniqID] = req_objs[h];
-	}
+		}
 
 	req_objs = ihg_Functions.setUpLinkedList(req_objs);
 	return req_objs;
-}
+	}
 
 /* function setUpLinksOBJ:
  *
@@ -402,13 +401,13 @@ ihg_Functions.setUpLinksOBJ = function setUpLinksOBJ(docLinks, filterImages, thu
 
 			var theHostToUse, targetURL;
 			if (isEmbedded) {
-				theHostToUse = {hostID: "Embedded Image", maxThreads: 0, downloadTimeout: 0, hostFunc: "Embedded Image"};
+				theHostToUse = {hostID: "Embedded Image", maxThreads: 0, downloadTimeout: 0, POSTData: null, hostFunc: "Embedded Image"};
 				targetURL = isEmbedded[1];
-			}
+				}
 			else {
 				theHostToUse = ihg_Functions.getHostToUse(docLinks[i][j]);
 				targetURL = docLinks[i][j];
-			}
+				}
 
 			if (theHostToUse && !ihg_Functions.isBlacklisted(targetURL, stringList, regexpList)) {
 				if (ihg_Globals.suckMode) {
@@ -426,6 +425,7 @@ ihg_Functions.setUpLinksOBJ = function setUpLinksOBJ(docLinks, filterImages, thu
 				objLinks.hostID[i][t_count] = theHostToUse.hostID;
 				objLinks.maxThreads[i][t_count] = theHostToUse.maxThreads;
 				objLinks.downloadTimeout[i][t_count] = theHostToUse.downloadTimeout;
+				objLinks.POSTData[i][t_count] = theHostToUse.POSTData;
 /* 
 				// Create an instance of the local file object
 				var aFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
@@ -470,7 +470,7 @@ ihg_Functions.setUpLinksOBJ = function setUpLinksOBJ(docLinks, filterImages, thu
 		}
  */
 	return [false, objLinks];
-} //end of function
+	} //end of function
 
 /* function setUpReq:
  *
@@ -519,15 +519,15 @@ ihg_Functions.setUpReq = function setUpReq(pause, objLinks) {
 			var host_ID = objLinks.hostID[i][j];
 			var host_maxThreads = objLinks.maxThreads[i][j];
 			var host_downloadTimeout = objLinks.downloadTimeout[i][j];
+			var host_POSTData = objLinks.POSTData[i][j];
 			var host_func = objLinks.hostFunc[i][j];
 
 			var req = new ihg_Classes.requestObj();
 
-			req.debugLog();
-
 			req.hostID = host_ID;
 			req.maxThreads = host_maxThreads;
 			req.downloadTimeout = host_downloadTimeout;
+			req.POSTData = host_POSTData;
 			req.regexp = host_func;
 			req.hostFunc = ihg_Functions.genericHostFunc;
 
@@ -559,7 +559,7 @@ ihg_Functions.setUpReq = function setUpReq(pause, objLinks) {
 		} // end of outer-for loop
 
 	return temp_array;
-} // end of function
+	} // end of function
 
 
 /* function setUpLinkedList:
@@ -592,7 +592,7 @@ ihg_Functions.setUpLinkedList = function setUpLinkedList(req_objs) {
 		}
 
 	return req_objs;
-}
+	}
 
 /* LinksOBJ class constructor:
  *
@@ -611,13 +611,14 @@ ihg_Functions.setUpLinkedList = function setUpLinkedList(req_objs) {
  */
 
 ihg_Functions.LinksOBJ = function LinksOBJ() {
-	this.links = new Array();
-//	this.dirSave = new Array();
-	this.hostFunc = new Array();
-	this.thumbs = new Array();
-	this.hostID = new Array();
-	this.maxThreads = new Array();
-	this.downloadTimeout = new Array();
+	this.links = [];
+//	this.dirSave = [];
+	this.hostFunc = [];
+	this.thumbs = [];
+	this.hostID = [];
+	this.maxThreads = [];
+	this.downloadTimeout = [];
+	this.POSTData = [];
 
 	// The following is added to give a proper referring url when downloading embedded images
 	this.originatingPage = new Array();
@@ -627,9 +628,6 @@ ihg_Functions.LinksOBJ = function LinksOBJ() {
 ihg_Functions.getIGPrefs = function getIGPrefs() {
 	var myself = arguments.callee.name;
 	ihg_Functions.LOG("Entering " + myself + "\n");
-
-	ihg_Globals.addonPath = ihg_Globals.prefManager.getCharPref("extensions.imagegrabber.addonPath");
-	ihg_Functions.LOG("In " + myself + ", ihg_Globals.addonPath is equal to: " + ihg_Globals.addonPath + "\n");
 
 	ihg_Globals.showDLDir = ihg_Globals.prefManager.getBoolPref("extensions.imagegrabber.showdldir");
 	ihg_Functions.LOG("In " + myself + ", ihg_Globals.showDLDir is equal to: " + ihg_Globals.showDLDir + "\n");
@@ -694,9 +692,6 @@ ihg_Functions.getIGPrefs = function getIGPrefs() {
 
 	ihg_Globals.prefManager.setBoolPref("extensions.imagegrabber.killmenow", false);
 
-	ihg_Globals.hostFileLoc = ihg_Globals.prefManager.getCharPref("extensions.imagegrabber.hostfileloc");
-	ihg_Functions.LOG("In " + myself + ", ihg_Globals.hostFileLoc is equal to: " + ihg_Globals.hostFileLoc + "\n");
-
 	ihg_Globals.prefix_fileNames = ihg_Globals.prefManager.getBoolPref("extensions.imagegrabber.prefixfilenames");
 	ihg_Functions.LOG("In " + myself + ", ihg_Globals.prefix_fileNames is equal to: " + ihg_Globals.prefix_fileNames + "\n");
 
@@ -724,9 +719,6 @@ ihg_Functions.getIGPrefs = function getIGPrefs() {
 	ihg_Globals.useLastModFromHeader = ihg_Globals.prefManager.getBoolPref("extensions.imagegrabber.uselastmodfromheader");
 	ihg_Functions.LOG("In " + myself + ", ihg_Globals.useLastModFromHeader is equal to: " + ihg_Globals.useLastModFromHeader + "\n");
 
-	ihg_Globals.blacklistFilePath = ihg_Globals.prefManager.getCharPref("extensions.imagegrabber.blacklistfilepath");
-	ihg_Functions.LOG("In " + myself + ", ihg_Globals.blacklistFilePath is equal to: " + ihg_Globals.blacklistFilePath + "\n");
-
 	ihg_Functions.LOG("Exiting " + myself + "\n");
 	}
 
@@ -737,7 +729,7 @@ ihg_Functions.initVars = function initVars(skipDirDialog) {
 
 	var doc = content.document;
 
-	ihg_Globals.docTitle = doc.title.replace(/[\\/:*?"<>|,]/g, '').replace(/\./g,'').replace(/ - Mozilla Firefox$/,'').trim();
+	ihg_Globals.docTitle = doc.title.replace(/[\\/:*?"<>|,]/g, '').replace(/\./g,'').trim();
 
 	if (ihg_Globals.docTitle.length > 89) ihg_Globals.docTitle = ihg_Globals.docTitle.substring(0, 89);
 
@@ -752,9 +744,10 @@ ihg_Functions.initVars = function initVars(skipDirDialog) {
 		ihg_Globals.baseDirSave = ihg_Functions.setDownloadDir(ihg_Globals.strings.setDownloadDir, ihg_Globals.lastDLDir);
 		if (!ihg_Globals.baseDirSave) {
 			ihg_Functions.LOG("In " + myself + ", user cancelled the request.\n");
-			return false; }
+			return false;
+			}
 		ihg_Globals.prefManager.setCharPref("extensions.imagegrabber.lastdldir", ihg_Globals.baseDirSave);
-		ihg_Globals.lastDLDirHistory = ihg_Globals.lastDLDirHistory.filter(function (dldir) {return dldir != ihg_Globals.baseDirSave});
+		ihg_Globals.lastDLDirHistory = ihg_Globals.lastDLDirHistory.filter(dldir => (dldir != ihg_Globals.baseDirSave));
 		if (ihg_Globals.lastDLDirHistory.unshift(ihg_Globals.baseDirSave) > 8) ihg_Globals.lastDLDirHistory.pop();
 		ihg_Globals.prefManager.setCharPref("extensions.imagegrabber.lastdldirhistory", stringify(ihg_Globals.lastDLDirHistory));
 		}
@@ -767,12 +760,14 @@ ihg_Functions.initVars = function initVars(skipDirDialog) {
 		ihg_Globals.firstPage = parseInt(prompt(ihg_Globals.strings.firstPage,""));
 		if (isNaN(ihg_Globals.firstPage)) {
 			ihg_Functions.LOG("In " + myself + ", user cancelled the request.\n");
-			return false; }
+			return false;
+			}
 
 		ihg_Globals.lastPage = parseInt(prompt(ihg_Globals.strings.lastPage,""));
 		if (isNaN(ihg_Globals.lastPage)) {
 			ihg_Functions.LOG("In " + myself + ", user cancelled the request.\n");
-			return false; }
+			return false;
+			}
 
 		if (ihg_Globals.firstPage > ihg_Globals.lastPage) {
 			promptService.alert(null, null, ihg_Globals.strings.the_first_page + " " + ihg_Globals.firstPage + ihg_Globals.strings.greather_than_last + " " + ihg_Globals.lastPage);
@@ -798,7 +793,7 @@ ihg_Functions.showFilterDialog = function showFilterDialog(objLinks) {
 	window.openDialog("chrome://imagegrabber/content/interfaces/filter.xul",
 			"ig-filter_win", "chrome, dialog, modal, resizable=yes", params);
 	return params.out;
-}
+	}
 
 ihg_Functions.showPreferencesDialog = function showPreferencesDialog() {
 	var ihg_optionsURL = "chrome://imagegrabber/content/interfaces/options.xul";
@@ -811,21 +806,22 @@ ihg_Functions.showPreferencesDialog = function showPreferencesDialog() {
 		if (win.document.documentURI == ihg_optionsURL) {
 			win.focus();
 			return;
+			}
 		}
-	}
 
 	var features = "chrome,titlebar,toolbar,centerscreen";
 	try {
 		var instantApply = ihg_Globals.prefManager.getBoolPref("browser.preferences.instantApply");
 		features += instantApply ? ",dialog=no" : ",modal";
-	} catch (e) {
+		}
+	catch (e) {
 		features += ",modal";
-	}
+		}
 
 	window.openDialog(ihg_optionsURL, "", features);
-}
+	}
 
 ihg_Functions.showBlacklistDialog = function showBlacklistDialog() {
 	window.openDialog("chrome://imagegrabber/content/interfaces/blacklist_editor.xul", 
 		"ig-blacklist_editor_win", "chrome, dialog, resizable=yes");
-}
+	}

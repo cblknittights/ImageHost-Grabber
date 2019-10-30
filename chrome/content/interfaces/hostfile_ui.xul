@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://imagegrabber/skin/hostf_ui.css" type="text/css"?>
 <!DOCTYPE window [
 	<!ENTITY % hostfile_uiDTD SYSTEM "chrome://imagegrabber/locale/hostfile_ui.dtd">
 	%hostfile_uiDTD;
@@ -22,22 +23,21 @@
 ]]></script>
 
 <preferences>
-	<preference id="addonPath"	 name="extensions.imagegrabber.addonPath" type="string"/>
-	<preference id="hostfileloc" name="extensions.imagegrabber.hostfileloc" type="string" instantApply="true"/>
+	<preference id="hostfileloc" name="extensions.imagegrabber.hostfileloc" type="file" instantApply="true"/>
 </preferences>
 
 <popupset>
 	<tooltip id="host_max_threads-tip">
 		<label value="&host_max_threads.tooltiptext;" class="tooltip-label"/>
-		<label value="&host_max_threads.hint;" style="font-style: italic;"/>
+		<label value="&host_max_threads.hint;" class="hint"/>
 	</tooltip>
 	<tooltip id="timeout-tip">
 		<label value="&timeout.tooltiptext;" class="tooltip-label"/>
-		<label value="&timeout.hint;" style="font-style: italic;"/>
+		<label value="&timeout.hint;" class="hint"/>
 	</tooltip>
 </popupset>
 
-<menulist id="theList" label="&select_host;" _label="&select_host;" oncommand="fillTBs(this.value);"/>
+<menulist id="theList" label="&select_host;" _label="&select_host;" oncommand="Fill_Form(this.value);"/>
 
 <grid>
 	<columns>
@@ -61,6 +61,12 @@
 			<label control="tb_urlPattern" value="&url_pattern;"/>
 			<textbox id="tb_urlPattern" placeholder="^https?:\/\/..."/>
 		</row>
+		<row align="center">
+			<label control="tb_POSTData" value="&POSTData.label;"/>
+			<textbox id="tb_POSTData" placeholder="&POSTData.placeholder;" disabled="true">
+				<checkbox id="cb_POSTData" oncommand="document.getElementById('tb_POSTData').disabled = !this.checked; validate(this);"/>
+			</textbox>
+		</row>
 	</rows>
 </grid>
 
@@ -70,7 +76,7 @@
 	<menulist id="searchType" label="&select_func;" _label="&select_func;" oncommand="validate(this);"/>
 </hbox>
 
-<textbox id="tb_searchPattern" multiline="true" flex="1" rows="12" onkeydown="handleKeyDown(event);" oninput="validate(this);" style="padding: 0px 0px 0px 3px;" minheight="100"/>
+<textbox id="tb_searchPattern" multiline="true" flex="1" rows="12" onkeydown="handleKeyDown(event);" oninput="validate(this);" minheight="100"/>
 
 <separator/>
 

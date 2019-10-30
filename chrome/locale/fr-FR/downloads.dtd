@@ -10,7 +10,7 @@
 <!ENTITY  open_url "Ouvrir une URL">
 <!ENTITY  view_request_details "Afficher les détails de la Demande">
 
-<!ENTITY  zebra_scheme "Jailbird Stripes Scheme">
+<!ENTITY  zebra_scheme "Style papier Listing">
 <!ENTITY  auto_clear_finished "Effacement auto quand c'est fini">
 <!ENTITY  suppress_popup "Supprimer Popup">
 <!ENTITY  clear_all_finished "Effacer les requêtes terminées">

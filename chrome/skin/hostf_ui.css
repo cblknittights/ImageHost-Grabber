@@ -1,0 +1,18 @@
+.hint {
+	font-style: italic;
+}
+#tb_POSTData {
+	padding-left: 0;
+}
+textbox > checkbox {
+	margin: 0;
+	cursor: default;
+}
+textbox > checkbox > .checkbox-label-box {
+	-moz-margin-start: 0;
+	border: 0;
+	padding: 0;
+}
+textbox[multiline="true"] {
+	padding-left: 3px;
+}

@@ -16,7 +16,7 @@
 	onunload="onUnLoad();">
 
 <stringbundleset id="stringbundleset">
-    <stringbundle id="imagegrabber-strings" src="chrome://imagegrabber/locale/imagegrabber.properties" />
+	<stringbundle id="imagegrabber-strings" src="chrome://imagegrabber/locale/imagegrabber.properties" />
 </stringbundleset>
 
 <script type="application/x-javascript" src="chrome://imagegrabber/content/imagegrabber/globals.js" />

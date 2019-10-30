@@ -1,23 +1,23 @@
 /****************************** Start of GPL Block ****************************
- *   ImageHost Grabber - Imagegrabber is a firefox extension designed to 
- *   download pictures from image hosts such as imagevenue, imagebeaver, and 
- *   others (see help file for a full list of supported hosts).
+ *	ImageHost Grabber - Imagegrabber is a firefox extension designed to 
+ *	download pictures from image hosts such as imagevenue, imagebeaver, and 
+ *	others (see help file for a full list of supported hosts).
  *
- *   Copyright (C) 2007   Matthew McMullen.
- * 
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
+ *	Copyright (C) 2007   Matthew McMullen.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ *	This program is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation; either version 2 of the License, or
+ *	(at your option) any later version.
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program; if not, write to the Free Software
+ *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  ***************************  End of GPL Block *******************************/
 
@@ -25,10 +25,11 @@ LogFile = null;
 MsgBuffer = [];
 promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
 
+
 //////////////////////  Initialize the logFile Object  //////////////////////
+
 ihg_Functions.initLogFile = function initLogFile() {
-	LogFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
-	LogFile.initWithPath(ihg_Globals.addonPath);
+	LogFile = ihg_Globals.prefManager.getComplexValue("extensions.imagegrabber.addonPath", Components.interfaces.nsILocalFile);
 	LogFile.append("logs");
 
 	// Create the logs directory if it's not already there
@@ -56,19 +57,15 @@ ihg_Functions.initLogFile = function initLogFile() {
  *	620 #define PR_EXCL         0x80
  ***************************************************************************/
 
+
 /////////////////  Dump to the log file  /////////////////////////////////
+
 ihg_Functions.Dump2LOG = function Dump2LOG( message ) {
 	var the_date = String(Date()).split(" ");
 	var dateForm = the_date[4] + " " + the_date[2] + " " + the_date[1] + " " + the_date[3];
 	MsgBuffer.push(dateForm + "\t" + message);
 
 	if (!LogFile || !LogFile.path) {
-		if (!ihg_Globals.addonPath) {
-			try {
-				ihg_Globals.addonPath = ihg_Globals.prefManager.getCharPref("extensions.imagegrabber.addonPath");
-				}
-			catch(e) {return;}
-			}
 		ihg_Functions.initLogFile();
 		}
 
@@ -90,24 +87,27 @@ ihg_Functions.Dump2LOG = function Dump2LOG( message ) {
 		}
 
 	ihg_Globals.fileOut.close();
-}
+	}
 
 /////////////////  Dump to the log file (for Debug)  /////////////////////
+
 ihg_Functions.LOG = function LOG( message ) {
 	if (ihg_Globals.debugOut) ihg_Functions.Dump2LOG(message);
-}
+	}
 
 /////////////////  Dump to the log file (for Console)  ///////////////////
+
 ihg_Functions.CON_LOG = function CON_LOG( message ) {
 	if (ihg_Globals.conLogOut) ihg_Functions.Dump2LOG(message);
-}
+	}
 
 /////////////////  Clears the log file    ///////////////////////
+
 ihg_Functions.clearLog = function clearLog() {
+	if (!LogFile || !LogFile.path) ihg_Functions.initLogFile();
+
 	var f_perms = 0755;  // this is ignored on windows
 	var f_flags = 0x02 | 0x20;
-
-	if (!LogFile || !LogFile.path) ihg_Functions.initLogFile();
 
 	ihg_Globals.fileOut.init(LogFile, f_flags, f_perms, null);
 
@@ -115,9 +115,10 @@ ihg_Functions.clearLog = function clearLog() {
 	ihg_Globals.fileOut.close();
 
 	promptService.alert(null, null, ihg_Globals.strings.debug_log_cleared);
-}
+	}
 
-/////////////  Copys the log file to some location   //////////////
+/////////////  Copies the log file to some location   //////////////
+
 ihg_Functions.copyLog = function copyLog() {
 	if (!LogFile || !LogFile.path) ihg_Functions.initLogFile();
 
@@ -126,7 +127,6 @@ ihg_Functions.copyLog = function copyLog() {
 	if (!copyToDir) return;
 
 	var newDir = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
-
 	newDir.initWithPath(copyToDir);
 
 	try {
@@ -138,9 +138,10 @@ ihg_Functions.copyLog = function copyLog() {
 		}
 
 	promptService.alert(null, null, ihg_Globals.strings.log_file_copied);
-}
+	}
 
 /////////////////////  Get the console messages  ////////////////////
+
 ihg_Functions.getConMsgs = function getConMsgs() {
 	if(!ihg_Globals.conLogOut) return;
 
@@ -155,13 +156,14 @@ ihg_Functions.getConMsgs = function getConMsgs() {
 	consoleService.registerListener(ihg_Globals.consoleListener);
 
 	for(var i=0; i < msgObj.length; i++) ihg_Functions.CON_LOG(msgObj[i].message + "\n");
-}
+	}
 
 /////////////////////  Unregister console listener  ////////////////////
+
 ihg_Functions.unregisterConsoleListener = function unregisterConsoleListener() {
 	var consoleService = Components.classes["@mozilla.org/consoleservice;1"].getService(Components.interfaces.nsIConsoleService);
 	consoleService.unregisterListener(ihg_Globals.consoleListener);
-}
+	}
 
 ///////////////  Listener for the error console  /////////////////////
 
@@ -174,4 +176,4 @@ ihg_Globals.consoleListener = {
 			}
 		return this;
 		}
-}
+	}

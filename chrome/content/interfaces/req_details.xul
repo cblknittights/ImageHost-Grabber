@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
-<!DOCTYPE window SYSTEM "chrome://imagegrabber/locale/req_details.dtd">
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://imagegrabber/skin/req_details.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://imagegrabber/locale/req_details.dtd">
 <window title="&imagehost_grabber_request_details;" id="igRequestDetails"
 	width="910" height="480" persist="sizemode height width screenX screenY"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	onload="rightOn()">
+	onload="rightOn();document.getElementById('req_response').selectedIndex = (document.getElementById('togResponse').checked ? 0 : 1);">
 
 <script>
 const gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
@@ -50,8 +51,18 @@ const gClipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper
 </hbox>
 
 <vbox flex="1">
-	<label value="&response_text;"/>
-	<textbox flex="1" multiline="true" id="responseText" readonly="true"/>
+	<button label="&response_text;" oncommand="document.getElementById('togResponse').click();"/>
+	<checkbox id="togResponse" oncommand="document.getElementById('req_response').selectedIndex = (this.checked ? 0 : 1);" persist="checked" hidden="true"/>
+	<deck id="req_response" flex="1">
+		<textbox id="responseText" flex="1" multiline="true" readonly="true"/>
+		<tree id="igtree" flex="1" hidecolumnpicker="true">
+			<treecols>
+				<treecol id="level" context="color" width="0"/>
+				<treecol id="tag" label="HTML tag" primary="true" flex="1"/>
+			</treecols>
+			<treechildren id="responseTags" minheight="200"/>
+		</tree>
+	</deck>
 </vbox>
 
 </window>

@@ -58,7 +58,7 @@
 	<label value="&it_allows_you_to_create_a_regular_expression_using_js;" class="indent"/>
 	<label value="https://developer.mozilla.org/en/JavaScript/Guide/Regular_Expressions" class="text-link indent"/>
 	<separator/>
-	<label value="&note_both_filters_are_case_insensitive;"/>
+	<label value="&note_both_filters_are_case_insensitive;" style="font-style: italic;"/>
 </tooltip>
 
 <hbox align="center">

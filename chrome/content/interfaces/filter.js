@@ -1,7 +1,7 @@
 var objLinks;
 var firstPage; 
 var lastPage;
-var params = window.arguments[0];
+var params = "arguments" in window && window.arguments.length >= 1 && window.arguments[0];
 
 ihgPlural = {};
 
@@ -28,7 +28,7 @@ function onLoad() {
 		}
 	ihgPlural.getFormatted = function(aNum, aWords, anArray) {
 		let words = ihgPlural.get(aNum, aWords);
-		anArray.forEach(function(value) {words = words.replace(/%S|\b__\b/, value);});
+		anArray.forEach(value => words = words.replace(/%S|\b__\b/, value));
 		return words;
 		}
 
@@ -172,13 +172,14 @@ function doOK(queuePaused) {
 
 
 function LinksOBJ() {
-	this.links = new Array();
-//	this.dirSave = new Array();
-	this.hostFunc = new Array();
-	this.hostID = new Array();
-	this.maxThreads = new Array();
-	this.downloadTimeout = new Array();
-	this.originatingPage = new Array();
+	this.links = [];
+//	this.dirSave = [];
+	this.hostFunc = [];
+	this.hostID = [];
+	this.maxThreads = [];
+	this.downloadTimeout = [];
+	this.POSTData = [];
+	this.originatingPage = [];
 }
 
 

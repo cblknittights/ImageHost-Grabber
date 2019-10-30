@@ -6,18 +6,23 @@
 	<!-- Firefox -->
 	<RDF:Description RDF:about="rdf:#$dxLld3"
 			em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-			em:minVersion="1.5"
+			em:minVersion="29.0"
 			em:maxVersion="99.*" />
 	<!-- Pale Moon -->
 	<RDF:Description RDF:about="rdf:#$pmBrwsr"
 			em:id="{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}"
-			em:minVersion="25.0"
+			em:minVersion="27.0"
 			em:maxVersion="99.*" />
+	<!-- SeaMonkey -->
+	<RDF:Description RDF:about="rdf:#$smNavig"
+			em:id="{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}"
+			em:minVersion="2.26"
+			em:maxVersion="2.*" />
 
 	<RDF:Description RDF:about="urn:mozilla:install-manifest"
 			em:id="{E4091D66-127C-11DB-903A-DE80D2EFDFE8}"
 			em:name="ImageHost Grabber"
-			em:version="1.7.0.4b"
+			em:version="1.7.0.5.DEV"
 			em:creator="Cybormatt"
 			em:description="Downloads images hosted on most of the popular image hosts."
 			em:homepageURL="https://imagehostgrabber.com/"
@@ -33,6 +38,7 @@
 		<em:contributor>Greg</em:contributor>
 		<em:targetApplication RDF:resource="rdf:#$dxLld3"/>
 		<em:targetApplication RDF:resource="rdf:#$pmBrwsr"/>
+		<em:targetApplication RDF:resource="rdf:#$smNavig"/>
 		<em:file RDF:resource="urn:mozilla:extension:file:imagegrabber.jar"/>
 		<em:unpack>true</em:unpack>
 		<em:updateURL>https://imagehostgrabber.com/IHG/update.rdf</em:updateURL>
@@ -69,7 +75,7 @@
 				<em:name>ImageHost Grabber</em:name>
 				<em:creator>Cybormatt</em:creator>
 				<em:homepageURL>https://imagehostgrabber.com/</em:homepageURL>
-				<em:description>Permet de télécharger toutes les images partagées sur de nombreux sites d'hébergement.</em:description>
+				<em:description>Permet de télécharger toutes les images partagées sur de nombreux sites d’hébergement.</em:description>
 				<em:translator>Queenie Fontaine</em:translator>
 				<em:contributor>web_surfer</em:contributor>
 				<em:contributor>blockout69</em:contributor>

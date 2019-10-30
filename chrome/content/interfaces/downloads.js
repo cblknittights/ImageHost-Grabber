@@ -38,19 +38,19 @@ function onClose(event) {
 		try {
 			var daNode = document.getElementById(req_objs[i].uniqID);
 			var someShit = daNode.nodeName;
-		}
+			}
 		catch(e) { continue; }
 
 		if (req_objs[i].inprogress == true) {
 			undelayed_confirm = false;
 			break;
-		}
+			}
 		if (req_objs[i].finished == false || req_objs[i].aborted == true) {
 			undelayed_confirm = true;
-		}
+			}
 
 		if (i == 0 && undelayed_confirm == false) return;
-	}
+		}
 
 	var buttonflag = promptService.BUTTON_TITLE_SAVE		 * promptService.BUTTON_POS_0 +
 					 promptService.BUTTON_TITLE_DONT_SAVE	 * promptService.BUTTON_POS_2 +
@@ -64,9 +64,9 @@ function onClose(event) {
 	var check = {value:DLWindowSuppressCloseConfirm.value};
 
 	var ConfirmClose = promptService.confirmEx(
-		window,
 		null,
-		ihg_Globals.strbundle.getFormattedString("close_confirm_progress_window",[document.title]),
+		null,
+		ihg_Globals.strings.close_confirm_progress_window([document.title]),
 		buttonflag,
 		null, null, null,																				// default button labels
 		ihg_Globals.strings.dont_bother_close_confirm,													// Checkbox label "Stop bothering me with confirm message !"
@@ -81,8 +81,8 @@ function onClose(event) {
 				event.preventDefault();
 		case 2:
 		default:return;
+		}
 	}
-}
 
 
 function onUnLoad() {
@@ -90,18 +90,19 @@ function onUnLoad() {
 	var boolAutoSave = document.getElementById("cbAutoSaveSession");
 	if (boolAutoSave.checked)
 		saveSession("dlwin_exit_state");
-}
+	}
 
 
 function saveSession(fileName) {
 	if (typeof req_objs === "undefined" || req_objs.length == 0) return;
 
-	var cacheDir = Components.classes["@mozilla.org/file/directory_service;1"].getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile);
-
+	var cacheDir = Components.classes["@mozilla.org/file/directory_service;1"]
+					.getService(Components.interfaces.nsIProperties)
+					.get("ProfD", Components.interfaces.nsIFile);
 	cacheDir.append("ihg_cache");
 	if (!cacheDir.exists() || !cacheDir.isDirectory()) { 
 		cacheDir.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0755);  
-	}
+		}
 
 	var aLocalFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 	aLocalFile.initWithPath(cacheDir.path);
@@ -111,7 +112,7 @@ function saveSession(fileName) {
 		var cacheFile = new ihg_Functions.dlWinCacheService(aLocalFile.path);
 		cacheFile.writeCache(req_objs);
 		return;
-	}
+		}
 
 	const nsIFilePicker = Components.interfaces.nsIFilePicker;
 	var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
@@ -127,7 +128,7 @@ function saveSession(fileName) {
 		postfix++;
 		aLocalFile.initWithPath(cacheDir.path);
 		aLocalFile.append(baseName + postfix);
-	}
+		}
 	fp.defaultString = baseName + postfix;
 
 	var rv = fp.show();
@@ -137,7 +138,7 @@ function saveSession(fileName) {
 	var cacheFile = new ihg_Functions.dlWinCacheService(fp.file.path);
 	cacheFile.writeCache(req_objs);
 	return true;
-}
+	}
 
 
 function loadSession() {
@@ -148,31 +149,32 @@ function loadSession() {
 
 	if (!this.req_objs) {
 		this.req_objs = tReqs;
-	} 
+		}
 	else {
 		var new_array = this.req_objs.concat(tReqs);
 		for (var i = 0; i < new_array.length; i++) new_array[new_array[i].uniqID] = new_array[i];
 		delete this.req_objs;
 		this.req_objs = new_array;
 		setUpLinkedList();
-	}
+		}
 
 	ihg_Functions.addDownloadReqObjs(tReqs);
-}
+	}
 
 
 function exportSession() {
 	if (ihg_Globals.lastSessionDir) {
 		var cacheDir = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 		cacheDir.initWithPath(ihg_Globals.lastSessionDir);
-	}
+		}
 	else {
-		var cacheDir = Components.classes["@mozilla.org/file/directory_service;1"].getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile);
-
+		var cacheDir = Components.classes["@mozilla.org/file/directory_service;1"]
+						.getService(Components.interfaces.nsIProperties)
+						.get("ProfD", Components.interfaces.nsIFile);
 		cacheDir.append("ihg_cache");
 		if (!cacheDir.exists() || !cacheDir.isDirectory())
 			cacheDir.create(Components.interfaces.nsIFile.DIRECTORY_TYPE, 0755);
-	}
+		}
 
 	const nsIFilePicker = Components.interfaces.nsIFilePicker;
 	var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
@@ -191,18 +193,18 @@ function exportSession() {
 
 	try {
 		fp.file.copyTo(newDir, null);
-	}
+		}
 	catch(e) {
-		promptService.alert(this, null, ihg_Globals.strings.failed_to_copy_session);
+		promptService.alert(null, null, ihg_Globals.strings.failed_to_copy_session);
 		return;
-	}
+		}
 
-	promptService.alert(this, null, ihg_Globals.strings.session_file_sucessfully_copied);
-}
+	promptService.alert(null, null, ihg_Globals.strings.session_file_sucessfully_copied);
+	}
 
 
 function reInitSession() {
-}
+	}
 
 
 function getTreeSelection() {
@@ -217,10 +219,10 @@ function getTreeSelection() {
 	for (var t = 0; t < numRanges; t++) {
 		tree.view.selection.getRangeAt(t,start,end);
 		for (var v = start.value; v <= end.value; v++) daNodes.push(tree.view.getItemAtIndex(v));
-	}
+		}
 
 	return daNodes;
-}
+	}
 
 
 function reset_retryCount() {
@@ -232,8 +234,8 @@ function reset_retryCount() {
 		var idx = daNodes[s].id;
 		if (!idx.match(/^req_/)) continue;
 		req_objs[idx].retryNum = maxRetries;
+		}
 	}
-}
 
 
 function restart_child() {
@@ -251,8 +253,8 @@ function restart_child() {
 		req_objs[idx].overwrite = true;
 		req_objs[idx].override_stop = true;
 		req_objs[idx].retry();
+		}
 	}
-}
 
 
 function remove_child(back_space) {
@@ -284,10 +286,10 @@ function remove_child(back_space) {
 			}
 
 		removeList.push(idx);
-	}
+		}
 
 	delete_from_req_objs(removeList);
-}
+	}
 
 
 function abort_child() {
@@ -297,9 +299,9 @@ function abort_child() {
 		var idx = daNodes[s].id;
 		if (!idx.match(/^req_/)) continue;
 		req_objs[idx].abort();
-	}
+		}
 
-}
+	}
 
 
 function retry_child() {
@@ -312,15 +314,15 @@ function retry_child() {
 		req_objs[idx].overwrite = true;
 		req_objs[idx].override_stop = true;
 		req_objs[idx].retry();
+		}
 	}
-}
 
 
 function autoClearForm() {
 	var autoClear = document.getElementById("cbAutoClear").checked;
 
 	if (autoClear) clear_form();
-}
+	}
 
 
 function clear_form() {
@@ -333,7 +335,7 @@ function clear_form() {
 		try {
 			var daNode = document.getElementById(req_objs[i].uniqID);
 			var someShit = daNode.nodeName;
-		}
+			}
 		catch(e) { continue; }
 
 
@@ -363,11 +365,11 @@ function clear_form() {
 					}
 				}
 			removeList.push(req_objs[i].uniqID);
+			}
 		}
-	}
 
 	delete_from_req_objs(removeList);
-}
+	}
 
 
 function delete_from_req_objs(removeList) {
@@ -377,12 +379,12 @@ function delete_from_req_objs(removeList) {
 			var index = reqChild.index;
 			delete req_objs[removeList[i]];
 			req_objs.splice(index, 1);
-		}
+			}
 
 		setUpLinkedList();
-	}
+		}
 	catch(e) {}
-}
+	}
 
 
 function killme() {
@@ -398,15 +400,15 @@ function killme() {
 		if (req_objs[i].inprogress) {
 			req_objs[i].stopped = true;
 			req_objs[i].abort();
+			}
 		}
-	}
 
 	for (let hostID in req_objs[0].cp.hostTimer) {
 		if (req_objs[0].cp.hostTimer[hostID] && req_objs[0].cp.hostTimer[hostID] != null)
 			req_objs[0].cp.hostTimer[hostID].cancel();
 		delete req_objs[0].cp.hostTimer[hostID];
-	};
-}
+		};
+	}
 
 
 function reviveme() {
@@ -422,11 +424,11 @@ function reviveme() {
 			req_objs[i].stopped = false;
 			req_objs[i].finished = false;
 			req_objs[i].aborted = false;
+			}
 		}
-	}
 
 	req_objs[0].queueHandler();
-}
+	}
 
 
 function view_details() {
@@ -444,13 +446,13 @@ function view_details() {
 		detail_win = detail_win_obj.openWindow(null, "chrome://imagegrabber/content/interfaces/req_details.xul", "ig-detail_win", "resizable,scrollbars=yes", null);
 		detail_win.reqObj = req_objs[shit];
 		// detail_win.addEventListener("load", rightOn, false);
-	}
+		}
 	else {
 		detail_win.reqObj = req_objs[shit];
 		// rightOn();
 		detail_win.focus();
+		}
 	}
-}
 
 
 function rightOn() {
@@ -469,10 +471,10 @@ function rightOn() {
 	detail_win.document.getElementById("readyState").value = reqObj.xmlhttp.readyState;
 	try {
 		detail_win.document.getElementById("statusText").value = reqObj.xmlhttp.statusText;
-	}
+		}
 	catch(e) { }
 	detail_win.document.getElementById("responseText").value = reqObj.xmlhttp.responseText;
-}
+	}
 
 
 function launchFile() {	
@@ -484,16 +486,16 @@ function launchFile() {
 	var shit = daNode.id;
 
 	if (req_objs[shit].fileName == "") {
-		promptService.alert(this, null, ihg_Globals.strings.no_file_to_open_yet);
+		promptService.alert(null, null, ihg_Globals.strings.no_file_to_open_yet);
 		return;
-	}
+		}
 
 	var aLocalFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
 	aLocalFile.initWithPath(req_objs[shit].dirSave);
 	aLocalFile.append(req_objs[shit].fileName);
 
 	aLocalFile.launch();
-}
+	}
 
 
 function revealFile() {	
@@ -508,7 +510,7 @@ function revealFile() {
 	aLocalFile.initWithPath(req_objs[shit].dirSave);
 
 	aLocalFile.reveal();
-}
+	}
 
 
 function setUpLinkedList() {
@@ -525,8 +527,8 @@ function setUpLinkedList() {
 		req_objs[i].lastRequest = req_objs[lastObj];
 
 		req_objs[i].index = i;
+		}
 	}
-}
 
 
 function openReqUrls() {
@@ -538,19 +540,19 @@ function openReqUrls() {
 		var reqUrl = req_objs[idx].reqURL;
 		if (!nWin) {
 			var nWin = window.open(reqUrl,reqUrl,"menubar,toolbar,location,resizable,scrollbars,status=yes");
-		}
+			}
 		else {
 			var win = Components.classes['@mozilla.org/appshell/window-mediator;1'].getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow('navigator:browser');
 			win.gBrowser.addTab(reqUrl);
+			}
 		}
 	}
-}
 
 
 function doSelectAll() {
 	var tree = document.getElementById("igTree");
 	tree.view.selection.selectAll();
-}
+	}
 
 
 function doInvertSelection() {
@@ -563,17 +565,17 @@ function doInvertSelection() {
 	//This code should be equivalent:
 	for (var i = 0; i < tree.view.rowCount; i++) {
 		tree.view.selection.toggleSelect(i);
-	}
+		}
 
 	tree.view.selection.currentIndex = idx;
-}
+	}
 
 
 function setFocus() {
 	var tree = document.getElementById("igTree");
 	tree.focus();
 	if (tree.view.rowCount > 0) tree.view.selection.select(0);
-}
+	}
 
 
 function exportList() {
@@ -614,9 +616,9 @@ function exportList() {
 		reqUrl = reqUrl.replace(/&/g, "&amp;");
 		if (req_objs[daNode.id].regexp == "Embedded Image") converter.writeString("<img src=\"" + reqUrl + "\" alt=\"" + reqUrl+ "\" /><br />\n");
 		else converter.writeString(reqUrl.link(reqUrl) + "<br />\n");
-	}
+		}
 
 	converter.writeString("</body>\n"
 	+ "</html>\n");
 	converter.close();
-}
+	}

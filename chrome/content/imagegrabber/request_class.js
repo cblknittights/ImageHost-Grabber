@@ -37,20 +37,21 @@ ihg_Classes.requestObj = function requestObj() {
 	this.uniqID = "req_" + (Math.floor(1e9 * (1 + Math.random()))).toString().substring(1);
 	// These are the properties that need to be set (by someone) for each instance of the class
 	this.origURL = "";
-	this.reqURL = "";
-	this.Server = "";
+	this._reqURL = "";
+	this._Server = "";
 	this.hostFunc = new Function();
 	this.hostID = null;
 	this.maxThreads = 0;
 	this.downloadTimeout = 0;
+	this.POSTData = null;
 	this.regexp = null;
-	this.retryNum = 0;
+	this._retryNum = 0;
 	this.dirSave = "";
 	this.fileName = "";
 	this.baseFileName = "";
 	this.pageNum = 0;
 	this.totLinkNum = 0;
-	this.curLinkNum = 0;
+	this._curLinkNum = 0;
 	this.uniqFN_prefix = "";
 	this.status = "";
 	this.originatingPage = "";
@@ -62,8 +63,8 @@ ihg_Classes.requestObj = function requestObj() {
 
 	this.cp = this.constructor.prototype; // make a convenient shortcut to the prototype
 
-	this.finished = false;
-	this.inprogress = false;
+	this._finished = false;
+	this._inprogress = false;
 	this.curProgress = 0;
 	this.maxProgress = 0;
 	this.aborted = false;
@@ -91,20 +92,6 @@ ihg_Classes.requestObj = function requestObj() {
 	this.progListener = new Object();
 
 	this.xmlhttp = null;
-
-	this.watch('reqURL', function(id, oldval, newval) {
-		let reqURI = ihg_Globals.ioService.newURI(newval, null, null);
-		if (reqURI && (reqURI.schemeIs('http') || reqURI.schemeIs('https'))) {
-			try {
-				this.Server = eTLDService.getBaseDomain(reqURI);
-				}
-			catch (e) {
-				this.Server = reqURI.host;
-				}
-			}
-		else this.Server = "";
-		return newval;
-		});
 	}
 
 
@@ -126,36 +113,62 @@ ihg_Classes.requestObj.prototype = {
 	// Syntax:
 	// init  :	reqObj.cp.hostTimer[hostID] = new ihg_Functions.CCallWrapper(...);
 	// clear :	reqObj.cp.hostTimer[hostID] = null;
-	// cancel:	reqObj.cp.hostTimer[hostID].cancel();
+	// cancel:	reqObj.cp.hostTimer[hostID].cancel(); delete reqObj.cp.hostTimer[hostID];
 	hostTimer : [],
 
-	debugLog : function req_debugLog () {
-		if (!ihg_Globals.debugOut) return;
-
-		function var_out(a,b,c) {
-			ihg_Functions.LOG("In requestObj with uniqID of " + this.uniqID +
-				", Property: " + a + ", Old Val: " + b + ", New Val: " + c + "\n");
-			if (a == 'reqURL') {
-				let reqURI = ihg_Globals.ioService.newURI(c, null, null);
-				if (reqURI && (reqURI.schemeIs('http') || reqURI.schemeIs('https'))) {
-					try {
-						this.Server = eTLDService.getBaseDomain(reqURI);
-						}
-					catch (e) {
-						this.Server = reqURI.host;
-						}
-					}
-				else this.Server = "";
+	get reqURL() {
+		return this._reqURL;
+	},
+	set reqURL(reqURL) {
+		this.logAttributeChange("reqURL", this._reqURL, reqURL);
+		this._reqURL = reqURL;
+		let reqURI = ihg_Globals.ioService.newURI(this._reqURL, null, null);
+		if (reqURI && (reqURI.schemeIs('http') || reqURI.schemeIs('https'))) {
+			try {
+				this.Server = eTLDService.getBaseDomain(reqURI);
 				}
-			return c;
+			catch (e) {
+				this.Server = reqURI.host;
+				}
 			}
-		this.watch('reqURL', var_out);
-		this.watch('Server', var_out);
-		this.watch('retryNum', var_out);
-		this.watch('curLinkNum', var_out);
-		this.watch('finished', var_out);
-		this.watch('inprogress', var_out);
+		else this.Server = "";
+	},
+	get Server() { return this._Server; },
+	set Server(Server) {
+			this.logAttributeChange("Server", this._Server, Server);
+			this._Server = Server;
 		},
+
+	get retryNum() { return this._retryNumM },
+	set retryNum(retryNum) {
+			this.logAttributeChange("retryNum", this._retryNum, retryNum);
+			this._retryNum = retryNum;
+		},
+
+	get curLinkNum() { return this._curLinkNum; },
+	set curLinkNum(curLinkNum) {
+			this.logAttributeChange("curLinkNum", this._curLinkNum, curLinkNum);
+			this._curLinkNum = curLinkNum;
+		},
+
+	get finished() { return this._finished; },
+	set finished(finished) {
+			this.logAttributeChange("finished", this._finished, finished);
+			this._finished = finished;
+		},
+
+	get inprogress() { return this._inprogress; },
+	set inprogress(inprogress) {
+			this.logAttributeChange("inprogress", this._inprogress, inprogress);
+			this._inprogress = inprogress;
+		},
+
+	logAttributeChange: function(name, oldval, newval) {
+		if (ihg_Globals.debugOut){
+			ihg_Functions.LOG("In requestObj with uniqID of " + this.uniqID +
+			 		", Property: " + name + ", Old Val: " + oldval + ", New Val: " + newval + "\n");
+		}
+	},
 
 	abort : function req_abort(additional_message) {
 		var retryURL = this.reqURL;
@@ -237,9 +250,14 @@ ihg_Classes.requestObj.prototype = {
 		this.hostID = newHostToUse.hostID;
 		this.maxThreads = newHostToUse.maxThreads;
 		this.downloadTimeout = newHostToUse.downloadTimeout;
+		this.POSTData = newHostToUse.POSTData;
 		this.regexp = newHostToUse.hostFunc;
 
-		this.retry();
+		if (this.xmlhttp && this.xmlhttp.channel.URI.spec == newPageUrl && this.POSTData == null)
+			this.xmlhttp.onload();
+		else
+			this.retry();
+
 		this.queueHandler();
 
 		ihg_Functions.LOG("Exiting function requestObj.requeue\n");
@@ -370,6 +388,7 @@ ihg_Classes.requestObj.prototype = {
 							case "alertfinished":
 								ihg_Globals.autoCloseWindow = ihg_Globals.prefManager.getBoolPref("extensions.imagegrabber.autoclosewindow");
 								if (ihg_Globals.autoCloseWindow) ihg_Functions.startCloseCountdown();
+							case "alertshow":
 							default:break;
 							}
 						}
@@ -442,28 +461,38 @@ ihg_Classes.requestObj.prototype = {
 			//These two lines allow for on-the-fly adaptation
 			ihg_Globals.maxRetries = ihg_Globals.prefManager.getIntPref("extensions.imagegrabber.numretries");
 			this.retryNum = ihg_Globals.maxRetries;
-		}
+			}
 
 		if (!this.xmlhttp) {
 			this.xmlhttp = new XMLHttpRequest();
 			this.xmlhttp.parent = this;
-		}
+			}
 
-		if (typeof this.regexp === "string" && (this.regexp === "LINK2FILE" || /^REPLACE: ["']/.test(this.regexp)))
+		var POSTData = null;
+		if (this.POSTData) {
+			var groups = this.reqURL.match(this.POSTData.urlPattern);
+				POSTData = this.POSTData.POSTData;
+			for (var i = groups.length; i--;) {
+				POSTData = POSTData.replace(new RegExp("\\$" + i + "(?=\\D|$)", "g"), groups[i]);
+				}
+			this.xmlhttp.open("POST", this.reqURL, true);
+			this.xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+			}
+		else if (typeof this.regexp === "string" && (this.regexp === "LINK2FILE" || /^REPLACE: ["']/.test(this.regexp)))
 			this.xmlhttp.open("GET", encodeURI('about:blank'), true);
 		else
 			this.xmlhttp.open("GET", this.reqURL, true);
 
 		try {
 			this.xmlhttp.channel.QueryInterface(Components.interfaces.nsIHttpChannelInternal).forceAllowThirdPartyCookie = true;
-		}
+			}
 		catch(e) { /* Requires Gecko 1.9.2 */ }
 
 		if (this.referer) this.xmlhttp.setRequestHeader("Referer", this.referer);
 		this.xmlhttp.onreadystatechange = this.init2;
 		this.xmlhttp.onload = this.hostFunc;
 		this.xmlhttp.onerror = this.errHandler;
-		this.xmlhttp.send(null);
+		this.xmlhttp.send(POSTData);
 
 		var req_timeout = ihg_Globals.reqTimeout;  // timeout is in milliseconds
 
@@ -481,24 +510,23 @@ ihg_Classes.requestObj.prototype = {
 
 		if (this.readyState == Components.interfaces.nsIXMLHttpRequest.HEADERS_RECEIVED) {
 			if (this.status >= 400 && this.status < 500) {
-				req.abort(ihg_Globals.strbundle.getFormattedString("http_status_code", [this.status]));
-				return;
+				return req.abort(ihg_Globals.strings.http_status_code([this.status]));
 				}
-	
+
 			var contType = this.getResponseHeader("Content-type");
 			if (!contType) return;
 			if (contType.match(/image\/.+/)) {
 				if (req.minFileSize > 0) {
 					if (req.regexp === "Embedded Image") {
 						var contLength = this.getResponseHeader("Content-Length");
-						if (contLength && contLength < req.minFileSize) { 
-							req.abort(ihg_Globals.strbundle.getFormattedString("file_too_short", [req.minFileSize/1024]));
+						if (contLength && contLength < req.minFileSize) {
+							req.abort(ihg_Globals.strings.file_too_short([req.minFileSize/1024]));
 							setTimeout(ihg_Functions.clearFromWin, 1000, req.uniqID, true);
 							return;
 							}
 						}
 					}
-				
+
 				this.onload = null;
 				req.callwrapper.cancel();
 				this.abort();

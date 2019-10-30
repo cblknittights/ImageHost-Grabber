@@ -14,6 +14,9 @@
 
 <!ENTITY  url_pattern "Patrón de URL">
 
+<!ENTITY  POSTData.label "POST Data">
+<!ENTITY  POSTData.placeholder "data to be sent with POST method">
+
 <!ENTITY  search_pattern "Patrón de búsqueda">
 <!ENTITY  select_func "Select...">
 
