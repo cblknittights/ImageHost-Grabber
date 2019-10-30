@@ -313,7 +313,6 @@ ihg_Functions.getDLCache = function getDLCache(fileName) {
 	var req_objs = new Array();
 	for (var h = 0; h < reqList.length; h++) {
 		req_objs[h] = new ihg_Classes.requestObj();
-		req_objs[h].debugLog();
 		var props = reqList[h].getElementsByTagName("prop");
 		for (var i = 0; i < props.length; i++) {
 			var propType = props[i].getAttribute("type");
@@ -524,8 +523,6 @@ ihg_Functions.setUpReq = function setUpReq(pause, objLinks) {
 			var host_func = objLinks.hostFunc[i][j];
 
 			var req = new ihg_Classes.requestObj();
-
-			req.debugLog();
 
 			req.hostID = host_ID;
 			req.maxThreads = host_maxThreads;

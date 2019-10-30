@@ -37,21 +37,21 @@ ihg_Classes.requestObj = function requestObj() {
 	this.uniqID = "req_" + (Math.floor(1e9 * (1 + Math.random()))).toString().substring(1);
 	// These are the properties that need to be set (by someone) for each instance of the class
 	this.origURL = "";
-	this.reqURL = "";
-	this.Server = "";
+	this._reqURL = "";
+	this._Server = "";
 	this.hostFunc = new Function();
 	this.hostID = null;
 	this.maxThreads = 0;
 	this.downloadTimeout = 0;
 	this.POSTData = null;
 	this.regexp = null;
-	this.retryNum = 0;
+	this._retryNum = 0;
 	this.dirSave = "";
 	this.fileName = "";
 	this.baseFileName = "";
 	this.pageNum = 0;
 	this.totLinkNum = 0;
-	this.curLinkNum = 0;
+	this._curLinkNum = 0;
 	this.uniqFN_prefix = "";
 	this.status = "";
 	this.originatingPage = "";
@@ -63,8 +63,8 @@ ihg_Classes.requestObj = function requestObj() {
 
 	this.cp = this.constructor.prototype; // make a convenient shortcut to the prototype
 
-	this.finished = false;
-	this.inprogress = false;
+	this._finished = false;
+	this._inprogress = false;
 	this.curProgress = 0;
 	this.maxProgress = 0;
 	this.aborted = false;
@@ -92,20 +92,6 @@ ihg_Classes.requestObj = function requestObj() {
 	this.progListener = new Object();
 
 	this.xmlhttp = null;
-
-	this.watch('reqURL', function(id, oldval, newval) {
-		let reqURI = ihg_Globals.ioService.newURI(newval, null, null);
-		if (reqURI && (reqURI.schemeIs('http') || reqURI.schemeIs('https'))) {
-			try {
-				this.Server = eTLDService.getBaseDomain(reqURI);
-				}
-			catch (e) {
-				this.Server = reqURI.host;
-				}
-			}
-		else this.Server = "";
-		return newval;
-		});
 	}
 
 
@@ -130,33 +116,59 @@ ihg_Classes.requestObj.prototype = {
 	// cancel:	reqObj.cp.hostTimer[hostID].cancel(); delete reqObj.cp.hostTimer[hostID];
 	hostTimer : [],
 
-	debugLog : function req_debugLog () {
-		if (!ihg_Globals.debugOut) return;
-
-		function var_out(a,b,c) {
-			ihg_Functions.LOG("In requestObj with uniqID of " + this.uniqID +
-				", Property: " + a + ", Old Val: " + b + ", New Val: " + c + "\n");
-			if (a == 'reqURL') {
-				let reqURI = ihg_Globals.ioService.newURI(c, null, null);
-				if (reqURI && (reqURI.schemeIs('http') || reqURI.schemeIs('https'))) {
-					try {
-						this.Server = eTLDService.getBaseDomain(reqURI);
-						}
-					catch (e) {
-						this.Server = reqURI.host;
-						}
-					}
-				else this.Server = "";
+	get reqURL() {
+		return this._reqURL;
+	},
+	set reqURL(reqURL) {
+		this.logAttributeChange("reqURL", this._reqURL, reqURL);
+		this._reqURL = reqURL;
+		let reqURI = ihg_Globals.ioService.newURI(this._reqURL, null, null);
+		if (reqURI && (reqURI.schemeIs('http') || reqURI.schemeIs('https'))) {
+			try {
+				this.Server = eTLDService.getBaseDomain(reqURI);
 				}
-			return c;
+			catch (e) {
+				this.Server = reqURI.host;
+				}
 			}
-		this.watch('reqURL', var_out);
-		this.watch('Server', var_out);
-		this.watch('retryNum', var_out);
-		this.watch('curLinkNum', var_out);
-		this.watch('finished', var_out);
-		this.watch('inprogress', var_out);
+		else this.Server = "";
+	},
+	get Server() { return this._Server; },
+	set Server(Server) {
+			this.logAttributeChange("Server", this._Server, Server);
+			this._Server = Server;
 		},
+
+	get retryNum() { return this._retryNumM },
+	set retryNum(retryNum) {
+			this.logAttributeChange("retryNum", this._retryNum, retryNum);
+			this._retryNum = retryNum;
+		},
+
+	get curLinkNum() { return this._curLinkNum; },
+	set curLinkNum(curLinkNum) {
+			this.logAttributeChange("curLinkNum", this._curLinkNum, curLinkNum);
+			this._curLinkNum = curLinkNum;
+		},
+
+	get finished() { return this._finished; },
+	set finished(finished) {
+			this.logAttributeChange("finished", this._finished, finished);
+			this._finished = finished;
+		},
+
+	get inprogress() { return this._inprogress; },
+	set inprogress(inprogress) {
+			this.logAttributeChange("inprogress", this._inprogress, inprogress);
+			this._inprogress = inprogress;
+		},
+
+	logAttributeChange: function(name, oldval, newval) {
+		if (ihg_Globals.debugOut){
+			ihg_Functions.LOG("In requestObj with uniqID of " + this.uniqID +
+			 		", Property: " + name + ", Old Val: " + oldval + ", New Val: " + newval + "\n");
+		}
+	},
 
 	abort : function req_abort(additional_message) {
 		var retryURL = this.reqURL;
