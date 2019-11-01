@@ -448,7 +448,7 @@ function view_details() {
 		// detail_win.addEventListener("load", rightOn, false);
 		}
 	else {
-		detail_win.reqObj = req_objs[shit];
+		detail_win.setReqObj(req_objs[shit]);
 		// rightOn();
 		detail_win.focus();
 		}

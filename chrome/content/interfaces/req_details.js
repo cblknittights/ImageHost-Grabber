@@ -310,4 +310,7 @@ detailsView.prototype = {
 	performActionOnCell: function(action, index, column) { }
 	}
 
-this.watch('reqObj', (a, b, c) => {setTimeout(rightOn, 0); return c});
+setReqObj = function (reqObj) {
+	this.reqObj = reqObj;
+	setTimeout(rightOn, 0);
+};
