@@ -22,7 +22,7 @@
 	<RDF:Description RDF:about="urn:mozilla:install-manifest"
 			em:id="{E4091D66-127C-11DB-903A-DE80D2EFDFE8}"
 			em:name="ImageHost Grabber"
-			em:version="1.7.0.5.beta2"
+			em:version="1.7.0.5.beta3"
 			em:creator="Cybormatt"
 			em:description="Downloads images hosted on most of the popular image hosts."
 			em:homepageURL="https://imagehostgrabber.com/"

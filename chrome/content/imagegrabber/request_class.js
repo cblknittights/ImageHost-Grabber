@@ -139,7 +139,7 @@ ihg_Classes.requestObj.prototype = {
 			this._Server = Server;
 		},
 
-	get retryNum() { return this._retryNumM },
+	get retryNum() { return this._retryNum },
 	set retryNum(retryNum) {
 			this.logAttributeChange("retryNum", this._retryNum, retryNum);
 			this._retryNum = retryNum;
